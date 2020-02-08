@@ -1,0 +1,30 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true,
+            "destructuring": true,
+            "spread": true,
+            "experimentalObjectRestSpread": true
+        }
+    },
+    "presets": [
+        "next/babel"
+    ],
+    "plugins": [
+        "react-hooks",
+        [
+            "styled-components",
+            {
+                "ssr": true,
+                "displayName": true,
+                "preprocess": false
+            }
+        ]
+    ],
+    "rules": {
+        //additional rules here
+        "react-hooks/rules-of-hooks": "error"
+    }
+}
