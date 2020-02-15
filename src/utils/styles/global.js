@@ -46,10 +46,10 @@ export default createGlobalStyle`
 
     body {
         font-family: 'Open Sans', sans-serif;
-        font-size: 13px;
+        font-size: 1rem;
         line-height: 1.4;
         font-weight: 400;
-        background-color: #f4f4f4;
+        background-color: #eeeeee !important;
     }
 
     code {
@@ -71,18 +71,8 @@ export default createGlobalStyle`
 
     h1, h2, h3, h4, h5,
     .h1, .h2, .h3, .h4, .h5 {
-        line-height: 1.5;
+        line-height: 1.4;
         font-weight: 400;
-    }
-
-    @media (min-width: 960px) {
-        nav {
-            width: 960px;
-            margin: 0 auto;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-
     }
 
 `;

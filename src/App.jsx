@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Home, Header } from './components';
+import { Home, Header, MainContainer } from './components';
 import Theme from './Theme';
 import GlobalStyles from './utils/styles/global';
 
@@ -16,8 +16,10 @@ function App() {
     return (
         <Theme>
             <GlobalStyles />
-            <Header />
-            <div className="container-fluid" style={{ height: '200vh' }}>
+            <MainContainer
+                style={{ height: '200vh', backgroundColor: 'white' }}
+            >
+                <Header />
                 <Switch>
                     <Redirect exact from="/" to="/home" />
                     {routes.map((routObj, idx) => (
@@ -29,7 +31,7 @@ function App() {
                         />
                     ))}
                 </Switch>
-            </div>
+            </MainContainer>
         </Theme>
     );
 }

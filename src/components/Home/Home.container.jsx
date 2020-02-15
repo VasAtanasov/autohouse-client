@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import ChildComponent from './Home.component';
+import React from 'react';
+import HomeComponent from './Home.component';
 
 const Home = () => {
-    const [weCool] = useState(true);
+    const bgImage = '/images/bg_6.jpg';
 
-    return <ChildComponent weCool={weCool} />;
+    return <HomeComponent backgroundImage={bgImage} />;
 };
 
 export default Home;

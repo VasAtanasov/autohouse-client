@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-const StyledContainer = styled.div`
-    color: ${props => props.theme.colors.lightPurpleTwo};
-    background-color: ${props => props.theme.colors.cloudGray};
+export const HomeSectionContainer = styled.section`
+    overflow: hidden;
+    padding: 40px 0 !important;
+    border-bottom: 1px solid #dcdcdc;
+    background-color: white;
 `;
-
-export { StyledContainer };

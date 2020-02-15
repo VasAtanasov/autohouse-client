@@ -22,7 +22,13 @@ const theme = {
         red: '#F44336',
         green: '#4CAF50'
     },
-
+    heroSize: '500px',
+    screens: {
+        small: '576px',
+        medium: '768px',
+        large: '992px',
+        extraLarge: '1200px'
+    },
     fonts: ['sans-serif', 'Roboto'],
     fontSizes: {
         small: '1em',

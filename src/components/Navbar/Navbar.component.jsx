@@ -11,7 +11,7 @@ const NavbarComponent = ({ routes }) => {
     ));
 
     return (
-        <Navbar collapseOnSelect={true} expand="lg" bg="light" variant="light">
+        <Navbar collapseOnSelect={true} expand="lg">
             <Navbar.Brand href="/">
                 <Brand>
                     Auto<span>house</span>
