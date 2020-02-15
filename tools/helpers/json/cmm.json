@@ -1,4 +1,4 @@
-const makes = [
+[
   ["Acura", "", "Integra", "Mdx", "NSX", "Rdx", "Rl", "Rsx", "Slx", "Tl", "Tsx"],
   ["Aixam", "", "400", "505", "600"],
   ["Alfa Romeo", "", "145", "146", "147", "155", "156", "156 sportwagon", "159", "159 sportwagon", "164", "166", "33", "4C", "75", "76", "8C Competizione", "90", "Alfetta", "Berlina", "Brera", "Crosswagon q4", "Giulia", "Giulietta", "Gt", "Gtv", "MiTo", "Spider", "Sprint", "Stelvio", "Sud"],
@@ -135,23 +135,3 @@ const makes = [
   ["Zastava", "", "600", "750", "Florida", "Gt 55", "Koral", "Miami", "Yugo 45"],
   ["Zaz", "", "1102", "1103", "1105", "965", "966", "968", "Tavria"]
 ]
-
-const authors = [
-  { id: 1, name: "Cory House" },
-  { id: 2, name: "Scott Allen" },
-  { id: 3, name: "Dan Wahlin" }
-];
-
-const newCourse = {
-  id: null,
-  title: "",
-  authorId: null,
-  category: ""
-};
-
-// Using CommonJS style export so we can consume via Node (without using Babel-node)
-module.exports = {
-  newCourse,
-  makes,
-  authors
-};

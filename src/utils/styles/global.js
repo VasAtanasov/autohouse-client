@@ -1,7 +1,5 @@
 import { createGlobalStyle } from 'styled-components/macro';
 
-const defaultColorHover = 'rgba(247, 183, 29, 0.3)';
-
 export default createGlobalStyle`
 
     *,
@@ -76,17 +74,15 @@ export default createGlobalStyle`
         line-height: 1.5;
         font-weight: 400;
     }
-    
-    & .ant-select-dropdown-menu-item:hover:not(.ant-select-dropdown-menu-item-disabled) {
-        background-color: ${defaultColorHover} !important;
-    }
 
-    & .ant-select-dropdown-menu-item-active:not(.ant-select-dropdown-menu-item-disabled) {
-        background-color: ${defaultColorHover} !important;
-    }
+    @media (min-width: 960px) {
+        nav {
+            width: 960px;
+            margin: 0 auto;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
 
-    html {
-        --antd-wave-shadow-color: ${props => props.theme.colors.defaultColor} !important;
     }
 
 `;

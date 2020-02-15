@@ -1,22 +1,37 @@
-import React, { Fragment } from "react";
-import { Home } from "./components";
-import Theme from "./Theme";
+import React from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { Home, Header } from './components';
+import Theme from './Theme';
 import GlobalStyles from './utils/styles/global';
 
-const pageToShow = pageName => {
-    if (pageName === "Home") return <Home />;
-    return <div>Not Found</div>;
-};
+export const routes = [
+    {
+        path: '/home',
+        component: Home,
+        name: 'Home'
+    }
+];
 
-const App = ({ pageName }) => {
+function App() {
     return (
         <Theme>
             <GlobalStyles />
-            <Fragment>{
-                pageToShow(pageName)}
-            </Fragment>
+            <Header />
+            <div className="container-fluid" style={{ height: '200vh' }}>
+                <Switch>
+                    <Redirect exact from="/" to="/home" />
+                    {routes.map((routObj, idx) => (
+                        <Route
+                            exact
+                            key={idx}
+                            path={routObj.path}
+                            component={routObj.component}
+                        />
+                    ))}
+                </Switch>
+            </div>
         </Theme>
-    )
-};
+    );
+}
 
 export default App;

@@ -1,5 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
+import configureStore from './store';
+import { Provider as ReduxProvider } from 'react-redux';
 
-ReactDOM.render(<App pageName="Home" />, document.getElementById('root'));
+const store = configureStore();
+
+console.log(process.env.API_URL);
+
+render(
+    <ReduxProvider store={store}>
+        <Router>
+            <App />
+        </Router>
+    </ReduxProvider>,
+    document.getElementById('root')
+);
