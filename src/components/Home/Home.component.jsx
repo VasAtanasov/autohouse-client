@@ -6,6 +6,7 @@ import BodyStyle from './BodyStyle';
 import SectionTitle from './SectionTitle';
 import Brand from './Brand';
 import Price from './Price';
+import Carousel from './Carousel';
 
 const HOME_SECTION_CONTAINER_SIZE = {
     // maxWidth: '930px',
@@ -24,6 +25,9 @@ const BrowsByContainer = ({ children, sectionTitle }) => (
 const HomeComponent = ({ backgroundImage }) => (
     <Fragment>
         {/* <Hero backgroundImage={backgroundImage}></Hero> */}
+        <BrowsByContainer sectionTitle={'Top offers'}>
+            <Carousel />
+        </BrowsByContainer>
         <BrowsByContainer sectionTitle={'Body Styles'}>
             <BodyStyle />
         </BrowsByContainer>
