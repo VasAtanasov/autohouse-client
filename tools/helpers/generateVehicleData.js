@@ -16,7 +16,7 @@ async function generateVehiclesSqlInsert() {
     const bodyStyles = await bodyStyleService.loadAllBodyStyles();
     const drives = await driveService.loadAllDrives();
     const colors = await colorService.loadAllColors().then(data => {
-        return data.map(item => Number(item.id))
+        return data.map(item => Number(item.id));
     });
     const gears = await gearService.loadAllGears();
 
@@ -26,15 +26,17 @@ async function generateVehiclesSqlInsert() {
         const vehiclesUUD = vehiclesUUIDs[i];
         const makerId = utils.getRandomValueFromArray(makersIds);
         const modelIds = await makerService.getMakerById(makerId).then(data => {
-            return data.models.map((model) => {
+            return data.models.map(model => {
                 return model.id;
             });
         });
 
         const vehicleObj = {
             id: vehiclesUUD,
-            vehicle_type: "CAR",
-            body_style: utils.getRandomValueFromArray(Object.values(bodyStyles)),
+            vehicle_type: 'CAR',
+            body_style: utils.getRandomValueFromArray(
+                Object.values(bodyStyles)
+            ),
             doors: utils.getRandomInt(2, 8),
             drive: utils.getRandomValueFromArray(Object.values(drives)),
             has_accident: 0,
@@ -45,16 +47,16 @@ async function generateVehiclesSqlInsert() {
             year: utils.getRandomInt(1930, 2020),
             owners: utils.getRandomInt(1, 10),
             seats: utils.getRandomInt(1, 13),
-            state: utils.getRandomValueFromArray(["NEW", "USED"]),
+            state: utils.getRandomValueFromArray(['NEW', 'USED']),
             transmission: utils.getRandomValueFromArray(Object.values(gears)),
             maker_id: makerId,
-            model_id: utils.getRandomValueFromArray(modelIds),
+            model_id: utils.getRandomValueFromArray(modelIds)
         };
 
         vehicles.push(vehicleObj);
     }
 
-    const generator = new InsertGenerator("vehicles", vehicles);
+    const generator = new InsertGenerator('vehicles', vehicles);
     return generator.generateDataSql();
 }
 
