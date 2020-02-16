@@ -1,11 +1,6 @@
 import React from 'react';
 import CarouselComponent from './Carousel.component';
-import { CarouselContainer } from './Carousel.styles';
 
-const Carousel = () => (
-    <CarouselContainer>
-        <CarouselComponent />
-    </CarouselContainer>
-);
+const Carousel = () => <CarouselComponent />;
 
 export default Carousel;

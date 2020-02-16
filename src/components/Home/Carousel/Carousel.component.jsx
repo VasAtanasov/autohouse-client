@@ -1,18 +1,12 @@
-import React from 'react';
-import { InnerCarouselContainer } from './Carousel.styles';
+import React, { Fragment } from 'react';
+// import { InnerCarouselContainer } from './Carousel.styles';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import styled from 'styled-components';
 
-const OfferContainerTop = styled.div`
-    width: 460px;
+const OfferContainer = styled(Col)`
+    /* width: 460px; */
     position: relative;
-`;
-
-const OfferContainerSmall = styled(OfferContainerTop)`
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
 `;
 
 const OfferImage = styled.span`
@@ -22,6 +16,7 @@ const OfferImage = styled.span`
         width: 100%;
         position: inherit;
         content: '';
+        background-color: #eff2f3;
     }
 
     &:before {
@@ -77,17 +72,27 @@ const OfferImage141 = styled(OfferImage)`
 `;
 
 const CarouselComponent = () => (
-    <InnerCarouselContainer>
-        <OfferContainerTop>
+    <Fragment>
+        <OfferContainer lg={6} className="p-1">
             <OfferImage290 />
-        </OfferContainerTop>
-        <OfferContainerSmall>
-            <OfferImage141 />
-            <OfferImage141 />
-            <OfferImage141 />
-            <OfferImage141 />
-        </OfferContainerSmall>
-    </InnerCarouselContainer>
+        </OfferContainer>
+        <OfferContainer lg={6} className="p-1">
+            <Row noGutters>
+                <Col xs={6} className="pr-1 pb-1">
+                    <OfferImage141 />
+                </Col>
+                <Col xs={6} className="pl-1 pb-1">
+                    <OfferImage141 />
+                </Col>
+                <Col xs={6} className="pr-1 pt-1">
+                    <OfferImage141 />
+                </Col>
+                <Col xs={6} className="pl-1 pt-1">
+                    <OfferImage141 />
+                </Col>
+            </Row>
+        </OfferContainer>
+    </Fragment>
 );
 
 export default CarouselComponent;

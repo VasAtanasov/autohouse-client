@@ -2,16 +2,16 @@
 const fs = require('fs');
 const path = require('path');
 const generateMakeModelData = require('./helpers/generateMakeModelData');
-// const generateEquipmentData = require('./helpers/generateEquipmentData');
 const generateTownData = require('./helpers/generateTownData');
+const generateFuelTypeData = require('./helpers/generateFuelTypeData');
+const generateOfferShortData = require('./helpers/generateOfferShortData');
+// const generateEquipmentData = require('./helpers/generateEquipmentData');
 // const generateColorData = require('./helpers/generateColorData');
 // const generateRoleData = require('./helpers/generateRoleData');
 // const generateUserData = require('./helpers/generateUserData');
-const generateFuelTypeData = require('./helpers/generateFuelTypeData');
 // const generateBodyStyleData = require('./helpers/generateBodyStyleData');
 // const generateWheelDriveData = require('./helpers/generateWheelDriveData');
 // const generateFuelStandardData = require('./helpers/generateFuelStandardData');
-const generateOfferShortData = require('./helpers/generateOfferShortData');
 
 (async () => {
     // const users = await generateUserData();
