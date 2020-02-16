@@ -13,8 +13,11 @@ const generateOfferShortData = async makes => {
         const UUID = vehiclesUUIDs[i];
         const offerObj = {
             id: UUID,
+            make: make.name,
+            model: model.name,
             thumbnail: `${baseImageUrl}/${UUID}/thumbnail.jpg`,
-            price: utils.getRandomInt(1, 500000)
+            price: utils.getRandomInt(1, 500000),
+            mileage: utils.getRandomInt(5000, 300000)
         };
 
         offers.push(offerObj);

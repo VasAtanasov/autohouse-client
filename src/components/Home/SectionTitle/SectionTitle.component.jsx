@@ -1,9 +1,9 @@
 import React from 'react';
 import { SectionTitleContainer, Title } from './SectionTitle.styles';
 
-const SectionTitleComponent = ({ sectionTitle }) => (
+const SectionTitleComponent = ({ sectionTitle, showTitle }) => (
     <SectionTitleContainer>
-        {/* <Title>{sectionTitle}</Title> */}
+        {showTitle && <Title>{sectionTitle}</Title>}
     </SectionTitleContainer>
 );
 
