@@ -22,7 +22,8 @@ export default createGlobalStyle`
     
     body {
         line-height: 1;
-        background-color: #f7f7f7 !important;
+        min-height: 100vh;
+        min-width: 960px;
     }
 
     ol, ul {
@@ -45,11 +46,13 @@ export default createGlobalStyle`
     }
 
     body {
-        font-family: 'Open Sans', sans-serif;
+        font-family:  'Titillium Web', 'Helvetica', 'Arial', 'sans-serif', sans-serif;
         font-size: 1rem;
         line-height: 1.4;
         font-weight: 400;
-        background-color: #eeeeee !important;
+        background-color: #f4f4f4 !important;
+        background-color: white !important;
+        color: #333
     }
 
     code {

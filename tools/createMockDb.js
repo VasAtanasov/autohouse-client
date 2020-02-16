@@ -2,39 +2,34 @@
 const fs = require('fs');
 const path = require('path');
 const generateMakeModelData = require('./helpers/generateMakeModelData');
-const generateEquipmentData = require('./helpers/generateEquipmentData');
-const generateTownData = require('./helpers/generateTownData');
-const generateColorData = require('./helpers/generateColorData');
-const generateRoleData = require('./helpers/generateRoleData');
-const generateUserData = require('./helpers/generateUserData');
-const generateFuelTypeData = require('./helpers/generateFuelTypeData');
-const generateBodyStyleData = require('./helpers/generateBodyStyleData');
-const generateWheelDriveData = require('./helpers/generateWheelDriveData');
-const generateFuelStandardData = require('./helpers/generateFuelStandardData');
+// const generateEquipmentData = require('./helpers/generateEquipmentData');
+// const generateTownData = require('./helpers/generateTownData');
+// const generateColorData = require('./helpers/generateColorData');
+// const generateRoleData = require('./helpers/generateRoleData');
+// const generateUserData = require('./helpers/generateUserData');
+// const generateFuelTypeData = require('./helpers/generateFuelTypeData');
+// const generateBodyStyleData = require('./helpers/generateBodyStyleData');
+// const generateWheelDriveData = require('./helpers/generateWheelDriveData');
+// const generateFuelStandardData = require('./helpers/generateFuelStandardData');
+const generateOfferShortData = require('./helpers/generateOfferShortData');
 
 (async () => {
-    const users = await generateUserData();
+    // const users = await generateUserData();
 
     const makes = await generateMakeModelData();
-    const equipment = await generateEquipmentData();
-    const towns = await generateTownData();
-    const colors = await generateColorData();
-    const roles = await generateRoleData();
-    const fuelTypes = await generateFuelTypeData();
-    const bodyStyles = await generateBodyStyleData();
-    const wheelDrives = await generateWheelDriveData();
-    const fuelStandards = await generateFuelStandardData();
+    const offersShort = await generateOfferShortData(makes);
+    // const equipment = await generateEquipmentData();
+    // const towns = await generateTownData();
+    // const colors = await generateColorData();
+    // const roles = await generateRoleData();
+    // const fuelTypes = await generateFuelTypeData();
+    // const bodyStyles = await generateBodyStyleData();
+    // const wheelDrives = await generateWheelDriveData();
+    // const fuelStandards = await generateFuelStandardData();
 
     const data = JSON.stringify({
         makes,
-        equipment,
-        towns,
-        colors,
-        roles,
-        fuelTypes,
-        bodyStyles,
-        wheelDrives,
-        fuelStandards
+        offers: offersShort
     });
 
     const filepath = path.join(__dirname, 'db.json');

@@ -1,0 +1,20 @@
+export default [
+    { brand: 'Volkswagen', icon: 'top60-volkswagen' },
+    { brand: 'Mercedes-Benz', icon: 'top60-mercedes-benz' },
+    { brand: 'Opel', icon: 'top60-opel' },
+    { brand: 'Renault', icon: 'top60-renault' },
+    { brand: 'BMW', icon: 'top60-bmw' },
+    { brand: 'Ford', icon: 'top60-ford' },
+    { brand: 'Audi', icon: 'top60-audi' },
+    { brand: 'Toyota', icon: 'top60-toyota' },
+    { brand: 'Skoda', icon: 'top60-skoda' },
+    { brand: 'Nissan', icon: 'top60-nissan' },
+    { brand: 'Honda', icon: 'top60-honda' },
+    { brand: 'Hyundai', icon: 'top60-hyundai' },
+    { brand: 'Mitsubishi', icon: 'top60-mitsubishi' },
+    { brand: 'Chevrolet', icon: 'top60-chevrolet' },
+    { brand: 'Peugeot', icon: 'top60-peugeot' },
+    { brand: 'Volvo', icon: 'top60-volvo' },
+    { brand: 'Dacia', icon: 'top60-dacia' },
+    { brand: 'Alfa Romeo', icon: 'top60-alfa-romeo' }
+];

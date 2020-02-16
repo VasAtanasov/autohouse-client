@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const NavbarWrapper = styled.div`
+    margin: 0 auto;
+    max-width: ${props => props.theme.screens.large};
+`;
+
 export const Brand = styled.span`
     font-size: 20px;
     padding: 10px 20px;

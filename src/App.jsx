@@ -16,10 +16,8 @@ function App() {
     return (
         <Theme>
             <GlobalStyles />
-            <MainContainer
-                style={{ height: '200vh', backgroundColor: 'white' }}
-            >
-                <Header />
+            <Header />
+            <MainContainer style={{ backgroundColor: 'white' }}>
                 <Switch>
                     <Redirect exact from="/" to="/home" />
                     {routes.map((routObj, idx) => (
@@ -32,6 +30,7 @@ function App() {
                     ))}
                 </Switch>
             </MainContainer>
+            {/* <div style={{ height: '100vh' }}></div> */}
         </Theme>
     );
 }

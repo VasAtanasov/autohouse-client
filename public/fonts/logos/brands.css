@@ -1,834 +1,838 @@
 @font-face {
- font-family:logobrands;
- src:url(https://auto.ria.com/fonts/logobrands.ttf) format("truetype"),
- url(https://auto.ria.com/fonts/logobrands.woff) format("woff"),
- url(https://auto.ria.com/fonts/logobrands.svg#logobrands) format("svg");
- font-weight:400;
- font-style:normal
+    font-family: logobrands;
+    src: url(./logobrands.ttf) format('truetype'),
+        url(./logobrands.woff) format('woff'),
+        url(./logobrands.svg#logobrands) format('svg');
+    font-weight: 400;
+    font-style: normal;
 }
-[class*=" top60-"],
-[class^=top60-] {
- font-family:logobrands,Arial,sans-serif;
- speak:none;
- font-style:normal;
- font-weight:400;
- font-variant:normal;
- text-transform:none;
- line-height:1;
- -webkit-font-smoothing:antialiased;
- -moz-osx-font-smoothing:grayscale;
- -webkit-text-stroke:rgba(255,255,255,.01) .1px
+[class*=' top60-'],
+[class^='top60-'] {
+    font-family: logobrands, Arial, sans-serif;
+    /* speak: none; */
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-stroke: rgba(255, 255, 255, 0.01) 0.1px;
 }
-[class*=" top60-"]:before,
-[class^=top60-]:before {
- /*! content:"\e9ce" */
-}
-.no-font-face [class*=" top60-"],
-.no-font-face [class^=top60-] {
- display:none!important
+
+/* [class*=' top60-']:before,
+[class^='top60-']:before {
+    content:"\e9ce" 
+} */
+.no-font-face [class*=' top60-'],
+.no-font-face [class^='top60-'] {
+    display: none !important;
 }
 .top60-aa:before {
- content:""
+    content: '';
 }
 .top60-agrex:before {
- content:"\e900"
+    content: '\e900';
 }
 .top60-agrisem:before {
- content:"\e901"
+    content: '\e901';
 }
 .top60-agromash:before {
- content:"\e902"
+    content: '\e902';
 }
 .top60-agroprom:before {
- content:"\e903"
+    content: '\e903';
 }
 .top60-alexagro:before {
- content:"\e904"
+    content: '\e904';
 }
 .top60-alta:before {
- content:"\e905"
+    content: '\e905';
 }
 .top60-amazone:before {
- content:"\e906"
+    content: '\e906';
 }
 .top60-amity:before {
- content:"\e907"
+    content: '\e907';
 }
 .top60-bartoshuk:before {
- content:"\e908"
+    content: '\e908';
 }
 .top60-bednar:before {
- content:"\e909"
+    content: '\e909';
 }
 .top60-belocerkovmaz:before {
- content:"\e90a"
+    content: '\e90a';
 }
 .top60-berdyansky:before {
- content:"\e90b"
+    content: '\e90b';
 }
 .top60-bm3:before {
- content:"\e90c"
+    content: '\e90c';
 }
 .top60-boguzlav:before {
- content:"\e90d"
+    content: '\e90d';
 }
 .top60-bomet:before {
- content:"\e90e"
+    content: '\e90e';
 }
 .top60-borex:before {
- content:"\e90f"
+    content: '\e90f';
 }
 .top60-cat:before {
- content:"\e910"
+    content: '\e910';
 }
 .top60-dominoni:before {
- content:"\e911"
+    content: '\e911';
 }
 .top60-dt3:before {
- content:"\e912"
+    content: '\e912';
 }
 .top60-faresin:before {
- content:"\e913"
+    content: '\e913';
 }
 .top60-fast:before {
- content:"\e914"
+    content: '\e914';
 }
 .top60-forte:before {
- content:"\e915"
+    content: '\e915';
 }
 .top60-foton:before {
- content:"\e916"
+    content: '\e916';
 }
 .top60-galeshina:before {
- content:"\e917"
+    content: '\e917';
 }
 .top60-greatplains .path1:before {
- content:"\e918"
+    content: '\e918';
 }
 .top60-greatplains .path2:before {
- content:"\e919";
- margin-left:-1.599609375em
+    content: '\e919';
+    margin-left: -1.599609375em;
 }
 .top60-gregoire:before {
- content:"\e91a"
+    content: '\e91a';
 }
 .top60-grimme:before {
- content:"\e91b"
+    content: '\e91b';
 }
 .top60-hersonmash:before {
- content:"\e91c"
+    content: '\e91c';
 }
 .top60-howo:before {
- content:"\e91d"
+    content: '\e91d';
 }
 .top60-ht3:before {
- content:"\e91e"
+    content: '\e91e';
 }
 .top60-kentavr:before {
- content:"\e91f"
+    content: '\e91f';
 }
 .top60-kioti:before {
- content:"\e920"
+    content: '\e920';
 }
 .top60-kirpy:before {
- content:"\e921"
+    content: '\e921';
 }
 .top60-kobzarenko:before {
- content:"\e922"
+    content: '\e922';
 }
 .top60-komatsu:before {
- content:"\e923"
+    content: '\e923';
 }
 .top60-korsunvoshod:before {
- content:"\e924"
+    content: '\e924';
 }
 .top60-krasilovagro:before {
- content:"\e925"
+    content: '\e925';
 }
 .top60-krasnaya-zvezda:before {
- content:"\e926"
+    content: '\e926';
 }
 .top60-kuhn:before {
- content:"\e927"
+    content: '\e927';
 }
 .top60-lap:before {
- content:"\e928"
+    content: '\e928';
 }
 .top60-lemken:before {
- content:"\e929"
+    content: '\e929';
 }
 .top60-lonking:before {
- content:"\e92a"
+    content: '\e92a';
 }
 .top60-lovol:before {
- content:"\e92b"
+    content: '\e92b';
 }
 .top60-lozovsky:before {
- content:"\e92c"
+    content: '\e92c';
 }
 .top60-macdon:before {
- content:"\e92d"
+    content: '\e92d';
 }
 .top60-maschio:before {
- content:"\e92e"
+    content: '\e92e';
 }
 .top60-meprozet:before {
- content:"\e92f"
+    content: '\e92f';
 }
 .top60-mst:before {
- content:"\e930"
+    content: '\e930';
 }
 .top60-nardi:before {
- content:"\e931"
+    content: '\e931';
 }
 .top60-optikon:before {
- content:"\e932"
+    content: '\e932';
 }
 .top60-orehovselmash:before {
- content:"\e933"
+    content: '\e933';
 }
 .top60-oros:before {
- content:"\e934"
+    content: '\e934';
 }
 .top60-petronick:before {
- content:"\e935"
+    content: '\e935';
 }
 .top60-pottinger:before {
- content:"\e936"
+    content: '\e936';
 }
 .top60-samasz:before {
- content:"\e937"
+    content: '\e937';
 }
 .top60-sdlg:before {
- content:"\e938"
+    content: '\e938';
 }
 .top60-sem:before {
- content:"\e939"
+    content: '\e939';
 }
 .top60-seppim:before {
- content:"\e93a"
+    content: '\e93a';
 }
 .top60-shehwa:before {
- content:"\e93b"
+    content: '\e93b';
 }
 .top60-shifeng:before {
- content:"\e93c"
+    content: '\e93c';
 }
 .top60-sipma:before {
- content:"\e93d"
+    content: '\e93d';
 }
 .top60-tecnoma:before {
- content:"\e93e"
+    content: '\e93e';
 }
 .top60-tehnopol:before {
- content:"\e93f"
+    content: '\e93f';
 }
 .top60-topair:before {
- content:"\e940"
+    content: '\e940';
 }
 .top60-umanfermmash:before {
- content:"\e941"
+    content: '\e941';
 }
 .top60-unia:before {
- content:"\e942"
+    content: '\e942';
 }
 .top60-unverferth:before {
- content:"\e943"
+    content: '\e943';
 }
 .top60-usm:before {
- content:"\e944"
+    content: '\e944';
 }
 .top60-velesagro:before {
- content:"\e945"
+    content: '\e945';
 }
 .top60-vinmashpostach:before {
- content:"\e946"
+    content: '\e946';
 }
 .top60-wishek:before {
- content:"\e947"
+    content: '\e947';
 }
 .top60-xingtai:before {
- content:"\e948"
+    content: '\e948';
 }
 .top60-yto:before {
- content:"\e949"
+    content: '\e949';
 }
 .top60-zoomlion:before {
- content:"\e94a"
+    content: '\e94a';
 }
 .top60-zurn:before {
- content:"\e94b"
+    content: '\e94b';
 }
 .top60-jac:before {
- content:"\e94c"
+    content: '\e94c';
 }
 .top60-acura:before {
- content:"\e94d"
+    content: '\e94d';
 }
 .top60-acura1:before {
- content:"\e94e"
+    content: '\e94e';
 }
 .top60-acxa:before {
- content:"\e94f"
+    content: '\e94f';
 }
 .top60-alfamoto:before {
- content:"\e950"
+    content: '\e950';
 }
 .top60-alfa-romeo:before {
- content:"\e951"
+    content: '\e951';
 }
 .top60-amkodor:before {
- content:"\e952"
+    content: '\e952';
 }
 .top60-aprilia:before {
- content:"\e953"
+    content: '\e953';
 }
 .top60-arcticcat:before {
- content:"\e954"
+    content: '\e954';
 }
 .top60-asia:before {
- content:"\e955"
+    content: '\e955';
 }
 .top60-aston-martin:before {
- content:"\e956"
+    content: '\e956';
 }
 .top60-atlas:before {
- content:"\e957"
+    content: '\e957';
 }
 .top60-audi:before {
- content:"\e958"
+    content: '\e958';
 }
 .top60-austin:before {
- content:"\e959"
+    content: '\e959';
 }
 .top60-azimut:before {
- content:"\e95a"
+    content: '\e95a';
 }
 .top60-azure:before {
- content:"\e95b"
+    content: '\e95b';
 }
 .top60-bayliner:before {
- content:"\e95c"
+    content: '\e95c';
 }
 .top60-baz:before {
- content:"\e95d"
+    content: '\e95d';
 }
 .top60-benelli:before {
- content:"\e95e"
+    content: '\e95e';
 }
 .top60-bentley:before {
- content:"\e95f"
+    content: '\e95f';
 }
 .top60-beyerland:before {
- content:"\e960"
+    content: '\e960';
 }
 .top60-bmw:before {
- /*! content:"\e961" */
+    content: '\e961';
 }
 .top60-bogdan:before {
- content:"\e962"
+    content: '\e962';
 }
 .top60-bomag:before {
- content:"\e963"
+    content: '\e963';
 }
 .top60-bova:before {
- content:"\e964"
+    content: '\e964';
 }
 .top60-broshuis:before {
- content:"\e965"
+    content: '\e965';
 }
 .top60-brp:before {
- content:"\e966"
+    content: '\e966';
 }
 .top60-buick:before {
- content:"\e967"
+    content: '\e967';
 }
 .top60-byd:before {
- content:"\e968"
+    content: '\e968';
 }
 .top60-cadillac:before {
- content:"\e969"
+    content: '\e969';
 }
 .top60-cagiva:before {
- content:"\e96a"
+    content: '\e96a';
 }
 .top60-case:before {
- content:"\e96b"
+    content: '\e96b';
 }
 .top60-cat2:before {
- content:"\e96c"
+    content: '\e96c';
 }
 .top60-caterpillar:before {
- content:"\e96d"
+    content: '\e96d';
 }
 .top60-cf-moto:before {
- content:"\e96e"
+    content: '\e96e';
 }
 .top60-challenger:before {
- content:"\e96f"
+    content: '\e96f';
 }
 .top60-chery:before {
- content:"\e970"
+    content: '\e970';
 }
 .top60-chevrolet:before {
- content:"\e971"
+    content: '\e971';
 }
 .top60-chrysler:before {
- content:"\e972"
+    content: '\e972';
 }
 .top60-citroen:before {
- content:"\e973"
+    content: '\e973';
 }
 .top60-claas:before {
- content:"\e974"
+    content: '\e974';
 }
 .top60-crownline:before {
- content:"\e975"
+    content: '\e975';
 }
 .top60-dacia:before {
- content:"\e976"
+    content: '\e976';
 }
 .top60-dadi:before {
- content:"\e977"
+    content: '\e977';
 }
 .top60-daelim:before {
- content:"\e978"
+    content: '\e978';
 }
 .top60-daewoo:before {
- content:"\e979"
+    content: '\e979';
 }
 .top60-daf:before {
- content:"\e97a"
+    content: '\e97a';
 }
 .top60-daihatsu:before {
- content:"\e97b"
+    content: '\e97b';
 }
 .top60-defiant:before {
- content:"\e97c"
+    content: '\e97c';
 }
 .top60-dnepr:before {
- content:"\e97d"
+    content: '\e97d';
 }
 .top60-dodge:before {
- content:"\e97e"
+    content: '\e97e';
 }
 .top60-dongfeng:before {
- content:"\e97f"
+    content: '\e97f';
 }
 .top60-ducati:before {
- content:"\e980"
+    content: '\e980';
 }
 .top60-eagle:before {
- content:"\e981"
+    content: '\e981';
 }
 .top60-evinrude:before {
- content:"\e982"
+    content: '\e982';
 }
 .top60-fairline:before {
- content:"\e983"
+    content: '\e983';
 }
 .top60-faw:before {
- content:"\e984"
+    content: '\e984';
 }
 .top60-fendt:before {
- content:"\e985"
+    content: '\e985';
 }
 .top60-ferrari:before {
- content:"\e986"
+    content: '\e986';
 }
 .top60-ferretti:before {
- content:"\e987"
+    content: '\e987';
 }
 .top60-fiat:before {
- content:"\e988"
+    content: '\e988';
 }
 .top60-fisker:before {
- content:"\e989"
+    content: '\e989';
 }
 .top60-ford:before {
- content:"\e98a"
+    content: '\e98a';
 }
 .top60-gaz:before {
- content:"\e98b"
+    content: '\e98b';
 }
 .top60-geely:before {
- content:"\e98c"
+    content: '\e98c';
 }
 .top60-geon:before {
- content:"\e98d"
+    content: '\e98d';
 }
 .top60-geringhoff:before {
- content:"\e98e"
+    content: '\e98e';
 }
 .top60-gilera:before {
- content:"\e98f"
+    content: '\e98f';
 }
 .top60-g-max:before {
- content:"\e990"
+    content: '\e990';
 }
 .top60-gmc:before {
- content:"\e991"
+    content: '\e991';
 }
 .top60-gomselmash:before {
- content:"\e992"
+    content: '\e992';
 }
 .top60-great-wall:before {
- content:"\e993"
+    content: '\e993';
 }
 .top60-harley-davidson:before {
- content:"\e994"
+    content: '\e994';
 }
 .top60-honda:before {
- content:"\e995"
+    content: '\e995';
 }
 .top60-htz:before {
- content:"\e996"
+    content: '\e996';
 }
 .top60-humbaur:before {
- content:"\e997"
+    content: '\e997';
 }
 .top60-hummer:before {
- content:"\e998"
+    content: '\e998';
 }
 .top60-husqvarna:before {
- content:"\e999"
+    content: '\e999';
 }
 .top60-hyosung:before {
- content:"\e99a"
+    content: '\e99a';
 }
 .top60-hyundai:before {
- content:"\e99b"
+    content: '\e99b';
 }
 .top60-infiniti:before {
- content:"\e99c"
+    content: '\e99c';
 }
 .top60-isuzu:before {
- content:"\e99d"
+    content: '\e99d';
 }
 .top60-iveco:before {
- content:"\e99e"
+    content: '\e99e';
 }
 .top60-izg:before {
- content:"\e99f"
+    content: '\e99f';
 }
 .top60-jac2:before {
- content:"\e9a0"
+    content: '\e9a0';
 }
 .top60-jaguar:before {
- content:"\e9a1"
+    content: '\e9a1';
 }
 .top60-jawa:before {
- content:"\e9a2"
+    content: '\e9a2';
 }
 .top60-jcb:before {
- content:"\e9a3"
+    content: '\e9a3';
 }
 .top60-jeep:before {
- content:"\e9a4"
+    content: '\e9a4';
 }
 .top60-john-deere:before {
- content:"\e9a5"
+    content: '\e9a5';
 }
 .top60-kamaz:before {
- content:"\e9a6"
+    content: '\e9a6';
 }
 .top60-kanuni:before {
- content:"\e9a7"
+    content: '\e9a7';
 }
 .top60-kawasaki:before {
- content:"\e9a8"
+    content: '\e9a8';
 }
 .top60-kia:before {
- content:"\e9a9"
+    content: '\e9a9';
 }
 .top60-kip:before {
- content:"\e9aa"
+    content: '\e9aa';
 }
 .top60-kogel:before {
- content:"\e9ab"
+    content: '\e9ab';
 }
 .top60-kraz:before {
- content:"\e9ac"
+    content: '\e9ac';
 }
 .top60-krone:before {
- content:"\e9ad"
+    content: '\e9ad';
 }
 .top60-ktm:before {
- content:"\e9ae"
+    content: '\e9ae';
 }
 .top60-kubota:before {
- content:"\e9af"
+    content: '\e9af';
 }
 .top60-lamborghini:before {
- content:"\e9b0"
+    content: '\e9b0';
 }
 .top60-lancia:before {
- content:"\e9b1"
+    content: '\e9b1';
 }
 .top60-land-rover:before {
- content:"\e9b2"
+    content: '\e9b2';
 }
 .top60-lexus:before {
- content:"\e9b3"
+    content: '\e9b3';
 }
 .top60-lifan:before {
- content:"\e9b4"
+    content: '\e9b4';
 }
 .top60-lincoln:before {
- content:"\e9b5"
+    content: '\e9b5';
 }
 .top60-lyaz:before {
- content:"\e9b6"
+    content: '\e9b6';
 }
 .top60-malaguti:before {
- content:"\e9b7"
+    content: '\e9b7';
 }
 .top60-malibu:before {
- content:"\e9b8"
+    content: '\e9b8';
 }
 .top60-man:before {
- content:"\e9b9"
+    content: '\e9b9';
 }
 .top60-maserati:before {
- content:"\e9ba"
+    content: '\e9ba';
 }
 .top60-massey-ferguson:before {
- content:"\e9bb"
+    content: '\e9bb';
 }
 .top60-maz:before {
- content:"\e9bc"
+    content: '\e9bc';
 }
 .top60-mazda:before {
- content:"\e9bd"
+    content: '\e9bd';
 }
 .top60-mazerati:before {
- content:"\e9be"
+    content: '\e9be';
 }
 .top60-mercedes-benz:before {
- content:"\e9bf"
+    content: '\e9bf';
 }
 .top60-mercury:before {
- content:"\e9c0"
+    content: '\e9c0';
 }
 .top60-merlo:before {
- content:"\e9c1"
+    content: '\e9c1';
 }
 .top60-mg:before {
- content:"\e9c2"
+    content: '\e9c2';
 }
 .top60-mini:before {
- content:"\e9c3"
+    content: '\e9c3';
 }
 .top60-minsk:before {
- content:"\e9c4"
+    content: '\e9c4';
 }
 .top60-mitsubishi:before {
- content:"\e9c5"
+    content: '\e9c5';
 }
 .top60-mmz:before {
- content:"\e9c6"
+    content: '\e9c6';
 }
 .top60-moskvich:before {
- content:"\e9c7"
+    content: '\e9c7';
 }
 .top60-moto-guzzi:before {
- content:"\e9c8"
+    content: '\e9c8';
 }
 .top60-mtz:before {
- content:"\e9c9"
+    content: '\e9c9';
 }
 .top60-mv-agusta:before {
- content:"\e9ca"
+    content: '\e9ca';
 }
 .top60-neoplan:before {
- content:"\e9cb"
+    content: '\e9cb';
 }
 .top60-new-holland:before {
- content:"\e9cc"
+    content: '\e9cc';
 }
 .top60-nissan:before {
- content:"\e9cd"
+    content: '\e9cd';
 }
 .top60-no-logo:before {
- content:"\e9ce"
+    content: '\e9ce';
 }
 .top60-opel:before {
- content:"\e9cf"
+    content: '\e9cf';
 }
 .top60-pacton:before {
- content:"\e9d0"
+    content: '\e9d0';
 }
 .top60-paz:before {
- content:"\e9d1"
+    content: '\e9d1';
 }
 .top60-peugeot:before {
- content:"\e9d2"
+    content: '\e9d2';
 }
 .top60-piaggio:before {
- content:"\e9d3"
+    content: '\e9d3';
 }
 .top60-polaris:before {
- content:"\e9d4"
+    content: '\e9d4';
 }
 .top60-pontiac:before {
- content:"\e9d5"
+    content: '\e9d5';
 }
 .top60-porsche:before {
- content:"\e9d6"
+    content: '\e9d6';
 }
 .top60-princess:before {
- content:"\e9d7"
+    content: '\e9d7';
 }
 .top60-renault:before {
- content:"\e9d8"
+    content: '\e9d8';
 }
 .top60-rolls-royce:before {
- content:"\e9d9"
+    content: '\e9d9';
 }
 .top60-rover:before {
- content:"\e9da"
+    content: '\e9da';
 }
 .top60-ryta:before {
- content:"\e9db"
+    content: '\e9db';
 }
 .top60-sabur:before {
- content:"\e9dc"
+    content: '\e9dc';
 }
 .top60-sachs:before {
- content:"\e9dd"
+    content: '\e9dd';
 }
 .top60-saipa:before {
- content:"\e9de"
+    content: '\e9de';
 }
 .top60-scania:before {
- content:"\e9df"
+    content: '\e9df';
 }
 .top60-schmitz:before {
- content:"\e9e0"
+    content: '\e9e0';
 }
 .top60-schwarzmuller:before {
- content:"\e9e1"
+    content: '\e9e1';
 }
 .top60-seat:before {
- content:"\e9e2"
+    content: '\e9e2';
 }
 .top60-skoda:before {
- content:"\e9e3"
+    content: '\e9e3';
 }
 .top60-smart:before {
- content:"\e9e4"
+    content: '\e9e4';
 }
 .top60-speed-gear:before {
- content:"\e9e5"
+    content: '\e9e5';
 }
 .top60-ssangyong:before {
- content:"\e9e6"
+    content: '\e9e6';
 }
 .top60-subaru:before {
- content:"\e9e7"
+    content: '\e9e7';
 }
 .top60-suntracker:before {
- content:"\e9e8"
+    content: '\e9e8';
 }
 .top60-suzuki:before {
- content:"\e9e9"
+    content: '\e9e9';
 }
 .top60-tcm:before {
- content:"\e9ea"
+    content: '\e9ea';
 }
 .top60-tesla:before {
- content:"\e9eb"
+    content: '\e9eb';
 }
 .top60-toyota:before {
- content:"\e9ec"
+    content: '\e9ec';
 }
 .top60-tracker:before {
- content:"\e9ed"
+    content: '\e9ed';
 }
 .top60-uaz:before {
- content:"\e9ee"
+    content: '\e9ee';
 }
 .top60-umz:before {
- content:"\e9ef"
+    content: '\e9ef';
 }
 .top60-ural:before {
- content:"\e9f0"
+    content: '\e9f0';
 }
 .top60-vaz:before {
- content:"\e9f1"
+    content: '\e9f1';
 }
 .top60-vespa:before {
- content:"\e9f2"
+    content: '\e9f2';
 }
 .top60-viper:before {
- content:"\e9f3"
+    content: '\e9f3';
 }
 .top60-volkswagen:before {
- content:"\e9f4"
+    content: '\e9f4';
 }
 .top60-volvo:before {
- content:"\e9f5"
+    content: '\e9f5';
 }
 .top60-xingtai2:before {
- content:"\e9f6"
+    content: '\e9f6';
 }
 .top60-yamaha:before {
- content:"\e9f7"
+    content: '\e9f7';
 }
 .top60-yiben:before {
- content:"\e9f8"
+    content: '\e9f8';
 }
 .top60-zaz:before {
- content:"\e9f9"
+    content: '\e9f9';
 }
 .top60-zil:before {
- content:"\e9fa"
+    content: '\e9fa';
 }
 .top60-zongshen:before {
- content:"\e9fb"
+    content: '\e9fb';
 }
 .size18 {
- font-size:18px
+    font-size: 18px;
 }
-input[type=checkbox] {
- display:none
+input[type='checkbox'] {
+    display: none;
 }
 .catalog-brands {
- display:inline-block;
- width:100%;
- margin:-5px 0 -12px
+    display: inline-block;
+    width: 100%;
+    margin: -5px 0 -12px;
 }
+
 .catalog-brands .item-brands {
- float:left;
- width:12.5%;
- text-align:center;
- border-bottom:0 none;
- text-decoration:none
+    float: left;
+    width: 12.5%;
+    text-align: center;
+    border-bottom: 0 none;
+    text-decoration: none;
 }
-.catalog-brands [class*=" top60-"],
-.catalog-brands [class^=top60-] {
- display:inline-block;
- vertical-align:middle;
- width:80px;
- height:50px;
- font-size:50px;
- color:#767676
+
+.catalog-brands [class*=' top60-'],
+.catalog-brands [class^='top60-'] {
+    display: inline-block;
+    vertical-align: middle;
+    width: 80px;
+    height: 50px;
+    font-size: 50px;
+    color: #767676;
 }
+
 .catalog-brands .top-brand {
- display:inline-block;
- width:100%;
- line-height:1.2em;
- height:39px;
- overflow:hidden;
- margin-top:10px
+    display: inline-block;
+    width: 100%;
+    line-height: 1.2em;
+    height: 39px;
+    overflow: hidden;
+    margin-top: 10px;
 }
 .catalog-brands .item-brands .name:after {
- content:".";
- display:block;
- height:0;
- clear:both;
- visibility:hidden
+    content: '.';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
 }
 .catalog-brands .count {
- color:#9da6aa
+    color: #9da6aa;
 }
