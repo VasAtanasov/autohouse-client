@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-// import { Hero } from '../../components';
 import { HomeSectionContainer } from './Home.styles';
 import Row from 'react-bootstrap/Row';
 import BodyStyle from './BodyStyle';
@@ -16,26 +15,28 @@ const HOME_SECTION_CONTAINER_SIZE = {
 
 const BrowsByContainer = ({ children, sectionTitle, showTitle }) => (
     <HomeSectionContainer>
-        <SectionTitle sectionTitle={sectionTitle} showTitle={showTitle} />
+        {showTitle && (
+            <SectionTitle sectionTitle={sectionTitle} showTitle={showTitle} />
+        )}
+
         <Row noGutters style={HOME_SECTION_CONTAINER_SIZE}>
             {children}
         </Row>
     </HomeSectionContainer>
 );
 
-const HomeComponent = ({ backgroundImage }) => (
+const HomeComponent = () => (
     <Fragment>
-        {/* <Hero backgroundImage={backgroundImage}></Hero> */}
         <BrowsByContainer sectionTitle={'Top offers'}>
             <Carousel />
         </BrowsByContainer>
-        <BrowsByContainer sectionTitle={'Body Styles'}>
+        <BrowsByContainer sectionTitle={'Body Styles'} showTitle={true}>
             <BodyStyle />
         </BrowsByContainer>
-        <BrowsByContainer sectionTitle={'Make'}>
+        <BrowsByContainer sectionTitle={'Make'} showTitle={true}>
             <Brand />
         </BrowsByContainer>
-        <BrowsByContainer sectionTitle={'Price'}>
+        <BrowsByContainer sectionTitle={'Price'} showTitle={true}>
             <Price />
         </BrowsByContainer>
     </Fragment>

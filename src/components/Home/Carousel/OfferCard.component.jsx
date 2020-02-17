@@ -1,15 +1,37 @@
 import React from 'react';
-import { OfferCardContainer } from './OfferCard.styles';
+import { OfferCard } from './OfferCard.styles';
 
-const OfferCard = ({ imageSrc, offerName = 'test offer' }) => (
-    <OfferCardContainer>
-        <img src={imageSrc} className="preloader" alt={offerName} />
-        <div
-            className="body-type-image"
-            style={{ backgroundImage: `url(${imageSrc})` }}
-        ></div>
-        <span className="caption">{offerName}</span>
-    </OfferCardContainer>
+const OfferCardComponent = ({
+    id,
+    make,
+    model,
+    thumbnail,
+    price,
+    mileage,
+    year,
+    month,
+    transmission,
+    fuel_type,
+    location,
+    created_on,
+    isTop
+}) => (
+    <OfferCard isTop={isTop} href={'/offers/' + id}>
+        <span className="photo">
+            <picture>
+                <img src={thumbnail} alt={thumbnail} />
+            </picture>
+        </span>
+        <ul>
+            <li className="title">
+                {make} {model} {year}
+            </li>
+            <li>
+                <span className="price">${price.toLocaleString()}</span>
+                <span className="item">{mileage.toLocaleString()} km</span>
+            </li>
+        </ul>
+    </OfferCard>
 );
 
-export default OfferCard;
+export default OfferCardComponent;

@@ -3,6 +3,7 @@ import CarouselComponent from './Carousel.component';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { loadTopOffers } from '../../../actions/offersActions';
+import { InnerCarouselContainer } from './Carousel.styles';
 
 const Carousel = ({ topOffers, loadTopOffers }) => {
     useEffect(() => {
@@ -12,7 +13,12 @@ const Carousel = ({ topOffers, loadTopOffers }) => {
             });
         }
     }, [loadTopOffers, topOffers]);
-    return <CarouselComponent offers={topOffers} />;
+
+    return (
+        <InnerCarouselContainer>
+            <CarouselComponent offers={topOffers} />
+        </InnerCarouselContainer>
+    );
 };
 
 Carousel.propTypes = {

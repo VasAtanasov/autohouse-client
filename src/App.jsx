@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Home, Header, MainContainer } from './components';
+import { Home, Header, MainContainer, Hero } from './components';
 import Theme from './Theme';
 import GlobalStyles from './utils/styles/global';
 
@@ -11,12 +11,14 @@ export const routes = [
         name: 'Home'
     }
 ];
+const bgImage = '/images/bg_6.jpg';
 
 function App() {
     return (
         <Theme>
             <GlobalStyles />
             <Header />
+            {false && <Hero backgroundImage={bgImage}></Hero>}
             <MainContainer style={{ backgroundColor: 'white' }}>
                 <Switch>
                     <Redirect exact from="/" to="/home" />
@@ -30,7 +32,6 @@ function App() {
                     ))}
                 </Switch>
             </MainContainer>
-            {/* <div style={{ height: '100vh' }}></div> */}
         </Theme>
     );
 }
