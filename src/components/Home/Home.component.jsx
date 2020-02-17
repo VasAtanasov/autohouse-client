@@ -8,9 +8,10 @@ import Price from './Price';
 import Carousel from './Carousel';
 
 const HOME_SECTION_CONTAINER_SIZE = {
-    maxWidth: '930px',
+    // maxWidth: '930px',
     margin: '1rem auto',
-    paddingTop: '2rem'
+    // paddingTop: '2rem',
+    width: '100%'
 };
 
 const BrowsByContainer = ({ children, sectionTitle, showTitle }) => (

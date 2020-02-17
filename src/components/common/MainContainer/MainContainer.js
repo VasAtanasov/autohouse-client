@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const MainContainer = styled.div`
     max-width: ${props => props.theme.screens.large};
-    max-width: 960px;
+    max-width: 940px;
     margin: 0 auto;
     padding-left: 10px;
     padding-right: 10px;

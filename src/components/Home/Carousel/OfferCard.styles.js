@@ -18,7 +18,7 @@ const topItem = {
 
 export const OfferCard = styled.a`
     width: ${props => (props.isTop ? topItem.width : item.width)};
-    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
     font-size: 0;
     position: relative;
     text-decoration: none !important;
@@ -140,72 +140,5 @@ export const OfferCard = styled.a`
                 }
             }
         }
-    }
-`;
-export const OfferContainer = styled.div`
-    position: relative;
-`;
-
-export const OfferImageContainer = styled.span`
-    &:after {
-        box-shadow: inset 0 0 0 1px #e0e3e4;
-        display: block;
-        width: 100%;
-        position: inherit;
-        content: '';
-        background-color: #eff2f3;
-    }
-
-    &:before {
-        border: 4px solid rgba(0, 0, 0, 0.1);
-        border-top-color: #7bccff;
-        width: 0;
-        height: 0;
-        padding: 10%;
-        -webkit-animation: spin 2s linear infinite;
-        animation: spin 2s linear infinite;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-        border-radius: 50%;
-        content: '';
-
-        @-webkit-keyframes spin {
-            0% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            to {
-                -webkit-transform: rotate(1turn);
-                transform: rotate(1turn);
-            }
-        }
-        @keyframes spin {
-            0% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            to {
-                -webkit-transform: rotate(1turn);
-                transform: rotate(1turn);
-            }
-        }
-    }
-`;
-
-export const OfferImage290 = styled(OfferImageContainer)`
-    width: 460;
-    &:after {
-        padding-top: 290px;
-    }
-`;
-
-export const OfferImage141 = styled(OfferImageContainer)`
-    width: 220;
-    &:after {
-        padding-top: 141px;
     }
 `;
