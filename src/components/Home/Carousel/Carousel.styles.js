@@ -1,15 +1,11 @@
 import styled from 'styled-components';
-import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
-export const InnerCarouselContainer = styled(Col)`
+export const InnerCarouselContainer = styled(Row)`
     position: relative;
+    width: 100%;
     overflow: hidden;
     z-index: 1;
-    padding: 0;
-`;
-
-export const CarouselContainer = styled.section`
-    position: relative;
-    min-height: 100px;
-    width: 100%;
+    margin: 0;
+    justify-content: space-between;
 `;
