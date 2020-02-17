@@ -1,15 +1,27 @@
 import React, { Fragment } from 'react';
-// import { InnerCarouselContainer } from './Carousel.styles';
+import { InnerCarouselContainer } from './Carousel.styles';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import styled from 'styled-components';
+import OfferCard from './OfferCard.component';
 
-const OfferContainer = styled(Col)`
-    /* width: 460px; */
+const TopOffer = styled.div`
+    padding: 0.3rem;
+    width: 460px;
+    /* flex: 0 0 49%; */
+`;
+
+const ShowCase = styled(TopOffer)`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+`;
+
+const OfferContainer = styled.div`
     position: relative;
 `;
 
-const OfferImage = styled.span`
+const OfferImageContainer = styled.span`
     &:after {
         box-shadow: inset 0 0 0 1px #e0e3e4;
         display: block;
@@ -59,40 +71,33 @@ const OfferImage = styled.span`
     }
 `;
 
-const OfferImage290 = styled(OfferImage)`
+const OfferImage290 = styled(OfferImageContainer)`
+    width: 460;
     &:after {
         padding-top: 290px;
     }
 `;
 
-const OfferImage141 = styled(OfferImage)`
+const OfferImage141 = styled(OfferImageContainer)`
+    width: 220;
     &:after {
         padding-top: 141px;
     }
 `;
 
-const CarouselComponent = () => (
-    <Fragment>
-        <OfferContainer lg={6} className="p-1">
-            <OfferImage290 />
-        </OfferContainer>
-        <OfferContainer lg={6} className="p-1">
-            <Row noGutters>
-                <Col xs={6} className="pr-1 pb-1">
-                    <OfferImage141 />
-                </Col>
-                <Col xs={6} className="pl-1 pb-1">
-                    <OfferImage141 />
-                </Col>
-                <Col xs={6} className="pr-1 pt-1">
-                    <OfferImage141 />
-                </Col>
-                <Col xs={6} className="pl-1 pt-1">
-                    <OfferImage141 />
-                </Col>
-            </Row>
-        </OfferContainer>
-    </Fragment>
+const Offer = () => (
+    <Col xs={12} sm={6} lg={3}>
+        <OfferImage141 />
+    </Col>
 );
+
+let offers = [1, 2, 3, 4, 5, 6, 7, 8];
+
+const CarouselComponent = () =>
+    offers.map((offer, idx) => (
+        <Col key={`${offer}__${idx}`} xs={6} sm={4} md={3}>
+            <OfferCard />
+        </Col>
+    ));
 
 export default CarouselComponent;

@@ -1,0 +1,1 @@
+export const LOAD_TOP_OFFERS = 'LOAD_TOP_OFFERS';
