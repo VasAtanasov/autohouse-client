@@ -1,7 +1,7 @@
 import * as types from './actionTypes';
 import * as offersApi from '../utils/api/offersApi';
 
-export function loadAuthorsSuccess(topOffers) {
+export function loadTopOffersSuccess(topOffers) {
     return { type: types.LOAD_TOP_OFFERS, topOffers };
 }
 
@@ -10,7 +10,7 @@ export function loadTopOffers() {
         return offersApi
             .loadTopOffers()
             .then(topOffers => {
-                dispatch(loadAuthorsSuccess(topOffers));
+                dispatch(loadTopOffersSuccess(topOffers));
             })
             .catch(error => {
                 throw error;

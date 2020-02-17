@@ -1,20 +1,12 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8001';
-const ACCESS_TOKEN = 'accessToken';
+const API_BASE_URL = 'http://localhost:3001';
 
 const http = (() => {
     const call = (method, url, options = {}) => {
-        const headers = new Headers({
+        const headers = {
             'Content-Type': 'application/json'
-        });
-
-        if (localStorage.getItem(ACCESS_TOKEN)) {
-            headers.append(
-                'Authorization',
-                'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
-            );
-        }
+        };
 
         const defaults = { headers: headers, baseURL: API_BASE_URL, url };
         options = Object.assign({}, defaults, options);

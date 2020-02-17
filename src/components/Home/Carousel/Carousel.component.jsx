@@ -93,10 +93,10 @@ const Offer = () => (
 
 let offers = [1, 2, 3, 4, 5, 6, 7, 8];
 
-const CarouselComponent = () =>
-    offers.map((offer, idx) => (
+const CarouselComponent = ({ offers }) =>
+    offers.slice(0, 8).map((offer, idx) => (
         <Col key={`${offer}__${idx}`} xs={6} sm={4} md={3}>
-            <OfferCard />
+            <OfferCard imageSrc={offer.thumbnail} />
         </Col>
     ));
 

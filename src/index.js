@@ -8,8 +8,6 @@ import { Provider as ReduxProvider } from 'react-redux';
 
 const store = configureStore();
 
-console.log(process.env.API_URL);
-
 render(
     <ReduxProvider store={store}>
         <Router>

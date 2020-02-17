@@ -4,7 +4,7 @@ import initialState from './initialState';
 export default function offersReducer(state = initialState.topOffers, action) {
     switch (action.type) {
         case types.LOAD_TOP_OFFERS:
-            return [...state, { ...action.topOffers }];
+            return action.topOffers;
         default:
             return state;
     }
