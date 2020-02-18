@@ -6,12 +6,13 @@ import SectionTitle from './SectionTitle';
 import Brand from './Brand';
 import Price from './Price';
 import Carousel from './Carousel';
+import { useWindowSize } from '../../utils/customHooks';
 
 const HOME_SECTION_CONTAINER_SIZE = {
-    // maxWidth: '930px',
     margin: '1rem auto',
-    // paddingTop: '2rem',
-    width: '100%'
+    paddingTop: '2rem',
+    width: '100%',
+    position: 'relative'
 };
 
 const BrowsByContainer = ({ children, sectionTitle, showTitle }) => (
@@ -26,21 +27,37 @@ const BrowsByContainer = ({ children, sectionTitle, showTitle }) => (
     </HomeSectionContainer>
 );
 
-const HomeComponent = () => (
-    <Fragment>
-        <BrowsByContainer sectionTitle={'Top offers'}>
-            <Carousel />
-        </BrowsByContainer>
-        <BrowsByContainer sectionTitle={'Body Styles'} showTitle={true}>
-            <BodyStyle />
-        </BrowsByContainer>
-        <BrowsByContainer sectionTitle={'Make'} showTitle={true}>
-            <Brand />
-        </BrowsByContainer>
-        <BrowsByContainer sectionTitle={'Price'} showTitle={true}>
-            <Price />
-        </BrowsByContainer>
-    </Fragment>
-);
+const ShowWindowDimensions = () => {
+    const [width, height] = useWindowSize();
+    return (
+        <div>
+            Window size: {width} x {height}
+        </div>
+    );
+};
+
+const HomeComponent = () => {
+    const [width] = useWindowSize();
+
+    return (
+        <Fragment>
+            {width >= 850 && (
+                <BrowsByContainer sectionTitle={'Top offers'}>
+                    <Carousel />
+                </BrowsByContainer>
+            )}
+            <ShowWindowDimensions />
+            <BrowsByContainer sectionTitle={'Body Styles'} showTitle={true}>
+                <BodyStyle />
+            </BrowsByContainer>
+            <BrowsByContainer sectionTitle={'Make'} showTitle={true}>
+                <Brand />
+            </BrowsByContainer>
+            <BrowsByContainer sectionTitle={'Price'} showTitle={true}>
+                <Price />
+            </BrowsByContainer>
+        </Fragment>
+    );
+};
 
 export default HomeComponent;

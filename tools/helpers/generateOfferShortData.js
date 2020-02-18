@@ -8,7 +8,10 @@ const generateOfferShortData = async (makes, fuelTypes, towns) => {
 
     const baseImageUrl = '/images/offers/cars/201909-12';
 
-    for (let i = 0; i < vehiclesUUIDs.length; i++) {
+    const topOffersCount =
+        vehiclesUUIDs.length < 50 ? vehiclesUUIDs.length : 50;
+
+    for (let i = 0; i < topOffersCount; i++) {
         const make = utils.getRandomValueFromArray(makes);
         const model = utils.getRandomValueFromArray(make.models);
         const fuelType = utils.getRandomValueFromArray(fuelTypes);

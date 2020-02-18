@@ -1,28 +1,27 @@
 import React, { Fragment } from 'react';
 import OfferCardComponent from './OfferCard.component';
 import { ShowCase, TopOffer } from './Carousel.styles';
+import PropTypes from 'prop-types';
 
-const CarouselComponent = ({ offers, currentPage, limit }) => (
+const CarouselComponent = ({ offers, startIndex, endIndex }) => (
     <Fragment>
         <TopOffer>
-            {offers
-                .slice(currentPage * limit, currentPage * limit + 1)
-                .map(offer => (
-                    <OfferCardComponent
-                        key={offer.id}
-                        {...offer}
-                        isTop={true}
-                    />
-                ))}
+            {offers.slice(startIndex, startIndex + 1).map(offer => (
+                <OfferCardComponent key={offer.id} {...offer} isTop={true} />
+            ))}
         </TopOffer>
         <ShowCase>
-            {offers
-                .slice(currentPage * limit + 1, currentPage * limit + limit)
-                .map(offer => (
-                    <OfferCardComponent key={offer.id} {...offer} />
-                ))}
+            {offers.slice(startIndex + 1, endIndex + 1).map(offer => (
+                <OfferCardComponent key={offer.id} {...offer} />
+            ))}
         </ShowCase>
     </Fragment>
 );
+
+CarouselComponent.propTypes = {
+    offers: PropTypes.array.isRequired,
+    startIndex: PropTypes.number.isRequired,
+    endIndex: PropTypes.number.isRequired
+};
 
 export default CarouselComponent;

@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import { loadTopOffers } from '../../../actions/offersActions';
 import { InnerCarouselContainer, CarouselControl } from './Carousel.styles';
 
-const DEFAULT_LIMIT = 5;
+const DEFAULT_PAGE_SIZE = 5;
+const DEFAULT_START_PAGE = 1;
 
 const Carousel = ({ topOffers, loadTopOffers }) => {
-    const [currentPage, setCurrentPage] = useState(0);
+    const [page, setPage] = useState(DEFAULT_START_PAGE);
 
     useEffect(() => {
         if (topOffers.length === 0) {
@@ -18,37 +19,38 @@ const Carousel = ({ topOffers, loadTopOffers }) => {
         }
     }, [loadTopOffers, topOffers]);
 
-    const totalPages = topOffers.length / DEFAULT_LIMIT;
+    const totalItems = topOffers.length;
+    const totalPages = Math.ceil(totalItems / DEFAULT_PAGE_SIZE);
 
-    const handleNext = () => {
-        if (currentPage + 1 === totalPages) {
-            setCurrentPage(0);
-        } else {
-            setCurrentPage(currentPage + 1);
-        }
-    };
+    let startIndex = (page - 1) * DEFAULT_PAGE_SIZE;
+    let endIndex = Math.min(startIndex + DEFAULT_PAGE_SIZE - 1, totalItems - 1);
 
-    const handlePrevious = () => {
-        if (currentPage - 1 <= 0) {
-            setCurrentPage(totalPages - 1);
-        } else {
-            setCurrentPage(currentPage - 1);
-        }
+    const handlePageChange = pageNumber => {
+        pageNumber = pageNumber < 1 ? totalPages : pageNumber;
+        pageNumber = pageNumber > totalPages ? 1 : pageNumber;
+        setPage(pageNumber);
     };
 
     return (
         <Fragment>
             <InnerCarouselContainer>
                 <span>
-                    <CarouselControl prev onClick={handlePrevious} />
+                    <CarouselControl
+                        prev
+                        onClick={() => handlePageChange(page - 1)}
+                    >
+                        {/* <i className="flaticon-left-arrow" /> */}
+                    </CarouselControl>
                 </span>
                 <span>
-                    <CarouselControl onClick={handleNext} />
+                    <CarouselControl onClick={() => handlePageChange(page + 1)}>
+                        {/* <i className="flaticon-arrow-point-to-right" /> */}
+                    </CarouselControl>
                 </span>
                 <CarouselComponent
                     offers={topOffers}
-                    currentPage={currentPage}
-                    limit={DEFAULT_LIMIT}
+                    startIndex={startIndex}
+                    endIndex={endIndex}
                 />
             </InnerCarouselContainer>
         </Fragment>
