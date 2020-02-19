@@ -17,9 +17,7 @@ const HOME_SECTION_CONTAINER_SIZE = {
 
 const BrowsByContainer = ({ children, sectionTitle, showTitle }) => (
     <HomeSectionContainer>
-        {showTitle && (
-            <SectionTitle sectionTitle={sectionTitle} showTitle={showTitle} />
-        )}
+        {showTitle && <SectionTitle sectionTitle={sectionTitle} />}
 
         <Row noGutters style={HOME_SECTION_CONTAINER_SIZE}>
             {children}
