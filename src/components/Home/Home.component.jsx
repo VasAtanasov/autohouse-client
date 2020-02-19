@@ -6,6 +6,7 @@ import SectionTitle from './SectionTitle';
 import Brand from './Brand';
 import Price from './Price';
 import Carousel from './Carousel';
+import FormSearch from './QuickSearch/QuickSearchForm';
 import { useWindowSize } from '../../utils/customHooks';
 
 const HOME_SECTION_CONTAINER_SIZE = {
@@ -39,6 +40,9 @@ const HomeComponent = () => {
 
     return (
         <Fragment>
+            <BrowsByContainer sectionTitle={'Quick Search'}>
+                <FormSearch />
+            </BrowsByContainer>
             {width >= 850 && (
                 <BrowsByContainer sectionTitle={'Top offers'}>
                     <Carousel />
