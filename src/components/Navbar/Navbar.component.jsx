@@ -19,9 +19,9 @@ const NavbarComponent = ({ routes }) => {
                     </Brand>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
+                {/* <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ml-auto">{navLinks}</Nav>
-                </Navbar.Collapse>
+                </Navbar.Collapse> */}
             </Navbar>
         </NavbarWrapper>
     );

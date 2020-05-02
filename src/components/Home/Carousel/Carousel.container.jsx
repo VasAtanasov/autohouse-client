@@ -11,13 +11,13 @@ const DEFAULT_START_PAGE = 1;
 const Carousel = ({ topOffers, loadTopOffers }) => {
     const [page, setPage] = useState(DEFAULT_START_PAGE);
 
-    useEffect(() => {
-        if (topOffers.length === 0) {
-            loadTopOffers().catch(error => {
-                alert('Loading courses failed' + error);
-            });
-        }
-    }, [loadTopOffers, topOffers]);
+    // useEffect(() => {
+    //     if (topOffers.length === 0) {
+    //         loadTopOffers().catch(error => {
+    //             alert('Loading courses failed' + error);
+    //         });
+    //     }
+    // }, [loadTopOffers, topOffers]);
 
     const totalItems = topOffers.length;
     const totalPages = Math.ceil(totalItems / DEFAULT_PAGE_SIZE);
@@ -25,7 +25,7 @@ const Carousel = ({ topOffers, loadTopOffers }) => {
     let startIndex = (page - 1) * DEFAULT_PAGE_SIZE;
     let endIndex = Math.min(startIndex + DEFAULT_PAGE_SIZE - 1, totalItems - 1);
 
-    const handlePageChange = pageNumber => {
+    const handlePageChange = (pageNumber) => {
         pageNumber = pageNumber < 1 ? totalPages : pageNumber;
         pageNumber = pageNumber > totalPages ? 1 : pageNumber;
         setPage(pageNumber);
@@ -59,17 +59,17 @@ const Carousel = ({ topOffers, loadTopOffers }) => {
 
 Carousel.propTypes = {
     topOffers: PropTypes.array.isRequired,
-    loadTopOffers: PropTypes.func.isRequired
+    loadTopOffers: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
     return {
-        topOffers: state.topOffers
+        topOffers: state.topOffers,
     };
 }
 
 const mapDispatchToProps = {
-    loadTopOffers
+    loadTopOffers,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Carousel);
