@@ -1,13 +1,11 @@
 import React from 'react';
-import { Navbar } from '../../components';
-import { StyledHeader } from './Header.styles';
+import { HeaderContainer } from './header.styles';
+import Navbar from '../navbar/navbar.component';
 
-const HeaderComponent = () => {
-    return (
-        <StyledHeader>
-            <Navbar />
-        </StyledHeader>
-    );
-};
+const Header = () => (
+    <HeaderContainer>
+        <Navbar />
+    </HeaderContainer>
+);
 
-export default HeaderComponent;
+export default Header;

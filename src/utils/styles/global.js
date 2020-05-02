@@ -46,7 +46,7 @@ export default createGlobalStyle`
 
     body {
         font-family:  'Titillium Web', 'Helvetica', 'Arial', 'sans-serif', sans-serif;
-        font-size: 1rem;
+        font-size: 14px;
         line-height: 1.4;
         font-weight: 400;
         background-color: #f4f4f4 !important;
@@ -77,4 +77,7 @@ export default createGlobalStyle`
         font-weight: 400;
     }
 
+    button {
+        outline: none;
+    }
 `;

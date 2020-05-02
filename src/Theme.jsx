@@ -3,8 +3,7 @@ import { ThemeProvider } from 'styled-components';
 
 const theme = {
     colors: {
-        autoriaColor: '#db5c4c',
-        defaultColor: '#f7b71d',
+        defaultColor: '#db5c4c',
         powderWhite: '#FFFDF9',
         persianGreen: '#06B49A',
         lightBlue: '#AFDBD2',
@@ -20,21 +19,22 @@ const theme = {
         turqouise: '#2D728F',
         pastelBlue: '#006494',
         red: '#F44336',
-        green: '#4CAF50'
+        green: '#4CAF50',
     },
     heroSize: '500px',
     screens: {
         small: '576px',
         medium: '768px',
+        midLarge: '800px',
         large: '992px',
-        extraLarge: '1200px'
+        extraLarge: '1200px',
     },
     fonts: ['sans-serif', 'Roboto'],
     fontSizes: {
         small: '1em',
         medium: '2em',
-        large: '3em'
-    }
+        large: '3em',
+    },
 };
 
 const Theme = ({ children }) => (

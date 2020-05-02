@@ -1,7 +1,4 @@
-import Home from './Home/Home.container';
-import Navbar from './Navbar/Navbar.container';
-import Header from './Header/Header.container';
-import MainContainer from './common/MainContainer/MainContainer';
-import Hero from './common/Hero/Hero.component';
+import Header from './header/header.component';
+import Navbar from './navbar/navbar.component';
 
-export { Home, Header, Navbar, MainContainer, Hero };
+export { Header, Navbar };
