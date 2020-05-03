@@ -1,10 +1,19 @@
 import React from 'react';
-import { HeaderContainer } from './header.styles';
-import Navbar from '../navbar/navbar.component';
+import { HeaderContainer, HeaderWrapper, Brand } from './header.styles';
+import Navbar from '../navbar/slider-navbar.component';
 
 const Header = () => (
     <HeaderContainer>
-        <Navbar />
+        <HeaderWrapper>
+            <div className="left">
+                <Brand>
+                    Auto<span>house</span>
+                </Brand>
+            </div>
+            <div className="right">
+                <Navbar />
+            </div>
+        </HeaderWrapper>
     </HeaderContainer>
 );
 

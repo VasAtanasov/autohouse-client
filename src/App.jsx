@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Header } from './components';
 import Theme from './Theme';
-import GlobalStyles from './utils/styles/global';
+import { GlobalStyles } from './global';
 
 export const routes = [];
 
