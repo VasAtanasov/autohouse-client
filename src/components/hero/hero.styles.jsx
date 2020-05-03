@@ -15,6 +15,7 @@ export const Overlay = styled.div`
 export const Wrapper = styled.div`
     width: 100%;
     min-height: ${({ theme }) => theme.heroSize};
+    color: white;
     position: relative;
     background-size: cover;
     background-repeat: no-repeat;
