@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import closeIcon from './icon/close.svg';
 
-export const CloseButton = styled.div`
+export const CloseButton = styled.button`
     position: absolute;
     right: 12px;
     top: 15px;
@@ -19,4 +19,9 @@ export const CloseButton = styled.div`
     border-color: initial;
     border-image: initial;
     padding: 0px;
+
+    &:hover {
+        background-color: rgb(235, 235, 235);
+        border-radius: 4px;
+    }
 `;

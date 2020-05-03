@@ -75,6 +75,6 @@ export default createGlobalStyle`
     }
 
     button {
-        outline: none;
+        outline: none !important;;
     }
 `;

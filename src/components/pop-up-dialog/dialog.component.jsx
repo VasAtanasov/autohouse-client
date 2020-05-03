@@ -6,15 +6,15 @@ import {
     Overlay,
     ContentWrapper,
 } from './dialog.styles';
-
+import PropTypes from 'prop-types';
 import CloseButton from '../close-button/close-button.component';
 
-const PopUpDialog = ({ title, children }) => (
+const PopUpDialog = ({ title, children, handleClose }) => (
     <DialogContainer>
         <Overlay />
         <Main>
             <Dialog>
-                <CloseButton />
+                <CloseButton handleClose={handleClose} />
                 <ContentWrapper>
                     <div className="header">{title}</div>
                     <div className="body">{children}</div>
@@ -23,5 +23,9 @@ const PopUpDialog = ({ title, children }) => (
         </Main>
     </DialogContainer>
 );
+
+PopUpDialog.propTypes = {
+    handleClose: PropTypes.func.isRequired,
+};
 
 export default PopUpDialog;

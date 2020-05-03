@@ -1,5 +1,5 @@
 import React from 'react';
-import { Hero } from '../../components';
+import { Hero, Spinner } from '../../components';
 import { HomeSectionContainer } from './homepage.styles';
 import SectionTitle from './components/section-title/section-title.component';
 import BodyStyleSection from './components/card-body-style/body-style.container';
@@ -19,6 +19,7 @@ const HomePage = () => (
     <React.Fragment>
         <Hero backgroundImage={'/images/bg_10.jpg'}>
             <QuickSearch />
+            <Spinner />s
         </Hero>
         <BrowsByContainer sectionTitle={'Body Styles'} showTitle={true}>
             <BodyStyleSection />
