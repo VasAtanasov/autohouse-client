@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BodyTypeCardContainer } from './BodyStyle.styles';
 
-const BodyTypeCard = props => {
+const BodyTypeCard = (props) => {
     const { imageSrc, hoverImageSrc, bodyType } = props;
 
     const [display, setDisplay] = useState('none');
@@ -21,7 +21,7 @@ const BodyTypeCard = props => {
                     className="overlay"
                     style={{
                         backgroundImage: `url(${hoverImageSrc})`,
-                        display: display
+                        display: display,
                     }}
                 ></span>
             </div>

@@ -51,7 +51,7 @@ export const BodyTypeCardContainer = styled.div`
     }
 
     :hover span.caption {
-        color: ${props => props.theme.colors.autoriaColor};
+        color: ${(props) => props.theme.colors.autoriaColor};
         /* letter-spacing: 3px;
     font-weight: 800; */
     }

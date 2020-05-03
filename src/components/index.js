@@ -1,4 +1,5 @@
 import Header from './header/header.component';
-import Navbar from './navbar/slider-navbar.component';
+import Hero from './hero/hero.component';
+import NavbarDrawer from './navbar/slider-navbar.component';
 
-export { Header, Navbar };
+export { Header, Hero, NavbarDrawer };

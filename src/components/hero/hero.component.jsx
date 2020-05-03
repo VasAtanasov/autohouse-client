@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wrapper, Overlay } from './Hero.styles';
+import { Wrapper, Overlay } from './hero.styles';
 
 const HeroWrap = ({ backgroundImage, children }) => {
     return (

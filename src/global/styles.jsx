@@ -60,9 +60,6 @@ export default createGlobalStyle`
     }
 
     a {
-        -webkit-transition: .3s all ease;
-        -o-transition: .3s all ease;
-        transition: .3s all ease;
         color: #000;
     }
 
