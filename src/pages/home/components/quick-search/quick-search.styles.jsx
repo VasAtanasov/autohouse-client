@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import Modal from 'react-bootstrap/Modal';
+
+// Search Container
 
 export const SearchContainer = styled.div`
     position: relative;
@@ -38,6 +41,27 @@ export const SearchButton = styled.button`
     }
 `;
 
+// Modal
+
+export const StyledModal = styled(Modal)`
+    .modal-dialog {
+        user-select: none;
+
+        & .modal-content {
+            .modal-body {
+                padding: 0;
+            }
+        }
+
+        @media (min-width: ${({ theme }) => theme.screens.medium}) {
+            width: 435px;
+            height: auto;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+    }
+`;
+
 // Body Style Components
 
 export const BodyStyleList = styled.ul`
@@ -50,9 +74,9 @@ export const BodyStyleList = styled.ul`
         display: inline-block;
         width: 50%;
         height: 100px;
+        text-align: center;
     }
 `;
-
 export const BodyStyleIcon = styled.div`
     margin: 20px auto 0px;
     width: 132px;
@@ -88,7 +112,7 @@ export const BodyStyleButton = styled.button`
 // Maker Models Components
 
 export const OuterContainer = styled.div`
-    height: 100%;
+    height: calc(90vh - 60px);
 
     @media (min-width: ${({ theme }) => theme.screens.medium}) {
         height: calc(70vh - 60px);

@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState, useRef, useEffect } from 'react';
 
 const getWindowDimension = () => {
     const width =
@@ -15,9 +15,9 @@ const getWindowDimension = () => {
 export const useWindowSize = () => {
     function debounce(fn, ms) {
         let timer;
-        return _ => {
+        return (_) => {
             clearTimeout(timer);
-            timer = setTimeout(_ => {
+            timer = setTimeout((_) => {
                 timer = null;
                 fn.apply(this, arguments);
             }, ms);
@@ -36,4 +36,32 @@ export const useWindowSize = () => {
     }, []);
 
     return size;
+};
+
+export const useComponentVisible = (initialIsVisible) => {
+    const [visible, setVisible] = useState(initialIsVisible);
+    const ref = useRef(null);
+
+    const handleHideDropdown = (event) => {
+        if (event.key === 'Escape') {
+            setVisible(false);
+        }
+    };
+
+    const handleClickOutside = (event) => {
+        if (ref.current && !ref.current.contains(event.target)) {
+            setVisible(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleHideDropdown, true);
+        document.addEventListener('click', handleClickOutside, true);
+        return () => {
+            document.removeEventListener('keydown', handleHideDropdown, true);
+            document.removeEventListener('click', handleClickOutside, true);
+        };
+    });
+
+    return [ref, visible, setVisible];
 };

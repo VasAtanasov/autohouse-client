@@ -22,7 +22,7 @@ export default createGlobalStyle`
     
     body {
         line-height: 1;
-        min-height: 100vh;
+        ${'' /* min-height: 100vh; */}
     }
 
     ol, ul {
@@ -47,7 +47,7 @@ export default createGlobalStyle`
     body {
         font-family:  'Titillium Web', 'Helvetica', 'Arial', 'sans-serif', sans-serif;
         font-size: 14px;
-        line-height: 1.4;
+        line-height: 1;
         font-weight: 400;
         background-color: #f4f4f4 !important;
         background-color: white !important;

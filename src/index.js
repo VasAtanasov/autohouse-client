@@ -5,14 +5,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import configureStore from './store/store';
 import { Provider as ReduxProvider } from 'react-redux';
+import { ScrollToTop } from './components';
 
 const store = configureStore();
 
 render(
-    <ReduxProvider store={store}>
-        <Router>
-            <App />
-        </Router>
-    </ReduxProvider>,
-    document.getElementById('root')
+  <ReduxProvider store={store}>
+    <Router>
+      <ScrollToTop>
+        <App />
+      </ScrollToTop>
+    </Router>
+  </ReduxProvider>,
+  document.getElementById('root')
 );

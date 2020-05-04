@@ -4,5 +4,14 @@ import NavbarDrawer from './navbar/slider-navbar.component';
 import PopUpDialog from './pop-up-dialog/dialog.component';
 import Spinner from './spinner/spinner.component';
 import Footer from './footer/footer.component';
+import ScrollToTop from './scroll-to-top/scroll-to-top.component';
 
-export { Header, Hero, NavbarDrawer, PopUpDialog, Spinner, Footer };
+export {
+  Header,
+  Hero,
+  NavbarDrawer,
+  PopUpDialog,
+  Spinner,
+  Footer,
+  ScrollToTop,
+};
