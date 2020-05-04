@@ -1,11 +1,11 @@
 import React from 'react';
 import BrandComponent from './make.component';
-import brands from './brands';
 import { MakeCardsContainer } from './make.styles';
+import { connect } from 'react-redux';
 
-const MakeSection = () => (
+const MakeSection = ({ makersIcons }) => (
     <MakeCardsContainer>
-        {brands.map(({ brand, icon }, idx) => (
+        {makersIcons.map(({ brand, icon }, idx) => (
             <BrandComponent
                 key={`${idx + 132}_${brand}`}
                 text={brand}
@@ -15,4 +15,8 @@ const MakeSection = () => (
     </MakeCardsContainer>
 );
 
-export default MakeSection;
+const mapStateToProps = ({ common }) => ({
+    makersIcons: common.makersIcons,
+});
+
+export default connect(mapStateToProps)(MakeSection);

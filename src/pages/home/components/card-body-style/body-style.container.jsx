@@ -1,14 +1,17 @@
 import React from 'react';
 
 import BodyStyleCard from './body-style.component';
-import bodyStyles from './bodyStyles';
-
+import { connect } from 'react-redux';
 import { BodyStyleCardsContainer } from './body-style.styles';
+import { createStructuredSelector } from 'reselect';
+
+import { selectBodyStyles } from '../../../../redux/common/common.selectors';
+
 const pathToImages = '/images/body-styles/';
 const carImageSuffix = '-angled';
 const extensionJpg = '.jpg';
 
-const BodyStyleSection = () => (
+const BodyStyleSection = ({ bodyStyles }) => (
     <BodyStyleCardsContainer>
         {bodyStyles.map((obj, idx) => (
             <BodyStyleCard
@@ -21,4 +24,8 @@ const BodyStyleSection = () => (
     </BodyStyleCardsContainer>
 );
 
-export default BodyStyleSection;
+const mapStateToProps = createStructuredSelector({
+    bodyStyles: selectBodyStyles,
+});
+
+export default connect(mapStateToProps)(BodyStyleSection);

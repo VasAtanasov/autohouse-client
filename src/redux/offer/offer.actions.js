@@ -1,18 +1,18 @@
-import * as types from './actionTypes';
-import * as offersApi from '../utils/api/offersApi';
+import * as types from './offer.types';
+import * as offersApi from '../../utils/api/offersApi';
 
 export function loadTopOffersSuccess(topOffers) {
     return { type: types.LOAD_TOP_OFFERS, topOffers };
 }
 
 export function loadTopOffers() {
-    return function(dispatch) {
+    return function (dispatch) {
         return offersApi
             .loadTopOffers()
-            .then(topOffers => {
+            .then((topOffers) => {
                 dispatch(loadTopOffersSuccess(topOffers));
             })
-            .catch(error => {
+            .catch((error) => {
                 throw error;
             });
     };

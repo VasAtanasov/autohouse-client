@@ -37,3 +37,48 @@ export const SearchButton = styled.button`
         margin-top: 0;
     }
 `;
+
+export const BodyStyleList = styled.ul`
+    list-style: none;
+    margin: 0px;
+    padding: 0px 0px 20px;
+
+    & li {
+        color: rgb(102, 102, 102);
+        display: inline-block;
+        width: 50%;
+        height: 100px;
+    }
+`;
+
+export const BodyStyleIcon = styled.div`
+    margin: 20px auto 0px;
+    width: 132px;
+    height: 78px;
+    background-image: url(${(props) => props.mainImage});
+    background-size: cover;
+    background-position: 0% 50%;
+`;
+
+export const BodyStyleLabel = styled.div`
+    font-size: 17px;
+    font-weight: 100;
+    color: rgb(51, 51, 51);
+    text-align: center;
+    height: 25px;
+    margin-top: 10px;
+`;
+
+export const BodyStyleButton = styled.button`
+    background-color: white;
+    cursor: pointer;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+
+    &:hover ${BodyStyleIcon} {
+        background-image: url(${(props) => props.hoverImage});
+        background-position: 20% 35%;
+    }
+`;
