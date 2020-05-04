@@ -4,20 +4,18 @@ import { PopUpDialog } from '../../../../components';
 import { SearchButton } from './quick-search.styles';
 
 const useComponentVisible = (initialIsVisible) => {
-    const [isComponentVisible, setIsComponentVisible] = React.useState(
-        initialIsVisible
-    );
+    const [visible, setVisible] = React.useState(initialIsVisible);
     const ref = React.useRef(null);
 
     const handleHideDropdown = (event) => {
         if (event.key === 'Escape') {
-            setIsComponentVisible(false);
+            setVisible(false);
         }
     };
 
     const handleClickOutside = (event) => {
         if (ref.current && !ref.current.contains(event.target)) {
-            setIsComponentVisible(false);
+            setVisible(false);
         }
     };
 
@@ -30,25 +28,22 @@ const useComponentVisible = (initialIsVisible) => {
         };
     });
 
-    return [ref, isComponentVisible, setIsComponentVisible];
+    return [ref, visible, setVisible];
 };
 
 const QuickSearchModal = ({ modalTitle, children }) => {
-    const [
-        ref,
-        isComponentVisible,
-        setIsComponentVisible,
-    ] = useComponentVisible(false);
+    const [ref, visible, setVisible] = useComponentVisible(false);
+
     return (
         <React.Fragment>
-            <SearchButton onClick={() => setIsComponentVisible(true)}>
-                Body Style
+            <SearchButton onClick={() => setVisible(true)}>
+                {modalTitle}
             </SearchButton>
-            {isComponentVisible && (
+            {visible && (
                 <PopUpDialog
                     ref={ref}
-                    title={modalTitle}
-                    handleClose={() => setIsComponentVisible(false)}
+                    title={`Select ${modalTitle}`}
+                    handleClose={() => setVisible(false)}
                 >
                     {children}
                 </PopUpDialog>

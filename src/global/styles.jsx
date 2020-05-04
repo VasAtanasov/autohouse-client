@@ -54,6 +54,17 @@ export default createGlobalStyle`
         color: #333
     }
 
+    body {
+        overflow-x: hidden;
+    }
+
+    body.lock-screen {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        overflow-y: hidden !important
+    }
+
     code {
         font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;

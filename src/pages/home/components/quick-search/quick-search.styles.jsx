@@ -87,6 +87,16 @@ export const BodyStyleButton = styled.button`
 
 // Maker Models Components
 
+export const OuterContainer = styled.div`
+    height: 100%;
+
+    @media (min-width: ${({ theme }) => theme.screens.medium}) {
+        height: calc(70vh - 60px);
+        max-height: 600px;
+        min-height: 200px;
+    }
+`;
+
 export const ScrollListContainer = styled.div`
     height: 100%;
     overflow-y: auto;
@@ -111,13 +121,8 @@ export const ScrollListContainer = styled.div`
 
             &:hover {
                 color: ${({ theme }) => theme.colors.defaultColor};
+                background-color: rgb(242, 242, 242);
             }
         }
-    }
-
-    @media (min-width: ${({ theme }) => theme.screens.medium}) {
-        height: calc(70vh - 60px);
-        max-height: 600px;
-        min-height: 200px;
     }
 `;

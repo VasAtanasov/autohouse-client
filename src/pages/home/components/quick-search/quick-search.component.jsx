@@ -8,6 +8,7 @@ import {
     BodyStyleIcon,
     BodyStyleLabel,
     ScrollListContainer,
+    OuterContainer,
 } from './quick-search.styles';
 import QuickSearchModal from './quick-search-modal.component';
 
@@ -23,7 +24,7 @@ const carImageSuffix = '-angled';
 const extensionJpg = '.jpg';
 
 const BodyStyleModalBody = ({ bodyStyles }) => (
-    <QuickSearchModal modalTitle={'Select Body Style'}>
+    <QuickSearchModal modalTitle={'Body Style'}>
         <BodyStyleList>
             {bodyStyles.map((obj, idx) => (
                 <li key={`${idx}_${obj.name}`}>
@@ -43,20 +44,22 @@ const BodyStyleModalBody = ({ bodyStyles }) => (
 );
 
 const MakerModelModalBody = ({ makers }) => (
-    <QuickSearchModal modalTitle={'Select Maker'}>
-        <ScrollListContainer>
-            <ul>
-                {makers.map((maker) => (
-                    <li
-                        key={`${maker.id}_${maker.name}`}
-                        data-id={maker.id}
-                        data-maker={maker.name}
-                    >
-                        {maker.name}
-                    </li>
-                ))}
-            </ul>
-        </ScrollListContainer>
+    <QuickSearchModal modalTitle={'Maker & Model'}>
+        <OuterContainer>
+            <ScrollListContainer>
+                <ul>
+                    {makers.map((maker) => (
+                        <li
+                            key={`${maker.id}_${maker.name}`}
+                            data-id={maker.id}
+                            data-maker={maker.name}
+                        >
+                            {maker.name}
+                        </li>
+                    ))}
+                </ul>
+            </ScrollListContainer>
+        </OuterContainer>
     </QuickSearchModal>
 );
 
