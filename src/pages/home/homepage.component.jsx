@@ -8,7 +8,7 @@ import BodyStyleSection from './components/card-body-style/body-style.container'
 import MakeSection from './components/card-make/make.container';
 import QuickSearch from './components/quick-search/quick-search.component';
 
-import { fetchMakersStartAsync } from '../../redux/common/common.actions';
+import { fetchMakersStartAsync } from '../../services/common/common.actions';
 import { toast } from 'react-toastify';
 
 const BrowsByContainer = ({ children, sectionTitle, showTitle }) => (
@@ -25,7 +25,7 @@ const HomePage = ({ fetchMakersStartAsync }) => {
         fetchMakersStartAsync().catch((error) => {
             toast.error('Error fetching makers');
         });
-    }, []);
+    });
 
     return (
         <React.Fragment>

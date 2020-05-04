@@ -9,23 +9,26 @@ import {
 import PropTypes from 'prop-types';
 import CloseButton from '../close-button/close-button.component';
 
-const PopUpDialog = ({ title, children, handleClose }) => (
-    <DialogContainer>
-        <Overlay />
-        <Main>
-            <Dialog>
-                <CloseButton handleClose={handleClose} />
-                <ContentWrapper>
-                    <div className="header">{title}</div>
-                    <div className="body">{children}</div>
-                </ContentWrapper>
-            </Dialog>
-        </Main>
-    </DialogContainer>
+const PopUpDialog = React.forwardRef(
+    ({ title, children, handleClose }, ref) => (
+        <DialogContainer>
+            <Overlay />
+            <Main>
+                <Dialog ref={ref}>
+                    <CloseButton handleClose={handleClose} />
+                    <ContentWrapper>
+                        <div className="header">{title}</div>
+                        <div className="body">{children}</div>
+                    </ContentWrapper>
+                </Dialog>
+            </Main>
+        </DialogContainer>
+    )
 );
 
 PopUpDialog.propTypes = {
     handleClose: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
 };
 
 export default PopUpDialog;

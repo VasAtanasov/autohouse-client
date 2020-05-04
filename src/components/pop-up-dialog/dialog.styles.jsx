@@ -59,7 +59,6 @@ export const ContentWrapper = styled.div`
 
     & .body {
         background-color: white;
-        padding: 0px 10px;
     }
 `;
 

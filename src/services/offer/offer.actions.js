@@ -1,5 +1,5 @@
 import * as types from './offer.types';
-import * as offersApi from '../../utils/api/offersApi';
+import * as offersApi from './offer.api';
 
 export function loadTopOffersSuccess(topOffers) {
     return { type: types.LOAD_TOP_OFFERS, topOffers };

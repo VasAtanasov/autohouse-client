@@ -38,6 +38,8 @@ export const SearchButton = styled.button`
     }
 `;
 
+// Body Style Components
+
 export const BodyStyleList = styled.ul`
     list-style: none;
     margin: 0px;
@@ -80,5 +82,42 @@ export const BodyStyleButton = styled.button`
     &:hover ${BodyStyleIcon} {
         background-image: url(${(props) => props.hoverImage});
         background-position: 20% 35%;
+    }
+`;
+
+// Maker Models Components
+
+export const ScrollListContainer = styled.div`
+    height: 100%;
+    overflow-y: auto;
+
+    & ul {
+        padding: 0;
+        margin: 0;
+
+        & li {
+            height: 60px;
+            line-height: 1.33;
+            letter-spacing: 0.39px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 300;
+            color: rgb(51, 51, 51);
+            position: relative;
+            padding: 17px 0px 19px 25px;
+            list-style: none;
+            border-bottom: 1px solid rgb(235, 235, 235);
+
+            &:hover {
+                color: ${({ theme }) => theme.colors.defaultColor};
+            }
+        }
+    }
+
+    @media (min-width: ${({ theme }) => theme.screens.medium}) {
+        height: calc(70vh - 60px);
+        max-height: 600px;
+        min-height: 200px;
     }
 `;

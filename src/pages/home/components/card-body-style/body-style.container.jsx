@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { BodyStyleCardsContainer } from './body-style.styles';
 import { createStructuredSelector } from 'reselect';
 
-import { selectBodyStyles } from '../../../../redux/common/common.selectors';
+import { selectBodyStyles } from '../../../../services/common/common.selectors';
 
 const pathToImages = '/images/body-styles/';
 const carImageSuffix = '-angled';

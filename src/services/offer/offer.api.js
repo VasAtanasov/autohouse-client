@@ -1,6 +1,6 @@
-import http from '../requester';
-import { handleResponse, handleError } from './apiUtils';
-import * as constants from '../constants';
+import http from '../../utils/requester';
+import { handleResponse, handleError } from '../../utils/apiUtils';
+import * as constants from '../../utils/constants';
 
 export const loadTopOffers = async () => {
     try {
