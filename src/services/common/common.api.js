@@ -7,7 +7,6 @@ export const loadMakers = async () => {
   const URL = `${constants.BASE_URL}/vehicles/makers`;
   try {
     NProgress.start();
-    await test();
     let response = await http.get(URL);
     NProgress.done();
     return handleResponse(response);

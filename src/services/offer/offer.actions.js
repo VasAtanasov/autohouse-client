@@ -2,18 +2,14 @@ import * as types from './offer.types';
 import * as offersApi from './offer.api';
 
 export function loadTopOffersSuccess(topOffers) {
-    return { type: types.LOAD_TOP_OFFERS, topOffers };
+  return { type: types.LOAD_TOP_OFFERS, topOffers };
 }
 
-export function loadTopOffers() {
-    return function (dispatch) {
-        return offersApi
-            .loadTopOffers()
-            .then((topOffers) => {
-                dispatch(loadTopOffersSuccess(topOffers));
-            })
-            .catch((error) => {
-                throw error;
-            });
-    };
-}
+export const loadTopOffers = () => async (dispatch) => {
+  try {
+    const response = await offersApi.loadTopOffers();
+    dispatch(loadTopOffersSuccess(response.data));
+  } catch (error) {
+    throw error;
+  }
+};

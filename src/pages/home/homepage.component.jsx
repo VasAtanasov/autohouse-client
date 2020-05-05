@@ -7,39 +7,52 @@ import SectionTitle from './components/section-title/section-title.component';
 import BodyStyleSection from './components/card-body-style/body-style.container';
 import MakeSection from './components/card-make/make.container';
 import QuickSearch from './components/quick-search/quick-search.component';
+import Carousel from './components/offers-carousel';
 
 import { fetchMakersStartAsync } from '../../services/common/common.actions';
+import { loadTopOffers } from '../../services/offer/offer.actions';
 import { toast } from 'react-toastify';
 
 const BrowsByContainer = ({ children, sectionTitle, showTitle }) => (
-    <HomeSectionContainer>
-        {showTitle && (
-            <SectionTitle sectionTitle={sectionTitle} showTitle={showTitle} />
-        )}
-        {children}
-    </HomeSectionContainer>
+  <HomeSectionContainer>
+    {showTitle && (
+      <SectionTitle sectionTitle={sectionTitle} showTitle={showTitle} />
+    )}
+    {children}
+  </HomeSectionContainer>
 );
 
-const HomePage = ({ fetchMakersStartAsync }) => {
-    React.useEffect(() => {
-        fetchMakersStartAsync().catch((error) => {
-            toast.error('Error fetching makers');
-        });
+const HomePage = ({ fetchMakersStartAsync, loadTopOffers }) => {
+  React.useEffect(() => {
+    fetchMakersStartAsync().catch((error) => {
+      toast.error('Error fetching makers');
     });
+  });
 
-    return (
-        <React.Fragment>
-            <Hero backgroundImage={'/images/bg_10.jpg'}>
-                <QuickSearch />
-            </Hero>
-            <BrowsByContainer sectionTitle={'Body Styles'} showTitle={true}>
-                <BodyStyleSection />
-            </BrowsByContainer>
-            <BrowsByContainer sectionTitle={'Make'} showTitle={true}>
-                <MakeSection />
-            </BrowsByContainer>
-        </React.Fragment>
-    );
+  React.useEffect(() => {
+    loadTopOffers().catch((error) => {
+      alert('Loading courses failed' + error);
+    });
+  });
+
+  return (
+    <React.Fragment>
+      <Hero backgroundImage={'/images/bg_10.jpg'}>
+        <QuickSearch />
+      </Hero>
+      <BrowsByContainer sectionTitle={'Top offers'} showTitle={true}>
+        <Carousel />
+      </BrowsByContainer>
+      <BrowsByContainer sectionTitle={'Body Styles'} showTitle={true}>
+        <BodyStyleSection />
+      </BrowsByContainer>
+      <BrowsByContainer sectionTitle={'Make'} showTitle={true}>
+        <MakeSection />
+      </BrowsByContainer>
+    </React.Fragment>
+  );
 };
 
-export default connect(null, { fetchMakersStartAsync })(HomePage);
+export default connect(null, { fetchMakersStartAsync, loadTopOffers })(
+  HomePage
+);
