@@ -8,6 +8,7 @@ import BodyStyleSection from './components/card-body-style/body-style.container'
 import MakeSection from './components/card-make/make.container';
 import QuickSearch from './components/quick-search/quick-search.component';
 import Carousel from './components/offers-carousel';
+import OfferCardList from './components/offer-card/offer-card-list.component';
 
 import { fetchMakersStartAsync } from '../../services/common/common.actions';
 import { loadTopOffers } from '../../services/offer/offer.actions';
@@ -41,7 +42,8 @@ const HomePage = ({ fetchMakersStartAsync, loadTopOffers }) => {
         <QuickSearch />
       </Hero>
       <BrowsByContainer sectionTitle={'Top offers'} showTitle={true}>
-        <Carousel />
+        {/* <Carousel /> */}
+        <OfferCardList />
       </BrowsByContainer>
       <BrowsByContainer sectionTitle={'Body Styles'} showTitle={true}>
         <BodyStyleSection />

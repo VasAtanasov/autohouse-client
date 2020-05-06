@@ -15,6 +15,11 @@ export const fetchMakersFailure = (response) => ({
   payload: response.data.message,
 });
 
+export const fetchStatisticsSuccess = (response) => ({
+  type: types.FETCH_STATISTICS_SUCCESS,
+  payload: response,
+});
+
 export const fetchMakersStartAsync = () => async (dispatch) => {
   dispatch(fetchMakersStart());
   try {
@@ -22,5 +27,14 @@ export const fetchMakersStartAsync = () => async (dispatch) => {
     dispatch(fetchMakersSuccess(response));
   } catch (error) {
     dispatch(fetchMakersFailure(error));
+  }
+};
+
+export const fetchStatistics = () => async (dispatch) => {
+  try {
+    const response = await commonApi.loadStatistic();
+    dispatch(fetchStatisticsSuccess(response));
+  } catch (error) {
+    throw error;
   }
 };

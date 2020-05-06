@@ -25,6 +25,11 @@ const commonReducer = (state = COMMON_STATE, action) => {
         isFetching: false,
         errorMessage: action.payload,
       };
+    case types.FETCH_STATISTICS_SUCCESS:
+      return {
+        ...state,
+        statistics: action.payload,
+      };
     default:
       return state;
   }

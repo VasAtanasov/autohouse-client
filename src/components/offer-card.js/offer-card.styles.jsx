@@ -8,6 +8,13 @@ const OfferCardHeadline = styled.div`
   align-items: center;
   width: 100%;
   padding: 0 12px;
+
+  @media (min-width: 768px) {
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1;
+    padding: 0 16px;
+  }
 `;
 
 const OfferCardImage = styled.div`
