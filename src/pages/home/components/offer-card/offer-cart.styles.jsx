@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const OfferList = styled.div`
+  max-width: 992px;
+
   & .list-element-gap {
     margin-bottom: 12px;
     /* border-bottom: 1px solid #dcdcdc; */
@@ -51,6 +53,11 @@ export const OfferCardHeadline = styled.div`
         flex-direction: row;
         flex-wrap: wrap;
 
+        @media all and (min-width: 768px) {
+          flex-wrap: nowrap;
+          font-size: 1.25rem;
+        }
+
         .offer-summary-makemodel {
           display: block;
           padding-right: 4px;
@@ -59,6 +66,11 @@ export const OfferCardHeadline = styled.div`
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
+
+          @media all and (min-width: 768px) {
+            overflow: visible;
+            width: auto;
+          }
         }
 
         .offer-summary-version {
@@ -141,6 +153,73 @@ export const Summery = styled.div`
   @media (min-width: 768px) {
     flex: 1 1 0;
     padding: 0 16px 0 16px;
+  }
+
+  .offer-summary-pricing {
+    display: flex;
+    padding-bottom: 12px;
+    align-items: flex-start;
+
+    .offer-summary-payment {
+      display: flex;
+      flex-direction: column;
+      padding-right: 20px;
+
+      .offer-price {
+        color: #333;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        font-size: 1.5rem;
+        line-height: 1.3;
+
+        @media (min-width: 768px) {
+          font-size: 28px;
+        }
+      }
+    }
+
+    @media (min-width: 768px) {
+      padding: 8px 0 16px 0;
+    }
+  }
+
+  .offer-summary-vehicle-data {
+    .vehicle-details {
+      list-style: none;
+      margin-top: 20px 0 0 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      li[data-type='drive'] {
+        display: none;
+
+        @media (min-width: 768px) {
+          display: block;
+        }
+      }
+
+      li {
+        flex: 0 0 48%;
+        padding: 8px 0;
+        color: #333;
+        border-bottom: 1px solid #c4c4c4;
+        white-space: nowrap;
+        overflow: hidden;
+        font-size: 13px;
+        font-size: 0.8125rem;
+
+        @media (min-width: 768px) {
+          flex-basis: 32%;
+        }
+      }
+
+      li:nth-child(-n + 2) {
+        padding-top: 0;
+      }
+    }
   }
 `;
 
