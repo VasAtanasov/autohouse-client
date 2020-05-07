@@ -26,8 +26,8 @@ const OfferCardComponent = ({
         {vehicleYear} {vehicleMakerName} {vehicleModelName} {vehicleTrim}
       </li>
       <li>
-        <span className="price">${price.toLocaleString()}</span> */}
-        <span className="item">{vehicleMileage.toLocaleString()} km</span>
+        <span className="price">${price.toLocaleString()}</span>}
+        <span className="item">{vehicleMileage.toLocaleString()} miles</span>
       </li>
     </ul>
   </OfferCard>

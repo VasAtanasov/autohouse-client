@@ -20,9 +20,10 @@ export const Wrapper = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
+  background-position: 0% 50%;
   background-image: ${({ url }) => `url(${url})`};
 
-  p {
+  s p {
     font-size: 32px;
   }
 
@@ -33,11 +34,8 @@ export const Wrapper = styled.div`
   }
 
   @media (max-width: ${({ theme }) => theme.screens.medium}) {
-    background-position: 0% 50%;
-
     p {
       font-size: 16px;
     }
   }
 `;
-git;

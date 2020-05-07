@@ -1,16 +1,19 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+export const SectionSplit = css`
+  margin-bottom: 18px;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+`;
 
 export const HomeSectionContainer = styled.section`
   overflow: hidden;
+  width: 100%;
+  background-color: white;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.large}) {
-    width: 980px;
-    background-color: white;
     margin-right: auto;
     margin-left: auto;
-  }
-
-  @media screen and (min-width: ${({ theme }) => theme.screens.extraLarge}) {
-    width: 1190px;
+    padding: 13px 17px 0;
   }
 `;

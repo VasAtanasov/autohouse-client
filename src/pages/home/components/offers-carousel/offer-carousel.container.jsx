@@ -30,12 +30,12 @@ const Carousel = ({ topOffers }) => {
       <InnerCarouselContainer>
         <span>
           <CarouselControl prev onClick={() => handlePageChange(page - 1)}>
-            {/* <i className="flaticon-left-arrow" /> */}
+            <i className="flaticon-left-arrow" />
           </CarouselControl>
         </span>
         <span>
           <CarouselControl onClick={() => handlePageChange(page + 1)}>
-            {/* <i className="flaticon-arrow-point-to-right" /> */}
+            <i className="flaticon-arrow-point-to-right" />
           </CarouselControl>
         </span>
         <CarouselComponent

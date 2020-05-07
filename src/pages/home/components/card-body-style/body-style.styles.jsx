@@ -24,13 +24,8 @@ export const HoverImageContainer = styled.div`
     background-image: url(${(props) => props.hoverImage});
   }
 
-  @media screen and (max-width: 1200px) and (min-width: 576px) {
+  @media screen and (min-width: 576px) {
     height: 125px;
-  }
-
-  @media screen and (min-width: 1200px) {
-    height: 150px;
-    width: 200px;
   }
 `;
 
@@ -57,12 +52,8 @@ export const BodyStyleCardContainer = styled.div`
     z-index: 1;
     margin-bottom: 0;
 
-    @media screen and (max-width: 1200px) and (min-width: 768px) {
+    @media screen and (min-width: 768px) {
       font-size: 16px;
-    }
-
-    @media screen and (min-width: 1200px) {
-      font-size: 20px;
     }
   }
 

@@ -19,11 +19,6 @@ export default createGlobalStyle`
     footer, header, hgroup, menu, nav, section {
         display: block;
     }
-    
-    body {
-        line-height: 1;
-        ${'' /* min-height: 100vh; */}
-    }
 
     ol, ul {
         list-style: none;
@@ -51,10 +46,8 @@ export default createGlobalStyle`
         font-weight: 400;
         background-color: #f4f4f4 !important;
         background-color: white !important;
-        color: #333
-    }
-
-    body {
+        background-color: #ededed !important;
+        color: #333;
         overflow-x: hidden;
     }
 
