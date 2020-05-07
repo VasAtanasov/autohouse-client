@@ -1,11 +1,11 @@
 import styled from 'styled-components';
+import { ShineAnimation } from '../../../../global/styles/shared-styles';
 
 export const OfferList = styled.div`
   max-width: 992px;
 
   & .list-element-gap {
     margin-bottom: 12px;
-    /* border-bottom: 1px solid #dcdcdc; */
   }
 `;
 
@@ -92,6 +92,7 @@ export const OfferCardImage = styled.div`
   display: flex;
   position: relative;
   width: 100%;
+  ${({ imageLoading }) => imageLoading && ShineAnimation}
 
   @media (max-width: 767px) {
     height: 75vw;
@@ -107,16 +108,13 @@ export const OfferCardImage = styled.div`
   }
 
   & picture img {
+    vertical-align: top;
     max-height: 100%;
     max-width: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
-
-  & picture img {
-    vertical-align: top;
   }
 `;
 
@@ -125,7 +123,6 @@ export const OfferImageContainer = styled.div`
   flex: 0 0 100%;
   order: 1;
   margin-left: 0;
-  /* border-bottom: 1px solid #c4c4c4; */
 
   @media all and (min-width: 768px) {
     flex-basis: 234px;

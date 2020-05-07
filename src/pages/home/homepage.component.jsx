@@ -38,10 +38,10 @@ const HomePage = ({ fetchMakersStartAsync, loadTopOffers }) => {
 
   return (
     <React.Fragment>
-      <Hero backgroundImage={'/images/bg_10.jpg'}>
+      {/* <Hero backgroundImage={'/images/bg_10.jpg'}>
         <QuickSearch />
-      </Hero>
-      <BrowsByContainer sectionTitle={'Top offers'} showTitle={true}>
+      </Hero> */}
+      <BrowsByContainer sectionTitle={'Latest offers'} showTitle={true}>
         {/* <Carousel /> */}
         <OfferCardList />
       </BrowsByContainer>

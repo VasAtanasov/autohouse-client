@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectTopOffers } from '../../../../services/offer/offer.selectors';
-import { OfferList } from './offer-cart.styles';
+import { OfferList } from './offer-card.styles';
 import OfferCard from './offer-card.component';
 
 const OfferCardList = ({ topOffers }) => (
