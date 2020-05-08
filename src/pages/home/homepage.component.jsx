@@ -9,6 +9,7 @@ import MakeSection from './components/card-make/make.container';
 import QuickSearch from './components/quick-search/quick-search.component';
 import Carousel from './components/offers-carousel';
 import OfferCardList from './components/offer-card/offer-card-list.component';
+import Price from './components/price/price.container';
 import { fetchMakersStartAsync } from '../../services/common/common.actions';
 import { loadTopOffers } from '../../services/offer/offer.actions';
 import { toast } from 'react-toastify';
@@ -31,7 +32,7 @@ const HomePage = ({ fetchMakersStartAsync, loadTopOffers }) => {
 
   React.useEffect(() => {
     loadTopOffers().catch((error) => {
-      alert('Loading courses failed' + error);
+      toast.error('Error fetching latest offers');
     });
   });
 
@@ -49,6 +50,9 @@ const HomePage = ({ fetchMakersStartAsync, loadTopOffers }) => {
       </BrowsByContainer>
       <BrowsByContainer sectionTitle={'Make'} showTitle={true}>
         <MakeSection />
+      </BrowsByContainer>
+      <BrowsByContainer sectionTitle={'Price'} showTitle={true}>
+        <Price />
       </BrowsByContainer>
     </React.Fragment>
   );

@@ -1,20 +1,17 @@
 import React from 'react';
-import Spinner from 'react-bootstrap/Spinner';
-import { SearchButton } from './quick-search.styles';
+import { SearchButton, Loader } from './quick-search.styles';
 import { connect } from 'react-redux';
 import { fetchStatistics } from '../../../../services/common/common.actions';
 
-const ViewAllButton = ({ fetchStatistics, statistics }) => {
-  const [isLoading, setIsLoading] = React.useState(false);
+const ViewAllButton = ({ fetchStatistics, totalOffers }) => {
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     (async () => {
       try {
-        setIsLoading(true);
         await fetchStatistics();
         setIsLoading(false);
       } catch (err) {
-        console.log(err);
         setIsLoading(false);
       }
     })();
@@ -23,16 +20,16 @@ const ViewAllButton = ({ fetchStatistics, statistics }) => {
   return (
     <SearchButton>
       {isLoading ? (
-        <Spinner variant="light" as="span" animation="border" size="sm" />
+        <Loader small white />
       ) : (
-        `${statistics && statistics.totalOffers} offers`
+        `${totalOffers && totalOffers} offers`
       )}
     </SearchButton>
   );
 };
 
 const mapStateToProps = (state) => ({
-  statistics: state.common.statistics,
+  totalOffers: state.statistics.totalOffers,
 });
 
 export default connect(mapStateToProps, { fetchStatistics })(ViewAllButton);

@@ -1,5 +1,5 @@
 import http from '../../utils/requester';
-import { handleResponse, handleError } from '../../utils/apiUtils';
+import { handleResponse, handleError } from '../../utils/api-utils';
 import { BASE_URL } from '../../utils/constants';
 
 export const loadTopOffers = async () => {

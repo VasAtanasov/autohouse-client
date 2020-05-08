@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
 import Modal from 'react-bootstrap/Modal';
 import searchIcon from './icon/search-icon.svg';
 import arrowIcon from './icon/back-arrow.svg';
@@ -8,20 +9,25 @@ import arrowIcon from './icon/back-arrow.svg';
 export const SearchContainer = styled.div`
   position: relative;
   top: 0;
-  width: 80%;
-  border-radius: 5px;
-  margin: 20px auto 0 auto;
-  padding: 32px;
-  background: rgba(0, 0, 0, 0.4);
+  right: 0;
+  margin: 0 auto 0 auto;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.2);
   text-align: center;
 `;
 
 export const TypeLabel = styled.div`
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   color: white;
   font-size: 16px;
   font-weight: 600;
-  margin: 15px 0;
+  /* margin: 0 0 15px 0; */
+
+  @media screen and (min-width: 992px) {
+    .title {
+      font-size: 1.5rem;
+    }
+  }
 `;
 
 export const SearchButton = styled.button`
@@ -35,13 +41,59 @@ export const SearchButton = styled.button`
   text-align: center;
   padding: 13px;
   background-color: transparent;
-  width: 180px;
+  width: 100%;
   margin-top: 14px;
 
-  &:first-of-type {
-    margin-top: 0;
+  @media screen and (min-width: 576px) {
+    width: 80%;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 200px;
+    margin-left: 10px;
+    &:first-of-type {
+      margin-left: 0;
+    }
   }
 `;
+
+const Bounce = keyframes`
+  0%, 80%, 100% { 
+    transform: scale(0);
+  } 40% { 
+    transform: scale(1.0);
+  }
+`;
+
+const StyledDotsLoader = styled.div`
+  display: inline-block;
+`;
+
+const Dot = styled.span`
+  width: ${(props) => (props.big ? '20px' : '12px')};
+  height: ${(props) => (props.big ? '20px' : '12px')};
+  background-color: ${(props) => (props.white ? '#FFF' : '#000')};
+  border-radius: 100%;
+  display: inline-block;
+  animation: ${Bounce} 1s infinite ease-in-out both;
+  &:first-child {
+    animation-delay: -0.32s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: -0.16s;
+  }
+`;
+
+export const Loader = (props) => {
+  return (
+    <StyledDotsLoader {...props}>
+      <Dot {...props} style={{}} />
+      <Dot {...props} style={{}} />
+      <Dot {...props} style={{}} />
+    </StyledDotsLoader>
+  );
+};
 
 // Bootstrap Modal
 

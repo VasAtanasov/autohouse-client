@@ -1,12 +1,20 @@
 import initialState from '../initial-state';
 import * as types from './common.types';
 
-const COMMON_STATE = Object.assign({}, initialState.common, {
-  isFetching: false,
-  errorMessage: undefined,
-});
+export const common = (state = { ...initialState.common }, action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
 
-const commonReducer = (state = COMMON_STATE, action) => {
+const MAKERS_INITIAL_STATE = {
+  makers: [],
+  isFetching: false,
+  error: undefined,
+};
+
+export const makers = (state = { ...MAKERS_INITIAL_STATE }, action) => {
   switch (action.type) {
     case types.FETCH_MAKERS_START:
       return {
@@ -23,16 +31,27 @@ const commonReducer = (state = COMMON_STATE, action) => {
       return {
         ...state,
         isFetching: false,
-        errorMessage: action.payload,
-      };
-    case types.FETCH_STATISTICS_SUCCESS:
-      return {
-        ...state,
-        statistics: action.payload,
+        error: action.payload,
       };
     default:
       return state;
   }
 };
 
-export default commonReducer;
+const STATISTICS_INITIAL_STATE = {
+  totalOffers: 0,
+};
+
+export const statistics = (state = { ...STATISTICS_INITIAL_STATE }, action) => {
+  switch (action.type) {
+    case types.FETCH_STATISTICS_SUCCESS:
+      return {
+        ...state,
+        ...action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+// export default commonReducer;

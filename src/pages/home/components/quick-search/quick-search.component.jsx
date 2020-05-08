@@ -8,17 +8,21 @@ import ViewAllButton from './view-all-button.component';
 
 import {
   selectBodyStyles,
-  selectMakers,
+  selectMakersArray,
 } from '../../../../services/common/common.selectors';
 
 const QuickSearch = ({ bodyStyles, makers }) => {
   return (
     <SearchContainer>
       <div className="type">
-        <TypeLabel>Search By</TypeLabel>
-        <BodyStyleModal bodyStyles={bodyStyles} />
-        <MakerModelModal makers={makers} />
-        <ViewAllButton />
+        <div className="search-title">
+          <TypeLabel>Find a great deals by</TypeLabel>
+        </div>
+        <div className="search-buttons">
+          <BodyStyleModal bodyStyles={bodyStyles} />
+          <MakerModelModal makers={makers} />
+          <ViewAllButton />
+        </div>
       </div>
     </SearchContainer>
   );
@@ -26,7 +30,7 @@ const QuickSearch = ({ bodyStyles, makers }) => {
 
 const mapStateToProps = createStructuredSelector({
   bodyStyles: selectBodyStyles,
-  makers: selectMakers,
+  makers: selectMakersArray,
 });
 
 export default connect(mapStateToProps)(QuickSearch);

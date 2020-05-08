@@ -5,13 +5,17 @@ import { MainContainer, AppContainer } from './containers';
 import { HomePage } from './pages';
 import Theme from './Theme';
 import { GlobalStyles } from './global';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
+toast.configure();
 
 function App() {
   return (
     <Theme>
       <GlobalStyles />
       <AppContainer>
+        <ToastContainer />
         <Header />
         <MainContainer>
           <Switch>
@@ -19,7 +23,6 @@ function App() {
           </Switch>
         </MainContainer>
         <Footer />
-        <ToastContainer autoClose={3000} />
       </AppContainer>
     </Theme>
   );
