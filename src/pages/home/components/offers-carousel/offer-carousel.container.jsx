@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {
   InnerCarouselContainer,
   CarouselControl,
+  CarouselContainer,
 } from './offer-carousel.styles';
 import { createStructuredSelector } from 'reselect';
 import { selectTopOffers } from '../../../../services/offer/offer.selectors';
@@ -27,23 +28,25 @@ const Carousel = ({ topOffers }) => {
 
   return (
     <Fragment>
-      <InnerCarouselContainer>
-        <span>
-          <CarouselControl prev onClick={() => handlePageChange(page - 1)}>
-            <i className="flaticon-left-arrow" />
-          </CarouselControl>
-        </span>
-        <span>
-          <CarouselControl onClick={() => handlePageChange(page + 1)}>
-            <i className="flaticon-arrow-point-to-right" />
-          </CarouselControl>
-        </span>
-        <CarouselComponent
-          offers={topOffers}
-          startIndex={startIndex}
-          endIndex={endIndex}
-        />
-      </InnerCarouselContainer>
+      <CarouselContainer>
+        <InnerCarouselContainer>
+          <span>
+            <CarouselControl prev onClick={() => handlePageChange(page - 1)}>
+              <i className="flaticon-left-arrow" />
+            </CarouselControl>
+          </span>
+          <span>
+            <CarouselControl onClick={() => handlePageChange(page + 1)}>
+              <i className="flaticon-arrow-point-to-right" />
+            </CarouselControl>
+          </span>
+          <CarouselComponent
+            offers={topOffers}
+            startIndex={startIndex}
+            endIndex={endIndex}
+          />
+        </InnerCarouselContainer>
+      </CarouselContainer>
     </Fragment>
   );
 };

@@ -3,6 +3,11 @@ import { ShineAnimation } from '../../../../global/styles/shared-styles';
 
 export const OfferList = styled.div`
   max-width: 992px;
+  display: block;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
 
   & .list-element-gap {
     margin-bottom: 12px;
@@ -103,9 +108,9 @@ export const OfferCardImage = styled.div`
     min-height: 175.5px;
   }
 
-  @media (min-width: 1100px) {
+  /* @media (min-width: 1100px) {
     max-height: 199.5px;
-  }
+  } */
 
   & picture img {
     opacity: ${({ imageLoading }) => (imageLoading ? 0 : 1)};

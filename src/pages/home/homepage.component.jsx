@@ -9,7 +9,6 @@ import MakeSection from './components/card-make/make.container';
 import QuickSearch from './components/quick-search/quick-search.component';
 import Carousel from './components/offers-carousel';
 import OfferCardList from './components/offer-card/offer-card-list.component';
-
 import { fetchMakersStartAsync } from '../../services/common/common.actions';
 import { loadTopOffers } from '../../services/offer/offer.actions';
 import { toast } from 'react-toastify';
@@ -38,9 +37,9 @@ const HomePage = ({ fetchMakersStartAsync, loadTopOffers }) => {
 
   return (
     <React.Fragment>
-      {/* <Hero backgroundImage={'/images/bg_10.jpg'}>
+      <Hero backgroundImage={'/images/bg_10.jpg'}>
         <QuickSearch />
-      </Hero> */}
+      </Hero>
       <BrowsByContainer sectionTitle={'Latest offers'} showTitle={true}>
         <Carousel />
         <OfferCardList />

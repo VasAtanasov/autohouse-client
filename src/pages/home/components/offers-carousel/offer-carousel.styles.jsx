@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 import Row from 'react-bootstrap/Row';
 
+export const CarouselContainer = styled.div`
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
+`;
+
 export const InnerCarouselContainer = styled(Row)`
   position: relative;
   overflow: hidden;
@@ -9,6 +17,7 @@ export const InnerCarouselContainer = styled(Row)`
   justify-content: space-between;
   flex-wrap: nowrap;
   min-width: 940px;
+  min-height: 375px;
 `;
 
 export const TopOffer = styled.div`
