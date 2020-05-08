@@ -43,7 +43,7 @@ const HomePage = ({ fetchMakersStartAsync, loadTopOffers }) => {
       </Hero> */}
       <BrowsByContainer sectionTitle={'Latest offers'} showTitle={true}>
         <Carousel />
-        {/* <OfferCardList /> */}
+        <OfferCardList />
       </BrowsByContainer>
       <BrowsByContainer sectionTitle={'Body Styles'} showTitle={true}>
         <BodyStyleSection />

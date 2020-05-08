@@ -108,6 +108,8 @@ export const OfferCardImage = styled.div`
   }
 
   & picture img {
+    opacity: ${({ imageLoading }) => (imageLoading ? 0 : 1)};
+    transition: opacity 0.5s ease;
     vertical-align: top;
     max-height: 100%;
     max-width: 100%;
