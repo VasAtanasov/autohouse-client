@@ -6,3 +6,8 @@ export const selectTopOffers = createSelector(
   [selectOffer],
   (offer) => offer.topOffers
 );
+
+export const selectIsTopOffersLoaded = createSelector(
+  [selectOffer],
+  (offer) => !offer.isFetching
+);

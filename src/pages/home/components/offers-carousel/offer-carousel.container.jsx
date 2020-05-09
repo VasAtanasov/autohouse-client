@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import CarouselComponent from './offer-carousel.component';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -27,27 +27,25 @@ const Carousel = ({ topOffers }) => {
   };
 
   return (
-    <Fragment>
-      <CarouselContainer>
-        <InnerCarouselContainer>
-          <span>
-            <CarouselControl prev onClick={() => handlePageChange(page - 1)}>
-              <i className="flaticon-left-arrow" />
-            </CarouselControl>
-          </span>
-          <span>
-            <CarouselControl onClick={() => handlePageChange(page + 1)}>
-              <i className="flaticon-arrow-point-to-right" />
-            </CarouselControl>
-          </span>
-          <CarouselComponent
-            offers={topOffers}
-            startIndex={startIndex}
-            endIndex={endIndex}
-          />
-        </InnerCarouselContainer>
-      </CarouselContainer>
-    </Fragment>
+    <CarouselContainer className="offer-carousel">
+      <InnerCarouselContainer>
+        <span>
+          <CarouselControl prev onClick={() => handlePageChange(page - 1)}>
+            <i className="flaticon-left-arrow" />
+          </CarouselControl>
+        </span>
+        <span>
+          <CarouselControl onClick={() => handlePageChange(page + 1)}>
+            <i className="flaticon-arrow-point-to-right" />
+          </CarouselControl>
+        </span>
+        <CarouselComponent
+          offers={topOffers}
+          startIndex={startIndex}
+          endIndex={endIndex}
+        />
+      </InnerCarouselContainer>
+    </CarouselContainer>
   );
 };
 

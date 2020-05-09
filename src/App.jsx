@@ -6,7 +6,6 @@ import { HomePage } from './pages';
 import Theme from './Theme';
 import { GlobalStyles } from './global';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
 
 toast.configure();
 
@@ -15,11 +14,12 @@ function App() {
     <Theme>
       <GlobalStyles />
       <AppContainer>
-        <ToastContainer />
+        <ToastContainer position="top-center" />
         <Header />
         <MainContainer>
           <Switch>
-            <Route exact path="/" component={HomePage} />
+            <Redirect exact from="/" to="/home" />
+            <Route exact path="/home" component={HomePage} />
           </Switch>
         </MainContainer>
         <Footer />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   ScrollListContainer,
   OuterContainer,
@@ -8,6 +9,11 @@ import {
   BackArrowButton,
 } from './quick-search.styles';
 import Modal from 'react-bootstrap/Modal';
+import {
+  selectBodyStyles,
+  selectMakersArray,
+} from '../../../../services/common/common.selectors';
+import { createStructuredSelector } from 'reselect';
 
 const MakerList = ({ makers, selectMaker, filter }) =>
   Object.keys(makers)
@@ -43,8 +49,8 @@ const ModelsList = ({ models, selectModel, filter }) =>
 
 const initialState = {
   visible: false,
-  maker: null,
-  model: null,
+  makerName: null,
+  modelName: null,
   filter: '',
 };
 
@@ -60,18 +66,18 @@ const modalReducer = (state, action) => {
     case 'selectMaker':
       return {
         ...state,
-        maker: action.data,
+        makerName: action.data,
         filter: '',
       };
     case 'selectModel':
       return {
         ...state,
-        model: action.data,
+        modelName: action.data,
       };
     case 'backToMakers':
       return {
         ...state,
-        maker: '',
+        makerName: '',
         filter: '',
       };
     case 'search':
@@ -89,8 +95,8 @@ const MakerModelModal = ({ makers }) => {
     modalReducer,
     Object.assign({}, initialState)
   );
-  const { visible, maker, model, filter } = state;
-  model && console.log(model);
+  const { visible, makerName, modelName, filter } = state;
+  modelName && console.log(modelName);
   return (
     <React.Fragment>
       <SearchButton onClick={() => dispatch({ type: 'show' })}>
@@ -103,10 +109,12 @@ const MakerModelModal = ({ makers }) => {
       >
         <Modal.Header closeButton>
           <BackArrowButton
-            className={maker ? '' : 'invisible'}
+            className={makerName ? '' : 'invisible'}
             onClick={() => dispatch({ type: 'backToMakers' })}
           />
-          <Modal.Title>{`Select ${!maker ? 'Maker' : 'Model'}`}</Modal.Title>
+          <Modal.Title>{`Select ${
+            !makerName ? 'Maker' : 'Model'
+          }`}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <OuterContainer>
@@ -124,8 +132,11 @@ const MakerModelModal = ({ makers }) => {
                       placeholder="Search for a make"
                     />
                   </div>
+                  <li>
+                    Search all {makerName ? makerName : 'makers &'} models
+                  </li>
                 </FilterContainer>
-                {!maker && (
+                {!makerName && (
                   <MakerList
                     makers={makers}
                     selectMaker={(makerName) =>
@@ -134,9 +145,9 @@ const MakerModelModal = ({ makers }) => {
                     filter={filter}
                   />
                 )}
-                {maker && (
+                {makerName && (
                   <ModelsList
-                    models={makers[maker].models}
+                    models={makers[makerName].models}
                     selectModel={(modelName) =>
                       dispatch({ type: 'selectModel', data: modelName })
                     }
@@ -152,4 +163,9 @@ const MakerModelModal = ({ makers }) => {
   );
 };
 
-export default MakerModelModal;
+const mapStateToProps = createStructuredSelector({
+  bodyStyles: selectBodyStyles,
+  makers: selectMakersArray,
+});
+
+export default connect(mapStateToProps)(MakerModelModal);

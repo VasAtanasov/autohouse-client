@@ -9,12 +9,15 @@ export const Overlay = styled.div`
   content: '';
   opacity: 0.5;
   background: #000000;
-  min-height: ${({ theme }) => theme.heroSize};
+  /* min-height: ${({ theme }) => theme.heroSize}; */
+  
+  @media screen and (min-width: 768px) {
+    min-height: ${({ theme }) => theme.heroSize};
+  }
 `;
 
 export const Wrapper = styled.div`
   width: 100%;
-  min-height: ${({ theme }) => theme.heroSize};
   color: white;
   position: relative;
   background-size: cover;
@@ -22,6 +25,10 @@ export const Wrapper = styled.div`
   background-position: top center;
   background-position: 0% 50%;
   background-image: ${({ url }) => `url(${url})`};
+
+  @media screen and (min-width: 768px) {
+    min-height: ${({ theme }) => theme.heroSize};
+  }
 
   s p {
     font-size: 32px;

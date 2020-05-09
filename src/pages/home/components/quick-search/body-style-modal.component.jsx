@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
+import { createStructuredSelector } from 'reselect';
 import { SearchButton, StyledModal } from './quick-search.styles';
 import {
   BodyStyleList,
@@ -7,6 +9,7 @@ import {
   BodyStyleIcon,
   BodyStyleLabel,
 } from './quick-search.styles';
+import { selectBodyStyles } from '../../../../services/common/common.selectors';
 
 const pathToImages = '/images/body-styles/';
 const carImageSuffix = '-angled';
@@ -46,4 +49,8 @@ const BodyStyleModal = ({ bodyStyles }) => {
   );
 };
 
-export default BodyStyleModal;
+const mapStateToProps = createStructuredSelector({
+  bodyStyles: selectBodyStyles,
+});
+
+export default connect(mapStateToProps)(BodyStyleModal);

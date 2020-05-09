@@ -136,4 +136,34 @@ export default {
     },
   },
   makers: [],
+  filter: {
+    makerName: null,
+    modelName: null,
+    trim: null,
+    year: {
+      from: null,
+      to: null,
+    },
+    mileage: {
+      from: null,
+      to: null,
+    },
+    doors: {
+      from: null,
+      to: null,
+    },
+    state: [],
+    bodyStyle: null,
+    transmission: null,
+    drive: null,
+    color: null,
+    fuelType: null,
+    features: [],
+    hasAccident: false,
+    price: {
+      from: null,
+      to: null,
+    },
+    seller: [],
+  },
 };

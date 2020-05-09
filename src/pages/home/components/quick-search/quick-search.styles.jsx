@@ -14,6 +14,7 @@ export const SearchContainer = styled.div`
   padding: 8px;
   background: rgba(255, 255, 255, 0.2);
   text-align: center;
+  padding-bottom: 2rem;
 `;
 
 export const TypeLabel = styled.div`

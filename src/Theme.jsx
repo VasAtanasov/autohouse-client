@@ -21,7 +21,7 @@ const theme = {
     red: '#F44336',
     green: '#4CAF50',
   },
-  heroSize: '500px',
+  heroSize: '350px',
   screens: {
     small: '576px',
     medium: '768px',

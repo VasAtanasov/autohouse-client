@@ -10,6 +10,8 @@ export const HomeSectionContainer = styled.section`
   overflow: hidden;
   width: 100%;
   background-color: white;
+  position: relative;
+  min-height: 376px;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.large}) {
     margin-right: auto;

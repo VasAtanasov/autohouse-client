@@ -3,15 +3,19 @@ import { connect } from 'react-redux';
 import { SearchContainer, TypeLabel } from './quick-search.styles';
 import BodyStyleModal from './body-style-modal.component';
 import MakerModelModal from './maker-modal.component';
-import { createStructuredSelector } from 'reselect';
 import ViewAllButton from './view-all-button.component';
+import { fetchMakersStartAsync } from '../../../../services/common/common.actions';
+import { toast } from 'react-toastify';
 
-import {
-  selectBodyStyles,
-  selectMakersArray,
-} from '../../../../services/common/common.selectors';
+const QuickSearch = ({ fetchMakersStartAsync }) => {
+  React.useEffect(() => {
+    (async () => {
+      await fetchMakersStartAsync().catch((error) => {
+        toast.error('Error fetching makers', error);
+      });
+    })();
+  });
 
-const QuickSearch = ({ bodyStyles, makers }) => {
   return (
     <SearchContainer>
       <div className="type">
@@ -19,8 +23,8 @@ const QuickSearch = ({ bodyStyles, makers }) => {
           <TypeLabel>Find a great deals by</TypeLabel>
         </div>
         <div className="search-buttons">
-          <BodyStyleModal bodyStyles={bodyStyles} />
-          <MakerModelModal makers={makers} />
+          <BodyStyleModal />
+          <MakerModelModal />
           <ViewAllButton />
         </div>
       </div>
@@ -28,9 +32,4 @@ const QuickSearch = ({ bodyStyles, makers }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  bodyStyles: selectBodyStyles,
-  makers: selectMakersArray,
-});
-
-export default connect(mapStateToProps)(QuickSearch);
+export default connect(null, { fetchMakersStartAsync })(QuickSearch);
