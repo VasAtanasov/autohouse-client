@@ -48,6 +48,7 @@ export const Overlay = styled.div`
 export const DrawerContainer = styled.nav`
   display: block;
   position: relative;
+  order: 1;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.large}) {
     display: none;

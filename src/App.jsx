@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Header, Footer, PrivateRoute } from './components';
+import { Header, Footer, PrivateRoute, Spinner } from './components';
 import { MainContainer, AppContainer } from './containers';
 import Theme from './Theme';
 import { GlobalStyles } from './global';
