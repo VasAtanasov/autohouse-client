@@ -2,7 +2,7 @@ import { HomePage } from '../pages';
 
 export default {
   home: {
-    path: '/',
+    path: '/home',
     component: HomePage,
     exact: true,
   },

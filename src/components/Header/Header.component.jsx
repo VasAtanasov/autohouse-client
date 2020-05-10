@@ -1,6 +1,6 @@
 import React from 'react';
 import { HeaderContainer, HeaderWrapper, Brand } from './header.styles';
-import NavbarDrawer from '../navbar/drawer/drawer-navbar.component';
+import Navigation from '../navigation/navigation.component';
 
 const Header = () => (
   <HeaderContainer>
@@ -11,7 +11,7 @@ const Header = () => (
         </Brand>
       </div>
       <div className="right">
-        <NavbarDrawer />
+        <Navigation />
       </div>
     </HeaderWrapper>
   </HeaderContainer>

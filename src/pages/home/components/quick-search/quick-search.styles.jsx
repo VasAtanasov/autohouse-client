@@ -45,6 +45,10 @@ export const SearchButton = styled.button`
   width: 100%;
   margin-top: 14px;
 
+  :hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
   @media screen and (min-width: 576px) {
     width: 80%;
   }

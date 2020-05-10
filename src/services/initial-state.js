@@ -166,4 +166,7 @@ export default {
     },
     seller: [],
   },
+  user: {
+    isAuthenticated: false,
+  },
 };
