@@ -28,14 +28,6 @@ export const HeaderWrapper = styled.div`
     justify-content: flex-end;
     align-items: center;
   }
-
-  @media screen and (min-width: ${({ theme }) => theme.screens.large}) {
-    width: ${({ theme }) => theme.screens.large};
-  }
-
-  /* @media screen and (min-width: ${({ theme }) => theme.screens.extraLarge}) {
-    width: 1190px;
-  } */
 `;
 
 export const Brand = styled.span`
