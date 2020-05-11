@@ -1,6 +1,4 @@
-import React from 'react';
-
-const HomePage = React.lazy(() => import('../pages/home/homepage.component'));
+import HomePage from '../pages/home/homepage.component';
 
 export default {
   home: {

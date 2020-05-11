@@ -8,14 +8,9 @@ import { fetchMakersStartAsync } from '../../../../services/common/common.action
 import { toast } from 'react-toastify';
 
 const QuickSearch = ({ fetchMakersStartAsync }) => {
-  React.useEffect(() => {
-    (async () => {
-      await fetchMakersStartAsync().catch((error) => {
-        toast.error('Error fetching makers', error);
-      });
-    })();
+  fetchMakersStartAsync().catch((error) => {
+    toast.error('Error fetching makers', error);
   });
-
   return (
     <SearchContainer>
       <div className="type">

@@ -12,10 +12,11 @@ const OffersShowcaseComponent = () => (
   </React.Fragment>
 );
 
-// const mapStateToProps = (state) => ({
-//   isLoading: state.offer.isFetching,
-// });
+const mapStateToProps = (state) => ({
+  isLoading: state.offer.isFetching,
+});
 
-export default OffersShowcaseComponent;
-// connect(mapStateToProps)
-// WithSpinner
+export default compose(
+  connect(mapStateToProps),
+  WithSpinner
+)(OffersShowcaseComponent);

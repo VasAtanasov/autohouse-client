@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Header, Footer, PrivateRoute, Spinner } from './components';
+import { Header, Footer, PrivateRoute } from './components';
 import { MainContainer, AppContainer } from './containers';
 import Theme from './Theme';
 import { GlobalStyles } from './global';
@@ -16,32 +16,26 @@ const App = () => {
         <Header />
         <MainContainer>
           <Switch>
-            <React.Suspense fallback={<Spinner />}>
-              <Redirect exact from="/" to="/home" />
-              {Object.values(routes).map((route, index) =>
-                route.auth ? (
-                  <PrivateRoute
-                    {...route}
-                    key={index}
-                    path={
-                      typeof route.path === 'function'
-                        ? route.path()
-                        : route.path
-                    }
-                  />
-                ) : (
-                  <Route
-                    {...route}
-                    key={index}
-                    path={
-                      typeof route.path === 'function'
-                        ? route.path()
-                        : route.path
-                    }
-                  />
-                )
-              )}
-            </React.Suspense>
+            <Redirect exact from="/" to="/home" />
+            {Object.values(routes).map((route, index) =>
+              route.auth ? (
+                <PrivateRoute
+                  {...route}
+                  key={index}
+                  path={
+                    typeof route.path === 'function' ? route.path() : route.path
+                  }
+                />
+              ) : (
+                <Route
+                  {...route}
+                  key={index}
+                  path={
+                    typeof route.path === 'function' ? route.path() : route.path
+                  }
+                />
+              )
+            )}
           </Switch>
         </MainContainer>
         <Footer />
