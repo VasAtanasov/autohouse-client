@@ -1,4 +1,6 @@
 import React from 'react';
+import { compose } from 'redux';
+import { WithSpinner } from '../../../../hoc';
 
 import { loadTopOffers } from '../../../../services/offer/offer.actions';
 import { toast } from 'react-toastify';
@@ -20,5 +22,11 @@ const OffersShowcaseContainer = ({ loadTopOffers }) => {
     </ShowcaseContainer>
   );
 };
+const mapStateToProps = (state) => ({
+  isLoading: state.offer.isFetching,
+});
 
-export default connect(null, { loadTopOffers })(OffersShowcaseContainer);
+export default compose(
+  connect(mapStateToProps, { loadTopOffers }),
+  WithSpinner
+)(OffersShowcaseContainer);

@@ -40,7 +40,11 @@ export const MenuLinkContainer = styled(NavLink)`
   }
 `;
 
-export const UserDropDownMenu = styled(Dropdown)``;
+export const UserDropDownMenu = styled(Dropdown)`
+  .dropdown-menu {
+    border-radius: 0;
+  }
+`;
 
 export const IconButton = styled(Dropdown.Toggle)`
   background-color: white;

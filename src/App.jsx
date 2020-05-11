@@ -7,7 +7,7 @@ import { GlobalStyles } from './global';
 import { ToastContainer } from 'react-toastify';
 import { routes } from './routes';
 
-function App() {
+const App = () => {
   return (
     <Theme>
       <GlobalStyles />
@@ -16,32 +16,38 @@ function App() {
         <Header />
         <MainContainer>
           <Switch>
-            <Redirect exact from="/" to="/home" />
-            {Object.values(routes).map((route, index) =>
-              route.auth ? (
-                <PrivateRoute
-                  {...route}
-                  key={index}
-                  path={
-                    typeof route.path === 'function' ? route.path() : route.path
-                  }
-                />
-              ) : (
-                <Route
-                  {...route}
-                  key={index}
-                  path={
-                    typeof route.path === 'function' ? route.path() : route.path
-                  }
-                />
-              )
-            )}
+            <React.Suspense fallback={<Spinner />}>
+              <Redirect exact from="/" to="/home" />
+              {Object.values(routes).map((route, index) =>
+                route.auth ? (
+                  <PrivateRoute
+                    {...route}
+                    key={index}
+                    path={
+                      typeof route.path === 'function'
+                        ? route.path()
+                        : route.path
+                    }
+                  />
+                ) : (
+                  <Route
+                    {...route}
+                    key={index}
+                    path={
+                      typeof route.path === 'function'
+                        ? route.path()
+                        : route.path
+                    }
+                  />
+                )
+              )}
+            </React.Suspense>
           </Switch>
         </MainContainer>
         <Footer />
       </AppContainer>
     </Theme>
   );
-}
+};
 
 export default App;

@@ -13,16 +13,32 @@ const Button = ({ isClose }) => (
 );
 
 const NavbarDrawer = ({ links }) => {
+  const inputRef = React.useRef(null);
+  const drawerRef = React.useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (drawerRef.current && !drawerRef.current.contains(event.target)) {
+      inputRef.current.checked = false;
+    }
+  };
+
+  React.useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  });
+
   return (
     <DrawerContainer>
-      <input type="checkbox" id={inputId} />
+      <input ref={inputRef} type="checkbox" id={inputId} />
       <Button />
       <Overlay />
-      <Drawer>
+      <Drawer ref={drawerRef}>
         <div className="close-container">
           <Button isClose={true} />
         </div>
-        <Menu>{links}</Menu>
+        <Menu onClick={() => (inputRef.current.checked = false)}>{links}</Menu>
       </Drawer>
     </DrawerContainer>
   );
