@@ -1,13 +1,16 @@
 import React from 'react';
 import { HeaderContainer, HeaderWrapper, Brand } from './header.styles';
 import Navigation from '../navigation/navigation.component';
+import { Link } from 'react-router-dom';
 
 const Header = () => (
   <HeaderContainer>
     <HeaderWrapper>
       <div className="left">
         <Brand>
-          Auto<span>house</span>
+          <Link to="/home">
+            Auto<span>house</span>
+          </Link>
         </Brand>
       </div>
       <div className="right">

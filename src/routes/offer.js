@@ -1,7 +1,8 @@
+import OfferListPage from '../pages/offer-list/offer-list.component';
+
 export default {
   list: {
-    path: '/offers',
-    component: null,
-    auth: true,
+    path: '/list',
+    component: OfferListPage,
   },
 };

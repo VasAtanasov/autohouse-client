@@ -11,21 +11,26 @@ const pathToImages = '/images/body-styles/';
 const carImageSuffix = '-angled';
 const extensionJpg = '.jpg';
 
-const BodyStyleSection = ({ bodyStyles }) => (
-    <BodyStyleCardsContainer>
-        {bodyStyles.map((obj, idx) => (
-            <BodyStyleCard
-                key={`${idx}_${obj.name}`}
-                bodyType={obj.name}
-                imageSrc={`${pathToImages}${obj.bodyStyle}${extensionJpg}`}
-                hoverImageSrc={`${pathToImages}${obj.bodyStyle}${carImageSuffix}${extensionJpg}`}
-            />
-        ))}
-    </BodyStyleCardsContainer>
+const BodyStyleSection = ({ bodyStyles, handleSearch }) => (
+  <BodyStyleCardsContainer>
+    {bodyStyles.map((obj, idx) => (
+      <div
+        className="body-style-wrapper"
+        key={`${idx}_${obj.name}`}
+        onClick={() => handleSearch({ bodyStyle: obj.bodyStyle.toUpperCase() })}
+      >
+        <BodyStyleCard
+          bodyType={obj.name}
+          imageSrc={`${pathToImages}${obj.bodyStyle}${extensionJpg}`}
+          hoverImageSrc={`${pathToImages}${obj.bodyStyle}${carImageSuffix}${extensionJpg}`}
+        />
+      </div>
+    ))}
+  </BodyStyleCardsContainer>
 );
 
 const mapStateToProps = createStructuredSelector({
-    bodyStyles: selectBodyStyles,
+  bodyStyles: selectBodyStyles,
 });
 
 export default connect(mapStateToProps)(BodyStyleSection);

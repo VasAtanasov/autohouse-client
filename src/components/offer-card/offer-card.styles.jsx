@@ -1,18 +1,5 @@
 import styled from 'styled-components';
-import { ShineAnimation } from '../../../../global/styles/shared-styles';
-
-export const OfferList = styled.div`
-  max-width: 992px;
-  display: block;
-
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
-
-  & .list-element-gap {
-    margin-bottom: 12px;
-  }
-`;
+import { ShineAnimation } from '../../global/styles/shared-styles';
 
 export const OfferCardHeadline = styled.div`
   display: flex;

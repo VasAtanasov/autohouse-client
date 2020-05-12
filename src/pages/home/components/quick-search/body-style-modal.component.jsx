@@ -15,7 +15,7 @@ const pathToImages = '/images/body-styles/';
 const carImageSuffix = '-angled';
 const extensionJpg = '.jpg';
 
-const BodyStyleModal = ({ bodyStyles }) => {
+const BodyStyleModal = ({ bodyStyles, handleSearch }) => {
   const [visible, setVisible] = React.useState(false);
 
   return (
@@ -32,6 +32,9 @@ const BodyStyleModal = ({ bodyStyles }) => {
             {bodyStyles.map((obj, idx) => (
               <li key={`${idx}_${obj.name}`}>
                 <BodyStyleButton
+                  onClick={() =>
+                    handleSearch({ bodyStyle: obj.bodyStyle.toUpperCase() })
+                  }
                   bodyType={obj.name}
                   hoverImage={`${pathToImages}${obj.bodyStyle}${carImageSuffix}${extensionJpg}`}
                 >

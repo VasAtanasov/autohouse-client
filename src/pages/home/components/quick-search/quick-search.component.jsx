@@ -7,10 +7,11 @@ import ViewAllButton from './view-all-button.component';
 import { fetchMakersStartAsync } from '../../../../services/common/common.actions';
 import { toast } from 'react-toastify';
 
-const QuickSearch = ({ fetchMakersStartAsync }) => {
+const QuickSearch = ({ fetchMakersStartAsync, handleSearch }) => {
   fetchMakersStartAsync().catch((error) => {
     toast.error('Error fetching makers', error);
   });
+
   return (
     <SearchContainer>
       <div className="type">
@@ -18,9 +19,9 @@ const QuickSearch = ({ fetchMakersStartAsync }) => {
           <TypeLabel>Find a great deals by</TypeLabel>
         </div>
         <div className="search-buttons">
-          <BodyStyleModal />
-          <MakerModelModal />
-          <ViewAllButton />
+          <BodyStyleModal handleSearch={handleSearch} />
+          <MakerModelModal handleSearch={handleSearch} />
+          <ViewAllButton handleSearch={handleSearch} />
         </div>
       </div>
     </SearchContainer>

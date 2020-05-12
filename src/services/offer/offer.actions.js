@@ -22,3 +22,25 @@ export const loadTopOffers = () => async (dispatch) => {
     dispatch(loadTopOffersFailure(error));
   }
 };
+
+export function searchOffersStart() {
+  return { type: types.OFFER_SEARCH_START };
+}
+
+export function searchOffersSuccess(page) {
+  return { type: types.OFFER_SEARCH_SUCCESS, page };
+}
+
+export function searchOffersFailure(error) {
+  return { type: types.OFFER_SEARCH_FAILURE, error };
+}
+
+export const searchOffers = (filter) => async (dispatch) => {
+  try {
+    dispatch(searchOffersStart());
+    const response = await offersApi.searchOffers(filter);
+    dispatch(searchOffersSuccess(response.data.page));
+  } catch (error) {
+    dispatch(searchOffersFailure(error));
+  }
+};

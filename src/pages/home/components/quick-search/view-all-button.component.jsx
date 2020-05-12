@@ -3,7 +3,7 @@ import { SearchButton, Loader } from './quick-search.styles';
 import { connect } from 'react-redux';
 import { fetchStatistics } from '../../../../services/common/common.actions';
 
-const ViewAllButton = ({ fetchStatistics, totalOffers }) => {
+const ViewAllButton = ({ fetchStatistics, totalOffers, handleSearch }) => {
   const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
@@ -18,7 +18,7 @@ const ViewAllButton = ({ fetchStatistics, totalOffers }) => {
   }, [fetchStatistics]);
 
   return (
-    <SearchButton>
+    <SearchButton onClick={() => handleSearch({})}>
       {isLoading ? (
         <Loader small white />
       ) : (

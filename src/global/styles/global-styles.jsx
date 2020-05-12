@@ -70,6 +70,7 @@ export default createGlobalStyle`
     a:hover, a:focus {
         text-decoration: none;
         outline: none !important;
+        color: #000;
     }
 
     h1, h2, h3, h4, h5,

@@ -1,6 +1,6 @@
 import React from 'react';
 import Carousel from '../offers-carousel';
-import OfferCardList from '../offer-card/offer-card-list.component';
+import OfferCardList from '../offer-card-list/offer-card-list.component';
 import { WithSpinner } from '../../../../hoc';
 import { connect } from 'react-redux';
 import { compose } from 'redux';

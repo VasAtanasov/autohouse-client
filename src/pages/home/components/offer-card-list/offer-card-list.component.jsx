@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectTopOffers } from '../../../../services/offer/offer.selectors';
-import { OfferList } from './offer-card.styles';
-import OfferCard from './offer-card.component';
+import { OfferList } from './offer-card-list.styles';
+import { OfferCard } from '../../../../components';
 
 const OfferCardList = ({ topOffers }) => (
   <OfferList className="offer-list">

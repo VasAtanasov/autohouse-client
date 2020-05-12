@@ -90,12 +90,17 @@ const modalReducer = (state, action) => {
   }
 };
 
-const MakerModelModal = ({ makers }) => {
+const MakerModelModal = ({ makers, handleSearch }) => {
   const [state, dispatch] = React.useReducer(
     modalReducer,
     Object.assign({}, initialState)
   );
   const { visible, makerName, modelName, filter } = state;
+  const searchMakerModel = () =>
+    handleSearch({
+      makerName,
+      modelName,
+    });
   modelName && console.log(modelName);
   return (
     <React.Fragment>
@@ -132,7 +137,7 @@ const MakerModelModal = ({ makers }) => {
                       placeholder="Search for a make"
                     />
                   </div>
-                  <li>
+                  <li onClick={() => searchMakerModel()}>
                     Search all {makerName ? makerName : 'makers &'} models
                   </li>
                 </FilterContainer>
@@ -148,9 +153,10 @@ const MakerModelModal = ({ makers }) => {
                 {makerName && (
                   <ModelsList
                     models={makers[makerName].models}
-                    selectModel={(modelName) =>
-                      dispatch({ type: 'selectModel', data: modelName })
-                    }
+                    selectModel={(modelName) => {
+                      dispatch({ type: 'selectModel', data: modelName });
+                      searchMakerModel();
+                    }}
                     filter={filter}
                   />
                 )}
