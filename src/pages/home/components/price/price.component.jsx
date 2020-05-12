@@ -22,7 +22,7 @@ const PriceComponent = ({ price, id, bodyTypes, handleSearch }) => (
               handleSearch({
                 priceFrom: 0,
                 priceTo: Number(price),
-                bodyStyle: body,
+                bodyStyle: body.toUpperCase(),
               })
             }
           >

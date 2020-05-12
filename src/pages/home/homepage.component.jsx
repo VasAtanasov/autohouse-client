@@ -23,7 +23,6 @@ const BrowsByContainer = ({ children, sectionTitle, showTitle }) => (
 
 const HomePage = ({ createFilter }) => {
   let history = useHistory();
-
   const handleSearch = (filter) => {
     createFilter(filter);
     history.push('/list');

@@ -17,7 +17,13 @@ const BodyStyleSection = ({ bodyStyles, handleSearch }) => (
       <div
         className="body-style-wrapper"
         key={`${idx}_${obj.name}`}
-        onClick={() => handleSearch({ bodyStyle: obj.bodyStyle.toUpperCase() })}
+        onClick={() => {
+          const value =
+            obj.key === 'state'
+              ? [obj.bodyStyle.toUpperCase()]
+              : obj.bodyStyle.toUpperCase();
+          handleSearch({ [obj.key]: value });
+        }}
       >
         <BodyStyleCard
           bodyType={obj.name}

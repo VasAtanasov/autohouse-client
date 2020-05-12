@@ -12,6 +12,7 @@ export default {
           'https://www.dropbox.com/s/82k6tyzc7ba4zyd/sedan.jpg?dl=0&raw=1',
           'https://www.dropbox.com/s/xmco66rrmv884fc/sedan-angled.jpg?dl=0&raw=1',
         ],
+        key: 'bodyStyle',
       },
       {
         bodyStyle: 'coupe',
@@ -28,6 +29,7 @@ export default {
           'https://www.dropbox.com/s/vghvgskehjtmfl1/wagon.jpg?dl=0&raw=1',
           'https://www.dropbox.com/s/ef9bs49deszxybo/wagon-angled.jpg?dl=0&raw=1',
         ],
+        key: 'bodyStyle',
       },
       {
         bodyStyle: 'convertible',
@@ -36,6 +38,7 @@ export default {
           'https://www.dropbox.com/s/2mkir0vzig3aje2/convertible.jpg?dl=0&raw=1',
           'https://www.dropbox.com/s/hawfb4pcklmrd4o/convertible-angled.jpg?dl=0&raw=1',
         ],
+        key: 'bodyStyle',
       },
       {
         bodyStyle: 'crossover',
@@ -44,6 +47,7 @@ export default {
           'https://www.dropbox.com/s/klwv4of3umhs68q/crossover.jpg?dl=0&raw=1',
           'https://www.dropbox.com/s/z3g3vcv0xy8ozcz/crossover-angled.jpg?dl=0&raw=1',
         ],
+        key: 'bodyStyle',
       },
       // {
       //     bodyStyle: 'luxury',
@@ -68,6 +72,7 @@ export default {
           'https://www.dropbox.com/s/gskjkecu0z65g8q/suv.jpg?dl=0&raw=1',
           'https://www.dropbox.com/s/gw6iiox8c8186ye/suv-angled.jpg?dl=0&raw=1',
         ],
+        key: 'bodyStyle',
       },
       {
         bodyStyle: 'cpo',
@@ -76,6 +81,7 @@ export default {
           'https://www.dropbox.com/s/5u86k156axd52i3/cpo.jpg?dl=0&raw=1',
           'https://www.dropbox.com/s/ecsbd2tacxnd57p/cpo-angled.jpg?dl=0&raw=1',
         ],
+        key: 'state',
       },
       {
         bodyStyle: 'hybrid',
@@ -84,6 +90,7 @@ export default {
           'https://www.dropbox.com/s/lxjrcju4o2rsya6/hybrid.jpg?dl=0&raw=1',
           'https://www.dropbox.com/s/ykha5y3l3jqgvt0/hybrid-angled.jpg?dl=0&raw=1',
         ],
+        key: 'fuelType',
       },
       {
         bodyStyle: 'minivan',
@@ -92,14 +99,16 @@ export default {
           'https://www.dropbox.com/s/ciwas65xqsv92fc/minivan.jpg?dl=0&raw=1',
           'https://www.dropbox.com/s/pxef6jy3uj5ohwz/minivan-angled.jpg?dl=0&raw=1',
         ],
+        key: 'bodyStyle',
       },
       {
-        bodyStyle: 'truck',
-        name: 'Truck',
+        bodyStyle: 'pickup',
+        name: 'Pickup',
         links: [
           'https://www.dropbox.com/s/ghsufczdbc5u376/truck.jpg?dl=0&raw=1',
           'https://www.dropbox.com/s/99gsgl0kdu1z7y1/truck-angled.jpg?dl=0&raw=1',
         ],
+        key: 'bodyStyle',
       },
     ],
     makersIcons: [

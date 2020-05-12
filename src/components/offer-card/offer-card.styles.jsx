@@ -95,10 +95,6 @@ export const OfferCardImage = styled.div`
     min-height: 175.5px;
   }
 
-  /* @media (min-width: 1100px) {
-    max-height: 199.5px;
-  } */
-
   & picture img {
     opacity: ${({ imageLoading }) => (imageLoading ? 0 : 1)};
     transition: opacity 0.5s ease;
@@ -127,10 +123,6 @@ export const OfferImageContainer = styled.div`
 
   @media all and (min-width: 1024px) {
     flex-basis: 234px;
-  }
-
-  @media all and (min-width: 1100px) {
-    flex-basis: 266px;
   }
 `;
 
@@ -220,5 +212,6 @@ export const OfferContainer = styled.div`
   flex-wrap: wrap;
   background-color: #fff;
   cursor: pointer;
+  padding-bottom: 16px;
   width: 100%;
 `;

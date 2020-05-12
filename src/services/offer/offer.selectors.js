@@ -11,3 +11,5 @@ export const selectIsTopOffersLoaded = createSelector(
   [selectOffer],
   (offer) => !offer.isFetching
 );
+
+export const selectPage = createSelector([selectOffer], (offer) => offer.page);

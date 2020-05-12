@@ -32,9 +32,13 @@ const BodyStyleModal = ({ bodyStyles, handleSearch }) => {
             {bodyStyles.map((obj, idx) => (
               <li key={`${idx}_${obj.name}`}>
                 <BodyStyleButton
-                  onClick={() =>
-                    handleSearch({ bodyStyle: obj.bodyStyle.toUpperCase() })
-                  }
+                  onClick={() => {
+                    const value =
+                      obj.key === 'state'
+                        ? [obj.bodyStyle.toUpperCase()]
+                        : obj.bodyStyle.toUpperCase();
+                    handleSearch({ [obj.key]: value });
+                  }}
                   bodyType={obj.name}
                   hoverImage={`${pathToImages}${obj.bodyStyle}${carImageSuffix}${extensionJpg}`}
                 >
