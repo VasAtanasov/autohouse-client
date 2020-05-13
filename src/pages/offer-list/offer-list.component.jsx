@@ -3,6 +3,8 @@ import {
   OFFER_SEARCH_FAILURE,
   OFFER_SEARCH_START,
   OFFER_SEARCH_SUCCESS,
+  OFFER_SELECT_SORT,
+  OFFER_SELECT_PAGE,
 } from '../../services/offer/offer.types';
 import { connect } from 'react-redux';
 import { searchOffers } from '../../services/offer/offer.api';
@@ -21,6 +23,8 @@ const INITIAL_STATE = {
   page: {},
   error: null,
   filter: null,
+  sort: 'createdAt,desc',
+  pageNumber: 0,
 };
 
 const offerListReducer = (state, action) => {
@@ -42,6 +46,16 @@ const offerListReducer = (state, action) => {
         loading: false,
         error: action.error,
       };
+    case OFFER_SELECT_SORT:
+      return {
+        ...state,
+        sort: action.payload,
+      };
+    case OFFER_SELECT_PAGE:
+      return {
+        ...state,
+        pageNumber: action.payload,
+      };
     default:
       return state;
   }
@@ -52,25 +66,42 @@ const OfferList = ({ filter }) => {
     offerListReducer,
     Object.assign({}, INITIAL_STATE)
   );
-  const { loading, page } = state;
+  const { loading, page, sort, pageNumber } = state;
 
   React.useEffect(() => {
     (async () => {
       try {
         dispatch(searchOffersStart());
-        const response = await searchOffers(filter);
+        const response = await searchOffers(filter, sort, pageNumber);
         dispatch(searchOffersSuccess(response.data.page));
       } catch (error) {
         dispatch(searchOffersFailure(error));
       }
     })();
-  }, [filter]);
+  }, [filter, sort, pageNumber]);
+
+  const selectSort = (event) => {
+    dispatch({ type: OFFER_SELECT_SORT, payload: event.target.value });
+  };
+
+  const gotToPage = (pageNumber) => {
+    dispatch({ type: OFFER_SELECT_PAGE, payload: pageNumber });
+  };
 
   return (
     <ListWrapper className="list-wrapper">
       <Filters />
       <ListContainer>
-        {loading ? <Spinner /> : <List page={page} />}
+        {loading ? (
+          <Spinner />
+        ) : (
+          <List
+            page={page}
+            handleSort={selectSort}
+            selectedSort={sort}
+            gotToPage={gotToPage}
+          />
+        )}
       </ListContainer>
     </ListWrapper>
   );

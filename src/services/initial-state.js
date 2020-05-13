@@ -147,6 +147,15 @@ export default {
       ],
       bodyTypes: ['Sedan', 'SUV', 'Wagon', 'All'],
     },
+    sortOptions: {
+      Latest: 'createdAt,desc',
+      'Price Ascending': 'price',
+      'Price Descending': 'price,desc',
+      'Milage Ascending': 'vehicleMileage',
+      'Milage Descending': 'vehicleMileage,desc',
+      'Year Ascending': 'vehicleYear',
+      'Year Descending': 'vehicleYear,desc',
+    },
   },
   makers: [],
   filter: {

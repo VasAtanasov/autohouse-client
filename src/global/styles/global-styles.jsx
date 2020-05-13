@@ -82,4 +82,12 @@ export default createGlobalStyle`
     button {
         outline: none !important;;
     }
+
+    select {
+        appearance: none;
+        outline: 0;
+        box-shadow: none;
+        border: 0 !important;
+        background-image: none;
+    }
 `;
