@@ -1,7 +1,9 @@
 export default {
   offer: {
     topOffers: [],
-    page: {},
+    page: {
+      content: [],
+    },
   },
   common: {
     bodyStyles: [
@@ -21,6 +23,7 @@ export default {
           'https://www.dropbox.com/s/6hani3j4xpv9uot/coupe.jpg?dl=0&raw=1',
           'https://www.dropbox.com/s/bg5krobynln70cq/coupe-angled.jpg?dl=0&raw=1',
         ],
+        key: 'bodyStyle',
       },
       {
         bodyStyle: 'wagon',

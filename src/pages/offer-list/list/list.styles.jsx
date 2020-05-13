@@ -1,10 +1,21 @@
 import styled from 'styled-components';
 
-export const ListContainer = styled.div`
-  position: relative;
-  min-height: 100vh;
+export const SortContainer = styled.div``;
 
-  @media screen and (min-width: 992px) {
-    flex-basis: 75%;
+export const SearchSummary = styled.div`
+  margin-bottom: 15px;
+  background-color: white;
+  border: 1px solid #e2e2e2;
+  padding: 15px;
+
+  header h6 {
+    color: #84bd00;
+    margin-bottom: 15px;
   }
+`;
+
+export const ChipsContainer = styled.main``;
+
+export const ListHeader = styled.header`
+  width: 100%;
 `;

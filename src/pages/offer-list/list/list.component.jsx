@@ -1,15 +1,25 @@
 import React from 'react';
+import { ListHeader, SearchSummary, ChipsContainer } from './list.styles';
 import { OfferCard } from '../../../components';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { WithSpinner } from '../../../hoc';
 
-const List = ({ pageContent }) =>
-  pageContent &&
-  pageContent.map((offer) => <OfferCard key={offer.id} {...offer} />);
+const List = ({ page }) => {
+  return (
+    <React.Fragment>
+      <ListHeader>
+        <SearchSummary>
+          <header>
+            <h6>{page.totalElements.toLocaleString()} results</h6>
+          </header>
+          <ChipsContainer className="chips-container"></ChipsContainer>
+        </SearchSummary>
+        <footer></footer>
+      </ListHeader>
+      <main>
+        {page &&
+          page.content.map((offer) => <OfferCard key={offer.id} {...offer} />)}
+      </main>
+    </React.Fragment>
+  );
+};
 
-const mapStateToProps = (state) => ({
-  isLoading: state.offer.isFetching,
-});
-
-export default compose(connect(mapStateToProps), WithSpinner)(List);
+export default List;
