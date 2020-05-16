@@ -4,19 +4,21 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.min.css';
 import App from './App';
-import configureStore from './store/store';
 import { Provider as ReduxProvider } from 'react-redux';
 import { ScrollToTop } from './components';
 
-const store = configureStore();
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './store/store';
 
 render(
   <ReduxProvider store={store}>
-    <Router>
-      <ScrollToTop>
-        <App />
-      </ScrollToTop>
-    </Router>
+    <PersistGate persistor={persistor}>
+      <Router>
+        <ScrollToTop>
+          <App />
+        </ScrollToTop>
+      </Router>
+    </PersistGate>
   </ReduxProvider>,
   document.getElementById('root')
 );

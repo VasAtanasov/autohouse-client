@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import * as offerReducer from '../../services/offer/offer.reducer';
 import * as commonReducer from '../../services/common/common.reducer';
 import * as userReducer from '../../services/user/user.reducer';
@@ -11,4 +13,10 @@ const rootReducer = combineReducers({
   ...filterReducer,
 });
 
-export default rootReducer;
+const persistConfig = {
+  key: 'filter',
+  storage,
+  whitelist: ['filter'],
+};
+
+export default persistReducer(persistConfig, rootReducer);

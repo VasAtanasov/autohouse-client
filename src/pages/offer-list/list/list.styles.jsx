@@ -59,3 +59,9 @@ export const ChipsContainer = styled.main``;
 export const ListHeader = styled.header`
   width: 100%;
 `;
+
+
+export const OfferListPaging = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;

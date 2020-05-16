@@ -9,7 +9,6 @@ import {
 import { connect } from 'react-redux';
 import { searchOffers } from '../../services/offer/offer.api';
 import {
-  searchOffersStart,
   searchOffersSuccess,
   searchOffersFailure,
 } from '../../services/offer/offer.actions';
@@ -67,11 +66,11 @@ const OfferList = (props) => {
     Object.assign({}, INITIAL_STATE, { filter: props.filter })
   );
   const { loading, filter, page, sort, pageNumber } = state;
+  console.log(page);
 
   React.useEffect(() => {
     (async () => {
       try {
-        dispatch(searchOffersStart());
         const response = await searchOffers(filter, sort, pageNumber);
         dispatch(searchOffersSuccess(response.data.page));
       } catch (error) {

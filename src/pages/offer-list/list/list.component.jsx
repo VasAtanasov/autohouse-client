@@ -7,6 +7,7 @@ import {
   SortContainer,
   SortSelect,
   ChipsContainer,
+  OfferListPaging,
 } from './list.styles';
 import { OfferCard } from '../../../components';
 
@@ -21,12 +22,14 @@ const List = ({ page, sortOptions, handleSort, gotToPage, selectedSort }) => {
     numberOfElements,
     first,
     empty,
+    pageable,
   } = page;
 
   const numbers = [];
   for (let index = 0; index < totalPages; index++) {
     numbers.push(index);
   }
+  const { offset, pageSize } = pageable;
 
   return (
     <React.Fragment>
@@ -52,6 +55,24 @@ const List = ({ page, sortOptions, handleSort, gotToPage, selectedSort }) => {
             onClick={() => gotToPage(totalPages - 1 || 0)}
           />
         </Pagination>
+
+        <OfferListPaging>
+          <button
+            className="previous"
+            disabled={number === 0}
+            onClick={() => gotToPage(number - 1)}
+          >
+            {'< Previous'}
+          </button>
+          <span>out of {totalElements} Offers</span>
+          <button
+            className="previous"
+            disabled={number === totalPages - 1}
+            onClick={() => gotToPage(number + 1)}
+          >
+            {'Next >'}
+          </button>
+        </OfferListPaging>
       </footer>
       <ListHeader>
         <SearchSummary>
