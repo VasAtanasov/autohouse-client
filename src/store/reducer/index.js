@@ -6,17 +6,17 @@ import * as commonReducer from '../../services/common/common.reducer';
 import * as userReducer from '../../services/user/user.reducer';
 import * as filterReducer from '../../services/filter/filter.reducer';
 
+const persistConfig = {
+  key: 'filter',
+  storage,
+  whitelist: ['filter'],
+};
+
 const rootReducer = combineReducers({
   ...offerReducer,
   ...commonReducer,
   ...userReducer,
   ...filterReducer,
 });
-
-const persistConfig = {
-  key: 'filter',
-  storage,
-  whitelist: ['filter'],
-};
 
 export default persistReducer(persistConfig, rootReducer);

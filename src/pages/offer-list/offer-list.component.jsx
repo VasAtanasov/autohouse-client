@@ -66,8 +66,6 @@ const OfferList = (props) => {
     Object.assign({}, INITIAL_STATE, { filter: props.filter })
   );
   const { loading, filter, page, sort, pageNumber } = state;
-  console.log(page);
-
   React.useEffect(() => {
     (async () => {
       try {

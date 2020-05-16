@@ -1,4 +1,36 @@
 import styled from 'styled-components';
+import Pagination from 'react-bootstrap/Pagination';
+
+export const OfferListPaging = styled(Pagination)`
+  margin-bottom: 0;
+
+  .page-item {
+    user-select: none;
+
+    .page-link:focus {
+      box-shadow: none;
+    }
+
+    .page-link[disabled] {
+      background-color: transparent;
+    }
+  }
+
+  .page-info .page-link {
+    background-color: transparent;
+    border: none;
+    min-width: 250px;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+
+    .page-info {
+      width: 100%;
+    }
+  }
+`;
 
 export const SortSelect = styled.div`
   flex-basis: 100%;
@@ -6,6 +38,8 @@ export const SortSelect = styled.div`
   display: flex;
   border: 1px solid #e2e2e2;
   line-height: 1.3;
+  min-height: 35px;
+  margin-bottom: 15px;
 
   &::after {
     color: black;
@@ -14,7 +48,7 @@ export const SortSelect = styled.div`
     pointer-events: none;
     position: absolute;
     right: 0px;
-    top: 11px;
+    top: 3px;
     font-size: 20px;
   }
 
@@ -23,7 +57,7 @@ export const SortSelect = styled.div`
     border: none;
     border-radius: 0;
     cursor: pointer;
-    padding: 12px;
+    padding-left: 12px;
     width: 100%;
     font-size: 16px;
     &:focus {
@@ -33,12 +67,14 @@ export const SortSelect = styled.div`
 
   @media screen and (min-width: 768px) {
     flex-basis: 30%;
+    margin-bottom: 0;
   }
 `;
 
 export const SortContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin-bottom: 15px;
 `;
 
@@ -60,8 +96,7 @@ export const ListHeader = styled.header`
   width: 100%;
 `;
 
-
-export const OfferListPaging = styled.div`
+export const ListFooter = styled.footer`
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
 `;

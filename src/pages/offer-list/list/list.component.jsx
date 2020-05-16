@@ -8,8 +8,46 @@ import {
   SortSelect,
   ChipsContainer,
   OfferListPaging,
+  ListFooter,
 } from './list.styles';
 import { OfferCard } from '../../../components';
+
+const ListNavigation = ({
+  pageNumber,
+  gotToPage,
+  startOfferNumber,
+  endOfferNumber,
+  totalElements,
+  totalPages,
+}) => (
+  <OfferListPaging>
+    <Pagination.First
+      disabled={pageNumber === 0}
+      onClick={() => gotToPage(0)}
+    />
+    <Pagination.Prev
+      disabled={pageNumber === 0}
+      onClick={() => gotToPage(pageNumber - 1)}
+    />
+    <Pagination.Item className="page-info" disabled>
+      <span>
+        Showing{' '}
+        <strong>
+          {startOfferNumber}-{endOfferNumber}
+        </strong>{' '}
+        out of <strong>{totalElements}</strong> Offers
+      </span>
+    </Pagination.Item>
+    <Pagination.Next
+      disabled={pageNumber === totalPages - 1}
+      onClick={() => gotToPage(pageNumber + 1)}
+    />
+    <Pagination.Last
+      disabled={pageNumber === totalPages - 1}
+      onClick={() => gotToPage(totalPages - 1 || 0)}
+    />
+  </OfferListPaging>
+);
 
 const List = ({ page, sortOptions, handleSort, gotToPage, selectedSort }) => {
   const {
@@ -25,59 +63,20 @@ const List = ({ page, sortOptions, handleSort, gotToPage, selectedSort }) => {
     pageable,
   } = page;
 
-  const numbers = [];
-  for (let index = 0; index < totalPages; index++) {
-    numbers.push(index);
-  }
   const { offset, pageSize } = pageable;
+  const startOfferNumber = offset + 1;
+  const endOfferNumber =
+    offset + pageSize > totalElements ? totalElements : offset + pageSize;
 
   return (
     <React.Fragment>
-      <footer>
-        <Pagination>
-          <Pagination.First onClick={() => gotToPage(0)} />
-          <Pagination.Prev />
-          {numbers.map((index) => (
-            <Pagination.Item
-              onClick={() => gotToPage(index)}
-              key={index + 1}
-              active={number === index}
-            >
-              {index + 1}
-            </Pagination.Item>
-          ))}
-          <Pagination.Next
-            disabled={number === totalPages - 1}
-            onClick={() => gotToPage(number + 1)}
-          />
-          <Pagination.Last
-            disabled={number === totalPages - 1}
-            onClick={() => gotToPage(totalPages - 1 || 0)}
-          />
-        </Pagination>
-
-        <OfferListPaging>
-          <button
-            className="previous"
-            disabled={number === 0}
-            onClick={() => gotToPage(number - 1)}
-          >
-            {'< Previous'}
-          </button>
-          <span>out of {totalElements} Offers</span>
-          <button
-            className="previous"
-            disabled={number === totalPages - 1}
-            onClick={() => gotToPage(number + 1)}
-          >
-            {'Next >'}
-          </button>
-        </OfferListPaging>
-      </footer>
       <ListHeader>
         <SearchSummary>
           <header>
-            <h6>{page.totalElements.toLocaleString()} results</h6>
+            <h6>
+              {page.totalElements ? page.totalElements.toLocaleString() : 0}{' '}
+              results
+            </h6>
           </header>
           <ChipsContainer className="chips-container"></ChipsContainer>
           <footer></footer>
@@ -92,6 +91,14 @@ const List = ({ page, sortOptions, handleSort, gotToPage, selectedSort }) => {
               ))}
             </select>
           </SortSelect>
+          <ListNavigation
+            pageNumber={number}
+            gotToPage={gotToPage}
+            startOfferNumber={startOfferNumber}
+            endOfferNumber={endOfferNumber}
+            totalElements={totalElements}
+            totalPages={totalPages}
+          />
         </SortContainer>
       </ListHeader>
       <main>
@@ -99,6 +106,16 @@ const List = ({ page, sortOptions, handleSort, gotToPage, selectedSort }) => {
           <OfferCard key={offer.id} {...offer} />
         ))}
       </main>
+      <ListFooter>
+        <ListNavigation
+          pageNumber={number}
+          gotToPage={gotToPage}
+          startOfferNumber={startOfferNumber}
+          endOfferNumber={endOfferNumber}
+          totalElements={totalElements}
+          totalPages={totalPages}
+        />
+      </ListFooter>
     </React.Fragment>
   );
 };

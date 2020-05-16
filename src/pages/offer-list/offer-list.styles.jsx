@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ListWrapper = styled.div`
   display: flex;
-  margin-top: 20px;
+  margin: 20px 0;
 
   & .list-element-gap {
     margin-bottom: 12px;
