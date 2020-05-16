@@ -61,12 +61,12 @@ const offerListReducer = (state, action) => {
   }
 };
 
-const OfferList = ({ filter }) => {
+const OfferList = (props) => {
   const [state, dispatch] = React.useReducer(
     offerListReducer,
-    Object.assign({}, INITIAL_STATE)
+    Object.assign({}, INITIAL_STATE, { filter: props.filter })
   );
-  const { loading, page, sort, pageNumber } = state;
+  const { loading, filter, page, sort, pageNumber } = state;
 
   React.useEffect(() => {
     (async () => {
