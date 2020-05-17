@@ -33,6 +33,7 @@ const INITIAL_STATE = {
   filter: null,
   sort: 'createdAt,desc',
   pageNumber: 0,
+  app: {},
 };
 
 const offerListReducer = (state, action) => {
@@ -49,6 +50,7 @@ const offerListReducer = (state, action) => {
         page: action.page,
       };
     case OFFER_SEARCH_FAILURE:
+    case FETCH_APP_STATE_FAILURE:
       return {
         ...state,
         loading: false,
@@ -64,6 +66,11 @@ const offerListReducer = (state, action) => {
         ...state,
         pageNumber: action.payload,
       };
+    case FETCH_APP_STATE_SUCCESS:
+      return {
+        ...state,
+        app: action.payload,
+      };
     default:
       return state;
   }
@@ -75,7 +82,7 @@ const OfferList = (props) => {
     Object.assign({}, INITIAL_STATE, { filter: props.filter })
   );
 
-  const { loading, filter, page, sort, pageNumber } = state;
+  const { loading, filter, page, sort, pageNumber, app } = state;
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -91,6 +98,17 @@ const OfferList = (props) => {
       }
     })();
   }, [filter, sort, pageNumber]);
+
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const response = await loadAppState();
+        dispatch(fetchAppStateSuccess(response));
+      } catch (error) {
+        dispatch(fetchAppStateFailure(error));
+      }
+    })();
+  }, []);
 
   const selectSort = (event) => {
     dispatch({ type: OFFER_SELECT_SORT, payload: event.target.value });
@@ -112,6 +130,7 @@ const OfferList = (props) => {
             handleSort={selectSort}
             selectedSort={sort}
             gotToPage={gotToPage}
+            app={app}
           />
         )}
       </ListContainer>

@@ -49,6 +49,32 @@ const ListNavigation = ({
   </OfferListPaging>
 );
 
+const mapFilterToPills = (filter, app) => {
+  const {
+    searchCriteriaNamesForCheckboxCriteria = [],
+    searchCriteriaNamesForRangeCriteria = [],
+    searchCriteriaNamesForSelectCriteria = [],
+  } = app;
+  const pills = [];
+
+  Object.entries(filter).forEach(([key, value]) => {
+    if (value && searchCriteriaNamesForSelectCriteria.includes(key)) {
+      pills.push(value);
+    }
+
+    if (value && searchCriteriaNamesForCheckboxCriteria.includes(key)) {
+      value.forEach((v) => pills.push(v));
+    }
+
+    if (value && searchCriteriaNamesForRangeCriteria.includes(key)) {
+      if (!value.form) return;
+      pills.push(`${value.from}-${value.to || ''}`);
+    }
+  });
+
+  return pills;
+};
+
 const List = ({
   page,
   sortOptions,
@@ -56,6 +82,7 @@ const List = ({
   gotToPage,
   selectedSort,
   filter,
+  app,
 }) => {
   const {
     content,
@@ -69,6 +96,9 @@ const List = ({
     empty,
     pageable,
   } = page;
+
+  const filterPills = mapFilterToPills(filter, app);
+  console.log(filterPills);
 
   const { offset, pageSize } = pageable;
   const startOfferNumber = offset + 1;

@@ -32,8 +32,8 @@ const MakerList = ({ makers, selectMaker, filter }) =>
       </li>
     ));
 
-const ModelsList = ({ models, selectModel, filter }) =>
-  models
+const ModelsList = ({ models, selectModel, filter }) => {
+  return models
     .filter((modelObj) =>
       modelObj.name.toLowerCase().includes(filter.toLowerCase())
     )
@@ -46,6 +46,7 @@ const ModelsList = ({ models, selectModel, filter }) =>
         {modelObj.name}
       </li>
     ));
+};
 
 const initialState = {
   visible: false,
@@ -96,11 +97,6 @@ const MakerModelModal = ({ makers, handleSearch }) => {
     Object.assign({}, initialState)
   );
   const { visible, makerName, modelName, filter } = state;
-  const searchMakerModel = () =>
-    handleSearch({
-      makerName,
-      modelName,
-    });
 
   return (
     <React.Fragment>
@@ -137,7 +133,14 @@ const MakerModelModal = ({ makers, handleSearch }) => {
                       placeholder="Search for a make"
                     />
                   </div>
-                  <li onClick={() => searchMakerModel()}>
+                  <li
+                    onClick={() =>
+                      handleSearch({
+                        makerName,
+                        modelName,
+                      })
+                    }
+                  >
                     Search all {makerName ? makerName : 'makers &'} models
                   </li>
                 </FilterContainer>
@@ -155,7 +158,10 @@ const MakerModelModal = ({ makers, handleSearch }) => {
                     models={makers[makerName].models}
                     selectModel={(modelName) => {
                       dispatch({ type: 'selectModel', data: modelName });
-                      searchMakerModel();
+                      handleSearch({
+                        makerName,
+                        modelName,
+                      });
                     }}
                     filter={filter}
                   />
