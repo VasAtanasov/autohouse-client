@@ -19,7 +19,7 @@ export const OfferListPaging = styled(Pagination)`
   .page-info .page-link {
     background-color: transparent;
     border: none;
-    min-width: 250px;
+    min-width: 240px;
     text-align: center;
   }
 

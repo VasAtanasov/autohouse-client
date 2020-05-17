@@ -25,16 +25,52 @@ export const fetchMakersStartAsync = () => async (dispatch) => {
   }
 };
 
+export const fetchStatisticsStart = () => ({
+  type: types.FETCH_STATISTICS_START,
+});
+
 export const fetchStatisticsSuccess = (response) => ({
   type: types.FETCH_STATISTICS_SUCCESS,
   payload: response,
 });
 
+export const fetchStatisticsFailure = (error) => ({
+  type: types.FETCH_STATISTICS_FAILURE,
+  payload: error,
+});
+
 export const fetchStatistics = () => async (dispatch) => {
   try {
+    dispatch(fetchStatisticsStart());
     const response = await commonApi.loadStatistic();
     dispatch(fetchStatisticsSuccess(response));
   } catch (error) {
+    dispatch(fetchStatisticsFailure(error));
+    throw error;
+  }
+};
+
+export const fetchAppStateStart = () => ({
+  type: types.FETCH_APP_STATE_START,
+});
+
+export const fetchAppStateSuccess = (response) => ({
+  type: types.FETCH_APP_STATE_SUCCESS,
+  payload: response.data,
+});
+
+export const fetchAppStateFailure = (error) => ({
+  type: types.FETCH_APP_STATE_FAILURE,
+  payload: error,
+});
+
+export const fetchAppStateAsync = () => async (dispatch) => {
+  try {
+    dispatch(fetchAppStateStart());
+    const response = await commonApi.loadAppState();
+    dispatch(fetchAppStateSuccess(response));
+  } catch (error) {
+    dispatch(fetchAppStateFailure(error));
     throw error;
   }
 };

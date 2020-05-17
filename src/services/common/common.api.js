@@ -7,3 +7,7 @@ export const loadMakers = async () => {
 export const loadStatistic = async () => {
   return await http.get('/vehicles/offers/statistics');
 };
+
+export const loadAppState = async () => {
+  return await http.get('/state');
+};

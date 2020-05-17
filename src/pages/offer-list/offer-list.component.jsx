@@ -6,12 +6,21 @@ import {
   OFFER_SELECT_SORT,
   OFFER_SELECT_PAGE,
 } from '../../services/offer/offer.types';
+import {
+  FETCH_APP_STATE_SUCCESS,
+  FETCH_APP_STATE_FAILURE,
+} from '../../services/common/common.types';
 import { connect } from 'react-redux';
 import { searchOffers } from '../../services/offer/offer.api';
+import { loadAppState } from '../../services/common/common.api';
 import {
   searchOffersSuccess,
   searchOffersFailure,
 } from '../../services/offer/offer.actions';
+import {
+  fetchAppStateSuccess,
+  fetchAppStateFailure,
+} from '../../services/common/common.actions';
 import { ListWrapper, ListContainer } from './offer-list.styles';
 import { Spinner } from '../../components';
 import Filters from './filters/filters.component';
@@ -65,7 +74,13 @@ const OfferList = (props) => {
     offerListReducer,
     Object.assign({}, INITIAL_STATE, { filter: props.filter })
   );
+
   const { loading, filter, page, sort, pageNumber } = state;
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pageNumber]);
+
   React.useEffect(() => {
     (async () => {
       try {

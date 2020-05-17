@@ -49,7 +49,14 @@ const ListNavigation = ({
   </OfferListPaging>
 );
 
-const List = ({ page, sortOptions, handleSort, gotToPage, selectedSort }) => {
+const List = ({
+  page,
+  sortOptions,
+  handleSort,
+  gotToPage,
+  selectedSort,
+  filter,
+}) => {
   const {
     content,
     last,
@@ -122,6 +129,7 @@ const List = ({ page, sortOptions, handleSort, gotToPage, selectedSort }) => {
 
 const mapStateToProps = (state) => ({
   sortOptions: state.common.sortOptions,
+  filter: state.filter,
 });
 
 export default connect(mapStateToProps)(List);

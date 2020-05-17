@@ -4,14 +4,8 @@ import { SearchContainer, TypeLabel } from './quick-search.styles';
 import BodyStyleModal from './body-style-modal.component';
 import MakerModelModal from './maker-modal.component';
 import ViewAllButton from './view-all-button.component';
-import { fetchMakersStartAsync } from '../../../../services/common/common.actions';
-import { toast } from 'react-toastify';
 
-const QuickSearch = ({ fetchMakersStartAsync, handleSearch }) => {
-  fetchMakersStartAsync().catch((error) => {
-    toast.error('Error fetching makers', error);
-  });
-
+const QuickSearch = ({ handleSearch }) => {
   return (
     <SearchContainer>
       <div className="type">
@@ -28,4 +22,4 @@ const QuickSearch = ({ fetchMakersStartAsync, handleSearch }) => {
   );
 };
 
-export default connect(null, { fetchMakersStartAsync })(QuickSearch);
+export default connect(null, {})(QuickSearch);

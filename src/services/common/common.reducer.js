@@ -40,18 +40,55 @@ export const makers = (state = { ...MAKERS_INITIAL_STATE }, action) => {
 
 const STATISTICS_INITIAL_STATE = {
   totalOffers: 0,
+  loading: true,
 };
 
 export const statistics = (state = { ...STATISTICS_INITIAL_STATE }, action) => {
   switch (action.type) {
+    case types.FETCH_STATISTICS_START:
+      return {
+        ...state,
+        loading: true,
+      };
     case types.FETCH_STATISTICS_SUCCESS:
       return {
         ...state,
         ...action.payload,
+        loading: false,
+      };
+    case types.FETCH_MAKERS_FAILURE:
+      return {
+        ...state,
+        loading: false,
       };
     default:
       return state;
   }
 };
 
-// export default commonReducer;
+const APP_INITIAL_STATE = {
+  loading: true,
+};
+
+export const appState = (state = { ...APP_INITIAL_STATE }, action) => {
+  switch (action.type) {
+    case types.FETCH_APP_STATE_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case types.FETCH_APP_STATE_SUCCESS:
+      return {
+        ...state,
+        ...action.payload,
+        loading: false,
+      };
+    case types.FETCH_APP_STATE_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};

@@ -101,7 +101,7 @@ const MakerModelModal = ({ makers, handleSearch }) => {
       makerName,
       modelName,
     });
-  modelName && console.log(modelName);
+
   return (
     <React.Fragment>
       <SearchButton onClick={() => dispatch({ type: 'show' })}>
