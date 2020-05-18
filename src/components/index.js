@@ -7,6 +7,7 @@ import Footer from './footer/footer.component';
 import ScrollToTop from './scroll-to-top/scroll-to-top.component';
 import PrivateRoute from './auth/private-route.component';
 import OfferCard from './offer-card/offer-card.component';
+import Checkbox from './checkbox/checkbox.component';
 
 export {
   Header,
@@ -18,4 +19,5 @@ export {
   ScrollToTop,
   PrivateRoute,
   OfferCard,
+  Checkbox,
 };

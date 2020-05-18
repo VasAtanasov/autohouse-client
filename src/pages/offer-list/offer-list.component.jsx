@@ -120,7 +120,7 @@ const OfferList = (props) => {
 
   return (
     <ListWrapper className="list-wrapper">
-      <Filters />
+      <Filters {...app} />
       <ListContainer>
         {loading ? (
           <Spinner />

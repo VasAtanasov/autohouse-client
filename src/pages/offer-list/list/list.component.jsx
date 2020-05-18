@@ -3,10 +3,8 @@ import { connect } from 'react-redux';
 import Pagination from 'react-bootstrap/Pagination';
 import {
   ListHeader,
-  SearchSummary,
   SortContainer,
   SortSelect,
-  ChipsContainer,
   OfferListPaging,
   ListFooter,
 } from './list.styles';
@@ -49,56 +47,19 @@ const ListNavigation = ({
   </OfferListPaging>
 );
 
-const mapFilterToPills = (filter, app) => {
-  const {
-    searchCriteriaNamesForCheckboxCriteria = [],
-    searchCriteriaNamesForRangeCriteria = [],
-    searchCriteriaNamesForSelectCriteria = [],
-  } = app;
-  const pills = [];
-
-  Object.entries(filter).forEach(([key, value]) => {
-    if (value && searchCriteriaNamesForSelectCriteria.includes(key)) {
-      pills.push(value);
-    }
-
-    if (value && searchCriteriaNamesForCheckboxCriteria.includes(key)) {
-      value.forEach((v) => pills.push(v));
-    }
-
-    if (value && searchCriteriaNamesForRangeCriteria.includes(key)) {
-      if (!value.form) return;
-      pills.push(`${value.from}-${value.to || ''}`);
-    }
-  });
-
-  return pills;
-};
-
-const List = ({
-  page,
-  sortOptions,
-  handleSort,
-  gotToPage,
-  selectedSort,
-  filter,
-  app,
-}) => {
+const List = ({ page, sortOptions, handleSort, gotToPage, selectedSort }) => {
   const {
     content,
-    last,
+    // last,
     totalPages,
     totalElements,
     number,
-    size,
-    numberOfElements,
-    first,
-    empty,
+    // size,
+    // numberOfElements,
+    // first,
+    // empty,
     pageable,
   } = page;
-
-  const filterPills = mapFilterToPills(filter, app);
-  console.log(filterPills);
 
   const { offset, pageSize } = pageable;
   const startOfferNumber = offset + 1;
@@ -108,16 +69,6 @@ const List = ({
   return (
     <React.Fragment>
       <ListHeader>
-        <SearchSummary>
-          <header>
-            <h6>
-              {page.totalElements ? page.totalElements.toLocaleString() : 0}{' '}
-              results
-            </h6>
-          </header>
-          <ChipsContainer className="chips-container"></ChipsContainer>
-          <footer></footer>
-        </SearchSummary>
         <SortContainer>
           <SortSelect>
             <select onChange={handleSort} defaultValue={selectedSort}>
