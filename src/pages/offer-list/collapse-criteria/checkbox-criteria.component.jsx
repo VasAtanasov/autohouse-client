@@ -1,13 +1,9 @@
 import React from 'react';
 import { Checkbox } from '../../../components';
 
-const CheckboxCriteria = (props) => {
-  const styledCompClass = props.className;
-  const criteria = props.criteria;
-  console.log(criteria);
-
+const CheckboxCriteria = ({ criteria }) => {
   return (
-    <div className={styledCompClass}>
+    <div>
       {criteria &&
         Object.entries(criteria).map(([key, value]) => (
           <Checkbox key={key} id={key} text={value} />

@@ -7,7 +7,7 @@ import {
 } from './collapse-criteria.styles';
 import { ReactComponent as Arrow } from './icon/arrow.svg';
 
-const CollapseCriteria = ({ title, isActive, key, iconClass, children }) => {
+const CollapseCriteria = ({ title, isActive, iconClass, children }) => {
   const [open, setOpen] = React.useState(isActive);
 
   return (

@@ -162,18 +162,12 @@ export default {
     makerName: null,
     modelName: null,
     trim: null,
-    year: {
-      from: null,
-      to: null,
-    },
-    mileage: {
-      from: null,
-      to: null,
-    },
-    doors: {
-      from: null,
-      to: null,
-    },
+    yearFrom: null,
+    yearTo: null,
+    mileageFrom: null,
+    mileageTo: null,
+    doorsFrom: null,
+    doorsTo: null,
     state: [],
     bodyStyle: null,
     transmission: null,
@@ -182,10 +176,8 @@ export default {
     fuelType: null,
     features: [],
     hasAccident: false,
-    price: {
-      from: null,
-      to: null,
-    },
+    priceFrom: null,
+    priceTo: null,
     seller: [],
   },
   user: {

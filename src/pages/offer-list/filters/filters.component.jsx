@@ -2,6 +2,11 @@ import React from 'react';
 import { FiltersContainer } from './filters.styles';
 import CollapseCriteria from '../collapse-criteria/collapse-criteria.component';
 import CheckboxCriteria from '../collapse-criteria/checkbox-criteria.component';
+import { Slider } from '../../../components';
+import { connect } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { createFilter } from '../../../services/filter/filter.action';
+
 const filterSections = [
   {
     title: 'Fuel type',
@@ -77,18 +82,82 @@ const filterSections = [
   },
 ];
 
-const Filters = ({ metadata, searchCriteriaNamesForCheckboxCriteria = [] }) => (
-  <FiltersContainer>
-    {filterSections.map((section, idx) => (
-      <div key={section.title + idx}>
-        <CollapseCriteria key={section.title + idx} {...section}>
-          {searchCriteriaNamesForCheckboxCriteria.includes(section.key) ? (
-            <CheckboxCriteria criteria={metadata[section.key]} />
-          ) : null}
-        </CollapseCriteria>
-      </div>
-    ))}
-  </FiltersContainer>
-);
+const PriceRangeCollapse = connect(({ statistics, filter }) => ({
+  maxPrice: statistics.maxPrice,
+  minPrice: statistics.minPrice,
+  priceFrom: filter.priceFrom,
+  priceTo: filter.priceTo,
+}))(({ maxPrice, minPrice, priceFrom, priceTo, register }) => (
+  <CollapseCriteria
+    title="Price Range"
+    iconClass={'flaticon-coin'}
+    isActive={true}
+  >
+    <Slider
+      max={maxPrice}
+      min={minPrice}
+      filter="price"
+      from={priceFrom || minPrice}
+      to={priceTo || maxPrice}
+      register={register}
+    />
+  </CollapseCriteria>
+));
 
-export default Filters;
+const YearRangeCollapse = connect(({ statistics, filter }) => ({
+  maxYear: statistics.maxYear,
+  minYear: statistics.minYear,
+  yearFrom: filter.yearFrom,
+  yearTo: filter.yearTo,
+}))(({ register, maxYear, minYear, yearFrom, yearTo }) => (
+  <CollapseCriteria
+    title="Year Range"
+    iconClass={'flaticon-car-key'}
+    isActive={true}
+  >
+    <Slider
+      max={maxYear}
+      min={minYear}
+      to={yearTo || maxYear}
+      from={yearFrom || minYear}
+      filter="year"
+      register={register}
+    />
+  </CollapseCriteria>
+));
+
+const Filters = ({
+  filter,
+  createFilter,
+  metadata,
+  searchCriteriaNamesForCheckboxCriteria = [],
+}) => {
+  const { register, handleSubmit } = useForm({
+    defaultValues: filter,
+  });
+
+  const onSubmit = (data) => {
+    createFilter({ ...filter, ...data });
+  };
+
+  return (
+    <FiltersContainer>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <PriceRangeCollapse register={register} />
+        <YearRangeCollapse register={register} />
+        <input type="submit" value="Submit" />
+      </form>
+      {/* {filterSections.map((section, idx) => (
+      <CollapseCriteria key={section.title + idx} {...section}>
+        {searchCriteriaNamesForCheckboxCriteria.includes(section.key) ? (
+          <CheckboxCriteria criteria={metadata[section.key]} />
+        ) : null}
+      </CollapseCriteria>
+    ))} */}
+    </FiltersContainer>
+  );
+};
+
+const mapStateToProps = ({ filter }) => ({ filter });
+
+export default connect(mapStateToProps, { createFilter })(Filters);

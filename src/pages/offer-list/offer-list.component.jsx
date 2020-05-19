@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import { searchOffers } from '../../services/offer/offer.api';
 import { loadAppState } from '../../services/common/common.api';
 import {
+  searchOffersStart,
   searchOffersSuccess,
   searchOffersFailure,
 } from '../../services/offer/offer.actions';
@@ -76,13 +77,13 @@ const offerListReducer = (state, action) => {
   }
 };
 
-const OfferList = (props) => {
+const OfferList = ({ filter }) => {
   const [state, dispatch] = React.useReducer(
     offerListReducer,
-    Object.assign({}, INITIAL_STATE, { filter: props.filter })
+    Object.assign({}, INITIAL_STATE)
   );
 
-  const { loading, filter, page, sort, pageNumber, app } = state;
+  const { loading, page, sort, pageNumber, app } = state;
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -91,6 +92,7 @@ const OfferList = (props) => {
   React.useEffect(() => {
     (async () => {
       try {
+        dispatch(searchOffersStart());
         const response = await searchOffers(filter, sort, pageNumber);
         dispatch(searchOffersSuccess(response.data.page));
       } catch (error) {
