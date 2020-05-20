@@ -4,10 +4,10 @@ import Pagination from 'react-bootstrap/Pagination';
 import {
   ListHeader,
   SortContainer,
-  SortSelect,
   OfferListPaging,
   ListFooter,
 } from './list.styles';
+import { SelectWrapper } from '../offer-list.styles';
 import { OfferCard } from '../../../components';
 
 const ListNavigation = ({
@@ -70,7 +70,7 @@ const List = ({ page, sortOptions, handleSort, gotToPage, selectedSort }) => {
     <React.Fragment>
       <ListHeader>
         <SortContainer>
-          <SortSelect>
+          <SelectWrapper className="sort-select">
             <select onChange={handleSort} defaultValue={selectedSort}>
               {Object.entries(sortOptions).map(([text, value], idx) => (
                 <option key={idx} value={value}>
@@ -78,7 +78,7 @@ const List = ({ page, sortOptions, handleSort, gotToPage, selectedSort }) => {
                 </option>
               ))}
             </select>
-          </SortSelect>
+          </SelectWrapper>
           <ListNavigation
             pageNumber={number}
             gotToPage={gotToPage}

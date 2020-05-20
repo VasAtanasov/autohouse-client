@@ -8,6 +8,7 @@ import ScrollToTop from './scroll-to-top/scroll-to-top.component';
 import PrivateRoute from './auth/private-route.component';
 import OfferCard from './offer-card/offer-card.component';
 import Checkbox from './checkbox/checkbox.component';
+import { CheckBoxContainer } from './checkbox/checkbox.styles';
 import Slider from './slider/slider.component';
 
 export {
@@ -22,4 +23,5 @@ export {
   OfferCard,
   Checkbox,
   Slider,
+  CheckBoxContainer,
 };

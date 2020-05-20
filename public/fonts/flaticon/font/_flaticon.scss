@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 06/12/2019 10:01
+    Creation date: 10/05/2020 09:21
     */
 
     @font-face {
@@ -98,6 +98,8 @@
 .flaticon-email:before { content: "\f13a"; }
 .flaticon-smartphone:before { content: "\f13b"; }
 .flaticon-gmail:before { content: "\f13c"; }
+.flaticon-user:before { content: "\f13d"; }
+.flaticon-user-1:before { content: "\f13e"; }
     
     $font-Flaticon-car: "\f100";
     $font-Flaticon-road: "\f101";
@@ -160,3 +162,5 @@
     $font-Flaticon-email: "\f13a";
     $font-Flaticon-smartphone: "\f13b";
     $font-Flaticon-gmail: "\f13c";
+    $font-Flaticon-user: "\f13d";
+    $font-Flaticon-user-1: "\f13e";

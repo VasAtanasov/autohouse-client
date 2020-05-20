@@ -8,7 +8,9 @@ export const CheckBoxContainer = styled.div`
   }
 
   & input[type='checkbox'] + label {
-    display: block;
+    display: flex;
+    align-items: center;
+    height: 22px;
     position: relative;
     padding-left: 25px;
     margin-bottom: 20px;

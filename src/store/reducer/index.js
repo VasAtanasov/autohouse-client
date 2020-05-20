@@ -9,7 +9,7 @@ import * as filterReducer from '../../services/filter/filter.reducer';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['filter', 'statistics'],
+  whitelist: ['filter', 'statistics', 'makers'],
 };
 
 const rootReducer = combineReducers({

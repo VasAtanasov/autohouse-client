@@ -4,7 +4,7 @@ import noUiSlider from 'nouislider';
 import 'nouislider/distribute/nouislider.css';
 import wNumb from 'wnumb';
 
-const Slider = ({ min, max, from, to, filter, prefix, thousand, register }) => {
+const Slider = ({ min, max, from, to, filter, register }) => {
   React.useEffect(() => {
     const slider = document.getElementById(`slider_${filter}`);
     const input0 = document.getElementById(`input-min-range_${filter}`);
@@ -20,10 +20,6 @@ const Slider = ({ min, max, from, to, filter, prefix, thousand, register }) => {
       },
       format: wNumb({
         decimals: 0,
-        thousand,
-        prefix,
-        from: (value) => Number(value.replace('$', '')),
-        to: (value) => Number(value.replace('$', '')),
       }),
     });
 
@@ -36,6 +32,7 @@ const Slider = ({ min, max, from, to, filter, prefix, thousand, register }) => {
         slider.noUiSlider.setHandle(handle, this.value);
       });
     });
+    // eslint-disable-next-line
   }, []);
 
   return (

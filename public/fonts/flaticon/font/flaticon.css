@@ -1,6 +1,6 @@
 	/*
   	Flaticon icon font: Flaticon
-  	Creation date: 06/12/2019 10:01
+  	Creation date: 10/05/2020 09:21
   	*/
 
 @font-face {
@@ -24,10 +24,10 @@
 
 [class^="flaticon-"]:before, [class*=" flaticon-"]:before,
 [class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
-    font-family: Flaticon;
-    font-size: 20px;
-    font-style: normal;
-    margin-left: 20px;
+  font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
 }
 
 .flaticon-car:before { content: "\f100"; }
@@ -91,3 +91,5 @@
 .flaticon-email:before { content: "\f13a"; }
 .flaticon-smartphone:before { content: "\f13b"; }
 .flaticon-gmail:before { content: "\f13c"; }
+.flaticon-user:before { content: "\f13d"; }
+.flaticon-user-1:before { content: "\f13e"; }

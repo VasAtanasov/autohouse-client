@@ -41,4 +41,8 @@ export const CollapseHeader = styled.header`
 
 export const CollapseCriteriaWrapper = styled.div`
   margin-bottom: 10px;
+
+  .collapse-body {
+    margin-top: 5px;
+  }
 `;
