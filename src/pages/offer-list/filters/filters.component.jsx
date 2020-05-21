@@ -1,11 +1,19 @@
 import React from 'react';
-import { FiltersContainer } from './filters.styles';
 import CollapseCriteria from '../collapse-criteria/collapse-criteria.component';
 import { Slider, CheckBoxContainer } from '../../../components';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { createFilter } from '../../../services/filter/filter.action';
+import {
+  createFilter,
+  resetFilter,
+} from '../../../services/filter/filter.action';
+import {
+  FiltersContainer,
+  SearchFiltersSection,
+  SearchFiltersHeader,
+} from './filters.styles';
 import { SelectWrapper, SelectGroup } from '../offer-list.styles';
+import initialState from '../../../services/initial-state';
 
 const PriceRangeCollapse = connect(({ statistics, filter }) => ({
   maxPrice: statistics.maxPrice,
@@ -159,7 +167,7 @@ const MakerModelCollapse = connect(({ filter, makers }) => ({
 
   return (
     <CollapseCriteria
-      title="Maker Model"
+      title="Maker & Model"
       iconClass={'flaticon-sedan-car-front'}
       isActive={true}
     >
@@ -387,32 +395,47 @@ const ColorCollapse = connect(({ filter }) => ({
   );
 });
 
-const HasAccidentBox = connect(({ filter }) => ({
+const HasAccidentCollapse = connect(({ filter }) => ({
   hasAccident: filter.hasAccident,
 }))(({ register, hasAccident }) => {
-  const [checkHasAccident, setCheckedHasAccident] = React.useState(
-    hasAccident || ''
-  );
+  const [selected, setSelected] = React.useState(hasAccident || '');
+
   return (
-    <CheckBoxContainer>
-      <input
-        name="hasAccident"
-        type="checkbox"
-        id="hasAccident"
-        ref={register}
-        value={checkHasAccident}
-        onChange={(event) => setCheckedHasAccident(event.target.checked)}
-      />
-      <label htmlFor="hasAccident">Has Accident</label>
-    </CheckBoxContainer>
+    <CollapseCriteria
+      title="Has Accident"
+      iconClass={'flaticon-car-accident'}
+      isActive={true}
+    >
+      <SelectGroup>
+        <SelectWrapper>
+          <select
+            as="select"
+            id="accident-select"
+            name="hasAccident"
+            ref={register}
+            value={selected}
+            onChange={(event) => setSelected(event.target.value)}
+          >
+            <option value="">Show Also</option>
+            <option value="false">Don't Show</option>
+            <option value="true">Show Only</option>
+          </select>
+        </SelectWrapper>
+      </SelectGroup>
+    </CollapseCriteria>
   );
 });
 
-const Filters = ({ filter, createFilter, metadata }) => {
-  const { register, handleSubmit } = useForm({
+const Filters = ({
+  filter,
+  statistics,
+  createFilter,
+  resetFilter,
+  metadata,
+}) => {
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: filter,
   });
-  console.log(metadata);
 
   const onSubmit = (data) => {
     createFilter({ ...filter, ...data });
@@ -420,6 +443,31 @@ const Filters = ({ filter, createFilter, metadata }) => {
 
   return (
     <FiltersContainer>
+      <SearchFiltersSection className="search-filters-section">
+        <SearchFiltersHeader>
+          <div className="page-title">Search Filters</div>
+          <button
+            onClick={() => {
+              reset({
+                ...initialState.filter,
+                priceTo: statistics.maxPrice,
+                priceFrom: statistics.minPrice,
+                yearTo: statistics.maxYear,
+                yearFrom: statistics.minYear,
+                mileageTo: statistics.maxMileage,
+                mileageFrom: statistics.minMileage,
+              });
+              document.querySelectorAll('.range-slider').forEach((slider) => {
+                slider.noUiSlider.reset();
+              });
+              resetFilter();
+            }}
+            className="clear-button"
+          >
+            Reset
+          </button>
+        </SearchFiltersHeader>
+      </SearchFiltersSection>
       <form onSubmit={handleSubmit(onSubmit)}>
         <MakerModelCollapse register={register} />
         <PriceRangeCollapse register={register} />
@@ -434,6 +482,7 @@ const Filters = ({ filter, createFilter, metadata }) => {
         {metadata && (
           <FuelTypeCollapse register={register} fuelTypes={metadata.fuelType} />
         )}
+        <HasAccidentCollapse register={register} />
         {metadata && (
           <FeaturesCollapse register={register} feature={metadata.feature} />
         )}
@@ -458,14 +507,12 @@ const Filters = ({ filter, createFilter, metadata }) => {
         {metadata && (
           <ColorCollapse register={register} colors={metadata.color} />
         )}
-        <HasAccidentBox register={register} />
-
         <input type="submit" value="Submit" />
       </form>
     </FiltersContainer>
   );
 };
 
-const mapStateToProps = ({ filter }) => ({ filter });
+const mapStateToProps = ({ filter, statistics }) => ({ filter, statistics });
 
-export default connect(mapStateToProps, { createFilter })(Filters);
+export default connect(mapStateToProps, { createFilter, resetFilter })(Filters);

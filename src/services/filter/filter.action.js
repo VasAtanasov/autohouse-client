@@ -5,6 +5,14 @@ export const createFilterAction = (filter) => ({
   payload: filter,
 });
 
+export const resetFilterAction = () => ({
+  type: types.RESET_FILTER,
+});
+
 export const createFilter = (filter) => (dispatch) => {
   dispatch(createFilterAction(filter));
+};
+
+export const resetFilter = () => (dispatch) => {
+  dispatch(resetFilterAction());
 };

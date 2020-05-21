@@ -1,1 +1,2 @@
 export const CREATE_FILTER = 'CREATE_FILTER';
+export const RESET_FILTER = 'RESET_FILTER';

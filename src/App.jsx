@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Header, Footer, PrivateRoute } from './components';
 import { MainContainer, AppContainer } from './containers';
+import { NotFound } from './pages';
 import Theme from './Theme';
 import { GlobalStyles } from './global';
 import { ToastContainer } from 'react-toastify';
@@ -36,6 +37,7 @@ const App = () => {
                 />
               )
             )}
+            <Route component={NotFound} />
           </Switch>
         </MainContainer>
         <Footer />

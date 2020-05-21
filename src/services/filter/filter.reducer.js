@@ -10,6 +10,8 @@ export const filter = (state = { ...FILTER_INITIAL_STATE }, action) => {
         ...FILTER_INITIAL_STATE,
         ...action.payload,
       };
+    case types.RESET_FILTER:
+      return FILTER_INITIAL_STATE;
     default:
       return state;
   }

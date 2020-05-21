@@ -175,7 +175,7 @@ export default {
     color: null,
     fuelType: null,
     features: [],
-    hasAccident: false,
+    hasAccident: null,
     priceFrom: null,
     priceTo: null,
     seller: [],

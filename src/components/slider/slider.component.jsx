@@ -54,7 +54,7 @@ const Slider = ({ min, max, from, to, filter, register }) => {
         />
       </InputWrapper>
       <SliderContainer className="slider-container">
-        <div id={`slider_${filter}`} />
+        <div id={`slider_${filter}`} className="range-slider" />
       </SliderContainer>
     </SliderWrapper>
   );
