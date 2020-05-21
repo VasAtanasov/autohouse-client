@@ -1,17 +1,5 @@
 import styled from 'styled-components';
 
-export const FiltersContainer = styled.div`
-  display: none;
-  background-color: white;
-  padding: 1rem;
-
-  @media screen and (min-width: 992px) {
-    display: block;
-    flex-basis: 25%;
-    margin-right: 12px;
-  }
-`;
-
 export const SearchFiltersSection = styled.div`
   user-select: none;
   outline: none;

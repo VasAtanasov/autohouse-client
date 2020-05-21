@@ -22,10 +22,18 @@ import {
   fetchAppStateSuccess,
   fetchAppStateFailure,
 } from '../../services/common/common.actions';
-import { ListWrapper, ListContainer } from './offer-list.styles';
+import {
+  ListWrapper,
+  ListContainer,
+  FiltersContainer,
+  FiltersStyledModal,
+  ToggleButtonContainer,
+  FiltersModalToggleButton,
+} from './offer-list.styles';
 import { Spinner } from '../../components';
 import Filters from './filters/filters.component';
 import List from './list/list.component';
+import withSizes from 'react-sizes';
 
 const INITIAL_STATE = {
   loading: true,
@@ -77,7 +85,68 @@ const offerListReducer = (state, action) => {
   }
 };
 
-const OfferList = ({ filter }) => {
+const FiltersModal = ({ metadata }) => {
+  const [visible, setVisible] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
+  const [awake, setAwake] = React.useState(false);
+  const [sleep, setSleep] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > 250) {
+        if (!scrolled) {
+          setScrolled(true);
+        }
+      }
+      if (currentScrollY < 250) {
+        if (scrolled) {
+          setScrolled(false);
+          setSleep(false);
+        }
+      }
+      if (currentScrollY > 550) {
+        if (!awake) {
+          setAwake(true);
+        }
+      }
+      if (currentScrollY < 550) {
+        if (awake) {
+          setAwake(false);
+          setSleep(true);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [scrolled, awake, sleep]);
+
+  return (
+    <React.Fragment>
+      <ToggleButtonContainer scrolled={scrolled} awake={awake} sleep={sleep}>
+        <FiltersModalToggleButton onClick={() => setVisible(true)}>
+          Filters
+        </FiltersModalToggleButton>
+      </ToggleButtonContainer>
+      <FiltersStyledModal
+        centered
+        animation={false}
+        backdrop={false}
+        show={visible}
+        onHide={() => setVisible(false)}
+      >
+        <Filters metadata={metadata} />
+      </FiltersStyledModal>
+    </React.Fragment>
+  );
+};
+
+const OfferList = ({ filter, width }) => {
   const [state, dispatch] = React.useReducer(
     offerListReducer,
     Object.assign({}, INITIAL_STATE)
@@ -122,18 +191,23 @@ const OfferList = ({ filter }) => {
 
   return (
     <ListWrapper className="list-wrapper">
-      <Filters {...app} />
+      <FiltersContainer>
+        {width && width >= 992 && <Filters {...app} />}
+      </FiltersContainer>
       <ListContainer>
         {loading ? (
           <Spinner />
         ) : (
-          <List
-            page={page}
-            handleSort={selectSort}
-            selectedSort={sort}
-            gotToPage={gotToPage}
-            app={app}
-          />
+          <React.Fragment>
+            {width && width < 992 && <FiltersModal {...app} />}
+            <List
+              page={page}
+              handleSort={selectSort}
+              selectedSort={sort}
+              gotToPage={gotToPage}
+              app={app}
+            />
+          </React.Fragment>
         )}
       </ListContainer>
     </ListWrapper>
@@ -142,4 +216,9 @@ const OfferList = ({ filter }) => {
 
 const mapStateToProps = ({ filter }) => ({ filter });
 
-export default connect(mapStateToProps)(OfferList);
+const mapSizesToProps = ({ width }) => ({
+  isMobile: width < 480,
+  width,
+});
+
+export default connect(mapStateToProps)(withSizes(mapSizesToProps)(OfferList));

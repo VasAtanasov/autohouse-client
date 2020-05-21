@@ -1,4 +1,79 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import Modal from 'react-bootstrap/Modal';
+
+export const FiltersStyledModal = styled(Modal)`
+  background-color: white;
+
+  .modal-dialog {
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 1rem;
+
+    .modal-content {
+      border: none;
+    }
+  }
+`;
+
+export const ToggleButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1rem;
+  margin-bottom: 10px;
+  width: 100%;
+  z-index: 3;
+
+  ${({ scrolled }) =>
+    scrolled &&
+    css`
+      position: fixed;
+      margin-top: -250px;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+      ${({ awake }) =>
+        awake &&
+        css`
+          background-color: #fff;
+          padding: 1rem;
+          margin-top: -83px;
+          margin-bottom: 0;
+          transition: 0.3s all ease-out;
+        `}
+
+      ${({ sleep }) =>
+        sleep &&
+        css`
+          transition: 0.3s all ease-out;
+        `}
+    `}
+`;
+
+export const FiltersModalToggleButton = styled.button`
+  user-select: none;
+  /* font-size: 1rem;  */
+  font-weight: 600;
+  line-height: 1.3;
+  display: inline-block;
+  appearance: none;
+  border: none;
+  border-radius: 4px;
+  transition: all 0.2s ease-in;
+  transition-property: color, background-color, border-color;
+  text-decoration: none;
+  text-align: center;
+  background-color: ${({ theme }) => theme.colors.defaultColor};
+  color: #fff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  padding: 4px 16px;
+
+  :hover {
+    background-color: #b93e32;
+  }
+
+  :active {
+    background-color: #971e1a;
+  }
+`;
 
 export const ListWrapper = styled.div`
   display: flex;
@@ -22,6 +97,18 @@ export const ListContainer = styled.div`
 export const SelectGroup = styled.div`
   label {
     font-weight: 700;
+  }
+`;
+
+export const FiltersContainer = styled.div`
+  display: none;
+  background-color: white;
+  padding: 1rem;
+
+  @media screen and (min-width: 992px) {
+    display: block;
+    flex-basis: 25%;
+    margin-right: 12px;
   }
 `;
 

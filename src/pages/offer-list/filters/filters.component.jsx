@@ -7,11 +7,7 @@ import {
   createFilter,
   resetFilter,
 } from '../../../services/filter/filter.action';
-import {
-  FiltersContainer,
-  SearchFiltersSection,
-  SearchFiltersHeader,
-} from './filters.styles';
+import { SearchFiltersSection, SearchFiltersHeader } from './filters.styles';
 import { SelectWrapper, SelectGroup } from '../offer-list.styles';
 import initialState from '../../../services/initial-state';
 
@@ -442,7 +438,7 @@ const Filters = ({
   };
 
   return (
-    <FiltersContainer>
+    <React.Fragment>
       <SearchFiltersSection className="search-filters-section">
         <SearchFiltersHeader>
           <div className="page-title">Search Filters</div>
@@ -509,7 +505,7 @@ const Filters = ({
         )}
         <input type="submit" value="Submit" />
       </form>
-    </FiltersContainer>
+    </React.Fragment>
   );
 };
 
