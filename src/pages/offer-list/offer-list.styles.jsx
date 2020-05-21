@@ -11,8 +11,64 @@ export const FiltersStyledModal = styled(Modal)`
 
     .modal-content {
       border: none;
+      form {
+        margin-bottom: 55px;
+      }
     }
   }
+`;
+
+export const SearchButtonsWrapper = styled.div`
+  top: 0;
+  right: 0;
+  width: 100%;
+  background-color: #fff;
+  border-left: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 0 10px 0 #cacdd0;
+  padding-right: 60%;
+
+  .button {
+    display: inline-block;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    color: ${({ theme }) => theme.colors.defaultColor};
+    margin-right: 10px;
+    background: none;
+    border: none;
+    padding: 17px 9px;
+    font-size: 14px;
+    width: 50%;
+    margin: 0;
+
+    &.apply {
+      position: absolute;
+      right: 20px;
+      bottom: 5px;
+      background-color: ${({ theme }) => theme.colors.defaultColor};
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 1px 1px 8px 1px #999;
+      width: 50%;
+      font-size: 14px;
+      padding: 19px 0;
+      height: 55px;
+      top: -15px;
+      border-radius: 40px;
+    }
+  }
+`;
+
+export const SearchButtonsContainer = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 `;
 
 export const ToggleButtonContainer = styled.div`

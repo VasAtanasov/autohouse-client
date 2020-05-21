@@ -29,6 +29,8 @@ import {
   FiltersStyledModal,
   ToggleButtonContainer,
   FiltersModalToggleButton,
+  SearchButtonsWrapper,
+  SearchButtonsContainer,
 } from './offer-list.styles';
 import { Spinner } from '../../components';
 import Filters from './filters/filters.component';
@@ -141,6 +143,17 @@ const FiltersModal = ({ metadata }) => {
         onHide={() => setVisible(false)}
       >
         <Filters metadata={metadata} />
+        <SearchButtonsContainer>
+          <SearchButtonsWrapper>
+            <button className="button apply" form="search-filter-form">
+              Apply
+            </button>
+            <div className="button cancel" onClick={() => setVisible(false)}>
+              Cancel
+            </div>
+            <div className="button save">Save</div>
+          </SearchButtonsWrapper>
+        </SearchButtonsContainer>
       </FiltersStyledModal>
     </React.Fragment>
   );

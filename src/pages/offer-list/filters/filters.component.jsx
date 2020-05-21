@@ -7,9 +7,14 @@ import {
   createFilter,
   resetFilter,
 } from '../../../services/filter/filter.action';
-import { SearchFiltersSection, SearchFiltersHeader } from './filters.styles';
+import {
+  SearchFiltersSection,
+  SearchFiltersHeader,
+  SearchButton,
+} from './filters.styles';
 import { SelectWrapper, SelectGroup } from '../offer-list.styles';
 import initialState from '../../../services/initial-state';
+import withSizes from 'react-sizes';
 
 const PriceRangeCollapse = connect(({ statistics, filter }) => ({
   maxPrice: statistics.maxPrice,
@@ -428,6 +433,7 @@ const Filters = ({
   createFilter,
   resetFilter,
   metadata,
+  width,
 }) => {
   const { register, handleSubmit, reset } = useForm({
     defaultValues: filter,
@@ -435,6 +441,7 @@ const Filters = ({
 
   const onSubmit = (data) => {
     createFilter({ ...filter, ...data });
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -464,7 +471,7 @@ const Filters = ({
           </button>
         </SearchFiltersHeader>
       </SearchFiltersSection>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form id="search-filter-form" onSubmit={handleSubmit(onSubmit)}>
         <MakerModelCollapse register={register} />
         <PriceRangeCollapse register={register} />
         <YearRangeCollapse register={register} />
@@ -503,12 +510,24 @@ const Filters = ({
         {metadata && (
           <ColorCollapse register={register} colors={metadata.color} />
         )}
-        <input type="submit" value="Submit" />
+
+        {width && width >= 992 && (
+          <SearchButton>
+            <i className="flaticon-searching-car"></i>
+            <span>Search</span>
+          </SearchButton>
+        )}
       </form>
     </React.Fragment>
   );
 };
 
+const mapSizesToProps = ({ width }) => ({
+  width,
+});
+
 const mapStateToProps = ({ filter, statistics }) => ({ filter, statistics });
 
-export default connect(mapStateToProps, { createFilter, resetFilter })(Filters);
+export default connect(mapStateToProps, { createFilter, resetFilter })(
+  withSizes(mapSizesToProps)(Filters)
+);

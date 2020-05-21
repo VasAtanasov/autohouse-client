@@ -28,3 +28,45 @@ export const SearchFiltersHeader = styled.div`
     color: ${({ theme }) => theme.colors.defaultColor};
   }
 `;
+
+export const SearchButton = styled.button`
+  width: 100%;
+  height: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 1px solid ${({ theme }) => theme.colors.defaultColor};
+  transition: all 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+
+  :active {
+    color: ${({ theme }) => theme.colors.defaultColor};
+  }
+
+  :focus {
+    border-color: ${({ theme }) => theme.colors.defaultColor};
+  }
+
+  span,
+  i:before {
+    color: ${({ theme }) => theme.colors.defaultColor};
+  }
+
+  i:before {
+    margin-left: 0px;
+    margin-right: 10px;
+    font-size: 25px;
+  }
+
+  :hover {
+    background-color: ${({ theme }) => theme.colors.defaultColor};
+    border-color: ${({ theme }) => theme.colors.defaultColor};
+
+    span,
+    i:before {
+      color: white;
+    }
+  }
+`;
