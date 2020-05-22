@@ -7,7 +7,7 @@ export const fetchMakersStart = () => ({
 
 export const fetchMakersSuccess = (response) => ({
   type: types.FETCH_MAKERS_SUCCESS,
-  payload: response.data,
+  payload: response.data.data,
 });
 
 export const fetchMakersFailure = (response) => ({
@@ -31,7 +31,7 @@ export const fetchStatisticsStart = () => ({
 
 export const fetchStatisticsSuccess = (response) => ({
   type: types.FETCH_STATISTICS_SUCCESS,
-  payload: response,
+  payload: response.data,
 });
 
 export const fetchStatisticsFailure = (error) => ({
@@ -56,7 +56,7 @@ export const fetchAppStateStart = () => ({
 
 export const fetchAppStateSuccess = (response) => ({
   type: types.FETCH_APP_STATE_SUCCESS,
-  payload: response.data,
+  payload: response.data.data,
 });
 
 export const fetchAppStateFailure = (error) => ({

@@ -39,7 +39,7 @@ import withSizes from 'react-sizes';
 
 const INITIAL_STATE = {
   loading: true,
-  page: {},
+  page: null,
   error: null,
   filter: null,
   sort: 'createdAt,desc',
@@ -176,7 +176,7 @@ const OfferList = ({ filter, width }) => {
       try {
         dispatch(searchOffersStart());
         const response = await searchOffers(filter, sort, pageNumber);
-        dispatch(searchOffersSuccess(response.data.page));
+        dispatch(searchOffersSuccess(response.data.data.page));
       } catch (error) {
         dispatch(searchOffersFailure(error));
       }
@@ -208,7 +208,7 @@ const OfferList = ({ filter, width }) => {
         {width && width >= 992 && <Filters {...app} />}
       </FiltersContainer>
       <ListContainer>
-        {loading ? (
+        {loading || !page ? (
           <Spinner />
         ) : (
           <React.Fragment>

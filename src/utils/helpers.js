@@ -17,3 +17,7 @@ export function isEmpty(obj) {
   }
   return true;
 }
+
+export const nullToEmptyString = (value) => {
+  return value === null ? '' : value;
+};

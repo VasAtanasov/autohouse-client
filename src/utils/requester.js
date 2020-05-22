@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { handleResponse, handleError } from './api-utils';
 
 const API_BASE_URL = 'http://localhost:8007/api';
 const instance = axios.create({
@@ -13,17 +12,13 @@ const http = (() => {
         'Content-Type': 'application/json',
       },
     };
-    const onSuccess = options.onSuccess || handleResponse;
-    const onError = options.onError || handleError;
-    options = Object.assign({}, defaults, options);
-    options.method = method;
-    options.url = url;
-    try {
-      const response = await instance(options);
-      return onSuccess(response);
-    } catch (error) {
-      return onError(error);
-    }
+
+    return instance({
+      ...defaults,
+      ...options,
+      method,
+      url,
+    });
   };
 
   const get = function (url, options) {

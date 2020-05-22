@@ -11,7 +11,7 @@ export default createGlobalStyle`
         font-size: 100%;
         font: inherit;
         vertical-align: baseline;
-        color: #000;
+        ${'' /* color: #000; */}
     }
 
     /* HTML5 display-role reset for older browsers */

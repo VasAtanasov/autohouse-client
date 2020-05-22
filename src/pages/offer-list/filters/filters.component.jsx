@@ -15,6 +15,7 @@ import {
 import { SelectWrapper, SelectGroup } from '../offer-list.styles';
 import initialState from '../../../services/initial-state';
 import withSizes from 'react-sizes';
+import { nullToEmptyString } from '../../../utils/helpers';
 
 const PriceRangeCollapse = connect(({ statistics, filter }) => ({
   maxPrice: statistics.maxPrice,
@@ -163,8 +164,20 @@ const MakerModelCollapse = connect(({ filter, makers }) => ({
   trim: filter.trim,
   makers: makers.makers,
 }))(({ register, maker, model, trim, makers }) => {
-  const [selectedMaker, setSelectedMaker] = React.useState(maker || '');
-  const [selectedModel, setSelectedModel] = React.useState(model || '');
+  const [selectedMaker, setSelectedMaker] = React.useState(
+    nullToEmptyString(maker)
+  );
+  const [selectedModel, setSelectedModel] = React.useState(
+    nullToEmptyString(model)
+  );
+
+  React.useEffect(() => {
+    setSelectedMaker(nullToEmptyString(maker));
+  }, [maker]);
+
+  React.useEffect(() => {
+    setSelectedModel(nullToEmptyString(model));
+  }, [model]);
 
   return (
     <CollapseCriteria
@@ -224,8 +237,12 @@ const FuelTypeCollapse = connect(({ filter }) => ({
   fuelType: filter.fuelType,
 }))(({ register, fuelType, fuelTypes }) => {
   const [selectedFuelType, setSelectedFuelType] = React.useState(
-    fuelType || ''
+    nullToEmptyString(fuelType)
   );
+
+  React.useEffect(() => {
+    setSelectedFuelType(nullToEmptyString(fuelType));
+  }, [fuelType]);
 
   return (
     <CollapseCriteria
@@ -260,8 +277,12 @@ const BodyStyleCollapse = connect(({ filter }) => ({
   fuelType: filter.fuelType,
 }))(({ register, bodyStyle, bodyStyles }) => {
   const [selectedBodyStyle, setSelectedBodyStyle] = React.useState(
-    bodyStyle || ''
+    nullToEmptyString(bodyStyle)
   );
+
+  React.useEffect(() => {
+    setSelectedBodyStyle(nullToEmptyString(bodyStyle));
+  }, [bodyStyle]);
 
   return (
     <CollapseCriteria
@@ -296,8 +317,12 @@ const TransmissionCollapse = connect(({ filter }) => ({
   transmission: filter.transmission,
 }))(({ register, transmission, transmissions }) => {
   const [selectedTransmission, setSelectedTransmission] = React.useState(
-    transmission || ''
+    nullToEmptyString(transmission)
   );
+
+  React.useEffect(() => {
+    setSelectedTransmission(nullToEmptyString(transmission));
+  }, [transmission]);
 
   return (
     <CollapseCriteria
@@ -331,7 +356,13 @@ const TransmissionCollapse = connect(({ filter }) => ({
 const DriveCollapse = connect(({ filter }) => ({
   drive: filter.drive,
 }))(({ register, drive, drives }) => {
-  const [selectedDrive, setSelectedDrive] = React.useState(drive || '');
+  const [selectedDrive, setSelectedDrive] = React.useState(
+    nullToEmptyString(drive)
+  );
+
+  React.useEffect(() => {
+    setSelectedDrive(nullToEmptyString(drive));
+  }, [drive]);
 
   return (
     <CollapseCriteria
@@ -365,7 +396,13 @@ const DriveCollapse = connect(({ filter }) => ({
 const ColorCollapse = connect(({ filter }) => ({
   color: filter.color,
 }))(({ register, color, colors }) => {
-  const [selectedColor, setSelectedColor] = React.useState(color || '');
+  const [selectedColor, setSelectedColor] = React.useState(
+    nullToEmptyString(color)
+  );
+
+  React.useEffect(() => {
+    setSelectedColor(nullToEmptyString(color));
+  }, [color]);
 
   return (
     <CollapseCriteria
@@ -399,7 +436,13 @@ const ColorCollapse = connect(({ filter }) => ({
 const HasAccidentCollapse = connect(({ filter }) => ({
   hasAccident: filter.hasAccident,
 }))(({ register, hasAccident }) => {
-  const [selected, setSelected] = React.useState(hasAccident || '');
+  const [selected, setSelected] = React.useState(
+    nullToEmptyString(hasAccident)
+  );
+
+  React.useEffect(() => {
+    setSelected(nullToEmptyString(hasAccident));
+  }, [hasAccident]);
 
   return (
     <CollapseCriteria

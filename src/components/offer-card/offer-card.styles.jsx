@@ -58,6 +58,7 @@ export const OfferCardHeadline = styled.div`
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
+          color: #333;
 
           @media all and (min-width: 768px) {
             overflow: visible;
@@ -69,6 +70,7 @@ export const OfferCardHeadline = styled.div`
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
+          color: #333;
         }
       }
     }

@@ -1,17 +1,17 @@
 # Details
 
-Date : 2020-05-21 23:27:00
+Date : 2020-05-22 21:23:28
 
 Directory c:\Users\vasat\Desktop\GitHub\autohouse-client\src
 
-Total : 116 files,  4873 codes, 44 comments, 513 blanks, all 5430 lines
+Total : 127 files,  5465 codes, 75 comments, 570 blanks, all 6110 lines
 
 [summary](results.md)
 
 ## Files
 | filename | language | code | comment | blank | total |
 | :--- | :--- | ---: | ---: | ---: | ---: |
-| [src/App.jsx](/src/App.jsx) | JavaScript | 47 | 0 | 3 | 50 |
+| [src/App.jsx](/src/App.jsx) | JavaScript | 48 | 0 | 4 | 52 |
 | [src/Theme.jsx](/src/Theme.jsx) | JavaScript | 42 | 0 | 4 | 46 |
 | [src/components/auth/private-route.component.jsx](/src/components/auth/private-route.component.jsx) | JavaScript | 26 | 0 | 6 | 32 |
 | [src/components/checkbox/checkbox.component.jsx](/src/components/checkbox/checkbox.component.jsx) | JavaScript | 9 | 0 | 3 | 12 |
@@ -19,14 +19,16 @@ Total : 116 files,  4873 codes, 44 comments, 513 blanks, all 5430 lines
 | [src/components/close-button/close-button.component.jsx](/src/components/close-button/close-button.component.jsx) | JavaScript | 5 | 0 | 2 | 7 |
 | [src/components/close-button/close-button.styles.jsx](/src/components/close-button/close-button.styles.jsx) | JavaScript | 25 | 0 | 3 | 28 |
 | [src/components/close-button/icon/close.svg](/src/components/close-button/icon/close.svg) | XML | 1 | 0 | 0 | 1 |
-| [src/components/footer/footer.component.jsx](/src/components/footer/footer.component.jsx) | JavaScript | 4 | 0 | 4 | 8 |
-| [src/components/footer/footer.styles.jsx](/src/components/footer/footer.styles.jsx) | JavaScript | 9 | 0 | 2 | 11 |
+| [src/components/footer/footer.component.jsx](/src/components/footer/footer.component.jsx) | JavaScript | 13 | 0 | 3 | 16 |
+| [src/components/footer/footer.styles.jsx](/src/components/footer/footer.styles.jsx) | JavaScript | 13 | 0 | 2 | 15 |
 | [src/components/header/header.component.jsx](/src/components/header/header.component.jsx) | JavaScript | 21 | 0 | 3 | 24 |
 | [src/components/header/header.styles.jsx](/src/components/header/header.styles.jsx) | JavaScript | 39 | 0 | 4 | 43 |
 | [src/components/hero/hero.component.jsx](/src/components/hero/hero.component.jsx) | JavaScript | 11 | 0 | 3 | 14 |
 | [src/components/hero/hero.styles.jsx](/src/components/hero/hero.styles.jsx) | JavaScript | 46 | 0 | 3 | 49 |
-| [src/components/index.js](/src/components/index.js) | JavaScript | 26 | 0 | 2 | 28 |
+| [src/components/index.js](/src/components/index.js) | JavaScript | 28 | 0 | 2 | 30 |
 | [src/components/list-item-loader/list-item-load.styles.jsx](/src/components/list-item-loader/list-item-load.styles.jsx) | JavaScript | 2 | 0 | 2 | 4 |
+| [src/components/loader/loader.component.jsx](/src/components/loader/loader.component.jsx) | JavaScript | 12 | 0 | 3 | 15 |
+| [src/components/loader/loader.styles.jsx](/src/components/loader/loader.styles.jsx) | JavaScript | 26 | 0 | 4 | 30 |
 | [src/components/modal/model.styles.jsx](/src/components/modal/model.styles.jsx) | JavaScript | 50 | 0 | 3 | 53 |
 | [src/components/navigation/bar/bar.component.jsx](/src/components/navigation/bar/bar.component.jsx) | JavaScript | 11 | 0 | 3 | 14 |
 | [src/components/navigation/bar/bar.styles.jsx](/src/components/navigation/bar/bar.styles.jsx) | JavaScript | 26 | 0 | 2 | 28 |
@@ -35,7 +37,7 @@ Total : 116 files,  4873 codes, 44 comments, 513 blanks, all 5430 lines
 | [src/components/navigation/icon/user-icon.component.jsx](/src/components/navigation/icon/user-icon.component.jsx) | JavaScript | 24 | 0 | 3 | 27 |
 | [src/components/navigation/links/authenticated.component.jsx](/src/components/navigation/links/authenticated.component.jsx) | JavaScript | 3 | 0 | 3 | 6 |
 | [src/components/navigation/links/index.js](/src/components/navigation/links/index.js) | JavaScript | 3 | 0 | 2 | 5 |
-| [src/components/navigation/links/public.component.jsx](/src/components/navigation/links/public.component.jsx) | JavaScript | 9 | 0 | 3 | 12 |
+| [src/components/navigation/links/public.component.jsx](/src/components/navigation/links/public.component.jsx) | JavaScript | 12 | 0 | 3 | 15 |
 | [src/components/navigation/navigation.component.jsx](/src/components/navigation/navigation.component.jsx) | JavaScript | 28 | 0 | 3 | 31 |
 | [src/components/navigation/navigation.styles.jsx](/src/components/navigation/navigation.styles.jsx) | JavaScript | 90 | 0 | 7 | 97 |
 | [src/components/offer-card/offer-card.component.jsx](/src/components/offer-card/offer-card.component.jsx) | JavaScript | 97 | 0 | 3 | 100 |
@@ -57,7 +59,7 @@ Total : 116 files,  4873 codes, 44 comments, 513 blanks, all 5430 lines
 | [src/global/styles/shared-styles.jsx](/src/global/styles/shared-styles.jsx) | JavaScript | 30 | 0 | 2 | 32 |
 | [src/hoc/index.js](/src/hoc/index.js) | JavaScript | 2 | 0 | 2 | 4 |
 | [src/hoc/with-spinner/with-spinner.component.jsx](/src/hoc/with-spinner/with-spinner.component.jsx) | JavaScript | 6 | 0 | 4 | 10 |
-| [src/index.js](/src/index.js) | JavaScript | 22 | 0 | 3 | 25 |
+| [src/index.js](/src/index.js) | JavaScript | 30 | 2 | 3 | 35 |
 | [src/pages/home/components/card-body-style/body-style.component.jsx](/src/pages/home/components/card-body-style/body-style.component.jsx) | JavaScript | 13 | 0 | 3 | 16 |
 | [src/pages/home/components/card-body-style/body-style.container.jsx](/src/pages/home/components/card-body-style/body-style.container.jsx) | JavaScript | 36 | 0 | 7 | 43 |
 | [src/pages/home/components/card-body-style/body-style.styles.jsx](/src/pages/home/components/card-body-style/body-style.styles.jsx) | JavaScript | 60 | 0 | 4 | 64 |
@@ -83,31 +85,36 @@ Total : 116 files,  4873 codes, 44 comments, 513 blanks, all 5430 lines
 | [src/pages/home/components/quick-search/icon/search-icon.svg](/src/pages/home/components/quick-search/icon/search-icon.svg) | XML | 1 | 0 | 0 | 1 |
 | [src/pages/home/components/quick-search/maker-modal.component.jsx](/src/pages/home/components/quick-search/maker-modal.component.jsx) | JavaScript | 175 | 0 | 9 | 184 |
 | [src/pages/home/components/quick-search/quick-search.component.jsx](/src/pages/home/components/quick-search/quick-search.component.jsx) | JavaScript | 23 | 0 | 3 | 26 |
-| [src/pages/home/components/quick-search/quick-search.styles.jsx](/src/pages/home/components/quick-search/quick-search.styles.jsx) | JavaScript | 258 | 5 | 21 | 284 |
-| [src/pages/home/components/quick-search/view-all-button.component.jsx](/src/pages/home/components/quick-search/view-all-button.component.jsx) | JavaScript | 19 | 0 | 4 | 23 |
+| [src/pages/home/components/quick-search/quick-search.styles.jsx](/src/pages/home/components/quick-search/quick-search.styles.jsx) | JavaScript | 223 | 5 | 17 | 245 |
+| [src/pages/home/components/quick-search/view-all-button.component.jsx](/src/pages/home/components/quick-search/view-all-button.component.jsx) | JavaScript | 20 | 0 | 4 | 24 |
 | [src/pages/home/components/section-title/section-title.component.jsx](/src/pages/home/components/section-title/section-title.component.jsx) | JavaScript | 8 | 0 | 3 | 11 |
 | [src/pages/home/components/section-title/section-title.styles.jsx](/src/pages/home/components/section-title/section-title.styles.jsx) | JavaScript | 28 | 0 | 3 | 31 |
-| [src/pages/home/homepage.component.jsx](/src/pages/home/homepage.component.jsx) | JavaScript | 66 | 0 | 9 | 75 |
+| [src/pages/home/homepage.component.jsx](/src/pages/home/homepage.component.jsx) | JavaScript | 66 | 0 | 8 | 74 |
 | [src/pages/home/homepage.styles.jsx](/src/pages/home/homepage.styles.jsx) | JavaScript | 19 | 0 | 3 | 22 |
-| [src/pages/index.js](/src/pages/index.js) | JavaScript | 4 | 0 | 2 | 6 |
+| [src/pages/index.js](/src/pages/index.js) | JavaScript | 5 | 0 | 2 | 7 |
+| [src/pages/login-register/login-register.component.jsx](/src/pages/login-register/login-register.component.jsx) | JavaScript | 54 | 0 | 4 | 58 |
+| [src/pages/login-register/login-register.container.jsx](/src/pages/login-register/login-register.container.jsx) | JavaScript | 123 | 1 | 12 | 136 |
+| [src/pages/login-register/login-register.styles.jsx](/src/pages/login-register/login-register.styles.jsx) | JavaScript | 117 | 0 | 3 | 120 |
+| [src/pages/login-register/login.component.jsx](/src/pages/login-register/login.component.jsx) | JavaScript | 59 | 0 | 5 | 64 |
+| [src/pages/login-register/register.component.jsx](/src/pages/login-register/register.component.jsx) | JavaScript | 91 | 0 | 4 | 95 |
 | [src/pages/not-found/not-found.component.jsx](/src/pages/not-found/not-found.component.jsx) | JavaScript | 15 | 0 | 3 | 18 |
 | [src/pages/not-found/not-found.styles.jsx](/src/pages/not-found/not-found.styles.jsx) | JavaScript | 36 | 0 | 2 | 38 |
 | [src/pages/offer-list/collapse-criteria/collapse-criteria.component.jsx](/src/pages/offer-list/collapse-criteria/collapse-criteria.component.jsx) | JavaScript | 30 | 0 | 4 | 34 |
 | [src/pages/offer-list/collapse-criteria/collapse-criteria.styles.jsx](/src/pages/offer-list/collapse-criteria/collapse-criteria.styles.jsx) | JavaScript | 45 | 0 | 4 | 49 |
 | [src/pages/offer-list/collapse-criteria/icon/arrow.svg](/src/pages/offer-list/collapse-criteria/icon/arrow.svg) | XML | 3 | 0 | 0 | 3 |
-| [src/pages/offer-list/filters/filters.component.jsx](/src/pages/offer-list/filters/filters.component.jsx) | JavaScript | 506 | 0 | 28 | 534 |
+| [src/pages/offer-list/filters/filters.component.jsx](/src/pages/offer-list/filters/filters.component.jsx) | JavaScript | 541 | 0 | 36 | 577 |
 | [src/pages/offer-list/filters/filters.styles.jsx](/src/pages/offer-list/filters/filters.styles.jsx) | JavaScript | 69 | 0 | 4 | 73 |
 | [src/pages/offer-list/list/list.component.jsx](/src/pages/offer-list/list/list.component.jsx) | JavaScript | 105 | 5 | 7 | 117 |
 | [src/pages/offer-list/list/list.styles.jsx](/src/pages/offer-list/list/list.styles.jsx) | JavaScript | 57 | 0 | 7 | 64 |
 | [src/pages/offer-list/offer-list.component.jsx](/src/pages/offer-list/offer-list.component.jsx) | JavaScript | 218 | 0 | 20 | 238 |
-| [src/pages/offer-list/offer-list.styles.jsx](/src/pages/offer-list/offer-list.styles.jsx) | JavaScript | 204 | 0 | 13 | 217 |
+| [src/pages/offer-list/offer-list.styles.jsx](/src/pages/offer-list/offer-list.styles.jsx) | JavaScript | 205 | 0 | 13 | 218 |
 | [src/routes/home.js](/src/routes/home.js) | JavaScript | 8 | 0 | 2 | 10 |
-| [src/routes/index.js](/src/routes/index.js) | JavaScript | 6 | 2 | 2 | 10 |
-| [src/routes/offer.js](/src/routes/offer.js) | JavaScript | 7 | 0 | 2 | 9 |
-| [src/routes/user.js](/src/routes/user.js) | JavaScript | 15 | 0 | 3 | 18 |
+| [src/routes/index.js](/src/routes/index.js) | JavaScript | 8 | 0 | 2 | 10 |
+| [src/routes/offer.js](/src/routes/offer.js) | JavaScript | 8 | 0 | 2 | 10 |
+| [src/routes/user.js](/src/routes/user.js) | JavaScript | 14 | 5 | 4 | 23 |
 | [src/services/common/common.actions.js](/src/services/common/common.actions.js) | JavaScript | 64 | 0 | 13 | 77 |
 | [src/services/common/common.api.js](/src/services/common/common.api.js) | JavaScript | 10 | 0 | 4 | 14 |
-| [src/services/common/common.reducer.js](/src/services/common/common.reducer.js) | JavaScript | 87 | 0 | 8 | 95 |
+| [src/services/common/common.reducer.js](/src/services/common/common.reducer.js) | JavaScript | 62 | 25 | 8 | 95 |
 | [src/services/common/common.selectors.js](/src/services/common/common.selectors.js) | JavaScript | 19 | 0 | 7 | 26 |
 | [src/services/common/common.types.js](/src/services/common/common.types.js) | JavaScript | 9 | 0 | 3 | 12 |
 | [src/services/filter/filter.action.js](/src/services/filter/filter.action.js) | JavaScript | 14 | 0 | 5 | 19 |
@@ -120,12 +127,16 @@ Total : 116 files,  4873 codes, 44 comments, 513 blanks, all 5430 lines
 | [src/services/offer/offer.reducer.js](/src/services/offer/offer.reducer.js) | JavaScript | 44 | 0 | 3 | 47 |
 | [src/services/offer/offer.selectors.js](/src/services/offer/offer.selectors.js) | JavaScript | 11 | 0 | 5 | 16 |
 | [src/services/offer/offer.types.js](/src/services/offer/offer.types.js) | JavaScript | 8 | 0 | 3 | 11 |
-| [src/services/user/user.reducer.js](/src/services/user/user.reducer.js) | JavaScript | 12 | 0 | 2 | 14 |
+| [src/services/user/user.actions.js](/src/services/user/user.actions.js) | JavaScript | 24 | 0 | 5 | 29 |
+| [src/services/user/user.api.js](/src/services/user/user.api.js) | JavaScript | 28 | 0 | 5 | 33 |
+| [src/services/user/user.reducer.js](/src/services/user/user.reducer.js) | JavaScript | 38 | 0 | 6 | 44 |
+| [src/services/user/user.types.js](/src/services/user/user.types.js) | JavaScript | 4 | 0 | 1 | 5 |
 | [src/store/reducer/index.js](/src/store/reducer/index.js) | JavaScript | 19 | 0 | 4 | 23 |
 | [src/store/store/index.js](/src/store/store/index.js) | JavaScript | 21 | 0 | 7 | 28 |
 | [src/utils/api-utils.js](/src/utils/api-utils.js) | JavaScript | 13 | 0 | 3 | 16 |
 | [src/utils/constants.js](/src/utils/constants.js) | JavaScript | 24 | 0 | 4 | 28 |
 | [src/utils/custom-hooks.js](/src/utils/custom-hooks.js) | JavaScript | 87 | 0 | 17 | 104 |
+| [src/utils/helpers.js](/src/utils/helpers.js) | JavaScript | 21 | 0 | 3 | 24 |
 | [src/utils/requester.js](/src/utils/requester.js) | JavaScript | 45 | 0 | 9 | 54 |
 
 [summary](results.md)

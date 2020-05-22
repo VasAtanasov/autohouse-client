@@ -7,16 +7,13 @@ export const loginSetUserLocalStorage = (token, user) => {
 };
 
 export const loginRequestAsync = (data) => async (dispatch) => {
-  try {
-    dispatch({
-      type: types.LOGIN_REQUEST,
-    });
-
-    const response = await userApi.login(data);
-    dispatch({ type: types.SET_USER, user: response.data });
-    loginSetUserLocalStorage(response.data.token, response.data);
-    return response;
-  } catch (error) {}
+  dispatch({
+    type: types.LOGIN_REQUEST,
+  });
+  const response = await userApi.login(data);
+  dispatch({ type: types.SET_USER, user: response.data.data });
+  loginSetUserLocalStorage(response.data.data.token, response.data.data);
+  return response;
 };
 
 export const registerRequestAsync = (data) => async (dispatch) => {

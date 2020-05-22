@@ -14,18 +14,20 @@ import {
   registerRequestAsync,
 } from '../../services/user/user.actions';
 import { useHistory } from 'react-router-dom';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import homeRoutes from '../../routes/home';
 
 const LOGIN = 'LOGIN';
 const REGISTER = 'REGISTER';
-const VERIFY_REGISTRATION = 'VERIFY_REGISTRATION';
+// const VERIFY_REGISTRATION = 'VERIFY_REGISTRATION';
 
 export const CHECK_USERNAME_STATUS_START = 'CHECK_USERNAME_STATUS';
 export const SET_USERNAME = 'SET_USERNAME';
 export const SET_STATUS = 'SET_STATUS';
 export const CHECK_USERNAME_STATUS_ERROR = 'CHECK_USERNAME_STATUS_ERROR';
 export const RESET_STATUS = 'RESET_STATUS';
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
 
 const LOGIN_REGISTER_STATE = {
   loading: false,
@@ -41,6 +43,7 @@ const reducer = (state, action) => {
         status: null,
       };
     case CHECK_USERNAME_STATUS_START:
+    case LOGIN_REQUEST:
       return {
         ...state,
         loading: true,
@@ -57,6 +60,7 @@ const reducer = (state, action) => {
         loading: false,
       };
     case CHECK_USERNAME_STATUS_ERROR:
+    case LOGIN_ERROR:
       return {
         ...state,
         loading: false,
@@ -78,18 +82,25 @@ const LoginRegister = ({ loginRequestAsync, registerRequestAsync }) => {
     try {
       dispatch({ type: CHECK_USERNAME_STATUS_START });
       const response = await loginOrRegister(data);
-      dispatch({ type: SET_STATUS, payload: response.action.status });
+      dispatch({ type: SET_STATUS, payload: response.data.action.status });
     } catch (err) {
       dispatch({ type: CHECK_USERNAME_STATUS_ERROR });
     }
   };
 
   const handleLogin = async (data) => {
-    loginRequestAsync({
-      username,
-      ...data,
-    });
-    history.push(homeRoutes.home.path);
+    try {
+      dispatch({ type: LOGIN_REQUEST });
+      await loginRequestAsync({
+        username,
+        ...data,
+      });
+      toast.success('LOGIN SUCCESSFUL');
+      history.push(homeRoutes.home.path);
+    } catch (err) {
+      toast.error('LOGIN FAILED');
+      dispatch({ type: LOGIN_ERROR });
+    }
   };
 
   const handleRegisterRequest = async (data) => {
@@ -115,6 +126,7 @@ const LoginRegister = ({ loginRequestAsync, registerRequestAsync }) => {
           <LoginForm
             dispatch={dispatch}
             username={username}
+            loading={loading}
             handleLogin={handleLogin}
           />
         ))}

@@ -48,19 +48,7 @@ const ListNavigation = ({
 );
 
 const List = ({ page, sortOptions, handleSort, gotToPage, selectedSort }) => {
-  const {
-    content,
-    // last,
-    totalPages,
-    totalElements,
-    number,
-    // size,
-    // numberOfElements,
-    // first,
-    // empty,
-    pageable,
-  } = page;
-
+  const { content, totalPages, totalElements, number, pageable } = page;
   const { offset, pageSize } = pageable;
   const startOfferNumber = offset + 1;
   const endOfferNumber =

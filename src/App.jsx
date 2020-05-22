@@ -15,7 +15,12 @@ const App = () => {
     <Theme>
       <GlobalStyles />
       <AppContainer>
-        <ToastContainer position="top-center" />
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={true}
+          closeButton={false}
+        />
         <Header />
         <MainContainer>
           <Switch>

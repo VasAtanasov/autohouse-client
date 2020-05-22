@@ -2,10 +2,11 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
+import { Loader } from '../../components';
 
 import { RESET_STATUS } from './login-register.container';
 
-const LoginForm = ({ dispatch, username, handleLogin }) => {
+const LoginForm = ({ dispatch, username, loading, handleLogin }) => {
   const { register, errors, handleSubmit } = useForm({
     mode: 'onChange',
   });
@@ -36,21 +37,28 @@ const LoginForm = ({ dispatch, username, handleLogin }) => {
                 variant="primary"
                 type="submit"
                 block
+                disabled={loading}
               >
-                Sign in
+                {loading ? <Loader small white /> : 'Sign in'}
               </Button>
             </Form.Group>
             <Form.Group controlId="formGroupBackButton">
               <Button
                 as="a"
                 variant="link"
+                disabled={loading}
                 block
                 onClick={() => dispatch({ type: RESET_STATUS })}
               >
-                Go back
+                Go Back
               </Button>
             </Form.Group>
-            <Button as="a" variant="link" className="defaultLink">
+            <Button
+              disabled={loading}
+              as="a"
+              variant="link"
+              className="defaultLink"
+            >
               Forgot your password?
             </Button>
           </fieldset>

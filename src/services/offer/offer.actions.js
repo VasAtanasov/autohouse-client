@@ -17,7 +17,7 @@ export const loadTopOffers = () => async (dispatch) => {
   try {
     dispatch(loadTopOffersStart());
     const response = await offersApi.loadTopOffers();
-    dispatch(loadTopOffersSuccess(response.data));
+    dispatch(loadTopOffersSuccess(response.data.data));
   } catch (error) {
     dispatch(loadTopOffersFailure(error));
   }
@@ -39,6 +39,7 @@ export const searchOffers = (filter) => async (dispatch) => {
   try {
     dispatch(searchOffersStart());
     const response = await offersApi.searchOffers(filter);
+    console.log(response);
     dispatch(searchOffersSuccess(response.data.page));
   } catch (error) {
     dispatch(searchOffersFailure(error));
