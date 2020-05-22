@@ -6,9 +6,19 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import App from './App';
 import { Provider as ReduxProvider } from 'react-redux';
 import { ScrollToTop } from './components';
-
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store/store';
+import { loginSetUserLocalStorage } from './services/user/user.actions';
+
+const token = window.localStorage.getItem('token');
+if (token && token !== 'undefined' && token !== '') {
+  const user = JSON.parse(window.localStorage.getItem('user'));
+  if (user) {
+    // Dispatch action
+    // store.dispatch(setUser(token, user));
+    loginSetUserLocalStorage(token, user);
+  }
+}
 
 render(
   <ReduxProvider store={store}>

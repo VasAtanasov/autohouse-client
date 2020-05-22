@@ -1,9 +1,9 @@
 import home from './home';
-// import user from './user';
+import user from './user';
 import offer from './offer';
 
 export const routes = {
   ...home,
-  // ...user,
+  ...user,
   ...offer,
 };

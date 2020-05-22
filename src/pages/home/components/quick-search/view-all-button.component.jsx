@@ -1,6 +1,7 @@
 import React from 'react';
-import { SearchButton, Loader } from './quick-search.styles';
+import { SearchButton } from './quick-search.styles';
 import { connect } from 'react-redux';
+import { Loader } from '../../../../components';
 
 const ViewAllButton = ({ loading, totalOffers, handleSearch }) => {
   return (

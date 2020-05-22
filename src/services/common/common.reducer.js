@@ -66,29 +66,29 @@ export const statistics = (state = { ...STATISTICS_INITIAL_STATE }, action) => {
   }
 };
 
-const APP_INITIAL_STATE = {
-  loading: true,
-};
+// const APP_INITIAL_STATE = {
+//   loading: true,
+// };
 
-export const appState = (state = { ...APP_INITIAL_STATE }, action) => {
-  switch (action.type) {
-    case types.FETCH_APP_STATE_START:
-      return {
-        ...state,
-        loading: true,
-      };
-    case types.FETCH_APP_STATE_SUCCESS:
-      return {
-        ...state,
-        ...action.payload,
-        loading: false,
-      };
-    case types.FETCH_APP_STATE_FAILURE:
-      return {
-        ...state,
-        loading: false,
-      };
-    default:
-      return state;
-  }
-};
+// export const appState = (state = { ...APP_INITIAL_STATE }, action) => {
+//   switch (action.type) {
+//     case types.FETCH_APP_STATE_START:
+//       return {
+//         ...state,
+//         loading: true,
+//       };
+//     case types.FETCH_APP_STATE_SUCCESS:
+//       return {
+//         ...state,
+//         ...action.payload,
+//         loading: false,
+//       };
+//     case types.FETCH_APP_STATE_FAILURE:
+//       return {
+//         ...state,
+//         loading: false,
+//       };
+//     default:
+//       return state;
+//   }
+// };

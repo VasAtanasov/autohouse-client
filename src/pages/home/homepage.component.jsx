@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { Hero } from '../../components';
 import { HomeSectionContainer } from './homepage.styles';
 import SectionTitle from './components/section-title/section-title.component';

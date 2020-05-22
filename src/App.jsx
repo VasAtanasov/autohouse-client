@@ -8,6 +8,8 @@ import { GlobalStyles } from './global';
 import { ToastContainer } from 'react-toastify';
 import { routes } from './routes';
 
+console.log(routes);
+
 const App = () => {
   return (
     <Theme>

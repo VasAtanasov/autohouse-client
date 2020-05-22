@@ -1,17 +1,22 @@
+import { LoginRegister } from '../pages';
+
 export default {
-  login: {
-    path: '/user/login',
-    component: null,
+  loginRegister: {
+    path: '/user/login-register-form',
+    component: LoginRegister,
+    exact: true,
   },
 
-  signup: {
-    path: '/user/signup',
-    component: null,
-  },
+  // signup: {
+  //   path: '/user/signup',
+  //   component: null,
+  //   exact: true,
+  // },
 
   profile: {
     path: '/user/profile',
     component: null,
     auth: true,
+    exact: true,
   },
 };

@@ -7,4 +7,8 @@ export const FooterContainer = styled.div`
   padding-top: 15px;
   padding-bottom: 15px;
   height: 20vh;
+
+  .copyright p {
+    color: #fff;
+  }
 `;

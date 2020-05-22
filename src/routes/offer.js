@@ -4,5 +4,6 @@ export default {
   list: {
     path: '/list',
     component: OfferListPage,
+    exact: true,
   },
 };

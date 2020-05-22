@@ -134,6 +134,7 @@ export const FiltersModalToggleButton = styled.button`
 export const ListWrapper = styled.div`
   display: flex;
   margin: 20px 0;
+  align-items: flex-start;
 
   & .list-element-gap {
     margin-bottom: 12px;

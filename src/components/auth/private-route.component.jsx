@@ -11,13 +11,13 @@ const PrivateRoute = (props) =>
       props.user.details.role === props.role ? (
         <Route {...props} component={props.component} />
       ) : (
-        <Redirect to={userRoutes.login.path} />
+        <Redirect to={userRoutes.loginRegister.path} />
       )
     ) : (
       <Route {...props} component={props.component} />
     )
   ) : (
-    <Redirect to={userRoutes.login.path} />
+    <Redirect to={userRoutes.loginRegister.path} />
   );
 
 PrivateRoute.propTypes = {
