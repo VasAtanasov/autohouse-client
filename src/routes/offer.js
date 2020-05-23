@@ -6,4 +6,10 @@ export default {
     component: OfferListPage,
     exact: true,
   },
+  offerCreate: {
+    path: '/offer/create',
+    component: null,
+    auth: true,
+    exact: true,
+  },
 };

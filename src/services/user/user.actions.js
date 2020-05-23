@@ -31,11 +31,9 @@ export const logoutUnsetUserLocalStorage = () => {
   window.localStorage.removeItem('user');
 };
 
-export const logout = () => {
-  return (dispatch) => {
-    logoutUnsetUserLocalStorage();
-    dispatch({
-      type: types.LOGOUT,
-    });
-  };
+export const logout = () => (dispatch) => {
+  logoutUnsetUserLocalStorage();
+  dispatch({
+    type: types.LOGOUT,
+  });
 };

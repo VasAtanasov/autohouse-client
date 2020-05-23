@@ -97,3 +97,17 @@ export const Menu = styled.div`
     ${({ horizontal }) => (horizontal ? barLinks : drawerLinks)};
   }
 `;
+
+export const CreateOfferButton = styled.button`
+  background-color: transparent;
+  padding: 0.375rem 0.75rem;
+
+  .create-offer-icon {
+    width: 2.1em;
+    height: 2.1em;
+
+    :hover {
+      opacity: 0.8;
+    }
+  }
+`;

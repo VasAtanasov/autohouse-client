@@ -13,12 +13,11 @@ import {
   setUser,
 } from './services/user/user.actions';
 
-// validate token
 const token = window.localStorage.getItem('token');
 if (token && token !== 'undefined' && token !== '') {
   const user = JSON.parse(window.localStorage.getItem('user'));
   if (user) {
-    store.dispatch(setUser(token, user));
+    store.dispatch(setUser(user));
     loginSetUserLocalStorage(token, user);
   }
 }

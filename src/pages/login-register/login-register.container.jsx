@@ -25,6 +25,7 @@ import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import homeRoutes from '../../routes/home';
 import { AuthCheck } from '../../components';
+
 const LOGIN = 'LOGIN';
 const REGISTER = 'REGISTER';
 const VERIFY_REGISTRATION = 'VERIFY_REGISTRATION';

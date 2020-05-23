@@ -7,12 +7,19 @@ import {
   DropdownAuthenticatedLinks,
   DropdownPublicLinks,
 } from './links';
-import { IconButton, UserDropDownMenu } from './navigation.styles';
+import {
+  IconButton,
+  UserDropDownMenu,
+  CreateOfferButton,
+} from './navigation.styles';
 import Dropdown from 'react-bootstrap/Dropdown';
 import UserIcon from './icon/user-icon.component';
+import CreateOfferIcon from './icon/create-offer-icon';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const Navigation = (props) => {
+  let history = useHistory();
   const { isAuthenticated } = props.user;
   const navbarLinks = isAuthenticated ? (
     <NavbarAuthenticatedLinks />
@@ -28,6 +35,11 @@ const Navigation = (props) => {
     <React.Fragment>
       <NavbarDrawer links={navbarLinks} />
       <NavbarBar links={navbarLinks} />
+      {isAuthenticated && (
+        <CreateOfferButton onClick={() => history.push('/offer/create')}>
+          <CreateOfferIcon />
+        </CreateOfferButton>
+      )}
       <UserDropDownMenu>
         <IconButton id="dropdown-basic">
           <UserIcon />
