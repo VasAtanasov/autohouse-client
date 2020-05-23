@@ -5,16 +5,16 @@ import { connect } from 'react-redux';
 
 import userRoutes from '../../routes/user';
 
-const PrivateRoute = (props) =>
-  props.user.isAuthenticated ? (
-    props.role ? (
-      props.user.details.role === props.role ? (
-        <Route {...props} component={props.component} />
+const PrivateRoute = ({ user, role, component, ...rest }) =>
+  user.isAuthenticated ? (
+    role ? (
+      user.details.role === role ? (
+        <Route {...rest} component={component} />
       ) : (
         <Redirect to={userRoutes.loginRegister.path} />
       )
     ) : (
-      <Route {...props} component={props.component} />
+      <Route {...rest} component={component} />
     )
   ) : (
     <Redirect to={userRoutes.loginRegister.path} />

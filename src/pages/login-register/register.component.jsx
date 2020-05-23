@@ -3,21 +3,18 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
 import { RESET_STATUS } from './login-register.container';
+import { Loader } from '../../components';
 
-const RegisterForm = ({ dispatch, username, handleRegisterRequest }) => {
-  const {
-    register,
-    errors,
-    handleSubmit,
-    setError,
-    clearError,
-    watch,
-  } = useForm({
+const RegisterForm = ({
+  dispatch,
+  username,
+  loading,
+  handleRegisterRequest,
+}) => {
+  const { register, errors, handleSubmit, watch } = useForm({
     mode: 'onChange',
   });
   let password = watch('password');
-  console.log(password);
-
   return (
     <React.Fragment>
       <header className="login-register-wrapper-header">
@@ -34,44 +31,42 @@ const RegisterForm = ({ dispatch, username, handleRegisterRequest }) => {
                 type="password"
                 ref={register({ required: true })}
               />
-              {errors.password?.type === 'required' && (
-                <p>Please enter a password.</p>
-              )}
+              <div className="error-message-container">
+                {errors.password?.type === 'required' && (
+                  <p>Please enter a password.</p>
+                )}
+              </div>
             </Form.Group>
             <Form.Group controlId="formGroupConfirmPassword">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 name="confirmPassword"
                 type="password"
-                ref={register({ required: true })}
-                onChange={(e) => {
-                  const confirmPassword = e.target.value;
-                  if (password === confirmPassword) {
-                    clearError('confirmPassword');
-                  } else {
-                    setError(
-                      'confirmPassword',
-                      'notMatch',
-                      'Passwords do not match'
-                    );
-                  }
-                }}
+                ref={register({
+                  required: true,
+                  validate: {
+                    notMatch: (confirmPassword) => password === confirmPassword,
+                  },
+                })}
               />
-              {errors.confirmPassword?.type === 'required' && (
-                <p>Please enter a confirm password.</p>
-              )}
-              {errors.confirmPassword?.type === 'notMatch' && (
-                <p>{errors.confirmPassword.message}</p>
-              )}
+              <div className="error-message-container">
+                {errors.confirmPassword?.type === 'required' && (
+                  <p>Please enter a confirm password.</p>
+                )}
+                {errors.confirmPassword?.type === 'notMatch' && (
+                  <p>Passwords must match</p>
+                )}
+              </div>
             </Form.Group>
             <Form.Group controlId="formGroupSubmitButton">
               <Button
                 className="register-button"
                 variant="primary"
                 type="submit"
+                disabled={loading}
                 block
               >
-                Sign up
+                {loading ? <Loader small white /> : 'Sign up'}
               </Button>
             </Form.Group>
             <Form.Group controlId="formGroupBackButton">
@@ -79,6 +74,7 @@ const RegisterForm = ({ dispatch, username, handleRegisterRequest }) => {
                 as="a"
                 variant="link"
                 block
+                disabled={loading}
                 onClick={() => dispatch({ type: RESET_STATUS })}
               >
                 Go back

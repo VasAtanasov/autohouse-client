@@ -30,3 +30,22 @@ export const register = (data) => {
     },
   });
 };
+
+export const verifyRegistration = (username, code) => {
+  return http.get(`/auth/register/verify?username=${username}&code=${code}`);
+};
+
+export const passwordResetRequest = (username) => {
+  return http.post('/auth/password-reset-request', {
+    data: { username },
+    headers: {
+      ...contentTypeV1,
+    },
+  });
+};
+
+export const passwordResetComplete = (username, newPassword, code) => {
+  return http.get(
+    `/auth/password-reset-complete?username=${username}&password=${newPassword}&code=${code}`
+  );
+};

@@ -93,7 +93,7 @@ export const LoginRegisterWrapper = styled.div`
 
   p {
     color: #dc3545;
-    margin-top: 5px;
+    margin: 0;
 
     ::before {
       color: #dc3545;
@@ -109,6 +109,11 @@ export const LoginRegisterWrapper = styled.div`
     font-size: 1.05em;
     color: #000;
     border-bottom: 0;
+  }
+
+  .error-message-container {
+    min-height: 14px;
+    margin: 10px 0;
   }
 `;
 

@@ -17,9 +17,7 @@ export const loginRequestAsync = (data) => async (dispatch) => {
 };
 
 export const registerRequestAsync = (data) => async (dispatch) => {
-  try {
-    const response = await userApi.register(data);
-    console.log(response);
-    return response;
-  } catch (error) {}
+  const response = await userApi.register(data);
+  console.log(response);
+  return response;
 };

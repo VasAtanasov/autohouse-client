@@ -1,15 +1,16 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
 import { Loader } from '../../components';
-import { SET_USERNAME } from './login-register.container';
+import { SET_USERNAME, RESET_STATUS } from './login-register.container';
 
-const LoginOrRegister = ({
+const ResetPasswordRequestForm = ({
   username,
   dispatch,
   loading,
-  handleLoginOrRegister,
+  handlePasswordResetRequest,
 }) => {
   const { register, errors, handleSubmit } = useForm({
     mode: 'onChange',
@@ -18,17 +19,21 @@ const LoginOrRegister = ({
   return (
     <React.Fragment>
       <header className="login-register-wrapper-header">
-        <h1>Sign in or Register</h1>
+        <h1>Password reset</h1>
       </header>
       <main className="login-register-wrapper-main">
-        <Form onSubmit={handleSubmit(handleLoginOrRegister)}>
+        <Alert variant="info">
+          Please provide your email address below so we can send you a code to
+          reset your password.
+        </Alert>
+        <Form onSubmit={handleSubmit(handlePasswordResetRequest)}>
           <Form.Group controlId="formGroupEmail">
             <Form.Label>Email Address</Form.Label>
             <Form.Control
               name="username"
               type="email"
               ref={register({ required: true, maxLength: 50 })}
-              defaultChecked={username}
+              defaultValue={username}
               onChange={(event) =>
                 dispatch({ type: SET_USERNAME, payload: event.target.value })
               }
@@ -42,7 +47,7 @@ const LoginOrRegister = ({
               )}
             </div>
           </Form.Group>
-          <Form.Group controlId="formGroupNextButton">
+          <Form.Group controlId="formGroupSubmitButton">
             <Button
               disabled={loading}
               className="next-button"
@@ -50,7 +55,18 @@ const LoginOrRegister = ({
               type="submit"
               block
             >
-              {loading ? <Loader small white /> : 'Next'}
+              {loading ? <Loader small white /> : 'Submit'}
+            </Button>
+          </Form.Group>
+          <Form.Group controlId="formGroupBackButton">
+            <Button
+              as="a"
+              variant="link"
+              block
+              disabled={loading}
+              onClick={() => dispatch({ type: RESET_STATUS })}
+            >
+              Go back
             </Button>
           </Form.Group>
         </Form>
@@ -59,4 +75,4 @@ const LoginOrRegister = ({
   );
 };
 
-export default LoginOrRegister;
+export default ResetPasswordRequestForm;

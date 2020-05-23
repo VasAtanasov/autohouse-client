@@ -11,6 +11,7 @@ import Checkbox from './checkbox/checkbox.component';
 import { CheckBoxContainer } from './checkbox/checkbox.styles';
 import Slider from './slider/slider.component';
 import Loader from './loader/loader.component';
+import AuthCheck from './auth/auth-check.component';
 
 export {
   Header,
@@ -26,4 +27,5 @@ export {
   Slider,
   CheckBoxContainer,
   Loader,
+  AuthCheck,
 };
