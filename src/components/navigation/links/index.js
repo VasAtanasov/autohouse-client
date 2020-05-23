@@ -1,4 +1,11 @@
-import PublicLinks from './public.component';
-import AuthenticatedLinks from './authenticated.component';
+import NavbarPublicLinks from './navbar-public.component';
+import NavbarAuthenticatedLinks from './navbar-authenticated.component';
+import DropdownAuthenticatedLinks from './dropdown-authenticated.component';
+import DropdownPublicLinks from './dropdown-public.component';
 
-export { AuthenticatedLinks, PublicLinks };
+export {
+  NavbarAuthenticatedLinks,
+  NavbarPublicLinks,
+  DropdownAuthenticatedLinks,
+  DropdownPublicLinks,
+};

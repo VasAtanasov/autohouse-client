@@ -7,14 +7,22 @@ export default {
     exact: true,
   },
 
-  // signup: {
-  //   path: '/user/signup',
-  //   component: null,
-  //   exact: true,
-  // },
+  settings: {
+    path: '/user/settings',
+    component: null,
+    auth: true,
+    exact: true,
+  },
 
   profile: {
     path: '/user/profile',
+    component: null,
+    auth: true,
+    exact: true,
+  },
+
+  savedSearches: {
+    path: '/user/saved-searches',
     component: null,
     auth: true,
     exact: true,

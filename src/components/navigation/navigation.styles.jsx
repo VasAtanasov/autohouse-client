@@ -17,7 +17,7 @@ const drawerLinks = css`
 `;
 
 const barLinks = css`
-  padding: 21px 15px 21px 15px;
+  padding: 22px 15px 22px 15px;
   border-bottom-width: 5px;
   border-bottom-style: solid;
   border-bottom-color: white;
@@ -30,10 +30,8 @@ const barLinks = css`
   }
 `;
 
-export const MenuLinkContainer = styled(NavLink)`
+export const MenuLink = styled(NavLink)`
   display: block;
-  font-size: 16px;
-  color: black;
 
   &:hover {
     color: ${(props) => props.theme.colors.defaultColor};
@@ -43,6 +41,12 @@ export const MenuLinkContainer = styled(NavLink)`
 export const UserDropDownMenu = styled(Dropdown)`
   .dropdown-menu {
     border-radius: 0;
+  }
+
+  .dropdown-item.active,
+  .dropdown-item:active {
+    background-color: ${(props) => props.theme.colors.defaultColor};
+    color: #fff;
   }
 `;
 
@@ -84,12 +88,11 @@ export const IconButton = styled(Dropdown.Toggle)`
   }
 `;
 
-export const Menu = styled.ul`
-  list-style-type: none;
+export const Menu = styled.div`
   margin: 0;
   padding: 0;
 
-  ${MenuLinkContainer} {
+  ${MenuLink} {
     display: ${({ horizontal }) => (horizontal ? 'inline-block' : 'block')};
     ${({ horizontal }) => (horizontal ? barLinks : drawerLinks)};
   }

@@ -1,6 +1,10 @@
 import * as userApi from './user.api';
 import * as types from './user.types';
 
+export const setUser = (user) => {
+  return { type: types.SET_USER, user };
+};
+
 export const loginSetUserLocalStorage = (token, user) => {
   window.localStorage.setItem('token', token);
   window.localStorage.setItem('user', JSON.stringify(user));
@@ -20,4 +24,18 @@ export const registerRequestAsync = (data) => async (dispatch) => {
   const response = await userApi.register(data);
   console.log(response);
   return response;
+};
+
+export const logoutUnsetUserLocalStorage = () => {
+  window.localStorage.removeItem('token');
+  window.localStorage.removeItem('user');
+};
+
+export const logout = () => {
+  return (dispatch) => {
+    logoutUnsetUserLocalStorage();
+    dispatch({
+      type: types.LOGOUT,
+    });
+  };
 };

@@ -49,3 +49,7 @@ export const passwordResetComplete = (username, newPassword, code) => {
     `/auth/password-reset-complete?username=${username}&password=${newPassword}&code=${code}`
   );
 };
+
+export const validateToken = (token) => {
+  return http.get(`/auth/token/validate?token=${token}`);
+};
