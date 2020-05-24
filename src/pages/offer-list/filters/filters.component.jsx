@@ -188,7 +188,6 @@ const MakerModelCollapse = connect(({ filter, makers }) => ({
       <SelectGroup>
         <SelectWrapper>
           <select
-            as="select"
             id="maker-name-select"
             name="makerName"
             ref={register}

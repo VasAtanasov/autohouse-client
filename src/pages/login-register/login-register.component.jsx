@@ -43,13 +43,7 @@ const LoginOrRegister = ({
             </div>
           </Form.Group>
           <Form.Group controlId="formGroupNextButton">
-            <FormButton
-              disabled={loading}
-              className="next-button"
-              variant="primary"
-              type="submit"
-              block
-            >
+            <FormButton disabled={loading} variant="info" type="submit" block>
               {loading ? <Loader small white /> : 'Next'}
             </FormButton>
           </Form.Group>

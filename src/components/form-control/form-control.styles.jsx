@@ -8,7 +8,7 @@ export const FormControl = styled(Form.Control)`
   background-color: #fff;
   background-image: none;
   border: 1px solid #c2ccd4;
-  border-radius: 2px;
+  border-radius: 0;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   font-size: 14px;
 
@@ -16,5 +16,13 @@ export const FormControl = styled(Form.Control)`
     outline: 2px solid #006598;
     outline-offset: -2px;
     box-shadow: none;
+  }
+
+  &.form-control-plaintext {
+    border: none;
+  }
+
+  &.form-control-plaintext:focus {
+    outline: none;
   }
 `;

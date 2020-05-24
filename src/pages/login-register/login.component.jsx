@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
 import { Loader } from '../../components';
-
+import { FormButton, FormControl } from '../../components';
 import {
   RESET_STATUS,
   SET_STATUS,
@@ -26,7 +26,7 @@ const LoginForm = ({ dispatch, username, loading, handleLogin }) => {
             <legend className="legend">{username}</legend>
             <Form.Group controlId="formGroupPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control
+              <FormControl
                 name="password"
                 type="password"
                 ref={register({ required: true })}
@@ -38,15 +38,9 @@ const LoginForm = ({ dispatch, username, loading, handleLogin }) => {
               </div>
             </Form.Group>
             <Form.Group controlId="formGroupSubmitButton">
-              <Button
-                className="login-button"
-                variant="primary"
-                type="submit"
-                block
-                disabled={loading}
-              >
+              <FormButton variant="info" type="submit" block disabled={loading}>
                 {loading ? <Loader small white /> : 'Sign in'}
-              </Button>
+              </FormButton>
             </Form.Group>
             <Form.Group controlId="formGroupBackButton">
               <Button

@@ -1,9 +1,9 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import { useForm } from 'react-hook-form';
 import { Loader } from '../../components';
+import { FormButton, FormControl } from '../../components';
 
 const VerifyRegistrationForm = ({
   dispatch,
@@ -28,7 +28,7 @@ const VerifyRegistrationForm = ({
         <Form onSubmit={handleSubmit(handleVerifyRegistration)}>
           <Form.Group controlId="formGroupCode">
             <Form.Label>Authentication code</Form.Label>
-            <Form.Control
+            <FormControl
               name="code"
               type="password"
               ref={register({ required: true })}
@@ -40,15 +40,15 @@ const VerifyRegistrationForm = ({
             </div>
           </Form.Group>
           <Form.Group controlId="formGroupSubmitButton">
-            <Button
+            <FormButton
               className="login-button"
-              variant="primary"
+              variant="info"
               type="submit"
               block
               disabled={loading}
             >
               {loading ? <Loader small white /> : 'Sign in'}
-            </Button>
+            </FormButton>
           </Form.Group>
         </Form>
       </main>

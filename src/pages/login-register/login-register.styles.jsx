@@ -42,53 +42,10 @@ export const LoginRegisterWrapper = styled.div`
     font-weight: 700;
   }
 
-  .form-control {
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #c2ccd4;
-    border-radius: 2px;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    font-size: 14px;
-
-    :focus {
-      outline: 2px solid #006598;
-      outline-offset: -2px;
-      box-shadow: none;
-    }
-  }
-
   .btn-link,
   .defaultLink {
     color: #006598;
     font-size: 14px;
-  }
-
-  .next-button,
-  .login-button,
-  .register-button {
-    color: #fff;
-    cursor: pointer;
-    border: 1px solid #0277bd;
-    border-radius: 2px;
-    background: #0277bd;
-    transition: background-color 0.2s ease;
-    font-size: 1em;
-    padding: 10px;
-    margin-bottom: 15px;
-    user-select: none;
-    box-shadow: none;
-
-    :focus {
-      box-shadow: none;
-    }
-    :active,
-    :hover {
-      background: #025e95;
-      border-color: #025e95;
-    }
   }
 
   p {

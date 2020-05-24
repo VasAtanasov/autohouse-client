@@ -6,13 +6,12 @@ export const Section = styled.div`
   background-color: #fff;
   padding: 25px;
   margin-bottom: 6px;
-  font-size: 16px;
   position: relative;
   color: #333;
 `;
 
 export const SectionFixedHeight = styled(Section)`
-  height: 375px;
+  min-height: 375px;
 `;
 
 export const NavLinkContainer = styled(Col)`
@@ -80,6 +79,5 @@ export const NavLinkContainer = styled(Col)`
 export const SettingsNavigation = styled(Row)`
   a {
     color: #555;
-    font-size: 1rem;
   }
 `;

@@ -178,17 +178,6 @@ export const SelectWrapper = styled.div`
   min-height: 35px;
   margin-bottom: 15px;
 
-  &::after {
-    color: black;
-    content: '▾';
-    margin-right: 10px;
-    pointer-events: none;
-    position: absolute;
-    right: 0px;
-    top: 3px;
-    font-size: 20px;
-  }
-
   select {
     background: white;
     border: none;
@@ -196,7 +185,6 @@ export const SelectWrapper = styled.div`
     cursor: pointer;
     padding-left: 12px;
     width: 100%;
-    /* font-size: 16px; */
     &:focus {
       color: black;
     }

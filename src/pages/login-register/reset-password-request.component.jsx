@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
 import { Loader } from '../../components';
 import { SET_USERNAME, RESET_STATUS } from './login-register.container';
+import { FormButton, FormControl } from '../../components';
 
 const ResetPasswordRequestForm = ({
   username,
@@ -29,7 +30,7 @@ const ResetPasswordRequestForm = ({
         <Form onSubmit={handleSubmit(handlePasswordResetRequest)}>
           <Form.Group controlId="formGroupEmail">
             <Form.Label>Email Address</Form.Label>
-            <Form.Control
+            <FormControl
               name="username"
               type="email"
               ref={register({ required: true, maxLength: 50 })}
@@ -48,15 +49,9 @@ const ResetPasswordRequestForm = ({
             </div>
           </Form.Group>
           <Form.Group controlId="formGroupSubmitButton">
-            <Button
-              disabled={loading}
-              className="next-button"
-              variant="primary"
-              type="submit"
-              block
-            >
+            <FormButton disabled={loading} variant="info" type="submit" block>
               {loading ? <Loader small white /> : 'Submit'}
-            </Button>
+            </FormButton>
           </Form.Group>
           <Form.Group controlId="formGroupBackButton">
             <Button
