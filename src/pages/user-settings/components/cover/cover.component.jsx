@@ -4,12 +4,12 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
 const Cover = () => (
-  <CoverWrapper>
+  <CoverWrapper className="cover -underlap -gear-shift">
     <Container>
       <Row noGutters>
         <Spacer140px />
         <div className="headline">
-          <h3>Account Settings</h3>
+          <h2>Account Settings</h2>
         </div>
       </Row>
     </Container>
