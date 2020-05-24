@@ -1,4 +1,4 @@
-import { LoginRegister } from '../pages';
+import { LoginRegister, UserSettings } from '../pages';
 
 export default {
   loginRegister: {
@@ -6,23 +6,20 @@ export default {
     component: LoginRegister,
     exact: true,
   },
-
-  settings: {
+  account: {
     path: '/user/settings',
-    component: null,
+    component: UserSettings,
     auth: true,
-    exact: true,
+    // exact: true,
   },
-
-  profile: {
-    path: '/user/profile',
-    component: null,
-    auth: true,
-    exact: true,
-  },
-
   savedSearches: {
     path: '/user/saved-searches',
+    component: null,
+    auth: true,
+    exact: true,
+  },
+  savedInventory: {
+    path: '/user/saved-inventory',
     component: null,
     auth: true,
     exact: true,

@@ -14,11 +14,14 @@ const DropdownAuthenticatedLinks = ({ logout }) => {
 
   return (
     <React.Fragment>
-      <Dropdown.Item as={MenuLink} to={userRoutes.profile.path}>
-        Profile
+      <Dropdown.Item as={MenuLink} to={userRoutes.savedSearches.path}>
+        Saved Searches
       </Dropdown.Item>
-      <Dropdown.Item as={MenuLink} to={userRoutes.settings.path}>
-        Settings
+      <Dropdown.Item as={MenuLink} to={userRoutes.savedInventory.path}>
+        Saved Inventory
+      </Dropdown.Item>
+      <Dropdown.Item as={MenuLink} to={userRoutes.account.path}>
+        Account
       </Dropdown.Item>
       <Dropdown.Item as="button" onClick={handleLogout}>
         Logout

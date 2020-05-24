@@ -4,7 +4,7 @@ import { MenuLink } from '../navigation.styles';
 const NavbarAuthenticatedLinks = () => (
   <React.Fragment>
     <MenuLink to="/home">Home</MenuLink>
-    <MenuLink to="/user/saved-searches">Saved Searches</MenuLink>
+    {/* <MenuLink to="/user/saved-searches">Saved Searches</MenuLink> */}
   </React.Fragment>
 );
 

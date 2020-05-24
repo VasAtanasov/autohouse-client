@@ -1,4 +1,4 @@
-import HomePage from '../pages/home/homepage.component';
+import { HomePage } from '../pages';
 
 export default {
   home: {
