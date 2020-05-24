@@ -12,6 +12,8 @@ import { CheckBoxContainer } from './checkbox/checkbox.styles';
 import Slider from './slider/slider.component';
 import Loader from './loader/loader.component';
 import AuthCheck from './auth/auth-check.component';
+import { FormButton } from './form-button/form-button.styles';
+import { FormControl } from './form-control/form-control.styles';
 
 export {
   Header,
@@ -28,4 +30,6 @@ export {
   CheckBoxContainer,
   Loader,
   AuthCheck,
+  FormButton,
+  FormControl,
 };

@@ -1,9 +1,9 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
 import { Loader } from '../../components';
 import { SET_USERNAME } from './login-register.container';
+import { FormButton, FormControl } from '../../components';
 
 const LoginOrRegister = ({
   username,
@@ -24,7 +24,7 @@ const LoginOrRegister = ({
         <Form onSubmit={handleSubmit(handleLoginOrRegister)}>
           <Form.Group controlId="formGroupEmail">
             <Form.Label>Email Address</Form.Label>
-            <Form.Control
+            <FormControl
               name="username"
               type="email"
               ref={register({ required: true, maxLength: 50 })}
@@ -43,7 +43,7 @@ const LoginOrRegister = ({
             </div>
           </Form.Group>
           <Form.Group controlId="formGroupNextButton">
-            <Button
+            <FormButton
               disabled={loading}
               className="next-button"
               variant="primary"
@@ -51,7 +51,7 @@ const LoginOrRegister = ({
               block
             >
               {loading ? <Loader small white /> : 'Next'}
-            </Button>
+            </FormButton>
           </Form.Group>
         </Form>
       </main>

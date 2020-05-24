@@ -62,6 +62,7 @@ export const NavLinkContainer = styled(Col)`
 
   .active {
     color: ${({ theme }) => theme.colors.defaultColor};
+    font-weight: 700;
   }
 
   :hover .icon-default,
@@ -80,6 +81,5 @@ export const SettingsNavigation = styled(Row)`
   a {
     color: #555;
     font-size: 1rem;
-    font-weight: 700;
   }
 `;

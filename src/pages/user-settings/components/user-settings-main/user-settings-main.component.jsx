@@ -17,6 +17,7 @@ import {
   Mail,
   MailColor,
 } from '../../assets/icons';
+import EditAccountInformation from '../edit-account-information/edit-account-information.component';
 
 const UserSettingsMain = ({ match }) => (
   <Container>
@@ -30,9 +31,7 @@ const UserSettingsMain = ({ match }) => (
                   <Data />
                   <DataColor />
                 </div>
-                <span className="link-info-text">
-                  EDIT PERSONAL INFORMATION
-                </span>
+                <span className="link-info-text">EDIT ACCOUNT INFORMATION</span>
               </NavLink>
             </NavLinkContainer>
             <NavLinkContainer xs={4} lg={12}>
@@ -67,17 +66,12 @@ const UserSettingsMain = ({ match }) => (
             <Route
               exact
               path={`${match.url}/edit-personal-info`}
-              render={() => <div>Edit Personal Information</div>}
+              render={EditAccountInformation}
             />
             <Route
               exact
               path={`${match.url}/password`}
               render={() => <div>Password</div>}
-            />
-            <Route
-              exact
-              path={`${match.url}/password`}
-              render={() => <div>Change password</div>}
             />
             <Route
               exact
