@@ -28,5 +28,6 @@ export const SettingsMain = styled.div`
   .form-label {
     color: #767676;
     font-size: 12px;
+    padding-left: 12px;
   }
 `;

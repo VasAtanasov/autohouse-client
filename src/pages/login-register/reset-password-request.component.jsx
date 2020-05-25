@@ -45,7 +45,7 @@ const ResetPasswordRequestForm = ({
             />
             <ErrorMessageContainer>
               {errors.username?.type === 'required' && (
-                <p>Please enter a email.</p>
+                <p>Please enter an email.</p>
               )}
               {errors.username?.type === 'maxLength' && (
                 <p>Email is too long.</p>
