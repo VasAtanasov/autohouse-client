@@ -48,17 +48,6 @@ export const LoginRegisterWrapper = styled.div`
     font-size: 14px;
   }
 
-  p {
-    color: #dc3545;
-    margin: 0;
-
-    ::before {
-      color: #dc3545;
-      display: inline;
-      content: '⚠ ';
-    }
-  }
-
   .legend {
     position: relative;
     margin-bottom: 0.9em;
@@ -71,6 +60,16 @@ export const LoginRegisterWrapper = styled.div`
   .error-message-container {
     min-height: 14px;
     margin: 10px 0;
+    p {
+      color: #dc3545;
+      margin: 0;
+
+      ::before {
+        color: #dc3545;
+        display: inline;
+        content: '⚠ ';
+      }
+    }
   }
 `;
 

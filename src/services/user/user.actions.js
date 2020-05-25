@@ -5,9 +5,16 @@ export const setUser = (user) => {
   return { type: types.SET_USER, user };
 };
 
+export const seAccount = (account) => {
+  return { type: types.SET_ACCOUNT, account };
+};
+
 export const loginSetUserLocalStorage = (token, user) => {
   window.localStorage.setItem('token', token);
   window.localStorage.setItem('user', JSON.stringify(user));
+};
+export const loginSetUserAccountLocalStorage = (account) => {
+  window.localStorage.setItem('account', JSON.stringify(account));
 };
 
 export const loginRequestAsync = (data) => async (dispatch) => {
@@ -15,8 +22,15 @@ export const loginRequestAsync = (data) => async (dispatch) => {
     type: types.LOGIN_REQUEST,
   });
   const response = await userApi.login(data);
-  dispatch({ type: types.SET_USER, user: response.data.data });
+  const user = response.data.data;
+  dispatch({ type: types.SET_USER, user });
   loginSetUserLocalStorage(response.data.data.token, response.data.data);
+  if (user.hasAccount) {
+    const accountFetchResponse = await userApi.loadUserAccount();
+    const account = accountFetchResponse.data.data;
+    dispatch({ type: types.SET_ACCOUNT, account });
+    loginSetUserAccountLocalStorage(account);
+  }
   return response;
 };
 
@@ -29,6 +43,7 @@ export const registerRequestAsync = (data) => async (dispatch) => {
 export const logoutUnsetUserLocalStorage = () => {
   window.localStorage.removeItem('token');
   window.localStorage.removeItem('user');
+  window.localStorage.removeItem('account');
 };
 
 export const logout = () => (dispatch) => {

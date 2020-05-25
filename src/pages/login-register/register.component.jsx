@@ -4,7 +4,11 @@ import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
 import { RESET_STATUS } from './login-register.container';
 import { Loader } from '../../components';
-import { FormButton, FormControl } from '../../components';
+import {
+  FormButton,
+  FormControl,
+  ErrorMessageContainer,
+} from '../../components';
 
 const RegisterForm = ({
   dispatch,
@@ -32,11 +36,11 @@ const RegisterForm = ({
                 type="password"
                 ref={register({ required: true })}
               />
-              <div className="error-message-container">
+              <ErrorMessageContainer>
                 {errors.password?.type === 'required' && (
                   <p>Please enter a password.</p>
                 )}
-              </div>
+              </ErrorMessageContainer>
             </Form.Group>
             <Form.Group controlId="formGroupConfirmPassword">
               <Form.Label>Confirm Password</Form.Label>
@@ -50,14 +54,14 @@ const RegisterForm = ({
                   },
                 })}
               />
-              <div className="error-message-container">
+              <ErrorMessageContainer>
                 {errors.confirmPassword?.type === 'required' && (
                   <p>Please enter a confirm password.</p>
                 )}
                 {errors.confirmPassword?.type === 'notMatch' && (
                   <p>Passwords must match</p>
                 )}
-              </div>
+              </ErrorMessageContainer>
             </Form.Group>
             <Form.Group controlId="formGroupSubmitButton">
               <FormButton variant="info" type="submit" disabled={loading} block>

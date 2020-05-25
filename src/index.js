@@ -10,7 +10,9 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store/store';
 import {
   loginSetUserLocalStorage,
+  loginSetUserAccountLocalStorage,
   setUser,
+  seAccount,
 } from './services/user/user.actions';
 
 const token = window.localStorage.getItem('token');
@@ -19,6 +21,11 @@ if (token && token !== 'undefined' && token !== '') {
   if (user) {
     store.dispatch(setUser(user));
     loginSetUserLocalStorage(token, user);
+  }
+  const account = JSON.parse(window.localStorage.getItem('account'));
+  if (account) {
+    store.dispatch(seAccount(account));
+    loginSetUserAccountLocalStorage(account);
   }
 }
 

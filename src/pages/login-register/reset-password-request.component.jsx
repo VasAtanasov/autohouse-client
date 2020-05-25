@@ -5,7 +5,11 @@ import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
 import { Loader } from '../../components';
 import { SET_USERNAME, RESET_STATUS } from './login-register.container';
-import { FormButton, FormControl } from '../../components';
+import {
+  FormButton,
+  FormControl,
+  ErrorMessageContainer,
+} from '../../components';
 
 const ResetPasswordRequestForm = ({
   username,
@@ -39,14 +43,14 @@ const ResetPasswordRequestForm = ({
                 dispatch({ type: SET_USERNAME, payload: event.target.value })
               }
             />
-            <div className="error-message-container">
+            <ErrorMessageContainer>
               {errors.username?.type === 'required' && (
                 <p>Please enter a email.</p>
               )}
               {errors.username?.type === 'maxLength' && (
                 <p>Email is too long.</p>
               )}
-            </div>
+            </ErrorMessageContainer>
           </Form.Group>
           <Form.Group controlId="formGroupSubmitButton">
             <FormButton disabled={loading} variant="info" type="submit" block>

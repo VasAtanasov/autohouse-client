@@ -4,7 +4,11 @@ import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
 import { Loader } from '../../components';
 import { RESET_STATUS } from './login-register.container';
-import { FormButton, FormControl } from '../../components';
+import {
+  FormButton,
+  FormControl,
+  ErrorMessageContainer,
+} from '../../components';
 
 const ResetPasswordForm = ({
   username,
@@ -30,11 +34,11 @@ const ResetPasswordForm = ({
               type="password"
               ref={register({ required: true })}
             />
-            <div className="error-message-container">
+            <ErrorMessageContainer>
               {errors.password?.type === 'required' && (
                 <p>Please enter a password.</p>
               )}
-            </div>
+            </ErrorMessageContainer>
           </Form.Group>
           <Form.Group controlId="formGroupCode">
             <Form.Label>Verification code</Form.Label>
@@ -43,11 +47,11 @@ const ResetPasswordForm = ({
               type="password"
               ref={register({ required: true })}
             />
-            <div className="error-message-container">
+            <ErrorMessageContainer>
               {errors.password?.type === 'required' && (
                 <p>Please enter a code.</p>
               )}
-            </div>
+            </ErrorMessageContainer>
           </Form.Group>
           <Form.Group controlId="formGroupSubmitButton">
             <FormButton disabled={loading} variant="info" type="submit" block>

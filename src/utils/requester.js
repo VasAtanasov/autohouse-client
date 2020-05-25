@@ -5,6 +5,39 @@ const instance = axios.create({
   baseURL: API_BASE_URL,
 });
 
+instance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    config.headers.Authorization = token ? `Bearer ${token}` : '';
+    return config;
+  },
+  (error) => {
+    Promise.reject(error);
+  }
+);
+
+instance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    const statusCode = error.response ? error.response.status : null;
+
+    if (statusCode === 404) {
+      // notifier.error(
+      //   'The requested resource does not exist or has been deleted'
+      // https://gist.github.com/Godofbrowser
+      // );
+    }
+
+    if (statusCode === 401) {
+      // notifier.error('Please login to access this resource');
+    }
+
+    return Promise.reject(error);
+  }
+);
+
 const http = (() => {
   const call = async (method, url, options = {}) => {
     const defaults = {

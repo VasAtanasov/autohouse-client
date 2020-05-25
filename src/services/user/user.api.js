@@ -53,3 +53,7 @@ export const passwordResetComplete = (username, newPassword, code) => {
 export const validateToken = (token) => {
   return http.get(`/auth/token/validate?token=${token}`);
 };
+
+export const loadUserAccount = () => {
+  return http.get(`/accounts/user-account`);
+}

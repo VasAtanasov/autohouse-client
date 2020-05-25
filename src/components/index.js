@@ -14,6 +14,7 @@ import Loader from './loader/loader.component';
 import AuthCheck from './auth/auth-check.component';
 import { FormButton } from './form-button/form-button.styles';
 import { FormControl } from './form-control/form-control.styles';
+import { ErrorMessageContainer } from './form-error-message/form-error-message.styles';
 
 export {
   Header,
@@ -32,4 +33,5 @@ export {
   AuthCheck,
   FormButton,
   FormControl,
+  ErrorMessageContainer,
 };

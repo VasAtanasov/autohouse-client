@@ -6,11 +6,17 @@ export const USER_INITIAL_STATE = {
   isLoading: false,
   isAuthenticated: false,
   details: null,
+  account: null,
   status: null,
 };
 
 export const user = (state = { ...USER_INITIAL_STATE }, action) => {
   switch (action.type) {
+    case types.SET_ACCOUNT:
+      return {
+        ...state,
+        account: action.account,
+      };
     case types.SET_USER:
       return {
         ...state,
@@ -36,6 +42,7 @@ export const user = (state = { ...USER_INITIAL_STATE }, action) => {
         error: null,
         isAuthenticated: false,
         details: null,
+        account: null,
       };
     default:
       return state;

@@ -17,5 +17,16 @@
     "titleBar.inactiveBackground": "#557c9b99",
     "titleBar.inactiveForeground": "#e7e7e799"
   },
-  "peacock.color": "#557c9b"
+  "peacock.color": "#557c9b",
+  "sqltools.connections": [
+    {
+      "database": "autohouse_db",
+      "dialect": "MySQL",
+      "name": "autohouse_db",
+      "password": "1234",
+      "port": 3306,
+      "server": "localhost",
+      "username": "root"
+    }
+  ]
 }

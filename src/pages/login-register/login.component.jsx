@@ -3,7 +3,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
 import { Loader } from '../../components';
-import { FormButton, FormControl } from '../../components';
+import {
+  FormButton,
+  FormControl,
+  ErrorMessageContainer,
+} from '../../components';
 import {
   RESET_STATUS,
   SET_STATUS,
@@ -31,11 +35,11 @@ const LoginForm = ({ dispatch, username, loading, handleLogin }) => {
                 type="password"
                 ref={register({ required: true })}
               />
-              <div className="error-message-container">
+              <ErrorMessageContainer>
                 {errors.password?.type === 'required' && (
                   <p>Please enter a password.</p>
                 )}
-              </div>
+              </ErrorMessageContainer>
             </Form.Group>
             <Form.Group controlId="formGroupSubmitButton">
               <FormButton variant="info" type="submit" block disabled={loading}>

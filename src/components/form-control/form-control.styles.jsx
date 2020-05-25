@@ -20,9 +20,25 @@ export const FormControl = styled(Form.Control)`
 
   &.form-control-plaintext {
     border: none;
+    padding-left: 13px;
   }
 
-  &.form-control-plaintext:focus {
+  &.form-control-plaintext:focus,
+  &.form-textarea:focus {
     outline: none;
+  }
+
+  &.form-select:disabled {
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+  }
+
+  &.form-textarea:disabled {
+    padding-top: 7px;
+    padding-left: 13px;
+    resize: none;
+    border: none;
   }
 `;

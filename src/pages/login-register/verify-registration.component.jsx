@@ -3,7 +3,11 @@ import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 import { useForm } from 'react-hook-form';
 import { Loader } from '../../components';
-import { FormButton, FormControl } from '../../components';
+import {
+  FormButton,
+  FormControl,
+  ErrorMessageContainer,
+} from '../../components';
 
 const VerifyRegistrationForm = ({
   dispatch,
@@ -33,11 +37,11 @@ const VerifyRegistrationForm = ({
               type="password"
               ref={register({ required: true })}
             />
-            <div className="error-message-container">
+            <ErrorMessageContainer>
               {errors.password?.type === 'required' && (
                 <p>Please enter a code.</p>
               )}
-            </div>
+            </ErrorMessageContainer>
           </Form.Group>
           <Form.Group controlId="formGroupSubmitButton">
             <FormButton
