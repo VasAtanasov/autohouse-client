@@ -13,6 +13,7 @@ export const loginSetUserLocalStorage = (token, user) => {
   window.localStorage.setItem('token', token);
   window.localStorage.setItem('user', JSON.stringify(user));
 };
+
 export const loginSetUserAccountLocalStorage = (account) => {
   window.localStorage.setItem('account', JSON.stringify(account));
 };
@@ -32,6 +33,10 @@ export const loginRequestAsync = (data) => async (dispatch) => {
     loginSetUserAccountLocalStorage(account);
   }
   return response;
+};
+
+export const createUpdateAccountAsync = (data) => async (dispatch) => {
+  console.log(data);
 };
 
 export const registerRequestAsync = (data) => async (dispatch) => {

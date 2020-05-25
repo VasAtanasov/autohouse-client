@@ -56,4 +56,22 @@ export const validateToken = (token) => {
 
 export const loadUserAccount = () => {
   return http.get(`/accounts/user-account`);
-}
+};
+
+export const createUpdateDealerAccount = (data) => {
+  return http.post('/accounts/dealer-request', {
+    data,
+    headers: {
+      ...contentTypeV1,
+    },
+  });
+};
+
+export const createUpdatePrivateAccount = (data) => {
+  return http.post('/accounts/private-create', {
+    data,
+    headers: {
+      ...contentTypeV1,
+    },
+  });
+};

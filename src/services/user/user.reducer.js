@@ -3,11 +3,9 @@ import * as types from './user.types';
 
 export const USER_INITIAL_STATE = {
   error: null,
-  isLoading: false,
   isAuthenticated: false,
   details: null,
   account: null,
-  status: null,
 };
 
 export const user = (state = { ...USER_INITIAL_STATE }, action) => {
@@ -29,13 +27,11 @@ export const user = (state = { ...USER_INITIAL_STATE }, action) => {
         ...state,
         error: null,
       };
-
     case types.LOGIN_RESPONSE:
       return {
         ...state,
         error: action.error,
       };
-
     case types.LOGOUT:
       return {
         ...state,

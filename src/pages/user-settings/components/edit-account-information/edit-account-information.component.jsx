@@ -16,36 +16,116 @@ import { connect } from 'react-redux';
 import { nullToEmptyString, isEmpty } from '../../../../utils/helpers';
 import { toast } from 'react-toastify';
 import { Required } from './edit-account-information.styles';
+import { Loader } from '../../../../components';
+import { createUpdateAccountAsync } from '../../../../services/user/user.actions';
 
 const DEALER = 'DEALER';
 
-const usePrevious = (value) => {
-  const ref = React.useRef();
-  React.useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
+const INITIAL_STATE = {
+  loading: false,
+  editable: false,
+  accountType: null,
 };
 
-const EditAccountInformation = ({ user, account }) => {
+const READ_ONLY = 'READ_ONLY';
+const EDIT_FORM = 'EDIT_FORM';
+const SAVE_UPDATE_ACCOUNT_START = 'SAVE_UPDATE_ACCOUNT_START';
+const SAVE_UPDATE_ACCOUNT_SUCCESS = 'SAVE_UPDATE_ACCOUNT_SUCCESS';
+const SELECT_ACCOUNT_TYPE = 'SELECT_ACCOUNT_TYPE';
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case READ_ONLY:
+      return {
+        ...state,
+        editable: false,
+      };
+    case EDIT_FORM:
+      return {
+        ...state,
+        editable: true,
+      };
+    case SAVE_UPDATE_ACCOUNT_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SAVE_UPDATE_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        editable: false,
+        accountType: action.payload,
+      };
+    case SELECT_ACCOUNT_TYPE:
+      return {
+        ...state,
+        accountType: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+const EditAccountInformation = ({
+  user,
+  account,
+  createUpdateAccountAsync,
+}) => {
   const hasAccount = nullToEmptyString(user?.hasAccount);
-  const [editable, setEditable] = React.useState(!hasAccount);
-  const [accountType, setAccountType] = React.useState(
-    nullToEmptyString(account?.accountType?.toUpperCase())
-  );
+  const [state, dispatch] = React.useReducer(reducer, {
+    ...INITIAL_STATE,
+    editable: !hasAccount,
+    accountType: nullToEmptyString(account?.accountType?.toUpperCase()),
+  });
+  const { loading, editable, accountType } = state;
   const isDealer = accountType === DEALER;
 
-  const { register, errors, handleSubmit, clearError, reset } = useForm();
+  const {
+    register,
+    errors,
+    handleSubmit,
+    clearError,
+    reset,
+    formState,
+  } = useForm();
+
+  const { dirty } = formState;
 
   React.useEffect(() => {
     clearError();
   }, [accountType, clearError]);
 
-  const handleAddEditAccountInfo = (data) => {
-    if (!isEmpty(errors)) {
+  const handleAddEditAccountInfo = async (data) => {
+    if (!dirty) {
+      dispatch({ type: READ_ONLY });
       return;
     }
-    console.log(data);
+    dispatch({ type: SAVE_UPDATE_ACCOUNT_START });
+    if (!isEmpty(errors)) {
+      toast.error('Something went wrong. Please try again.');
+      return;
+    }
+    try {
+      const response = await createUpdateAccountAsync({
+        ...data,
+        accountType,
+      });
+      dispatch({ type: SAVE_UPDATE_ACCOUNT_SUCCESS, payload: response });
+    } catch (error) {}
+  };
+
+  const handleCancelClick = () => {
+    reset();
+    dispatch({ type: READ_ONLY });
+  };
+
+  const handleEditClick = () => {
+    dispatch({ type: EDIT_FORM });
+  };
+
+  const handleSelectAccountType = (event) => {
+    dispatch({ type: SELECT_ACCOUNT_TYPE, payload: event.target.value });
   };
 
   return (
@@ -239,7 +319,7 @@ const EditAccountInformation = ({ user, account }) => {
                   as="select"
                   name="accountType"
                   defaultValue={accountType?.toUpperCase()}
-                  onChange={(event) => setAccountType(event.target.value)}
+                  onChange={handleSelectAccountType}
                 >
                   <option value="">Choose account type</option>
                   <option value="PRIVATE">Private Seller</option>
@@ -251,11 +331,7 @@ const EditAccountInformation = ({ user, account }) => {
           <Form.Row>
             {!editable && (
               <Form.Group as={Col} xs={6}>
-                <FormButton
-                  variant="info"
-                  block
-                  onClick={() => setEditable(true)}
-                >
+                <FormButton variant="info" block onClick={handleEditClick}>
                   Edit
                 </FormButton>
               </Form.Group>
@@ -263,20 +339,13 @@ const EditAccountInformation = ({ user, account }) => {
             {editable && (
               <Form.Group as={Col} xs={6}>
                 <FormButton type="submit" variant="success" block>
-                  Save
+                  {loading ? <Loader small white /> : 'Save Changes'}
                 </FormButton>
               </Form.Group>
             )}
             {editable && hasAccount && (
               <Form.Group as={Col} xs={6}>
-                <FormButton
-                  variant="light"
-                  block
-                  onClick={() => {
-                    reset();
-                    setEditable(false);
-                  }}
-                >
+                <FormButton variant="light" block onClick={handleCancelClick}>
                   Cancel
                 </FormButton>
               </Form.Group>
@@ -293,4 +362,6 @@ const mapStateToProps = ({ user }) => ({
   account: user.account,
 });
 
-export default connect(mapStateToProps)(EditAccountInformation);
+export default connect(mapStateToProps, { createUpdateAccountAsync })(
+  EditAccountInformation
+);
