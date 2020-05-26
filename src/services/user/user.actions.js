@@ -9,6 +9,8 @@ export const seAccount = (account) => {
   return { type: types.SET_ACCOUNT, account };
 };
 
+export const setAccountCreate = (account) => {};
+
 export const loginSetUserLocalStorage = (token, user) => {
   window.localStorage.setItem('token', token);
   window.localStorage.setItem('user', JSON.stringify(user));
@@ -36,7 +38,23 @@ export const loginRequestAsync = (data) => async (dispatch) => {
 };
 
 export const createUpdateAccountAsync = (data) => async (dispatch) => {
-  console.log(data);
+  let response;
+  switch (data.accountType) {
+    case 'DEALER':
+      response = await userApi.createUpdateDealerAccount(data);
+      break;
+    case 'PRIVATE':
+      response = await userApi.createUpdatePrivateAccount(data);
+      break;
+    default:
+      return;
+  }
+
+  if (response) {
+    console.log(response);
+  }
+
+  return response;
 };
 
 export const registerRequestAsync = (data) => async (dispatch) => {

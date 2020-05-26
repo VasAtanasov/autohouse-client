@@ -12,6 +12,10 @@ export const loadAppState = async () => {
   return http.get('/state');
 };
 
-export const loadLocations = async () => {
-  return http.get('/locations/list');
+export const loadProvinces = async () => {
+  return http.get('/province/list');
+};
+
+export const loadProvince = async (id) => {
+  return http.get(`/province/${id}`);
 };

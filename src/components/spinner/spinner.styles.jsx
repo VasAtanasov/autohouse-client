@@ -62,6 +62,7 @@ export const LoadingScreen = styled.div`
         transform: rotate(360deg);
       }
     }
+
     @keyframes spin {
       0% {
         transform: rotate(0deg);

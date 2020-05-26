@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ShineAnimation } from '../../global/styles/shared-styles';
 
 export const UserSettingsPageContainer = styled.div`
   position: relative;
@@ -30,4 +31,14 @@ export const SettingsMain = styled.div`
     font-size: 12px;
     padding-left: 12px;
   }
+
+  .form-textarea {
+    min-height: 100px;
+  }
+`;
+
+export const LoadingBar = styled.div`
+  width: 100%;
+  height: 34px;
+  ${({ isLoading }) => true && ShineAnimation}
 `;

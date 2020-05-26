@@ -66,6 +66,15 @@ export const statistics = (state = { ...STATISTICS_INITIAL_STATE }, action) => {
   }
 };
 
+export const provinces = (state = [], action) => {
+  switch (action.type) {
+    case types.SET_PROVINCE_LIST:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 // const APP_INITIAL_STATE = {
 //   loading: true,
 // };
