@@ -21,3 +21,7 @@ export function isEmpty(obj) {
 export const nullToEmptyString = (value) => {
   return value === null ? '' : value;
 };
+
+export const orElse = (value, fallback) => {
+  return !value ? fallback : value;
+};

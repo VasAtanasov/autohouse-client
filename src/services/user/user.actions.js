@@ -49,7 +49,6 @@ export const createUpdateAccountAsync = (data) => async (dispatch) => {
     default:
       return;
   }
-
   if (response) {
     console.log(response);
   }
