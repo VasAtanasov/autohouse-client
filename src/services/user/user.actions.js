@@ -5,11 +5,9 @@ export const setUser = (user) => {
   return { type: types.SET_USER, user };
 };
 
-export const seAccount = (account) => {
+export const setAccount = (account) => {
   return { type: types.SET_ACCOUNT, account };
 };
-
-export const setAccountCreate = (account) => {};
 
 export const loginSetUserLocalStorage = (token, user) => {
   window.localStorage.setItem('token', token);
@@ -50,10 +48,31 @@ export const createUpdateAccountAsync = (data) => async (dispatch) => {
       return;
   }
   if (response) {
-    console.log(response);
+    const account = response.data.data;
+    const user = JSON.parse(window.localStorage.getItem('user'));
+    window.localStorage.setItem(
+      'user',
+      JSON.stringify({
+        ...user,
+        hasAccount: true,
+      })
+    );
+    loginSetUserAccountLocalStorage(account);
+    dispatch(setAccount(account));
   }
-
   return response;
+};
+
+export const changePasswordAsync = (data) => async (dispatch) => {
+  const response = await userApi.changePassword(data);
+  if (response.status === 200) {
+    const user = JSON.parse(window.localStorage.getItem('user'));
+    loginRequestAsync({
+      username: user.username,
+      password: data.newPassword,
+    });
+    console.log(user);
+  }
 };
 
 export const registerRequestAsync = (data) => async (dispatch) => {

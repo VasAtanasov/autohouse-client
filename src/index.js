@@ -12,7 +12,7 @@ import {
   loginSetUserLocalStorage,
   loginSetUserAccountLocalStorage,
   setUser,
-  seAccount,
+  setAccount,
 } from './services/user/user.actions';
 
 const token = window.localStorage.getItem('token');
@@ -24,7 +24,7 @@ if (token && token !== 'undefined' && token !== '') {
   }
   const account = JSON.parse(window.localStorage.getItem('account'));
   if (account) {
-    store.dispatch(seAccount(account));
+    store.dispatch(setAccount(account));
     loginSetUserAccountLocalStorage(account);
   }
 }

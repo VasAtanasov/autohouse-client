@@ -3,6 +3,7 @@ import {
   AccountSettingsContainer,
   AccountSettingsTitle,
   SettingsMain,
+  Required,
 } from '../../user-settings.styles';
 import {
   FormControl,
@@ -15,7 +16,6 @@ import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { nullToEmptyString, isEmpty, orElse } from '../../../../utils/helpers';
 import { toast } from 'react-toastify';
-import { Required } from './edit-account-information.styles';
 import { Loader } from '../../../../components';
 import { createUpdateAccountAsync } from '../../../../services/user/user.actions';
 
@@ -26,6 +26,7 @@ const INITIAL_STATE = {
   editable: false,
   accountType: null,
   location: null,
+  isDealer: false,
 };
 
 const FETCH_PROVINCE_START = 'FETCH_PROVINCE_START';
@@ -64,7 +65,6 @@ const reducer = (state, action) => {
         ...state,
         loading: false,
         editable: false,
-        accountType: action.payload,
       };
     case SAVE_UPDATE_ACCOUNT_FAILURE:
       return {
@@ -82,6 +82,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         accountType: action.payload,
+        isDealer: action.payload === DEALER,
       };
     default:
       return state;
@@ -100,16 +101,23 @@ const EditAccountInformation = ({
   account,
   createUpdateAccountAsync,
 }) => {
-  const hasAccount = nullToEmptyString(user?.hasAccount);
   const [state, dispatch] = React.useReducer(reducer, {
     ...INITIAL_STATE,
-    editable: !hasAccount,
+    editable: !nullToEmptyString(user?.hasAccount),
     accountType: nullToEmptyString(account?.accountType?.toUpperCase()),
     location: formatLocation(account?.address),
+    isDealer: nullToEmptyString(account?.accountType?.toUpperCase()) === DEALER,
+    hasAccount: nullToEmptyString(user?.hasAccount),
   });
-  const { loading, editable, accountType, location } = state;
-  const isDealer = accountType === DEALER;
-  console.log(location);
+
+  const {
+    loading,
+    editable,
+    accountType,
+    location,
+    isDealer,
+    hasAccount,
+  } = state;
 
   const {
     register,
@@ -137,11 +145,11 @@ const EditAccountInformation = ({
       return;
     }
     try {
-      const response = await createUpdateAccountAsync({
+      await createUpdateAccountAsync({
         ...data,
         accountType,
       });
-      dispatch({ type: SAVE_UPDATE_ACCOUNT_SUCCESS, payload: response });
+      dispatch({ type: SAVE_UPDATE_ACCOUNT_SUCCESS });
     } catch (error) {
       dispatch({ type: SAVE_UPDATE_ACCOUNT_FAILURE });
       toast.error('Something went wrong');
@@ -353,7 +361,7 @@ const EditAccountInformation = ({
               </Form.Group>
             </Form.Row>
           )}
-          {!hasAccount && (
+          {!hasAccount && !account && (
             <Form.Row>
               <Form.Group as={Col} xs={12} controlId="account-type">
                 {!errors.accountType && (
@@ -371,6 +379,7 @@ const EditAccountInformation = ({
                   className="form-select"
                   as="select"
                   name="accountType"
+                  disabled={loading}
                   defaultValue={accountType?.toUpperCase()}
                   onChange={handleSelectAccountType}
                 >
@@ -381,6 +390,7 @@ const EditAccountInformation = ({
               </Form.Group>
             </Form.Row>
           )}
+          <br />
           <Form.Row>
             {!editable && (
               <Form.Group as={Col} xs={6}>

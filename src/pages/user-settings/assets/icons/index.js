@@ -6,6 +6,7 @@ import { ReactComponent as Mail } from './093-mail.svg';
 import { ReactComponent as MailColor } from './095-mail-2.svg';
 import { ReactComponent as EditAccount } from './resume-bw.svg';
 import { ReactComponent as EditAccountColor } from './resume-color.svg';
+import { ReactComponent as Eye } from './spyware.svg';
 
 export {
   Padlock,
@@ -16,4 +17,5 @@ export {
   MailColor,
   EditAccount,
   EditAccountColor,
+  Eye,
 };

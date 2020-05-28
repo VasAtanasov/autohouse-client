@@ -59,7 +59,7 @@ export const loadUserAccount = () => {
 };
 
 export const createUpdateDealerAccount = (data) => {
-  return http.post('/accounts/dealer-request', {
+  return http.post('/accounts/dealer-create', {
     data,
     headers: {
       ...contentTypeV1,
@@ -69,6 +69,15 @@ export const createUpdateDealerAccount = (data) => {
 
 export const createUpdatePrivateAccount = (data) => {
   return http.post('/accounts/private-create', {
+    data,
+    headers: {
+      ...contentTypeV1,
+    },
+  });
+};
+
+export const changePassword = (data) => {
+  return http.post('/users/password/update', {
     data,
     headers: {
       ...contentTypeV1,

@@ -18,6 +18,7 @@ import {
   MailColor,
 } from '../../assets/icons';
 import EditAccountInformation from '../edit-account-information/edit-account-information.component';
+import ChangePassword from '../change-password/change-password.component';
 
 const UserSettingsMain = ({ match }) => {
   return (
@@ -76,7 +77,7 @@ const UserSettingsMain = ({ match }) => {
               <Route
                 exact
                 path={`${match.url}/password`}
-                render={() => <div>Password</div>}
+                component={ChangePassword}
               />
               <Route
                 exact

@@ -21,6 +21,15 @@ export const AccountSettingsTitle = styled.div`
   margin-bottom: 20px;
   font-weight: 600;
   border-bottom: 2px solid #153e4d;
+  user-select: none;
+
+  .password-icon {
+    width: 25px;
+    height: 25px;
+    color: #999;
+    cursor: pointer;
+    margin-left: 7px;
+  }
 `;
 
 export const SettingsMain = styled.div`
@@ -35,10 +44,27 @@ export const SettingsMain = styled.div`
   .form-textarea {
     min-height: 100px;
   }
+
+  .form-group .password-icon {
+    width: 25px;
+    height: 25px;
+    top: 50%;
+    right: 15px;
+    position: absolute;
+    color: #999;
+    cursor: pointer;
+  }
 `;
 
 export const LoadingBar = styled.div`
   width: 100%;
   height: 34px;
   ${({ isLoading }) => true && ShineAnimation}
+`;
+
+export const Required = styled.span`
+  :before {
+    content: '***';
+    color: red;
+  }
 `;
