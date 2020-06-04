@@ -16,6 +16,11 @@ import {
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+function randomIntFromInterval(min, max) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 const BrowsByContainer = ({ children, sectionTitle, showTitle }) => (
   <HomeSectionContainer>
     {showTitle && (
@@ -47,7 +52,7 @@ const HomePage = ({ createFilter, fetchStatistics, fetchMakersStartAsync }) => {
 
   return (
     <React.Fragment>
-      <Hero backgroundImage={'/images/bg_10.jpg'}>
+      <Hero backgroundImage={`/images/bg_${randomIntFromInterval(9, 26)}.jpg`}>
         <QuickSearch handleSearch={handleSearch} />
       </Hero>
       <BrowsByContainer sectionTitle={'Latest offers'} showTitle={true}>

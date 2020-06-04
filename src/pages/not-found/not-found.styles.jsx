@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import ErrorPageImage from './assets/images/error_page.gif';
 
 export const NotFoundPageContainer = styled.div`
   height: 100vh;
@@ -14,7 +15,7 @@ export const NotFoundPageContainer = styled.div`
   }
 
   & .error_bg {
-    background-image: url(/images/error_page.gif);
+    background-image: url(${ErrorPageImage});
     width: 100%;
     height: 100%;
     background-position: center;

@@ -6,4 +6,7 @@ export const AppContainer = styled.main`
   margin-right: auto;
   position: relative;
   overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 `;

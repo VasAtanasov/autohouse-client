@@ -22,8 +22,8 @@ export const Wrapper = styled.div`
   position: relative;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: top center;
-  background-position: 0% 50%;
+  background-position: center center;
+  /* background-position: 0% 50%; */
   background-image: ${({ url }) => `url(${url})`};
 
   @media screen and (min-width: 768px) {
