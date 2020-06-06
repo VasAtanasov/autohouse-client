@@ -52,7 +52,7 @@ const HomePage = ({ createFilter, fetchStatistics, fetchMakersStartAsync }) => {
 
   return (
     <React.Fragment>
-      <Hero backgroundImage={`/images/bg_${randomIntFromInterval(9, 26)}.jpg`}>
+      <Hero backgroundImage={`/images/bg_${randomIntFromInterval(9, 25)}.jpg`}>
         <QuickSearch handleSearch={handleSearch} />
       </Hero>
       <BrowsByContainer sectionTitle={'Latest offers'} showTitle={true}>

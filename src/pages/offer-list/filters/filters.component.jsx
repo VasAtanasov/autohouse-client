@@ -1,6 +1,6 @@
 import React from 'react';
 import CollapseCriteria from '../collapse-criteria/collapse-criteria.component';
-import { Slider, CheckBoxContainer } from '../../../components';
+import { Slider, CheckBoxContainer, SelectWrapper } from '../../../components';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import {
@@ -12,7 +12,7 @@ import {
   SearchFiltersHeader,
   SearchButton,
 } from './filters.styles';
-import { SelectWrapper, SelectGroup } from '../offer-list.styles';
+import { SelectGroup } from '../offer-list.styles';
 import initialState from '../../../services/initial-state';
 import withSizes from 'react-sizes';
 import { nullToEmptyString } from '../../../utils/helpers';

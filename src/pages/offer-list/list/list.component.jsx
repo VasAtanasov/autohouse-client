@@ -7,8 +7,7 @@ import {
   OfferListPaging,
   ListFooter,
 } from './list.styles';
-import { SelectWrapper } from '../offer-list.styles';
-import { OfferCard } from '../../../components';
+import { OfferCard, SelectWrapper } from '../../../components';
 
 const ListNavigation = ({
   pageNumber,
