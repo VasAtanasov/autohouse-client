@@ -19,3 +19,7 @@ export const loadProvinces = async () => {
 export const loadProvince = async (id) => {
   return http.get(`/province/${id}`);
 };
+
+export const loadTrims = async (makerName, modelName) => {
+  return http.get(`/vehicles/makers/${makerName}/${modelName}`);
+};

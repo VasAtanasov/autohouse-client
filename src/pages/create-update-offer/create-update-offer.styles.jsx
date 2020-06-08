@@ -57,13 +57,20 @@ export const SectionOptions = styled.div`
     font-size: 14px;
   }
 
+  &.row {
+    margin: 0;
+  }
+
   &.maker-model-select {
+    padding: 23px 30px 11px;
+    background-color: #333;
+    margin-bottom: 2rem;
+
     label {
       color: white;
+      font-weight: bold;
+      text-transform: uppercase;
     }
-    padding: 23px 30px 11px;
-    background-color: #232628;
-    margin-bottom: 2rem;
   }
 `;
 
