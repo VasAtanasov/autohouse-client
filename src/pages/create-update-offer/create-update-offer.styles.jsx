@@ -31,9 +31,45 @@ export const SubHeader = styled.div`
 
 export const MainContainer = styled.main`
   width: 100%;
+
+  .car-details-options {
+    display: flex;
+    justify-content: space-between;
+
+    label {
+      display: flex;
+      align-items: center;
+      flex: 0 0 160px;
+      margin: 0;
+
+      i:before {
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 25px;
+      }
+
+      @media screen and (max-width: 576px) {
+        flex: 0 0 auto;
+
+        .car-options-label-text {
+          display: none;
+        }
+      }
+    }
+
+    .car-option {
+      /* flex: 0 0 70%; */
+    }
+
+    &:hover i {
+      color: ${({ theme }) => theme.colors.defaultColor};
+    }
+  }
 `;
 
-export const Section = styled.section``;
+export const Section = styled.section`
+  margin-bottom: 30px;
+`;
 
 export const SectionHeadline = styled.div`
   border-top: 2px solid #232628;
@@ -65,6 +101,11 @@ export const SectionOptions = styled.div`
     padding: 23px 30px 11px;
     background-color: #333;
     margin-bottom: 2rem;
+
+    @media screen and (max-width: 576px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
 
     label {
       color: white;

@@ -9,206 +9,43 @@ import {
   SectionHeadline,
   SectionOptions,
 } from './create-update-offer.styles';
-import { AccountCheck, SelectWrapper } from '../../components';
+import {
+  AccountCheck,
+  FormButton,
+  FormControl,
+  ErrorMessageContainer,
+} from '../../components';
+import Col from 'react-bootstrap/Col';
 import { AddIcon } from './assets/icons';
 import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
-import { loadTrims } from '../../services/common/common.api';
-
-const SELECT_MAKER = 'SELECT_MAKER';
-const SELECT_MODEL = 'SELECT_MODEL';
-const SELECT_YEAR = 'SELECT_YEAR';
-const SELECT_TRIM = 'SELECT_TRIM';
-
-const INITIAL_STATE = {
-  makerName: '',
-  modelName: '',
-  year: '',
-  trim: '',
-};
-
-const makerModelReducer = (state, action) => {
-  switch (action.type) {
-    case SELECT_MAKER:
-      return {
-        ...state,
-        ...INITIAL_STATE,
-        makerName: action.payload,
-      };
-    case SELECT_MODEL:
-      return {
-        ...state,
-        modelName: action.payload,
-        trim: '',
-        year: '',
-      };
-    case SELECT_YEAR:
-      return {
-        ...state,
-        year: Number(action.payload),
-        trim: '',
-      };
-    case SELECT_TRIM:
-      return {
-        ...state,
-        trim: action.payload,
-      };
-    default:
-      return state;
-  }
-};
-
-const MakerModelSelect = connect(({ makers }) => ({ makers: makers.makers }))(
-  ({ register, makers }) => {
-    const [state, dispatch] = React.useReducer(
-      makerModelReducer,
-      INITIAL_STATE
-    );
-
-    const { makerName, modelName, trim, year } = state;
-    const [trims, setTrims] = React.useState([]);
-
-    React.useEffect(() => {
-      (async () => {
-        if (makerName && modelName) {
-          try {
-            const response = await loadTrims(makerName, modelName);
-            setTrims(response.data.data.model.trims);
-            console.log(response);
-          } catch (err) {}
-        }
-      })();
-    }, [makerName, modelName]);
-
-    return (
-      <React.Fragment>
-        <Form.Group as={Col} lg={3} controlId="maker-name-select">
-          <Form.Label>
-            Make <Required />
-          </Form.Label>
-          <SelectWrapper>
-            <Form.Control
-              as="select"
-              name="makerName"
-              ref={register({ required: true })}
-              value={makerName}
-              onChange={(event) =>
-                dispatch({ type: SELECT_MAKER, payload: event.target.value })
-              }
-            >
-              <option value="">Any maker</option>
-              {Object.keys(makers)
-                .sort()
-                .map((key) => (
-                  <option key={key} value={key}>
-                    {key}
-                  </option>
-                ))}
-            </Form.Control>
-          </SelectWrapper>
-        </Form.Group>
-        <Form.Group as={Col} lg={3} controlId="model-name-select">
-          <Form.Label>
-            Model <Required />
-          </Form.Label>
-          <SelectWrapper>
-            <Form.Control
-              as="select"
-              name="modelName"
-              value={modelName}
-              onChange={(event) =>
-                dispatch({ type: SELECT_MODEL, payload: event.target.value })
-              }
-              ref={register({ required: true })}
-              disabled={makerName ? false : true}
-            >
-              <option value="">Any model</option>
-              {makerName &&
-                makers[makerName].models
-                  .map((obj) => obj.name)
-                  .sort()
-                  .map((key) => (
-                    <option key={key} value={key}>
-                      {key}
-                    </option>
-                  ))}
-            </Form.Control>
-          </SelectWrapper>
-        </Form.Group>
-        <Form.Group as={Col} lg={3} controlId="model-year-select">
-          <Form.Label>
-            Year <Required />
-          </Form.Label>
-          <SelectWrapper>
-            <Form.Control
-              as="select"
-              name="year"
-              value={year}
-              onChange={(event) =>
-                dispatch({ type: SELECT_YEAR, payload: event.target.value })
-              }
-              ref={register({ required: true })}
-              disabled={modelName ? false : true}
-            >
-              <option value="">Select Year</option>
-              {modelName &&
-                (trims.length
-                  ? [...new Set(trims.map((obj) => obj.year).sort())]
-                  : Array(new Date().getFullYear() - 1900 + 1)
-                      .fill()
-                      .map((_, idx) => 1900 + idx)
-                ).map((key) => (
-                  <option key={key} value={key}>
-                    {key}
-                  </option>
-                ))}
-            </Form.Control>
-          </SelectWrapper>
-        </Form.Group>
-        <Form.Group as={Col} lg={3} controlId="model-trim-select">
-          <Form.Label>Trim</Form.Label>
-          <SelectWrapper>
-            <Form.Control
-              as="select"
-              name="trim"
-              value={trim}
-              onChange={(event) =>
-                dispatch({ type: SELECT_TRIM, payload: event.target.value })
-              }
-              ref={register}
-              disabled={year && trims.length ? false : true}
-            >
-              <option value="">Select Trim</option>
-              {year &&
-                trims
-                  .filter((trim) => year === trim.year)
-                  .map((obj) => obj.trim)
-                  .sort()
-                  .map((key) => (
-                    <option key={key} value={key}>
-                      {key}
-                    </option>
-                  ))}
-            </Form.Control>
-          </SelectWrapper>
-        </Form.Group>
-      </React.Fragment>
-    );
-  }
-);
+import { loadAppState } from '../../services/common/common.api';
+import MakerModelSelect from './components/maker-model/maker-model.component';
+import { toast } from 'react-toastify';
 
 const CreateUpdateOffer = ({ makers }) => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
+  const [options, setOptions] = React.useState();
+
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const response = await loadAppState();
+        setOptions(response.data.data.metadata);
+      } catch (error) {
+        toast.error('Failed to load data. Reload page.');
+      }
+    })();
+  }, []);
+
+  console.log(options);
 
   const onSubmit = (data) => {
-    console.log(makers[data.makerName]);
-    console.log(makers);
-
     console.log(data);
   };
+
   return (
     <CreateUpdateOfferWrapper>
       <Header>
@@ -232,6 +69,284 @@ const CreateUpdateOffer = ({ makers }) => {
             <SectionOptions as={Row} className="maker-model-select">
               <MakerModelSelect register={register} />
             </SectionOptions>
+            <Form.Row>
+              <Form.Group
+                className="car-details-options"
+                as={Col}
+                lg={6}
+                xs={12}
+                controlId="bodyStyle"
+              >
+                <Form.Label>
+                  <i className="flaticon-sedan-car-model"></i>
+                  <span className="car-options-label-text">
+                    Body Style <Required />
+                  </span>
+                </Form.Label>
+                <FormControl
+                  className="car-option"
+                  name="bodyStyle"
+                  as="select"
+                  ref={register({ required: true })}
+                >
+                  <option value="">Select Body Style</option>
+                  {Object.entries(options?.bodyStyle || {}).map(
+                    ([key, value]) => (
+                      <option key={key} value={key}>
+                        {value}
+                      </option>
+                    )
+                  )}
+                </FormControl>
+              </Form.Group>
+              <Form.Group
+                className="car-details-options"
+                as={Col}
+                lg={6}
+                xs={12}
+                controlId="fuelType"
+              >
+                <Form.Label>
+                  <i className="flaticon-gas-station"></i>
+                  <span className="car-options-label-text">
+                    Fuel Type <Required />
+                  </span>
+                </Form.Label>
+                <FormControl
+                  className="car-option"
+                  name="fuelType"
+                  as="select"
+                  ref={register({ required: true })}
+                >
+                  <option value="">Select Fuel Type</option>
+                  {Object.entries(options?.fuelType || {}).map(
+                    ([key, value]) => (
+                      <option key={key} value={key}>
+                        {value}
+                      </option>
+                    )
+                  )}
+                </FormControl>
+              </Form.Group>
+            </Form.Row>
+            <Form.Row>
+              <Form.Group
+                className="car-details-options"
+                as={Col}
+                lg={6}
+                xs={12}
+                controlId="transmission"
+              >
+                <Form.Label>
+                  <i className="flaticon-shifter"></i>
+                  <span className="car-options-label-text">
+                    Transmission <Required />
+                  </span>
+                </Form.Label>
+                <FormControl
+                  className="car-option"
+                  name="transmission"
+                  as="select"
+                  ref={register({ required: true })}
+                >
+                  <option value="">Select Transmission</option>
+                  {Object.entries(options?.transmission || {}).map(
+                    ([key, value]) => (
+                      <option key={key} value={key}>
+                        {value}
+                      </option>
+                    )
+                  )}
+                </FormControl>
+              </Form.Group>
+              <Form.Group
+                className="car-details-options"
+                as={Col}
+                lg={6}
+                xs={12}
+                controlId="drive"
+              >
+                <Form.Label>
+                  <i className="flaticon-car-steering-wheel"></i>
+                  <span className="car-options-label-text">
+                    Drive <Required />
+                  </span>
+                </Form.Label>
+                <FormControl
+                  className="car-option"
+                  name="drive"
+                  as="select"
+                  ref={register({ required: true })}
+                >
+                  <option value="">Select Drive</option>
+                  {Object.entries(options?.drive || {}).map(([key, value]) => (
+                    <option key={key} value={key}>
+                      {value}
+                    </option>
+                  ))}
+                </FormControl>
+              </Form.Group>
+            </Form.Row>
+            <Form.Row>
+              <Form.Group
+                className="car-details-options"
+                as={Col}
+                lg={6}
+                xs={12}
+                controlId="state"
+              >
+                <Form.Label>
+                  <i className="flaticon-automobile-salesman"></i>
+                  <span className="car-options-label-text">
+                    Condition <Required />
+                  </span>
+                </Form.Label>
+                <FormControl
+                  className="car-option"
+                  name="state"
+                  as="select"
+                  ref={register({ required: true })}
+                >
+                  <option value="">Select Condition</option>
+                  {Object.entries(options?.state || {}).map(([key, value]) => (
+                    <option key={key} value={key}>
+                      {value}
+                    </option>
+                  ))}
+                </FormControl>
+              </Form.Group>
+              <Form.Group
+                className="car-details-options"
+                as={Col}
+                lg={6}
+                xs={12}
+                controlId="color"
+              >
+                <Form.Label>
+                  <i className="flaticon-contrast"></i>
+                  <span className="car-options-label-text">
+                    Color <Required />
+                  </span>
+                </Form.Label>
+                <FormControl
+                  className="car-option"
+                  name="color"
+                  as="select"
+                  ref={register({ required: true })}
+                >
+                  <option value="">Select Color</option>
+                  {Object.entries(options?.color || {}).map(([key, value]) => (
+                    <option key={key} value={key}>
+                      {value}
+                    </option>
+                  ))}
+                </FormControl>
+              </Form.Group>
+            </Form.Row>
+            <Form.Row>
+              <Form.Group
+                className="car-details-options"
+                as={Col}
+                lg={6}
+                xs={12}
+                controlId="mileage"
+              >
+                <Form.Label>
+                  <i className="flaticon-road"></i>
+                  <span className="car-options-label-text">
+                    Mileage <Required />
+                  </span>
+                </Form.Label>
+                <FormControl
+                  className="car-option"
+                  type="number"
+                  name="mileage"
+                  min="1"
+                  step="1"
+                  pattern="\d+"
+                  placeholder="Enter Mileage"
+                  ref={register({ required: true })}
+                />
+              </Form.Group>
+              <Form.Group
+                className="car-details-options"
+                as={Col}
+                lg={6}
+                xs={12}
+                controlId="doors"
+              >
+                <Form.Label>
+                  <i className="flaticon-car-door"></i>
+                  <span className="car-options-label-text">
+                    Doors <Required />
+                  </span>
+                </Form.Label>
+                <FormControl
+                  className="car-option"
+                  type="number"
+                  name="doors"
+                  min="1"
+                  max="7"
+                  step="1"
+                  pattern="\d+"
+                  placeholder="Enter Doors Count"
+                  ref={register({ required: true })}
+                />
+              </Form.Group>
+            </Form.Row>
+            <Form.Row>
+              <Form.Group
+                className="car-details-options"
+                as={Col}
+                lg={6}
+                xs={12}
+                controlId="hasAccident"
+              >
+                <Form.Label>
+                  <i className="flaticon-car-accident"></i>
+                  <span className="car-options-label-text">
+                    Has Accident <Required />
+                  </span>
+                </Form.Label>
+                <FormControl
+                  className="car-option"
+                  name="hasAccident"
+                  as="select"
+                  ref={register({ required: true })}
+                >
+                  <option value={false}>No</option>
+                  <option value={true}>Yes</option>
+                </FormControl>
+              </Form.Group>
+              <Form.Group
+                className="car-details-options"
+                as={Col}
+                lg={6}
+                xs={12}
+                controlId="zipCode"
+              >
+                <Form.Label>
+                  <i className="flaticon-maps-and-flags"></i>
+                  <span className="car-options-label-text">
+                    Zip Code <Required />
+                  </span>
+                </Form.Label>
+                <FormControl
+                  className="car-option"
+                  type="number"
+                  name="zipCode"
+                  step="1"
+                  pattern="\d+"
+                  placeholder="Enter Zip Code"
+                  ref={register({ required: true })}
+                />
+              </Form.Group>
+            </Form.Row>
+          </Section>
+          <Section>
+            <SectionHeadline>
+              <div className="title">SELECT YOUR CAR FEATURES</div>
+            </SectionHeadline>
           </Section>
           <button>Create</button>
         </Form>
