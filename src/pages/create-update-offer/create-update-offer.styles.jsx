@@ -128,3 +128,21 @@ export const Required = styled.span`
     color: red;
   }
 `;
+
+export const PriceTag = styled.i`
+  :before {
+    margin-left: 0;
+  }
+`;
+
+export const DescriptionArea = styled.textarea`
+  height: 202px;
+  padding: 10px 10px 10px 12px;
+  font-size: 13px;
+  color: #888;
+  background-color: #efefef;
+  border: 1px solid #e1e2e4;
+  width: 100%;
+  max-width: 100%;
+  resize: none;
+`;

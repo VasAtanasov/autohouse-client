@@ -8,6 +8,8 @@ import {
   Section,
   SectionHeadline,
   SectionOptions,
+  PriceTag,
+  DescriptionArea,
 } from './create-update-offer.styles';
 import {
   AccountCheck,
@@ -24,6 +26,8 @@ import { connect } from 'react-redux';
 import { loadAppState } from '../../services/common/common.api';
 import MakerModelSelect from './components/maker-model/maker-model.component';
 import { toast } from 'react-toastify';
+import { CheckBoxContainer } from '../../components';
+import ImageUpload from './components/image-upload/image-upload.component';
 
 const CreateUpdateOffer = ({ makers }) => {
   const { register, handleSubmit } = useForm();
@@ -40,7 +44,7 @@ const CreateUpdateOffer = ({ makers }) => {
     })();
   }, []);
 
-  console.log(options);
+  // console.log(options);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -347,8 +351,119 @@ const CreateUpdateOffer = ({ makers }) => {
             <SectionHeadline>
               <div className="title">SELECT YOUR CAR FEATURES</div>
             </SectionHeadline>
+            <Row noGutters>
+              {Object.entries(options?.feature || {}).map(([key, value]) => (
+                <Col lg={4} sm={6} key={key}>
+                  <CheckBoxContainer>
+                    <input
+                      name="features"
+                      type="checkbox"
+                      id={key}
+                      ref={register}
+                      value={key}
+                    />
+                    <label htmlFor={key}>{value}</label>
+                  </CheckBoxContainer>
+                </Col>
+              ))}
+            </Row>
           </Section>
-          <button>Create</button>
+          <Section>
+            <SectionHeadline>
+              <div className="title">SET YOUR ASKING PRICE</div>
+            </SectionHeadline>
+            <Row noGutters>
+              <Col lg={4}>
+                <Form.Group>
+                  <label htmlFor="price" className="label">
+                    <PriceTag className="flaticon-coin pl-1 pr-1"></PriceTag>
+                    <span>
+                      Price <Required />
+                    </span>
+                  </label>
+                  <FormControl
+                    type="number"
+                    id="price"
+                    name="price"
+                    min="1"
+                    step="1"
+                    pattern="\d+"
+                    placeholder="Enter Price"
+                    ref={register({ required: true })}
+                  />
+                </Form.Group>
+              </Col>
+              <Col lg={8}>
+                <p className="pl-lg-3 mt-3 mt-lg-0 text-justify">
+                  Determine a competitive price by comparing your vehicle's
+                  information and mileage to similar vehicles for sale by
+                  dealers and private sellers in your area. Then consider
+                  pricing your vehicle within range. Be sure to provide Seller's
+                  Comments and photos to highlight the best features of your
+                  vehicle, especially if your asking price is above average.
+                </p>
+              </Col>
+            </Row>
+          </Section>
+          <Section>
+            <SectionHeadline>
+              <div className="title">ENTER DESCRIPTION</div>
+            </SectionHeadline>
+            <DescriptionArea
+              placeholder="Enter vehicle description"
+              name="description"
+              ref={register({ required: true })}
+            ></DescriptionArea>
+          </Section>
+          <Section>
+            <SectionHeadline>
+              <div className="title">Upload Photos</div>
+            </SectionHeadline>
+            <div>
+              <h6>RECOMMENDATION & GUIDES</h6>
+              <p>
+                Recommended Image Resolution: 1024 x 768 px or higher. Maximum
+                size of photo is 10MB.
+              </p>
+            </div>
+            <ImageUpload register={register} />
+          </Section>
+          <Section>
+            <SectionHeadline>
+              <div className="title">Contact Details</div>
+            </SectionHeadline>
+            <Form.Group>
+              <label htmlFor="phoneNumber" className="label">
+                <span>
+                  Phone Number <Required />
+                </span>
+              </label>
+              <FormControl
+                type="number"
+                id="phoneNumber"
+                name="contactDetailsPhoneNumber"
+                min="1"
+                step="1"
+                pattern="\d+"
+                placeholder="Enter Phone Number"
+                ref={register({ required: true })}
+              />
+            </Form.Group>
+            <Form.Group>
+              <label htmlFor="webLink" className="label">
+                <span>Web Link</span>
+              </label>
+              <FormControl
+                type="text"
+                id="webLink"
+                name="contactDetailsWebLink"
+                placeholder="Enter Web Link"
+                ref={register}
+              />
+            </Form.Group>
+          </Section>
+
+          <FormButton>Create Offer</FormButton>
         </Form>
       </MainContainer>
       <AccountCheck pathToRedirect="/user/settings/edit-personal-info" />
