@@ -11,12 +11,7 @@ import {
   PriceTag,
   DescriptionArea,
 } from './create-update-offer.styles';
-import {
-  AccountCheck,
-  FormButton,
-  FormControl,
-  ErrorMessageContainer,
-} from '../../components';
+import { AccountCheck, FormButton, FormControl } from '../../components';
 import Col from 'react-bootstrap/Col';
 import { AddIcon } from './assets/icons';
 import Form from 'react-bootstrap/Form';
@@ -24,11 +19,13 @@ import Row from 'react-bootstrap/Row';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { loadAppState } from '../../services/common/common.api';
+import { createOffer } from '../../services/offer/offer.api';
 import MakerModelSelect from './components/maker-model/maker-model.component';
 import { toast } from 'react-toastify';
 import { CheckBoxContainer } from '../../components';
 import ImageUpload from './components/image-upload/image-upload.component';
 
+// TODO add validation of data
 const CreateUpdateOffer = ({ makers }) => {
   const { register, handleSubmit } = useForm();
   const [options, setOptions] = React.useState();
@@ -44,10 +41,8 @@ const CreateUpdateOffer = ({ makers }) => {
     })();
   }, []);
 
-  // console.log(options);
-
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    await createOffer(data);
   };
 
   return (
@@ -463,7 +458,7 @@ const CreateUpdateOffer = ({ makers }) => {
             </Form.Group>
           </Section>
 
-          <FormButton>Create Offer</FormButton>
+          <FormButton type="submit">Create Offer</FormButton>
         </Form>
       </MainContainer>
       <AccountCheck pathToRedirect="/user/settings/edit-personal-info" />

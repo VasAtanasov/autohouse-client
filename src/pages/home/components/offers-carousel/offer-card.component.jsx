@@ -15,7 +15,11 @@ const OfferCardComponent = ({
   const imageRef = React.useRef(null);
   const [imageLoading, setImageLoading] = React.useState(true);
   return (
-    <OfferCard isTop={isTop} href={'/offers/' + id} imageLoading={imageLoading}>
+    <OfferCard
+      isTop={isTop}
+      href={'/offer/details/' + id}
+      imageLoading={imageLoading}
+    >
       <span className="photo">
         <picture>
           <img
@@ -31,7 +35,7 @@ const OfferCardComponent = ({
           {vehicleYear} {vehicleMakerName} {vehicleModelName} {vehicleTrim}
         </li>
         <li>
-          <span className="price">${price.toLocaleString()}</span>}
+          <span className="price">${price.toLocaleString()}</span>
           <span className="item">{vehicleMileage.toLocaleString()} miles</span>
         </li>
       </ul>

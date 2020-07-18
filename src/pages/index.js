@@ -5,6 +5,7 @@ import Peugeot404 from './peugeot-404/peugeot-404.component';
 import LoginRegister from './login-register/login-register.container';
 import UserSettings from './user-settings/user-settings.component';
 import CreateUpdateOffer from './create-update-offer/create-update-offer.container';
+import OfferDetails from './offer-details/offer-details.component';
 
 export {
   HomePage,
@@ -14,4 +15,5 @@ export {
   UserSettings,
   CreateUpdateOffer,
   Peugeot404,
+  OfferDetails,
 };

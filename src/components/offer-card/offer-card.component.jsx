@@ -33,11 +33,15 @@ const OfferCard = ({
   const imageRef = React.useRef(null);
   const [imageLoading, setImageLoading] = React.useState(true);
   return (
-    <div className="list-element-gap" data-uuid={id}>
+    <a
+      href={`/offer/details/${id}`}
+      className="list-element-gap"
+      data-uuid={id}
+    >
       <OfferContainer className="offer-summary-full-main-container">
         <OfferCardHeadline>
           <div className="offer-summary-titles">
-            <a href="/#">
+            <span className="title">
               <div className="offer-summary-title">
                 <div
                   className="offer-summary-makemodel"
@@ -48,7 +52,7 @@ const OfferCard = ({
                 </div>
                 <div className="offer-summary-version">{vehicleTrim}</div>
               </div>
-            </a>
+            </span>
           </div>
           <div className="offer-summary-action-buttons">
             <div></div>
@@ -92,7 +96,7 @@ const OfferCard = ({
           </div>
         </Summery>
       </OfferContainer>
-    </div>
+    </a>
   );
 };
 

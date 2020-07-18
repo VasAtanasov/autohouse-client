@@ -1,4 +1,4 @@
-import { OfferListPage, CreateUpdateOffer } from '../pages';
+import { OfferListPage, CreateUpdateOffer, OfferDetails } from '../pages';
 
 export default {
   list: {
@@ -10,6 +10,11 @@ export default {
     path: '/offer/create',
     component: CreateUpdateOffer,
     auth: true,
+    exact: true,
+  },
+  offerDetails: {
+    path: '/offer/details/:id',
+    component: OfferDetails,
     exact: true,
   },
 };

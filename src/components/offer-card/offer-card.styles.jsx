@@ -31,7 +31,7 @@ export const OfferCardHeadline = styled.div`
     padding: 12px 0;
     padding-right: 16px;
 
-    a {
+    .title {
       cursor: pointer;
       text-decoration: none;
       transition: color 0.2s ease-in;
