@@ -68,3 +68,40 @@ export const StageData = styled.div`
     }
   }
 `;
+
+export const VehicleFeatures = styled.div`
+  padding: 28px 16px;
+
+  span {
+    display: list-item;
+    padding: 4px 4px 0 0;
+    margin-left: 20px;
+
+    @media (min-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+
+  .row {
+    margin: 0;
+  }
+`;
+
+export const OfferDescription = styled.div`
+  padding: 28px 16px;
+
+  .offer-description {
+    color: #616569;
+    overflow-y: auto;
+    background-color: #f5f6f6;
+    border: 1px solid #dae0e5;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    padding: 0.9375rem;
+    max-height: 23.4375rem;
+  }
+`;
+
+export const SellerInfo = styled.div`
+  padding: 28px 16px;
+`;

@@ -1,12 +1,38 @@
 import React from 'react';
 import Gallery from './components/gallery/gallery.component';
+import CarDetails from './components/car-details/car-details.component';
 import {
   DetailsPageContainer,
   DetailsHeadline,
   StageData,
+  VehicleFeatures,
+  OfferDescription,
+  SellerInfo,
 } from './offer-details.styles';
 import { loadOfferDetails } from '../../services/offer/offer.api';
 import { Spinner } from '../../components';
+
+const Description = ({ description }) => {
+  const addInfoIndex = description.indexOf('[!@@Additional Info@@!]');
+  console.log(addInfoIndex);
+  return (
+    <React.Fragment>
+      <p>{description.slice(0, addInfoIndex)}</p>
+      <h5>Additional Info</h5>
+      <p>
+        {description
+          .slice(
+            addInfoIndex + '[!@@Additional Info@@!]'.length,
+            description.length
+          )
+          .split('$COMMA')
+          .join(',')
+          .split('w/')
+          .join('\n')}
+      </p>
+    </React.Fragment>
+  );
+};
 
 const OfferDetails = ({ match }) => {
   const offerId = match.params.id;
@@ -29,27 +55,21 @@ const OfferDetails = ({ match }) => {
   }, [offerId]);
 
   const {
-    id,
-    price,
-    locationCity,
-    locationId,
+    // id,
+    accountDisplayName,
+    accountFirstName,
+    accountLastName,
+    contactDetailsPhoneNumber,
+    contactDetailsWebLink,
     createdAt,
-    primaryPhotoKey,
+    description,
+    price,
     vehicleMakerName,
-    vehicleMakerId,
     vehicleModelName,
-    vehicleModelId,
     vehicleTrim,
     vehicleYear,
-    vehicleMileage,
-    vehicleDoors,
-    vehicleState,
-    vehicleBodyStyle,
-    vehicleTransmission,
-    vehicleDrive,
-    vehicleColor,
-    vehicleFuelType,
-    vehicleHasAccident,
+    vehicleFeatures,
+    webLink,
   } = offer;
 
   console.log(offer);
@@ -66,7 +86,7 @@ const OfferDetails = ({ match }) => {
               <div className="offer-headline">
                 <div className="offer-title">
                   <span className="detail-makemodel">
-                    {vehicleMakerName} {vehicleModelName}
+                    {vehicleYear} {vehicleMakerName} {vehicleModelName}
                   </span>{' '}
                   <span className="detail-version">{vehicleTrim}</span>
                 </div>
@@ -80,6 +100,25 @@ const OfferDetails = ({ match }) => {
             </div>
           </StageData>
           <hr />
+          <CarDetails offer={offer}></CarDetails>
+          <hr />
+          <VehicleFeatures>
+            <h4>Vehicle Features</h4>
+            {(vehicleFeatures || []).map((feature, index) => (
+              <span key={feature + index}>{feature}</span>
+            ))}
+          </VehicleFeatures>
+          <hr />
+          <OfferDescription>
+            <h4>Description</h4>
+            <div className="offer-description">
+              <Description description={description} />
+            </div>
+          </OfferDescription>
+          <hr />
+          <SellerInfo>
+            <h4>Seller Info</h4>
+          </SellerInfo>
         </React.Fragment>
       )}
     </DetailsPageContainer>
