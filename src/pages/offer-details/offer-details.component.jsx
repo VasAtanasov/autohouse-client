@@ -14,7 +14,6 @@ import { Spinner } from '../../components';
 
 const Description = ({ description }) => {
   const addInfoIndex = description.indexOf('[!@@Additional Info@@!]');
-  console.log(addInfoIndex);
   return (
     <React.Fragment>
       <p>{description.slice(0, addInfoIndex)}</p>
@@ -55,13 +54,9 @@ const OfferDetails = ({ match }) => {
   }, [offerId]);
 
   const {
-    // id,
     accountDisplayName,
-    accountFirstName,
-    accountLastName,
     contactDetailsPhoneNumber,
     contactDetailsWebLink,
-    createdAt,
     description,
     price,
     vehicleMakerName,
@@ -69,10 +64,7 @@ const OfferDetails = ({ match }) => {
     vehicleTrim,
     vehicleYear,
     vehicleFeatures,
-    webLink,
   } = offer;
-
-  console.log(offer);
 
   return (
     <DetailsPageContainer>
@@ -118,6 +110,9 @@ const OfferDetails = ({ match }) => {
           <hr />
           <SellerInfo>
             <h4>Seller Info</h4>
+            <h5>{accountDisplayName}</h5>
+            <h6>{contactDetailsPhoneNumber}</h6>
+            <h6>{contactDetailsWebLink}</h6>
           </SellerInfo>
         </React.Fragment>
       )}

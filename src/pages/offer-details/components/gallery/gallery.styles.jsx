@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import Carousel from 'react-bootstrap/Carousel';
 
-export const GalleryContainer = styled(Carousel)`
+export const GalleryContainer = styled.div`
+  position: relative;
+`;
+
+export const GalleryCarousel = styled(Carousel)`
   background: rgba(0, 0, 0, 0.95);
 
   .carousel-inner {
@@ -32,4 +36,22 @@ export const ImageContainer = styled(Carousel.Item)`
       max-height: 100%;
     }
   }
+`;
+
+export const GalleryIndicator = styled.div`
+  position: absolute;
+  color: #fff;
+  padding: 7px 0;
+  font-size: 0.75rem;
+  bottom: 0;
+  min-width: 40px;
+  max-width: 50px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+  bottom: 0;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.3s;
+  will-change: transform;
+  right: 0;
+  left: auto;
 `;

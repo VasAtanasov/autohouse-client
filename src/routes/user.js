@@ -1,4 +1,4 @@
-import { LoginRegister, UserSettings } from '../pages';
+import { LoginRegister, UserSettings, OfferFavorites } from '../pages';
 
 export default {
   loginRegister: {
@@ -20,7 +20,7 @@ export default {
   },
   savedInventory: {
     path: '/user/saved-inventory',
-    component: null,
+    component: OfferFavorites,
     auth: true,
     exact: true,
   },

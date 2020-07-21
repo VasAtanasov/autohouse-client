@@ -6,6 +6,8 @@ import {
   OfferCardImage,
   Summery,
 } from './offer-card.styles';
+import AddToFavorites from '../add-to-favorites-button/add-to-favorites.component';
+import { connect } from 'react-redux';
 
 const OfferCard = ({
   id,
@@ -29,9 +31,11 @@ const OfferCard = ({
   vehicleColor,
   vehicleFuelType,
   vehicleHasAccident,
+  user,
 }) => {
   const imageRef = React.useRef(null);
   const [imageLoading, setImageLoading] = React.useState(true);
+  const { isAuthenticated } = user;
   return (
     <a
       href={`/offer/details/${id}`}
@@ -55,8 +59,7 @@ const OfferCard = ({
             </span>
           </div>
           <div className="offer-summary-action-buttons">
-            <div></div>
-            <div></div>
+            {isAuthenticated && <AddToFavorites offerId={id} />}
           </div>
         </OfferCardHeadline>
         <OfferImageContainer>
@@ -100,4 +103,6 @@ const OfferCard = ({
   );
 };
 
-export default OfferCard;
+const mapStateToProps = ({ user }) => ({ user });
+
+export default connect(mapStateToProps)(OfferCard);
