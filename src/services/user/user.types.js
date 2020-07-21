@@ -3,3 +3,4 @@ export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE';
 export const SET_USER = 'AUTH/SET_USER';
 export const SET_ACCOUNT = 'SET_ACCOUNT';
 export const LOGOUT = 'AUTH/LOGOUT';
+export const UPDATE_FAVORITES_LIST = 'UPDATE_FAVORITES_LIST';

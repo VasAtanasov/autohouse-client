@@ -1,22 +1,23 @@
 import React from 'react';
 import { ButtonContainer } from './add-to-favorites.styles';
-import { addToFavorites } from '../../services/offer/offer.api';
+import { updateFavorites } from '../../services/user/user.actions';
+import { connect } from 'react-redux';
 
-const AddToFavorites = ({ offerId }) => {
+const AddToFavorites = ({ offerId, updateFavorites }) => {
   const handleAddToList = async (event) => {
     event.preventDefault();
-    const response = await addToFavorites(offerId);
-    console.log(response);
+    await updateFavorites(offerId);
   };
 
   return (
     <ButtonContainer onClick={handleAddToList}>
       <span className="star-icon">
         <i className="flaticon-star-1" />
+        {/* <i className="flaticon-star-2 active" /> */}
       </span>
-      <span className="button-text">Add to list</span>
+      <span className="button-text">Add to favorites</span>
     </ButtonContainer>
   );
 };
 
-export default AddToFavorites;
+export default connect(null, { updateFavorites })(AddToFavorites);

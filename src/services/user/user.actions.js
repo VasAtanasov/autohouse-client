@@ -93,3 +93,10 @@ export const logout = () => (dispatch) => {
     type: types.LOGOUT,
   });
 };
+
+export const updateFavorites = (offerId) => async (dispatch) => {
+  try {
+    const response = await userApi.addToFavorites(offerId);
+    dispatch({ type: types.UPDATE_FAVORITES_LIST, payload: response.data });
+  } catch (err) {}
+};

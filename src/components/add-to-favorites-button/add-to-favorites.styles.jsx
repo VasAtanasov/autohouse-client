@@ -22,6 +22,10 @@ export const ButtonContainer = styled.button`
     width: 24px;
     height: 24px;
 
+    i.active:before {
+      color: ${({ theme }) => theme.colors.defaultColor};
+    }
+
     i:before {
       margin-left: 0;
       font-size: 22px;

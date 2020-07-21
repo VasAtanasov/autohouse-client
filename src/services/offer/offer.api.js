@@ -56,7 +56,3 @@ export const createOffer = async (data) => {
 export const loadOfferDetails = async (offerId) => {
   return http.get(`/vehicles/offers/details/${offerId}`);
 };
-
-export const addToFavorites = async (offerId) => {
-  return http.get(`/vehicles/offers/add-to-favorites/${offerId}`);
-};

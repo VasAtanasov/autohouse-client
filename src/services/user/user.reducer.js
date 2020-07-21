@@ -40,6 +40,14 @@ export const user = (state = { ...USER_INITIAL_STATE }, action) => {
         details: null,
         account: null,
       };
+    case types.UPDATE_FAVORITES_LIST:
+      return {
+        ...state,
+        details: {
+          ...state.details,
+          favorites: action.payload,
+        },
+      };
     default:
       return state;
   }

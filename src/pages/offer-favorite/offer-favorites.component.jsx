@@ -53,7 +53,7 @@ const offerListReducer = (state, action) => {
   }
 };
 
-const OfferFavorites = ({ filter, width }) => {
+const OfferFavorites = () => {
   const [state, dispatch] = React.useReducer(
     offerListReducer,
     Object.assign({}, INITIAL_STATE)
