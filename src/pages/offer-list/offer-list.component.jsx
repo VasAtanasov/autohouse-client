@@ -18,6 +18,7 @@ import {
   searchOffersSuccess,
   searchOffersFailure,
 } from '../../services/offer/offer.actions';
+import { saveFilter } from '../../services/filter/filter.api';
 import {
   fetchAppStateSuccess,
   fetchAppStateFailure,
@@ -38,6 +39,7 @@ import Filters from './filters/filters.component';
 import List from './list/list.component';
 import withSizes from 'react-sizes';
 import emptyFuelGuage from '../../assets/fuel-guage.png';
+import { toast } from 'react-toastify';
 
 const INITIAL_STATE = {
   loading: true,
@@ -89,7 +91,7 @@ const offerListReducer = (state, action) => {
   }
 };
 
-const FiltersModal = ({ metadata }) => {
+const FiltersModal = ({ saveSearch, metadata }) => {
   const [visible, setVisible] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const [awake, setAwake] = React.useState(false);
@@ -153,7 +155,9 @@ const FiltersModal = ({ metadata }) => {
             <div className="button cancel" onClick={() => setVisible(false)}>
               Cancel
             </div>
-            <div className="button save">Save</div>
+            <div className="button save" onClick={saveSearch}>
+              Save
+            </div>
           </SearchButtonsWrapper>
         </SearchButtonsContainer>
       </FiltersStyledModal>
@@ -204,17 +208,29 @@ const OfferList = ({ filter, width }) => {
     dispatch({ type: OFFER_SELECT_PAGE, payload: pageNumber });
   };
 
+  const saveSearch = async (event) => {
+    event.preventDefault();
+    try {
+      await saveFilter(filter);
+      toast.success('Search Saved!');
+    } catch (error) {
+      toast.error('Search not Saved! Try again.');
+    }
+  };
+
   return (
     <ListWrapper className="list-wrapper">
       <FiltersContainer>
-        {width && width >= 992 && <Filters {...app} />}
+        {width && width >= 992 && <Filters saveSearch={saveSearch} {...app} />}
       </FiltersContainer>
       <ListContainer>
         {loading || !page ? (
           <Spinner />
         ) : (
           <React.Fragment>
-            {width && width < 992 && <FiltersModal {...app} />}
+            {width && width < 992 && (
+              <FiltersModal saveSearch={saveSearch} {...app} />
+            )}
             {page.content.length > 0 ? (
               <List
                 page={page}

@@ -470,6 +470,7 @@ const HasAccidentCollapse = connect(({ filter }) => ({
 });
 
 const Filters = ({
+  saveSearch,
   filter,
   statistics,
   createFilter,
@@ -491,6 +492,11 @@ const Filters = ({
       <SearchFiltersSection className="search-filters-section">
         <SearchFiltersHeader>
           <div className="page-title">Search Filters</div>
+          {saveSearch && (
+            <button className="save-button" onClick={saveSearch}>
+              Save
+            </button>
+          )}
           <button
             onClick={() => {
               reset({

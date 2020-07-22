@@ -148,6 +148,7 @@ export const ListContainer = styled.div`
 
   @media screen and (min-width: 992px) {
     flex-basis: 75%;
+    max-width: 725px;
   }
 `;
 
@@ -165,6 +166,7 @@ export const FiltersContainer = styled.div`
   @media screen and (min-width: 992px) {
     display: block;
     flex-basis: 25%;
+    min-width: 243px;
     margin-right: 12px;
   }
 `;

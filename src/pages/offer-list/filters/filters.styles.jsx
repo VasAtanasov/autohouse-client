@@ -19,7 +19,8 @@ export const SearchFiltersHeader = styled.div`
     font-weight: 600;
   }
 
-  .clear-button {
+  .clear-button,
+  .save-button {
     position: relative;
     background: none;
     border: none;
