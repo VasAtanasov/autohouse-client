@@ -39,5 +39,9 @@ export const ButtonContainer = styled.button`
 
   .button-text {
     padding-left: 4px;
+
+    &.active {
+      color: ${({ theme }) => theme.colors.defaultColor};
+    }
   }
 `;

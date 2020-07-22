@@ -11,6 +11,8 @@ import {
 } from './offer-details.styles';
 import { loadOfferDetails } from '../../services/offer/offer.api';
 import { Spinner } from '../../components';
+import { connect } from 'react-redux';
+import { AddToFavorites } from '../../components';
 
 const Description = ({ description }) => {
   const addInfoIndex = description.indexOf('[!@@Additional Info@@!]');
@@ -33,8 +35,9 @@ const Description = ({ description }) => {
   );
 };
 
-const OfferDetails = ({ match }) => {
+const OfferDetails = ({ match, user }) => {
   const offerId = match.params.id;
+  const { isAuthenticated } = user;
 
   const [loading, setLoading] = React.useState(true);
   const [offer, setOffer] = React.useState({});
@@ -54,6 +57,7 @@ const OfferDetails = ({ match }) => {
   }, [offerId]);
 
   const {
+    id,
     accountDisplayName,
     contactDetailsPhoneNumber,
     contactDetailsWebLink,
@@ -82,6 +86,9 @@ const OfferDetails = ({ match }) => {
                   </span>{' '}
                   <span className="detail-version">{vehicleTrim}</span>
                 </div>
+              </div>
+              <div className="offer-summary-action-buttons">
+                {isAuthenticated && <AddToFavorites offerId={id} />}
               </div>
             </div>
           </DetailsHeadline>
@@ -120,4 +127,6 @@ const OfferDetails = ({ match }) => {
   );
 };
 
-export default OfferDetails;
+const mapStateToProps = ({ user }) => ({ user });
+
+export default connect(mapStateToProps)(OfferDetails);

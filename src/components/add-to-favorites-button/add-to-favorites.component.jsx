@@ -3,7 +3,17 @@ import { ButtonContainer } from './add-to-favorites.styles';
 import { updateFavorites } from '../../services/user/user.actions';
 import { connect } from 'react-redux';
 
-const AddToFavorites = ({ offerId, updateFavorites }) => {
+const AddToFavorites = ({ offerId, updateFavorites, favorites }) => {
+  const [active, setActive] = React.useState(false);
+
+  React.useEffect(() => {
+    if (favorites.includes(offerId)) {
+      setActive(true);
+    } else {
+      setActive(false);
+    }
+  }, [offerId, favorites]);
+
   const handleAddToList = async (event) => {
     event.preventDefault();
     await updateFavorites(offerId);
@@ -12,12 +22,19 @@ const AddToFavorites = ({ offerId, updateFavorites }) => {
   return (
     <ButtonContainer onClick={handleAddToList}>
       <span className="star-icon">
-        <i className="flaticon-star-1" />
-        {/* <i className="flaticon-star-2 active" /> */}
+        {active ? (
+          <i className="flaticon-star-2 active" />
+        ) : (
+          <i className="flaticon-star-1" />
+        )}
       </span>
-      <span className="button-text">Add to favorites</span>
+      <span className={'button-text ' + (active && 'active')}>
+        Add{active && 'ed'} to favorites
+      </span>
     </ButtonContainer>
   );
 };
 
-export default connect(null, { updateFavorites })(AddToFavorites);
+const mapStateToProps = ({ user }) => ({ favorites: user.details.favorites });
+
+export default connect(mapStateToProps, { updateFavorites })(AddToFavorites);

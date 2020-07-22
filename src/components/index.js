@@ -17,6 +17,7 @@ import { FormButton } from './form-button/form-button.styles';
 import { FormControl } from './form-control/form-control.styles';
 import { ErrorMessageContainer } from './form-error-message/form-error-message.styles';
 import { SelectWrapper } from './select-wrapper/select-wrapper.styles';
+import AddToFavorites from './add-to-favorites-button/add-to-favorites.component';
 
 export {
   Header,
@@ -38,4 +39,5 @@ export {
   ErrorMessageContainer,
   AccountCheck,
   SelectWrapper,
+  AddToFavorites,
 };

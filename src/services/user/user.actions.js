@@ -97,6 +97,16 @@ export const logout = () => (dispatch) => {
 export const updateFavorites = (offerId) => async (dispatch) => {
   try {
     const response = await userApi.addToFavorites(offerId);
-    dispatch({ type: types.UPDATE_FAVORITES_LIST, payload: response.data });
+    if (response) {
+      const user = JSON.parse(window.localStorage.getItem('user'));
+      window.localStorage.setItem(
+        'user',
+        JSON.stringify({
+          ...user,
+          favorites: response.data,
+        })
+      );
+      dispatch({ type: types.UPDATE_FAVORITES_LIST, payload: response.data });
+    }
   } catch (err) {}
 };
