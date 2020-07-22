@@ -56,3 +56,19 @@ export const createOffer = async (data) => {
 export const loadOfferDetails = async (offerId) => {
   return http.get(`/vehicles/offers/details/${offerId}`);
 };
+
+export const searchFavoriteOffers = async (
+  offerIds,
+  sort = 'createdAt,desc',
+  pageNumber = 0
+) => {
+  return http.post(
+    `/vehicles/offers/search/favorites?page=${pageNumber}&sort=${sort}`,
+    {
+      data: offerIds,
+      headers: {
+        'Content-Type': 'application/bg.autohouse.api-v1+json',
+      },
+    }
+  );
+};

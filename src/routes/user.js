@@ -1,4 +1,9 @@
-import { LoginRegister, UserSettings, OfferFavorites } from '../pages';
+import {
+  LoginRegister,
+  UserSettings,
+  OfferFavorites,
+  SavedSearches,
+} from '../pages';
 
 export default {
   loginRegister: {
@@ -14,12 +19,12 @@ export default {
   },
   savedSearches: {
     path: '/user/saved-searches',
-    component: null,
+    component: SavedSearches,
     auth: true,
     exact: true,
   },
   savedInventory: {
-    path: '/user/saved-inventory',
+    path: '/user/favorites',
     component: OfferFavorites,
     auth: true,
     exact: true,

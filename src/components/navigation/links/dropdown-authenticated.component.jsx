@@ -18,7 +18,7 @@ const DropdownAuthenticatedLinks = ({ logout }) => {
         Saved Searches
       </Dropdown.Item>
       <Dropdown.Item as={MenuLink} to={userRoutes.savedInventory.path}>
-        Saved Inventory
+        Favorites
       </Dropdown.Item>
       <Dropdown.Item as={MenuLink} to={userRoutes.account.path}>
         Account

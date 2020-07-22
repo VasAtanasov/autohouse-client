@@ -31,11 +31,13 @@ import {
   FiltersModalToggleButton,
   SearchButtonsWrapper,
   SearchButtonsContainer,
+  NoResults,
 } from './offer-list.styles';
 import { Spinner } from '../../components';
 import Filters from './filters/filters.component';
 import List from './list/list.component';
 import withSizes from 'react-sizes';
+import emptyFuelGuage from '../../assets/fuel-guage.png';
 
 const INITIAL_STATE = {
   loading: true,
@@ -213,13 +215,26 @@ const OfferList = ({ filter, width }) => {
         ) : (
           <React.Fragment>
             {width && width < 992 && <FiltersModal {...app} />}
-            <List
-              page={page}
-              handleSort={selectSort}
-              selectedSort={sort}
-              gotToPage={gotToPage}
-              app={app}
-            />
+            {page.content.length > 0 ? (
+              <List
+                page={page}
+                handleSort={selectSort}
+                selectedSort={sort}
+                gotToPage={gotToPage}
+                app={app}
+              />
+            ) : (
+              <NoResults>
+                <div className="placeholder">
+                  <img
+                    className="empty-fuel-guage"
+                    src={emptyFuelGuage}
+                    alt="No results"
+                  />
+                  <h4 className="title">No Results Found</h4>
+                </div>
+              </NoResults>
+            )}
           </React.Fragment>
         )}
       </ListContainer>

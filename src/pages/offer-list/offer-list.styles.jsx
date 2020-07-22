@@ -143,7 +143,7 @@ export const ListWrapper = styled.div`
 
 export const ListContainer = styled.div`
   position: relative;
-  min-height: 100vh;
+  min-height: 80vh;
   flex-basis: 100%;
 
   @media screen and (min-width: 992px) {
@@ -166,5 +166,35 @@ export const FiltersContainer = styled.div`
     display: block;
     flex-basis: 25%;
     margin-right: 12px;
+  }
+`;
+
+export const NoResults = styled.div`
+  color: #666;
+  padding: 90px;
+  background-size: 350px;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  @media (min-width: 768px) {
+    height: 643px;
+  }
+
+  @media (max-width: 767px) {
+    min-height: 650px;
+    padding: 20px;
+  }
+
+  .empty-fuel-guage {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+    padding: 35px 0;
+  }
+
+  .title {
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    text-align: center !important;
   }
 `;
