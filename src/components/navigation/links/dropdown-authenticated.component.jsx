@@ -20,6 +20,9 @@ const DropdownAuthenticatedLinks = ({ logout }) => {
       <Dropdown.Item as={MenuLink} to={userRoutes.savedInventory.path}>
         Favorites
       </Dropdown.Item>
+      <Dropdown.Item as={MenuLink} to={userRoutes.myInventory.path}>
+        My Inventory
+      </Dropdown.Item>
       <Dropdown.Item as={MenuLink} to={userRoutes.account.path}>
         Account
       </Dropdown.Item>

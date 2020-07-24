@@ -29,4 +29,10 @@ export default {
     auth: true,
     exact: true,
   },
+  myInventory: {
+    path: '/user/my-inventory',
+    component: null,
+    auth: true,
+    exact: true,
+  },
 };

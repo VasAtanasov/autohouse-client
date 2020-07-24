@@ -216,4 +216,5 @@ export const OfferContainer = styled.div`
   cursor: pointer;
   padding-bottom: 16px;
   width: 100%;
+  margin-bottom: 12px;
 `;

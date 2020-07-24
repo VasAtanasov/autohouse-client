@@ -19,6 +19,8 @@ const AddToFavorites = ({ offerId, updateFavorites, favorites }) => {
     await updateFavorites(offerId);
   };
 
+  //TODO increment saved count
+
   return (
     <ButtonContainer onClick={handleAddToList}>
       <span className="star-icon">

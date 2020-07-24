@@ -75,29 +75,18 @@ export const provinces = (state = [], action) => {
   }
 };
 
-// const APP_INITIAL_STATE = {
-//   loading: true,
-// };
-
-// export const appState = (state = { ...APP_INITIAL_STATE }, action) => {
-//   switch (action.type) {
-//     case types.FETCH_APP_STATE_START:
-//       return {
-//         ...state,
-//         loading: true,
-//       };
-//     case types.FETCH_APP_STATE_SUCCESS:
-//       return {
-//         ...state,
-//         ...action.payload,
-//         loading: false,
-//       };
-//     case types.FETCH_APP_STATE_FAILURE:
-//       return {
-//         ...state,
-//         loading: false,
-//       };
-//     default:
-//       return state;
-//   }
-// };
+export const metadata = (state = {}, action) => {
+  switch (action.type) {
+    case types.FETCH_APP_STATE_FAILURE:
+    case types.FETCH_APP_STATE_START:
+      return state;
+    case types.FETCH_APP_STATE_SUCCESS:
+    case types.FETCH_METADATA_SUCCESS:
+      return {
+        ...state,
+        ...action.payload,
+      };
+    default:
+      return state;
+  }
+};

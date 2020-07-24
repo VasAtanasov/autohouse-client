@@ -70,6 +70,8 @@ const OfferDetails = ({ match, user }) => {
     vehicleFeatures,
   } = offer;
 
+  //TODO on view increment view count
+
   return (
     <DetailsPageContainer>
       {loading || !offer ? (

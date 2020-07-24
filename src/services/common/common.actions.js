@@ -58,6 +58,10 @@ export const fetchAppStateSuccess = (response) => ({
   type: types.FETCH_APP_STATE_SUCCESS,
   payload: response.data.data,
 });
+export const fetchMetadataSuccess = (response) => ({
+  type: types.FETCH_METADATA_SUCCESS,
+  payload: response.data.data.metadata,
+});
 
 export const fetchAppStateFailure = (error) => ({
   type: types.FETCH_APP_STATE_FAILURE,
@@ -69,6 +73,17 @@ export const fetchAppStateAsync = () => async (dispatch) => {
     dispatch(fetchAppStateStart());
     const response = await commonApi.loadAppState();
     dispatch(fetchAppStateSuccess(response));
+  } catch (error) {
+    dispatch(fetchAppStateFailure(error));
+    throw error;
+  }
+};
+
+export const fetchMetadataAsync = () => async (dispatch) => {
+  try {
+    dispatch(fetchAppStateStart());
+    const response = await commonApi.loadAppState();
+    dispatch(fetchMetadataSuccess(response));
   } catch (error) {
     dispatch(fetchAppStateFailure(error));
     throw error;

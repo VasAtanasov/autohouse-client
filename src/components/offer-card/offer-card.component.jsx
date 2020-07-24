@@ -37,11 +37,7 @@ const OfferCard = ({
   const [imageLoading, setImageLoading] = React.useState(true);
   const { isAuthenticated } = user;
   return (
-    <a
-      href={`/offer/details/${id}`}
-      className="list-element-gap"
-      data-uuid={id}
-    >
+    <a href={`/offer/details/${id}`} data-uuid={id}>
       <OfferContainer className="offer-summary-full-main-container">
         <OfferCardHeadline>
           <div className="offer-summary-titles">

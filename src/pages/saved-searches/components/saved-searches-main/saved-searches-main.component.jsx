@@ -7,18 +7,19 @@ import {
   removeSavedSearch,
 } from '../../../../services/filter/filter.api';
 import { createFilter } from '../../../../services/filter/filter.action';
+import { fetchMetadataAsync } from '../../../../services/common/common.actions';
 import {
   SavedSearchesList,
   SpinnerContainer,
-  SavedSearchView,
   NoSavedSearches,
   ReturnToSearch,
 } from './saved-searches-main.styles';
 import { Spinner } from '../../../../components';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import SavedSearchView from '../saved-search-view/saved-search-view.component';
 
-const SavedSearchesMain = ({ createFilter }) => {
+const SavedSearchesMain = ({ createFilter, fetchMetadataAsync }) => {
   const [list, setList] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   let history = useHistory();
@@ -27,14 +28,14 @@ const SavedSearchesMain = ({ createFilter }) => {
     (async () => {
       try {
         const response = await listSavedSearches();
+        await fetchMetadataAsync();
         setLoading(false);
         setList(response.data);
-        console.log(response.data);
       } catch (error) {
         setLoading(false);
       }
     })();
-  }, []);
+  }, [fetchMetadataAsync]);
 
   const handleDeleteSavedSearch = async (event) => {
     event.preventDefault();
@@ -53,7 +54,6 @@ const SavedSearchesMain = ({ createFilter }) => {
     const filterId = event.target.dataset.filterId;
     if (!filterId) return;
     const filterIndex = list.findIndex((e) => e.id === filterId);
-    console.log(filterIndex);
     if (filterIndex !== undefined) {
       const filter = list[filterIndex];
       const newFilter = Object.keys(filter)
@@ -82,36 +82,12 @@ const SavedSearchesMain = ({ createFilter }) => {
               </NoSavedSearches>
             ) : (
               list.map((filter) => (
-                <SavedSearchView key={filter.id}>
-                  <div className="details">
-                    <div className="description">
-                      <span className="headline">
-                        {filter.makerName
-                          ? `${filter.makerName}${
-                              filter.modelName ? ` ${filter.modelName}` : ''
-                            }`
-                          : 'All Makers & Models'}
-                      </span>
-                      <span>{filter?.priceTo}</span>
-                    </div>
-                    <div className="menu">
-                      <span
-                        className="view"
-                        data-filter-id={filter.id}
-                        onClick={handleViewSavedSearch}
-                      >
-                        View
-                      </span>
-                      <span
-                        data-filter-id={filter.id}
-                        onClick={handleDeleteSavedSearch}
-                        className="delete"
-                      >
-                        Delete
-                      </span>
-                    </div>
-                  </div>
-                </SavedSearchView>
+                <SavedSearchView
+                  filter={filter}
+                  handleViewSavedSearch={handleViewSavedSearch}
+                  handleDeleteSavedSearch={handleDeleteSavedSearch}
+                  key={filter.id}
+                ></SavedSearchView>
               ))
             )}
           </SavedSearchesList>
@@ -121,4 +97,6 @@ const SavedSearchesMain = ({ createFilter }) => {
   );
 };
 
-export default connect(null, { createFilter })(SavedSearchesMain);
+export default connect(null, { createFilter, fetchMetadataAsync })(
+  SavedSearchesMain
+);
