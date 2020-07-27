@@ -70,7 +70,7 @@ const OfferDetails = ({ match, user }) => {
     vehicleFeatures,
   } = offer;
 
-  //TODO on view increment view count
+  console.log(offer);
 
   return (
     <DetailsPageContainer>
@@ -113,7 +113,7 @@ const OfferDetails = ({ match, user }) => {
           <OfferDescription>
             <h4>Description</h4>
             <div className="offer-description">
-              <Description description={description} />
+              {offer?.description && <Description description={description} />}
             </div>
           </OfferDescription>
           <hr />

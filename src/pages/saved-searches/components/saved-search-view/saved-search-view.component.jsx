@@ -41,8 +41,6 @@ const SavedSearchView = ({
     yearTo,
   } = filter;
 
-  console.log(filter);
-
   return (
     <SavedSearchViewContainer key={filter.id}>
       <div className="details">

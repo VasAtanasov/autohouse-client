@@ -13,7 +13,7 @@ export default {
     exact: true,
   },
   offerDetails: {
-    path: '/offer/details/:id',
+    path: (id = ':id') => `/offer/details/${id}`,
     component: OfferDetails,
     exact: true,
   },

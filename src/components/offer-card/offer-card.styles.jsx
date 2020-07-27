@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { ShineAnimation } from '../../global/styles/shared-styles';
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 export const OfferCardHeadline = styled.div`
   display: flex;
@@ -208,13 +210,97 @@ export const Summery = styled.div`
   }
 `;
 
+export const ActionButton = styled(Button)`
+  font-size: 14px;
+  margin-right: 4px;
+  color: #ffff;
+  min-width: 120px;
+
+  &&.is-disabled {
+    pointer-events: auto !important;
+  }
+
+  &&.btn-warning:hover,
+  &&.btn-warning:focus,
+  &&.btn-warning:active {
+    color: #ffff;
+  }
+`;
+
+export const OfferOwnerActionsContainer = styled.div`
+  flex: 1 1 100%;
+  order: 4;
+  padding: 12px;
+  margin-top: 4px;
+  border-top: 1px solid #dcdcdc;
+  font-size: 12px;
+  display: flex;
+  justify-content: flex-end;
+
+  @media (min-width: 768px) {
+    padding: 12px 16px;
+    margin-top: 16px;
+  }
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: center;
+
+    & ${ActionButton} {
+      flex-basis: 90%;
+      min-width: auto;
+      margin: 0;
+      margin-bottom: 10px;
+    }
+  }
+`;
+
 export const OfferContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   background-color: #fff;
   cursor: pointer;
-  padding-bottom: 16px;
   width: 100%;
   margin-bottom: 12px;
+
+  &._padding-bottom {
+    padding-bottom: 16px;
+  }
+`;
+
+export const ViewCountContainer = styled.div`
+  position: absolute;
+  right: 7px;
+  top: 15px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 13px;
+  padding: 1px 8px 1px;
+  border-radius: 3px;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .eye-icon,
+  .star-icon {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 7px;
+    fill: #fff;
+  }
+`;
+
+export const SavedCountContainer = styled(ViewCountContainer)`
+  top: 40px;
+`;
+
+export const OfferLink = styled(Link)`
+  &.is-disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 `;

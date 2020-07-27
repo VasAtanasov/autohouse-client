@@ -8,6 +8,7 @@ import CreateUpdateOffer from './create-update-offer/create-update-offer.contain
 import OfferDetails from './offer-details/offer-details.component';
 import OfferFavorites from './offer-favorite/offer-favorites.component';
 import SavedSearches from './saved-searches/saved-searches.component';
+import UserOffers from './user-offers/user-offers.component';
 
 export {
   HomePage,
@@ -20,4 +21,5 @@ export {
   OfferDetails,
   OfferFavorites,
   SavedSearches,
+  UserOffers,
 };

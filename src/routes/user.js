@@ -3,6 +3,7 @@ import {
   UserSettings,
   OfferFavorites,
   SavedSearches,
+  UserOffers,
 } from '../pages';
 
 export default {
@@ -31,7 +32,7 @@ export default {
   },
   myInventory: {
     path: '/user/my-inventory',
-    component: null,
+    component: UserOffers,
     auth: true,
     exact: true,
   },

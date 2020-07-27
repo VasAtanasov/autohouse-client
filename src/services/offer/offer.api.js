@@ -72,3 +72,10 @@ export const searchFavoriteOffers = async (
     }
   );
 };
+
+export const loadUserOffers = async (
+  sort = 'createdAt,desc',
+  pageNumber = 0
+) => {
+  return http.get(`/users/offer/list?page=${pageNumber}&sort=${sort}`);
+};
