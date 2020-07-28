@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 import { logout } from '../../../services/user/user.actions';
 import { toast } from 'react-toastify';
 import userRoutes from '../../../routes/user';
+import adminRouts from '../../../routes/admin';
 
-const DropdownAuthenticatedLinks = ({ logout }) => {
+const DropdownAuthenticatedLinks = ({ logout, isAdmin }) => {
   const handleLogout = () => {
     logout();
     toast.success('LOGOUT SUCCESSFUL');
@@ -26,6 +27,11 @@ const DropdownAuthenticatedLinks = ({ logout }) => {
       <Dropdown.Item as={MenuLink} to={userRoutes.account.path}>
         Account
       </Dropdown.Item>
+      {isAdmin && (
+        <Dropdown.Item as={MenuLink} to={adminRouts.dashboard.path}>
+          Dashboard
+        </Dropdown.Item>
+      )}
       <Dropdown.Item as="button" onClick={handleLogout}>
         Logout
       </Dropdown.Item>

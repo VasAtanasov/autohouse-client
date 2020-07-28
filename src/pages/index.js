@@ -9,6 +9,7 @@ import OfferDetails from './offer-details/offer-details.component';
 import OfferFavorites from './offer-favorite/offer-favorites.component';
 import SavedSearches from './saved-searches/saved-searches.component';
 import UserOffers from './user-offers/user-offers.component';
+import Dashboard from './admin/admin.component';
 
 export {
   HomePage,
@@ -22,4 +23,5 @@ export {
   OfferFavorites,
   SavedSearches,
   UserOffers,
+  Dashboard,
 };

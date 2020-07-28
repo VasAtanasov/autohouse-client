@@ -13,6 +13,7 @@ import { loadOfferDetails } from '../../services/offer/offer.api';
 import { Spinner } from '../../components';
 import { connect } from 'react-redux';
 import { AddToFavorites } from '../../components';
+import Peugeot404 from '../peugeot-404/peugeot-404.component';
 
 const Description = ({ description }) => {
   const addInfoIndex = description.indexOf('[!@@Additional Info@@!]');
@@ -37,10 +38,11 @@ const Description = ({ description }) => {
 
 const OfferDetails = ({ match, user }) => {
   const offerId = match.params.id;
-  const { isAuthenticated } = user;
+  const { isAuthenticated, account } = user;
 
   const [loading, setLoading] = React.useState(true);
   const [offer, setOffer] = React.useState({});
+  const [error, setError] = React.useState(undefined);
   const [offerImages, setOfferImages] = React.useState([]);
 
   React.useEffect(() => {
@@ -52,12 +54,14 @@ const OfferDetails = ({ match, user }) => {
         setLoading(false);
       } catch (err) {
         setLoading(false);
+        setError(true);
       }
     })();
   }, [offerId]);
 
   const {
     id,
+    accountId,
     accountDisplayName,
     contactDetailsPhoneNumber,
     contactDetailsWebLink,
@@ -70,9 +74,9 @@ const OfferDetails = ({ match, user }) => {
     vehicleFeatures,
   } = offer;
 
-  console.log(offer);
-
-  return (
+  return error ? (
+    <Peugeot404 />
+  ) : (
     <DetailsPageContainer>
       {loading || !offer ? (
         <Spinner />
@@ -90,7 +94,9 @@ const OfferDetails = ({ match, user }) => {
                 </div>
               </div>
               <div className="offer-summary-action-buttons">
-                {isAuthenticated && <AddToFavorites offerId={id} />}
+                {isAuthenticated && account?.id !== accountId && (
+                  <AddToFavorites offerId={id} />
+                )}
               </div>
             </div>
           </DetailsHeadline>

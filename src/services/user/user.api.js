@@ -88,3 +88,7 @@ export const changePassword = (data) => {
 export const addToFavorites = async (offerId) => {
   return http.get(`/users/offer/add-to-favorites/${offerId}`);
 };
+
+export const toggleActive = async (offerId) => {
+  return http.get(`/users/offer/toggle-active/${offerId}`);
+};

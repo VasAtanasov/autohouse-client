@@ -10,6 +10,7 @@ import {
   ViewCountContainer,
   SavedCountContainer,
   OfferLink,
+  OwnerBadge,
 } from './offer-card.styles';
 import AddToFavorites from '../add-to-favorites-button/add-to-favorites.component';
 import { connect } from 'react-redux';
@@ -18,10 +19,15 @@ import offerRoutes from '../../routes/offer';
 import userRoutes from '../../routes/user';
 import { ReactComponent as ViewIcon } from './icons/eye.svg';
 import { ReactComponent as StarIcon } from './icons/star.svg';
+import { ReactComponent as KeyIcon } from './icons/key.svg';
 import { toast } from 'react-toastify';
+import { toggleActive } from '../../services/user/user.api';
 
 const OfferCard = ({
   id,
+  accountId,
+  accountUserId,
+  accountUserEnabled,
   price,
   locationCity,
   locationId,
@@ -42,36 +48,57 @@ const OfferCard = ({
   vehicleColor,
   vehicleFuelType,
   vehicleHasAccident,
-  user,
   hitCount,
   savedCount,
   active,
+  user,
 }) => {
   const imageRef = React.useRef(null);
   const [imageLoading, setImageLoading] = React.useState(true);
   const [isUserInventoryPage, setIsUserInventoryPage] = React.useState(false);
-  const { isAuthenticated } = user;
+  const [isOfferActive, setIsOfferActive] = React.useState(active);
+  const { isAuthenticated, account } = user;
   let location = useLocation();
 
   React.useEffect(() => {
     setIsUserInventoryPage(location.pathname === userRoutes.myInventory.path);
   }, [location]);
 
-  // const activateFirst = (event) => {
-  //   if (!active) {
-  //     toast.info('Before viewing, editing offer u must activate it!');
-  //     event.preventDefault();
-  //   }
-  // };
+  const activateFirst = (event) => {
+    if (!isOfferActive) {
+      toast.info('Before viewing or editing offer u must activate it!');
+      event.preventDefault();
+    }
+  };
+
+  const handleToggleActive = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await toggleActive(id);
+      setIsOfferActive(response.data);
+      toast.success(
+        `Offer ${vehicleYear} ${vehicleMakerName} ${vehicleModelName} ${
+          response.data ? 'activated' : 'disabled'
+        }.`
+      );
+    } catch (error) {
+      toast.error(
+        `Something went wrong with ${
+          isOfferActive ? 'deactivating' : 'activating'
+        } offer.`
+      );
+    }
+  };
 
   const onClick = (event) => {
+    activateFirst(event);
     event.preventDefault();
   };
 
   return (
     <React.Fragment>
       <OfferLink
-        className={active ? '' : 'is-disabled'}
+        className={isOfferActive ? '' : 'is-disabled'}
         to={offerRoutes.offerDetails.path(id)}
         data-uuid={id}
       >
@@ -96,8 +123,15 @@ const OfferCard = ({
               </span>
             </div>
             <div className="offer-summary-action-buttons">
-              {isAuthenticated && !isUserInventoryPage && (
+              {isAuthenticated &&
+              !isUserInventoryPage &&
+              account?.id !== accountId ? (
                 <AddToFavorites offerId={id} />
+              ) : (
+                <OwnerBadge>
+                  <KeyIcon />
+                  <span>Owner</span>
+                </OwnerBadge>
               )}
             </div>
           </OfferCardHeadline>
@@ -153,23 +187,20 @@ const OfferCard = ({
             <OfferOwnerActionsContainer className="user-actions-container">
               <ActionButton
                 onClick={onClick}
-                variant="success"
-                disabled={!active}
+                variant="info"
+                disabled={!isOfferActive}
               >
-                Mark As Sold
-              </ActionButton>{' '}
-              <ActionButton onClick={onClick} variant="info" disabled={!active}>
                 Edit
               </ActionButton>{' '}
               <ActionButton
-                className={active ? '' : 'is-disabled'}
-                onClick={onClick}
-                variant={active ? 'warning' : 'primary'}
+                className={isOfferActive ? '' : 'is-disabled'}
+                onClick={handleToggleActive}
+                variant={isOfferActive ? 'warning' : 'primary'}
               >
-                {active ? 'Disable' : 'Activate'}
+                {isOfferActive ? 'Disable' : 'Activate'}
               </ActionButton>{' '}
               <ActionButton
-                className={active ? '' : 'is-disabled'}
+                className={isOfferActive ? '' : 'is-disabled'}
                 onClick={onClick}
                 variant="danger"
               >

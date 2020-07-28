@@ -16,7 +16,6 @@ export default {
     path: '/user/settings',
     component: UserSettings,
     auth: true,
-    // exact: true,
   },
   savedSearches: {
     path: '/user/saved-searches',

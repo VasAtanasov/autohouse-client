@@ -37,6 +37,8 @@ const AddToFavorites = ({ offerId, updateFavorites, favorites }) => {
   );
 };
 
-const mapStateToProps = ({ user }) => ({ favorites: user.details.favorites });
+const mapStateToProps = ({ user }) => ({
+  favorites: user.details.favorites,
+});
 
 export default connect(mapStateToProps, { updateFavorites })(AddToFavorites);

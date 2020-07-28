@@ -8,7 +8,7 @@ import userRoutes from '../../routes/user';
 const PrivateRoute = ({ user, role, component, ...rest }) =>
   user.isAuthenticated ? (
     role ? (
-      user.details.role === role ? (
+      user.details.roles.includes(role) ? (
         <Route {...rest} component={component} />
       ) : (
         <Redirect to={userRoutes.loginRegister.path} />

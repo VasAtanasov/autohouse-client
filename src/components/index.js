@@ -12,6 +12,7 @@ import { CheckBoxContainer } from './checkbox/checkbox.styles';
 import Slider from './slider/slider.component';
 import Loader from './loader/loader.component';
 import AuthCheck from './auth/auth-check.component';
+import AuthAdminCheck from './auth/admin-auth-check.component';
 import AccountCheck from './account-check/account-check.component';
 import { FormButton } from './form-button/form-button.styles';
 import { FormControl } from './form-control/form-control.styles';
@@ -34,6 +35,7 @@ export {
   CheckBoxContainer,
   Loader,
   AuthCheck,
+  AuthAdminCheck,
   FormButton,
   FormControl,
   ErrorMessageContainer,

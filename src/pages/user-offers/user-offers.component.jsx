@@ -7,7 +7,6 @@ import {
   OFFER_SELECT_PAGE,
 } from '../../services/offer/offer.types';
 import { loadUserOffers } from '../../services/offer/offer.api';
-import { ListWrapper } from '../offer-list/offer-list.styles';
 import { Spinner } from '../../components';
 import List from '../offer-list/list/list.component';
 import { connect } from 'react-redux';
@@ -18,6 +17,9 @@ import {
   AddOfferButton,
   ButtonContainer,
   UserOffersListContainer,
+  UserOffersContainer,
+  UserOffersData,
+  InfoLine,
 } from './user-offers.styles';
 
 const INITIAL_STATE = {
@@ -61,7 +63,7 @@ const offerListReducer = (state, action) => {
   }
 };
 
-const UserOffers = ({ favorites }) => {
+const UserOffers = ({ account }) => {
   const [state, dispatch] = React.useReducer(
     offerListReducer,
     Object.assign({}, INITIAL_STATE)
@@ -88,7 +90,7 @@ const UserOffers = ({ favorites }) => {
         });
       }
     })();
-  }, [favorites, sort, pageNumber]);
+  }, [sort, pageNumber]);
 
   const selectSort = (event) => {
     dispatch({ type: OFFER_SELECT_SORT, payload: event.target.value });
@@ -99,7 +101,12 @@ const UserOffers = ({ favorites }) => {
   };
 
   return (
-    <ListWrapper className="list-wrapper">
+    <UserOffersContainer>
+      <UserOffersData>
+        <h4>My Inventory</h4>
+        <InfoLine>Seller: {account?.displayName}</InfoLine>
+        <InfoLine>Total offers: {page?.totalElements}</InfoLine>
+      </UserOffersData>
       <UserOffersListContainer>
         {loading || !page ? (
           <Spinner />
@@ -133,10 +140,10 @@ const UserOffers = ({ favorites }) => {
         )}
       </UserOffersListContainer>
       <AccountCheck pathToRedirect="/user/settings/edit-personal-info" />
-    </ListWrapper>
+    </UserOffersContainer>
   );
 };
 
-const mapStateToProps = ({ user }) => ({ favorites: user.details.favorites });
+const mapStateToProps = ({ user }) => ({ account: user.account });
 
 export default connect(mapStateToProps)(UserOffers);

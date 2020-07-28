@@ -17,11 +17,6 @@ export const OfferCardHeadline = styled.div`
     white-space: nowrap;
     flex: 0 0 auto;
     display: flex;
-
-    div {
-      width: 24px;
-      height: 24px;
-    }
   }
 
   .offer-summary-titles {
@@ -224,6 +219,18 @@ export const ActionButton = styled(Button)`
   &&.btn-warning:focus,
   &&.btn-warning:active {
     color: #ffff;
+  }
+`;
+
+export const OwnerBadge = styled.div`
+  .owner-key-icon,
+  .owner-car-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  span {
+    margin-left: 5px;
   }
 `;
 

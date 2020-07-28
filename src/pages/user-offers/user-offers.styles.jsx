@@ -1,17 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const UserOffersListContainer = styled.div`
-  position: relative;
-  min-height: 80vh;
-  flex-basis: 100%;
-
-  @media screen and (min-width: 992px) {
-    flex-basis: 75%;
-    max-width: 725px;
-  }
-`;
-
 export const AddOfferButton = styled(Link)`
   user-select: none;
   text-align: center;
@@ -43,4 +32,46 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const UserOffersContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  align-items: flex-start;
+`;
+
+export const InfoLine = styled.div`
+  font-size: 14px;
+  font-weight: bold;
+  padding-bottom: 10px;
+`;
+
+const FullWidthCol = styled.div`
+  position: relative;
+  width: 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
+`;
+
+export const UserOffersListContainer = styled(FullWidthCol)`
+  position: relative;
+  min-height: 80vh;
+  padding-left: 5px;
+
+  @media screen and (min-width: 992px) {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+`;
+
+export const UserOffersData = styled(FullWidthCol)`
+  background-color: white;
+  padding: 5px;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 992px) {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
 `;

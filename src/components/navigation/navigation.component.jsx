@@ -18,16 +18,16 @@ import CreateOfferIcon from './icon/create-offer-icon';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-const Navigation = (props) => {
+const Navigation = ({ user }) => {
   let history = useHistory();
-  const { isAuthenticated } = props.user;
+  const { isAuthenticated, details } = user;
   const navbarLinks = isAuthenticated ? (
     <NavbarAuthenticatedLinks />
   ) : (
     <NavbarPublicLinks />
   );
   const dropdownLinks = isAuthenticated ? (
-    <DropdownAuthenticatedLinks />
+    <DropdownAuthenticatedLinks isAdmin={details?.roles.includes('ADMIN')} />
   ) : (
     <DropdownPublicLinks />
   );
