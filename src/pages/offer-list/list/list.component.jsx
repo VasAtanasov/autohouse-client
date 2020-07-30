@@ -9,7 +9,7 @@ import {
 } from './list.styles';
 import { OfferCard, SelectWrapper } from '../../../components';
 
-const ListNavigation = ({
+export const ListNavigation = ({
   pageNumber,
   gotToPage,
   startOfferNumber,

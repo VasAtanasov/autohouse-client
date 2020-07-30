@@ -78,5 +78,8 @@ export const SideNav = styled(Col)`
 
 export const PageContent = styled(Col)`
   background: white;
-  padding: 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 `;

@@ -13,61 +13,65 @@ console.log(routes, adminRoutes);
 
 const App = () => {
   return (
-    <Theme>
-      <GlobalStyles />
-      <Switch>
-        {Object.values(adminRoutes).map((route, index) => (
-          <PrivateRoute
-            {...route}
-            key={index}
-            path={typeof route.path === 'function' ? route.path() : route.path}
+    <React.Fragment>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={true}
+        closeButton={false}
+      />
+      <Theme>
+        <GlobalStyles />
+        <Switch>
+          {Object.values(adminRoutes).map((route, index) => (
+            <PrivateRoute
+              {...route}
+              key={index}
+              path={
+                typeof route.path === 'function' ? route.path() : route.path
+              }
+            />
+          ))}
+          <Route
+            render={() => (
+              <AppContainer>
+                <Header />
+                <MainContainer>
+                  <Switch>
+                    <Redirect exact from="/" to="/home" />
+                    {Object.values(routes).map((route, index) =>
+                      route.auth ? (
+                        <PrivateRoute
+                          {...route}
+                          key={index}
+                          path={
+                            typeof route.path === 'function'
+                              ? route.path()
+                              : route.path
+                          }
+                        />
+                      ) : (
+                        <Route
+                          {...route}
+                          key={index}
+                          path={
+                            typeof route.path === 'function'
+                              ? route.path()
+                              : route.path
+                          }
+                        />
+                      )
+                    )}
+                    <Route component={Peugeot404} />
+                  </Switch>
+                </MainContainer>
+                <Footer />
+              </AppContainer>
+            )}
           />
-        ))}
-        <Route
-          render={() => (
-            <AppContainer>
-              <ToastContainer
-                position="top-center"
-                autoClose={3000}
-                hideProgressBar={true}
-                closeButton={false}
-              />
-              <Header />
-              <MainContainer>
-                <Switch>
-                  <Redirect exact from="/" to="/home" />
-                  {Object.values(routes).map((route, index) =>
-                    route.auth ? (
-                      <PrivateRoute
-                        {...route}
-                        key={index}
-                        path={
-                          typeof route.path === 'function'
-                            ? route.path()
-                            : route.path
-                        }
-                      />
-                    ) : (
-                      <Route
-                        {...route}
-                        key={index}
-                        path={
-                          typeof route.path === 'function'
-                            ? route.path()
-                            : route.path
-                        }
-                      />
-                    )
-                  )}
-                  <Route component={Peugeot404} />
-                </Switch>
-              </MainContainer>
-              <Footer />
-            </AppContainer>
-          )}
-        />
-      </Switch>
-    </Theme>
+        </Switch>
+      </Theme>
+    </React.Fragment>
   );
 };
 
