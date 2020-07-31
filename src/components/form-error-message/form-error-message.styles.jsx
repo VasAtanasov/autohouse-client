@@ -28,4 +28,8 @@ export const ErrorMessageContainer = styled.div`
       content: '⚠ ';
     }
   }
+
+  p.m-bt {
+    margin-bottom: 10px !important;
+  }
 `;

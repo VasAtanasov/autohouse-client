@@ -63,7 +63,7 @@ const offerListReducer = (state, action) => {
   }
 };
 
-const UserOffers = ({ account }) => {
+const UserOffers = ({ account, isFetching }) => {
   const [state, dispatch] = React.useReducer(
     offerListReducer,
     Object.assign({}, INITIAL_STATE)
@@ -108,7 +108,7 @@ const UserOffers = ({ account }) => {
         <InfoLine>Total offers: {page?.totalElements}</InfoLine>
       </UserOffersData>
       <UserOffersListContainer>
-        {loading || !page ? (
+        {loading || !page || isFetching ? (
           <Spinner />
         ) : (
           <React.Fragment>
@@ -144,6 +144,9 @@ const UserOffers = ({ account }) => {
   );
 };
 
-const mapStateToProps = ({ user }) => ({ account: user.account });
+const mapStateToProps = ({ user, offer }) => ({
+  account: user.account,
+  isFetching: offer.isFetching,
+});
 
 export default connect(mapStateToProps)(UserOffers);

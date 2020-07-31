@@ -4,6 +4,9 @@ export default {
     page: {
       content: [],
     },
+    editCreate: {
+      id: null,
+    },
   },
   common: {
     bodyStyles: [

@@ -2,7 +2,7 @@ import * as types from './offer.types';
 import initialState from '../initial-state';
 
 const INITIAL_STATE = Object.assign({}, initialState.offer, {
-  isFetching: true,
+  isFetching: false,
   error: null,
 });
 
@@ -39,6 +39,19 @@ export const offer = (state = { ...INITIAL_STATE }, action) => {
       return {
         ...state,
         isFetching: false,
+      };
+    case types.LOAD_OFFER_FOR_EDIT:
+      return {
+        ...state,
+        editCreate: action.payload,
+        isFetching: false,
+      };
+    case types.RESET_OFFER_OBJECT:
+      return {
+        ...state,
+        editCreate: initialState.offer.editCreate,
+        isFetching: false,
+        error: null,
       };
     default:
       return state;

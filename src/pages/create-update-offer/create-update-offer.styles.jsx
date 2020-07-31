@@ -18,6 +18,7 @@ export const Header = styled.header`
   span {
     font-size: 20px;
     font-weight: 600;
+    margin-left: 5px;
   }
 `;
 
@@ -75,7 +76,6 @@ export const SectionHeadline = styled.div`
   border-top: 2px solid #232628;
   padding-top: 15px;
   position: relative;
-  padding-right: 30px;
   margin-bottom: 17px;
 
   .title {

@@ -79,3 +79,7 @@ export const loadUserOffers = async (
 ) => {
   return http.get(`/users/offer/list?page=${pageNumber}&sort=${sort}`);
 };
+
+export const loadOfferForEdit = async (offerId) => {
+  return http.get(`/vehicles/offers/load-for-edit/${offerId}`);
+};

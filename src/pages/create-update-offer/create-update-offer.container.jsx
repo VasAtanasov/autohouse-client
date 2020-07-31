@@ -13,10 +13,10 @@ import {
 } from './create-update-offer.styles';
 import { AccountCheck, FormButton, FormControl } from '../../components';
 import Col from 'react-bootstrap/Col';
-import { AddIcon } from './assets/icons';
+import { AddIcon, Edit } from './assets/icons';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { loadAppState } from '../../services/common/common.api';
 import { createOffer } from '../../services/offer/offer.api';
@@ -24,10 +24,11 @@ import MakerModelSelect from './components/maker-model/maker-model.component';
 import { toast } from 'react-toastify';
 import { CheckBoxContainer } from '../../components';
 import ImageUpload from './components/image-upload/image-upload.component';
+import ErrorsContainer from './components/errors-container/errors-container.component';
+import { resetOfferObject } from '../../services/offer/offer.actions';
 
-// TODO add validation of data
-const CreateUpdateOffer = ({ makers }) => {
-  const { register, handleSubmit } = useForm();
+const CreateUpdateOffer = ({ offerObject, resetOfferObject }) => {
+  const { register, handleSubmit, errors, control } = useForm();
   const [options, setOptions] = React.useState();
 
   React.useEffect(() => {
@@ -39,20 +40,36 @@ const CreateUpdateOffer = ({ makers }) => {
         toast.error('Failed to load data. Reload page.');
       }
     })();
-  }, []);
+    return () => resetOfferObject();
+  }, [resetOfferObject]);
+
+  console.log(offerObject);
 
   const onSubmit = async (data) => {
-    await createOffer(data);
+    console.log(data);
+    // await createOffer(data);
   };
 
   return (
     <CreateUpdateOfferWrapper>
       <Header>
-        <AddIcon />
-        <span className="header-title">Create options</span>
+        {offerObject?.id ? (
+          <React.Fragment>
+            <Edit />
+            <span className="header-title">Edit options</span>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <AddIcon />
+            <span className="header-title">Create options</span>
+          </React.Fragment>
+        )}
       </Header>
       <SubHeader>
-        <h6>You are currently building a Free Offer.</h6>
+        <h6>
+          You are currently {offerObject?.id ? 'editing' : 'building'} a Free
+          Offer.
+        </h6>
         <h6>
           <strong>
             Items marked with <Required /> are required fields.
@@ -63,10 +80,11 @@ const CreateUpdateOffer = ({ makers }) => {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Section>
             <SectionHeadline>
+              <ErrorsContainer errors={errors} />
               <div className="title">CAR DETAILS</div>
             </SectionHeadline>
             <SectionOptions as={Row} className="maker-model-select">
-              <MakerModelSelect register={register} />
+              <MakerModelSelect offerObject={offerObject} register={register} />
             </SectionOptions>
             <Form.Row>
               <Form.Group
@@ -82,21 +100,31 @@ const CreateUpdateOffer = ({ makers }) => {
                     Body Style <Required />
                   </span>
                 </Form.Label>
-                <FormControl
-                  className="car-option"
+                <Controller
                   name="bodyStyle"
-                  as="select"
-                  ref={register({ required: true })}
-                >
-                  <option value="">Select Body Style</option>
-                  {Object.entries(options?.bodyStyle || {}).map(
-                    ([key, value]) => (
-                      <option key={key} value={key}>
-                        {value}
-                      </option>
-                    )
+                  control={control}
+                  defaultValue={offerObject?.vehicleBodyStyle}
+                  render={({ onChange, onBlur, value }) => (
+                    <FormControl
+                      className="car-option"
+                      name="bodyStyle"
+                      as="select"
+                      ref={register({ required: 'Body Style is required!' })}
+                      value={value}
+                      onChange={onChange}
+                      onBlur={onBlur}
+                    >
+                      <option value="">Select Body Style</option>
+                      {Object.entries(options?.bodyStyle || {}).map(
+                        ([key, value]) => (
+                          <option key={key} value={key}>
+                            {value}
+                          </option>
+                        )
+                      )}
+                    </FormControl>
                   )}
-                </FormControl>
+                />
               </Form.Group>
               <Form.Group
                 className="car-details-options"
@@ -111,21 +139,31 @@ const CreateUpdateOffer = ({ makers }) => {
                     Fuel Type <Required />
                   </span>
                 </Form.Label>
-                <FormControl
-                  className="car-option"
+                <Controller
                   name="fuelType"
-                  as="select"
-                  ref={register({ required: true })}
-                >
-                  <option value="">Select Fuel Type</option>
-                  {Object.entries(options?.fuelType || {}).map(
-                    ([key, value]) => (
-                      <option key={key} value={key}>
-                        {value}
-                      </option>
-                    )
+                  control={control}
+                  defaultValue={offerObject?.vehicleFuelType}
+                  render={({ onChange, onBlur, value }) => (
+                    <FormControl
+                      className="car-option"
+                      name="fuelType"
+                      as="select"
+                      ref={register({ required: 'Fuel type is required!' })}
+                      value={value}
+                      onChange={onChange}
+                      onBlur={onBlur}
+                    >
+                      <option value="">Select Fuel Type</option>
+                      {Object.entries(options?.fuelType || {}).map(
+                        ([key, value]) => (
+                          <option key={key} value={key}>
+                            {value}
+                          </option>
+                        )
+                      )}
+                    </FormControl>
                   )}
-                </FormControl>
+                />
               </Form.Group>
             </Form.Row>
             <Form.Row>
@@ -142,21 +180,33 @@ const CreateUpdateOffer = ({ makers }) => {
                     Transmission <Required />
                   </span>
                 </Form.Label>
-                <FormControl
-                  className="car-option"
+                <Controller
                   name="transmission"
-                  as="select"
-                  ref={register({ required: true })}
-                >
-                  <option value="">Select Transmission</option>
-                  {Object.entries(options?.transmission || {}).map(
-                    ([key, value]) => (
-                      <option key={key} value={key}>
-                        {value}
-                      </option>
-                    )
+                  control={control}
+                  defaultValue={offerObject?.vehicleTransmission}
+                  render={({ onChange, onBlur, value }) => (
+                    <FormControl
+                      className="car-option"
+                      name="transmission"
+                      as="select"
+                      ref={register({
+                        required: 'Transmission is required!',
+                      })}
+                      value={value}
+                      onChange={onChange}
+                      onBlur={onBlur}
+                    >
+                      <option value="">Select Transmission</option>
+                      {Object.entries(options?.transmission || {}).map(
+                        ([key, value]) => (
+                          <option key={key} value={key}>
+                            {value}
+                          </option>
+                        )
+                      )}
+                    </FormControl>
                   )}
-                </FormControl>
+                />
               </Form.Group>
               <Form.Group
                 className="car-details-options"
@@ -171,19 +221,31 @@ const CreateUpdateOffer = ({ makers }) => {
                     Drive <Required />
                   </span>
                 </Form.Label>
-                <FormControl
-                  className="car-option"
+                <Controller
                   name="drive"
-                  as="select"
-                  ref={register({ required: true })}
-                >
-                  <option value="">Select Drive</option>
-                  {Object.entries(options?.drive || {}).map(([key, value]) => (
-                    <option key={key} value={key}>
-                      {value}
-                    </option>
-                  ))}
-                </FormControl>
+                  control={control}
+                  defaultValue={offerObject?.vehicleDrive}
+                  render={({ onChange, onBlur, value }) => (
+                    <FormControl
+                      className="car-option"
+                      name="drive"
+                      as="select"
+                      ref={register({ required: 'Drive is required!' })}
+                      value={value}
+                      onChange={onChange}
+                      onBlur={onBlur}
+                    >
+                      <option value="">Select Drive</option>
+                      {Object.entries(options?.drive || {}).map(
+                        ([key, value]) => (
+                          <option key={key} value={key}>
+                            {value}
+                          </option>
+                        )
+                      )}
+                    </FormControl>
+                  )}
+                />
               </Form.Group>
             </Form.Row>
             <Form.Row>
@@ -200,19 +262,31 @@ const CreateUpdateOffer = ({ makers }) => {
                     Condition <Required />
                   </span>
                 </Form.Label>
-                <FormControl
-                  className="car-option"
+                <Controller
                   name="state"
-                  as="select"
-                  ref={register({ required: true })}
-                >
-                  <option value="">Select Condition</option>
-                  {Object.entries(options?.state || {}).map(([key, value]) => (
-                    <option key={key} value={key}>
-                      {value}
-                    </option>
-                  ))}
-                </FormControl>
+                  control={control}
+                  defaultValue={offerObject?.vehicleState}
+                  render={({ onChange, onBlur, value }) => (
+                    <FormControl
+                      className="car-option"
+                      name="state"
+                      as="select"
+                      ref={register({ required: 'Condition is required!' })}
+                      value={value}
+                      onChange={onChange}
+                      onBlur={onBlur}
+                    >
+                      <option value="">Select Condition</option>
+                      {Object.entries(options?.state || {}).map(
+                        ([key, value]) => (
+                          <option key={key} value={key}>
+                            {value}
+                          </option>
+                        )
+                      )}
+                    </FormControl>
+                  )}
+                />
               </Form.Group>
               <Form.Group
                 className="car-details-options"
@@ -227,19 +301,31 @@ const CreateUpdateOffer = ({ makers }) => {
                     Color <Required />
                   </span>
                 </Form.Label>
-                <FormControl
-                  className="car-option"
+                <Controller
                   name="color"
-                  as="select"
-                  ref={register({ required: true })}
-                >
-                  <option value="">Select Color</option>
-                  {Object.entries(options?.color || {}).map(([key, value]) => (
-                    <option key={key} value={key}>
-                      {value}
-                    </option>
-                  ))}
-                </FormControl>
+                  control={control}
+                  defaultValue={offerObject?.vehicleColor}
+                  render={({ onChange, onBlur, value }) => (
+                    <FormControl
+                      className="car-option"
+                      name="color"
+                      as="select"
+                      ref={register({ required: 'Color is required!' })}
+                      value={value}
+                      onChange={onChange}
+                      onBlur={onBlur}
+                    >
+                      <option value="">Select Color</option>
+                      {Object.entries(options?.color || {}).map(
+                        ([key, value]) => (
+                          <option key={key} value={key}>
+                            {value}
+                          </option>
+                        )
+                      )}
+                    </FormControl>
+                  )}
+                />
               </Form.Group>
             </Form.Row>
             <Form.Row>
@@ -264,7 +350,11 @@ const CreateUpdateOffer = ({ makers }) => {
                   step="1"
                   pattern="\d+"
                   placeholder="Enter Mileage"
-                  ref={register({ required: true })}
+                  ref={register({
+                    required:
+                      'Mileage is required and must be positive number!',
+                  })}
+                  defaultValue={offerObject?.vehicleMileage}
                 />
               </Form.Group>
               <Form.Group
@@ -289,7 +379,10 @@ const CreateUpdateOffer = ({ makers }) => {
                   step="1"
                   pattern="\d+"
                   placeholder="Enter Doors Count"
-                  ref={register({ required: true })}
+                  ref={register({
+                    required: 'Doors is required and must be positive number!',
+                  })}
+                  defaultValue={offerObject?.vehicleDoors}
                 />
               </Form.Group>
             </Form.Row>
@@ -311,7 +404,8 @@ const CreateUpdateOffer = ({ makers }) => {
                   className="car-option"
                   name="hasAccident"
                   as="select"
-                  ref={register({ required: true })}
+                  ref={register({ required: 'Has accident is required!' })}
+                  defaultValue={offerObject?.vehicleHasAccident}
                 >
                   <option value={false}>No</option>
                   <option value={true}>Yes</option>
@@ -337,7 +431,8 @@ const CreateUpdateOffer = ({ makers }) => {
                   step="1"
                   pattern="\d+"
                   placeholder="Enter Zip Code"
-                  ref={register({ required: true })}
+                  ref={register({ required: 'Valid Zip Code is required!' })}
+                  defaultValue={offerObject?.locationPostalCode}
                 />
               </Form.Group>
             </Form.Row>
@@ -347,20 +442,31 @@ const CreateUpdateOffer = ({ makers }) => {
               <div className="title">SELECT YOUR CAR FEATURES</div>
             </SectionHeadline>
             <Row noGutters>
-              {Object.entries(options?.feature || {}).map(([key, value]) => (
-                <Col lg={4} sm={6} key={key}>
-                  <CheckBoxContainer>
-                    <input
-                      name="features"
-                      type="checkbox"
-                      id={key}
-                      ref={register}
-                      value={key}
-                    />
-                    <label htmlFor={key}>{value}</label>
-                  </CheckBoxContainer>
-                </Col>
-              ))}
+              <Controller
+                name="features"
+                control={control}
+                defaultValue={offerObject?.vehicleFeatures}
+                render={({ onChange }) =>
+                  Object.entries(options?.feature || {}).map(([key, value]) => (
+                    <Col lg={4} sm={6} key={key}>
+                      <CheckBoxContainer>
+                        <input
+                          name="features"
+                          type="checkbox"
+                          id={key}
+                          value={key}
+                          checked={offerObject?.vehicleFeatures?.includes(key)}
+                          onChange={onChange}
+                          ref={register({
+                            required: 'At least one feature is required!',
+                          })}
+                        />
+                        <label htmlFor={key}>{value}</label>
+                      </CheckBoxContainer>
+                    </Col>
+                  ))
+                }
+              />
             </Row>
           </Section>
           <Section>
@@ -384,7 +490,11 @@ const CreateUpdateOffer = ({ makers }) => {
                     step="1"
                     pattern="\d+"
                     placeholder="Enter Price"
-                    ref={register({ required: true })}
+                    ref={register({
+                      required:
+                        'Price is required and must be positive number!',
+                    })}
+                    defaultValue={offerObject?.price}
                   />
                 </Form.Group>
               </Col>
@@ -407,22 +517,25 @@ const CreateUpdateOffer = ({ makers }) => {
             <DescriptionArea
               placeholder="Enter vehicle description"
               name="description"
-              ref={register({ required: true })}
+              ref={register({ required: 'Description is required!' })}
+              defaultValue={offerObject?.description}
             ></DescriptionArea>
           </Section>
-          <Section>
-            <SectionHeadline>
-              <div className="title">Upload Photos</div>
-            </SectionHeadline>
-            <div>
-              <h6>RECOMMENDATION & GUIDES</h6>
-              <p>
-                Recommended Image Resolution: 1024 x 768 px or higher. Maximum
-                size of photo is 10MB.
-              </p>
-            </div>
-            <ImageUpload register={register} />
-          </Section>
+          {offerObject.id === null && (
+            <Section>
+              <SectionHeadline>
+                <div className="title">Upload Photos</div>
+              </SectionHeadline>
+              <div>
+                <h6>RECOMMENDATION & GUIDES</h6>
+                <p>
+                  Recommended Image Resolution: 1024 x 768 px or higher. Maximum
+                  size of photo is 10MB.
+                </p>
+              </div>
+              <ImageUpload register={register} />
+            </Section>
+          )}
           <Section>
             <SectionHeadline>
               <div className="title">Contact Details</div>
@@ -434,14 +547,12 @@ const CreateUpdateOffer = ({ makers }) => {
                 </span>
               </label>
               <FormControl
-                type="number"
+                type="tel"
                 id="phoneNumber"
                 name="contactDetailsPhoneNumber"
-                min="1"
-                step="1"
-                pattern="\d+"
                 placeholder="Enter Phone Number"
-                ref={register({ required: true })}
+                ref={register({ required: 'Valid Phone Number is required!' })}
+                defaultValue={offerObject?.contactDetailsPhoneNumber}
               />
             </Form.Group>
             <Form.Group>
@@ -454,11 +565,17 @@ const CreateUpdateOffer = ({ makers }) => {
                 name="contactDetailsWebLink"
                 placeholder="Enter Web Link"
                 ref={register}
+                defaultValue={offerObject?.contactDetailsWebLink}
               />
             </Form.Group>
           </Section>
 
-          <FormButton type="submit">Create Offer</FormButton>
+          <FormButton
+            variant={offerObject?.id ? 'success' : 'primary'}
+            type="submit"
+          >
+            {offerObject?.id ? 'Update' : 'Create'} Offer
+          </FormButton>
         </Form>
       </MainContainer>
       <AccountCheck pathToRedirect="/user/settings/edit-personal-info" />
@@ -466,6 +583,8 @@ const CreateUpdateOffer = ({ makers }) => {
   );
 };
 
-const mapStateToProps = ({ makers }) => ({ makers: makers.makers });
+const mapStateToProps = ({ offer }) => ({ offerObject: offer.editCreate });
 
-export default connect(mapStateToProps)(CreateUpdateOffer);
+export default connect(mapStateToProps, { resetOfferObject })(
+  CreateUpdateOffer
+);

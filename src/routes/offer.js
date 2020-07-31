@@ -12,6 +12,12 @@ export default {
     auth: true,
     exact: true,
   },
+  offerEdit: {
+    path: '/offer/edit',
+    component: CreateUpdateOffer,
+    auth: true,
+    exact: true,
+  },
   offerDetails: {
     path: (id = ':id') => `/offer/details/${id}`,
     component: OfferDetails,

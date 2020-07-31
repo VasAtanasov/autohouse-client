@@ -14,7 +14,7 @@ import {
 } from './offer-card.styles';
 import AddToFavorites from '../add-to-favorites-button/add-to-favorites.component';
 import { connect } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import offerRoutes from '../../routes/offer';
 import userRoutes from '../../routes/user';
 import { ReactComponent as ViewIcon } from './icons/eye.svg';
@@ -22,6 +22,7 @@ import { ReactComponent as StarIcon } from './icons/star.svg';
 import { ReactComponent as KeyIcon } from './icons/key.svg';
 import { toast } from 'react-toastify';
 import { toggleActive } from '../../services/user/user.api';
+import { loadOfferForEditAsync } from '../../services/offer/offer.actions';
 
 const OfferCard = ({
   id,
@@ -52,6 +53,8 @@ const OfferCard = ({
   savedCount,
   active,
   user,
+  offerEdit,
+  loadOfferForEditAsync,
 }) => {
   const imageRef = React.useRef(null);
   const [imageLoading, setImageLoading] = React.useState(true);
@@ -59,6 +62,7 @@ const OfferCard = ({
   const [isOfferActive, setIsOfferActive] = React.useState(active);
   const { isAuthenticated, account } = user;
   let location = useLocation();
+  let history = useHistory();
 
   React.useEffect(() => {
     setIsUserInventoryPage(location.pathname === userRoutes.myInventory.path);
@@ -88,6 +92,21 @@ const OfferCard = ({
         } offer.`
       );
     }
+  };
+
+  const handleEditClick = (event) => {
+    activateFirst(event);
+    event.preventDefault();
+    loadOfferForEditAsync(
+      id,
+      () => {
+        toast.success('Offer loaded for editing.');
+        history.push(offerRoutes.offerEdit.path);
+      },
+      () => {
+        toast.error('Something went wrong loading offer!');
+      }
+    );
   };
 
   const onClick = (event) => {
@@ -186,7 +205,7 @@ const OfferCard = ({
           {isUserInventoryPage && (
             <OfferOwnerActionsContainer className="user-actions-container">
               <ActionButton
-                onClick={onClick}
+                onClick={handleEditClick}
                 variant="info"
                 disabled={!isOfferActive}
               >
@@ -214,6 +233,13 @@ const OfferCard = ({
   );
 };
 
-const mapStateToProps = ({ user }) => ({ user });
+const mapStateToProps = ({ user, offer }) => ({
+  user,
+  offerEdit: {
+    isFetching: offer.isFetching,
+    error: offer.error,
+    offerObject: offer.editCreate,
+  },
+});
 
-export default connect(mapStateToProps)(OfferCard);
+export default connect(mapStateToProps, { loadOfferForEditAsync })(OfferCard);

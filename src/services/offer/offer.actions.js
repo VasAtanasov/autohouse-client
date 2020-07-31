@@ -39,9 +39,34 @@ export const searchOffers = (filter) => async (dispatch) => {
   try {
     dispatch(searchOffersStart());
     const response = await offersApi.searchOffers(filter);
-    console.log(response);
     dispatch(searchOffersSuccess(response.data.page));
   } catch (error) {
     dispatch(searchOffersFailure(error));
   }
+};
+
+export const loadOfferForEditSuccess = (offer) => {
+  return { type: types.LOAD_OFFER_FOR_EDIT, payload: offer };
+};
+
+export const loadOfferForEditAsync = (offerId, onSuccess, onError) => async (
+  dispatch
+) => {
+  try {
+    dispatch(searchOffersStart());
+    const response = await offersApi.loadOfferForEdit(offerId);
+    dispatch(loadOfferForEditSuccess(response.data));
+    onSuccess();
+  } catch (error) {
+    dispatch(searchOffersFailure(error));
+    onError();
+  }
+};
+
+export const resetOfferObjectAction = () => {
+  return { type: types.RESET_OFFER_OBJECT };
+};
+
+export const resetOfferObject = () => (dispatch) => {
+  dispatch(resetOfferObjectAction());
 };

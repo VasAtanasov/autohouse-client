@@ -123,7 +123,7 @@ const EditAccountInformation = ({
     register,
     errors,
     handleSubmit,
-    clearError,
+    clearErrors,
     reset,
     formState,
   } = useForm();
@@ -131,8 +131,8 @@ const EditAccountInformation = ({
   const { dirty } = formState;
 
   React.useEffect(() => {
-    clearError();
-  }, [accountType, clearError]);
+    clearErrors();
+  }, [accountType, clearErrors]);
 
   const handleAddEditAccountInfo = async (data) => {
     if (!dirty) {

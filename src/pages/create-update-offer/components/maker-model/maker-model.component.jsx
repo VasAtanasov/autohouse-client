@@ -10,6 +10,7 @@ const SELECT_MAKER = 'SELECT_MAKER';
 const SELECT_MODEL = 'SELECT_MODEL';
 const SELECT_YEAR = 'SELECT_YEAR';
 const SELECT_TRIM = 'SELECT_TRIM';
+const LOAD_DATA_FOR_EDIT = 'LOAD_DATA_FOR_EDIT';
 
 const INITIAL_STATE = {
   makerName: '',
@@ -44,15 +45,29 @@ const makerModelReducer = (state, action) => {
         ...state,
         trim: action.payload,
       };
+    case LOAD_DATA_FOR_EDIT:
+      return {
+        ...state,
+        makerName: action.payload.vehicleMakerName,
+        modelName: action.payload.vehicleModelName,
+        year: action.payload.vehicleYear,
+        trim: action.payload.vehicleTrim,
+      };
     default:
       return state;
   }
 };
 
-const MakerModelSelect = ({ register, makers }) => {
+const MakerModelSelect = ({ offerObject, register, makers }) => {
   const [state, dispatch] = React.useReducer(makerModelReducer, INITIAL_STATE);
   const { makerName, modelName, trim, year } = state;
   const [trims, setTrims] = React.useState([]);
+
+  React.useEffect(() => {
+    if (offerObject?.id !== null) {
+      dispatch({ type: LOAD_DATA_FOR_EDIT, payload: { ...offerObject } });
+    }
+  }, [offerObject]);
 
   React.useEffect(() => {
     (async () => {
@@ -75,7 +90,7 @@ const MakerModelSelect = ({ register, makers }) => {
           <Form.Control
             as="select"
             name="makerName"
-            ref={register({ required: true })}
+            ref={register({ required: 'Maker is required!' })}
             value={makerName}
             onChange={(event) =>
               dispatch({ type: SELECT_MAKER, payload: event.target.value })
@@ -104,12 +119,12 @@ const MakerModelSelect = ({ register, makers }) => {
             onChange={(event) =>
               dispatch({ type: SELECT_MODEL, payload: event.target.value })
             }
-            ref={register({ required: true })}
+            ref={register({ required: 'Model is required!' })}
             disabled={makerName ? false : true}
           >
             <option value="">Any model</option>
             {makerName &&
-              makers[makerName].models
+              makers[makerName]?.models
                 .map((obj) => obj.name)
                 .sort()
                 .map((key) => (
@@ -132,7 +147,7 @@ const MakerModelSelect = ({ register, makers }) => {
             onChange={(event) =>
               dispatch({ type: SELECT_YEAR, payload: event.target.value })
             }
-            ref={register({ required: true })}
+            ref={register({ required: 'Year of model is required!' })}
             disabled={modelName ? false : true}
           >
             <option value="">Select Year</option>
