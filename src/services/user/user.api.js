@@ -13,7 +13,7 @@ export const loginOrRegister = (username) => {
   });
 };
 
-export const login = (data) => {
+export const login = async (data) => {
   return http.post('/auth/login', {
     data,
     headers: {

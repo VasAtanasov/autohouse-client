@@ -4,51 +4,51 @@ import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import {
-  loadUserAccount,
+  loadUserDetails,
   updateUserRole,
+  toggleActive,
 } from '../../../../services/admin/admin.api';
-import { UserDetailsTable } from './user-details-modal.styles';
+import { UserDetailsTable, ActionButton } from './user-details-modal.styles';
 import Select from '../select/select.component';
 import { toast } from 'react-toastify';
 
 const UserDetailsModal = ({
   show = false,
   handleClose,
-  user,
   handleUpdateUser,
+  user,
 }) => {
-  const [account, setAccount] = React.useState({});
+  const [userDetails, setUserDetails] = React.useState({});
   const [isEdited, setIsEdited] = React.useState(false);
-  const [userRole, setUserRole] = React.useState(null);
+  const [isUserActive, setIsUserActive] = React.useState(true);
   const selectRef = React.useRef(null);
 
   React.useEffect(() => {
-    if (!!user && user?.role) {
-      setUserRole(user.role);
-    }
+    setIsUserActive(user?.enabled);
   }, [user]);
 
   React.useEffect(() => {
-    if (!!user && user.hasAccount) {
+    if (!!user && user.id) {
       (async () => {
-        const response = await loadUserAccount(user.id);
-        setAccount(response.data);
+        const response = await loadUserDetails(user.id);
+        console.log(response.data);
+        setUserDetails(response.data);
       })();
     }
 
     return () => {
-      setAccount({});
+      setUserDetails({});
       setIsEdited(false);
     };
   }, [user]);
 
-  const handleUpdate = async (event) => {
+  const handleUpdate = async () => {
     if (selectRef) {
       const newRole = selectRef.current.querySelector('div.value').textContent;
       if (!newRole) {
         toast.error('Role must be selected');
       }
-      const currentRole = user.role;
+      const currentRole = userDetails.role;
       if (currentRole === newRole) {
         setIsEdited(false);
         return;
@@ -60,6 +60,24 @@ const UserDetailsModal = ({
       } catch (error) {
         toast.error('Role change failed.');
       }
+    }
+  };
+
+  const handleToggleActive = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await toggleActive(user.id);
+      setIsUserActive(response.data);
+      handleUpdateUser(response.data);
+      toast.success(
+        `${userDetails?.username} ${response.data ? 'activated' : 'disabled'}.`
+      );
+    } catch (error) {
+      toast.error(
+        `Something went wrong with ${
+          isUserActive ? 'deactivating' : 'activating'
+        } offer.`
+      );
     }
   };
 
@@ -78,7 +96,8 @@ const UserDetailsModal = ({
               <tr>
                 <td colSpan="1">
                   <div className="name">
-                    {account?.firstName} {account?.lastName}
+                    {userDetails?.account?.firstName}{' '}
+                    {userDetails?.account?.lastName}
                   </div>
                 </td>
               </tr>
@@ -94,7 +113,7 @@ const UserDetailsModal = ({
                 </div>
                 <br />
                 <div ref={selectRef} className="roles-container">
-                  <div className="label">Roles</div> :{' '}
+                  <div className="label">Role</div> :{' '}
                   {isEdited ? (
                     <Select
                       placeholder="Pick roles"
@@ -103,13 +122,11 @@ const UserDetailsModal = ({
                         { value: 'ADMIN' },
                         { value: 'USER' },
                       ]}
-                      values={[userRole]}
+                      values={[userDetails.role]}
                     />
                   ) : (
                     <React.Fragment>
-                      <div className="details-item">
-                        {user?.role && userRole}
-                      </div>
+                      <div className="details-item">{userDetails.role}</div>
                       <OverlayTrigger
                         placement={'top'}
                         overlay={
@@ -143,30 +160,34 @@ const UserDetailsModal = ({
                 <td className="description-td">
                   <h4>Account details</h4>
                   <div className="label">Display Name</div> :{' '}
-                  <div className="details-item">{account?.displayName}</div>
+                  <div className="details-item">
+                    {userDetails?.account?.displayName}
+                  </div>
                   <br />
                   <div className="label">Phone Number</div> :{' '}
                   <div className="details-item">
-                    {account?.contactDetails?.phoneNumber}
+                    {userDetails?.account?.contactDetails?.phoneNumber}
                   </div>
                   <br />
-                  {account?.contactDetails?.webLink && (
+                  {userDetails?.account?.contactDetails?.webLink && (
                     <React.Fragment>
                       <div className="label">Web Link</div> :{' '}
                       <div className="details-item">
-                        {account?.contactDetails?.webLink}
+                        {userDetails?.account?.contactDetails?.webLink}
                       </div>
                       <br />
                     </React.Fragment>
                   )}
                   <div className="label">Location</div> :{' '}
                   <div className="details-item">
-                    {account?.address?.locationCityRegion},{' '}
-                    {account?.address?.locationCity}
+                    {userDetails?.account?.address?.locationCityRegion},{' '}
+                    {userDetails?.account?.address?.locationCity}
                   </div>
                   <br />
                   <div className="label">Street</div> :{' '}
-                  <div className="details-item">{account?.address?.street}</div>
+                  <div className="details-item">
+                    {userDetails?.account?.address?.street}
+                  </div>
                   <br />
                 </td>
               </tr>
@@ -179,6 +200,15 @@ const UserDetailsModal = ({
           <Button variant="primary" onClick={handleUpdate}>
             Update
           </Button>
+        )}{' '}
+        {!!user && (
+          <ActionButton
+            className={isUserActive ? '' : 'is-disabled'}
+            onClick={handleToggleActive}
+            variant={isUserActive ? 'warning' : 'primary'}
+          >
+            {isUserActive ? 'Disable' : 'Activate'}
+          </ActionButton>
         )}
         <Button variant="secondary" onClick={handleClose}>
           Close

@@ -4,6 +4,12 @@ export const TableMain = styled.main`
   flex: 1 1 100%;
   width: 100%;
 
+  .user-row-tick,
+  .user-row-minus {
+    width: 25px;
+    height: 25px;
+  }
+
   .user-row {
     cursor: pointer;
     user-select: none;

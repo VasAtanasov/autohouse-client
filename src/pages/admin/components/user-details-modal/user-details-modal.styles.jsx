@@ -1,4 +1,22 @@
 import styled from 'styled-components';
+import Button from 'react-bootstrap/Button';
+
+export const ActionButton = styled(Button)`
+  font-size: 14px;
+  margin-right: 4px;
+  color: #ffff;
+  min-width: 120px;
+
+  &&.is-disabled {
+    pointer-events: auto !important;
+  }
+
+  &&.btn-warning:hover,
+  &&.btn-warning:focus,
+  &&.btn-warning:active {
+    color: #ffff;
+  }
+`;
 
 export const UserDetailsTable = styled.table`
   width: 100%;

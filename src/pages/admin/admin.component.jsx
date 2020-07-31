@@ -47,10 +47,10 @@ const Dashboard = ({ width, match }) => {
       <DashboardMain>
         <SideNav>
           <Nav className="flex-column">
-            <Nav.Link as={MenuLink} to="/admin/dashboard">
+            <Nav.Link as={MenuLink} to={`${match.url}/dashboard`}>
               Dashboard
             </Nav.Link>
-            <Nav.Link as={MenuLink} to="/admin/users">
+            <Nav.Link as={MenuLink} to={`${match.url}/users`}>
               Users
             </Nav.Link>
           </Nav>

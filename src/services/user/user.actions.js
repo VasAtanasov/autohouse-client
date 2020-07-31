@@ -24,6 +24,7 @@ export const loginRequestAsync = (data) => async (dispatch) => {
   });
   const response = await userApi.login(data);
   const user = response.data.data;
+  console.log(user);
   dispatch({ type: types.SET_USER, user });
   loginSetUserLocalStorage(response.data.data.token, response.data.data);
   if (user.hasAccount) {

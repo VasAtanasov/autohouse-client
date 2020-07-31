@@ -8,12 +8,14 @@ import { TableMain, PaginationContainer } from './users.styles';
 import Paginate from '../pagination/pagination.component';
 import { Spinner } from '../../../../components';
 import UserDetailsModal from '../user-details-modal/user-details-modal.component';
+import { ReactComponent as Minus } from '../../assets/minus.svg';
+import { ReactComponent as Tick } from '../../assets/tick.svg';
 
 const INITIAL_STATE = {
   loading: true,
   page: null,
   error: null,
-  sort: 'createdAt,asc',
+  sort: 'updatedAt,desc',
   pageNumber: 0,
   show: false,
   selectedUser: null,
@@ -140,7 +142,6 @@ const UsersContent = () => {
                   <th>Username</th>
                   <th>Is active</th>
                   <th>Has Account</th>
-                  <th>Roles</th>
                 </tr>
               </thead>
               <tbody>
@@ -160,9 +161,8 @@ const UsersContent = () => {
                     >
                       <td>{pageNumber * DEFAULT_PAGE_SIZE + index + 1}</td>
                       <td>{user.username}</td>
-                      <td>{user.enabled ? 'Yes' : 'No'}</td>
-                      <td>{user.hasAccount ? 'Yes' : 'No'}</td>
-                      <td>{user.role}</td>
+                      <td>{user.enabled ? <Tick /> : <Minus />}</td>
+                      <td>{user.hasAccount ? <Tick /> : <Minus />}</td>
                     </tr>
                   ))
                 )}

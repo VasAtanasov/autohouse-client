@@ -12,8 +12,12 @@ export const loadUsersList = async (sort = 'createdAt,asc', pageNumber = 0) => {
   );
 };
 
-export const loadUserAccount = async (userId) => {
-  return http.get(`/admin/user-account/${userId}`);
+export const loadUserDetails = async (userId) => {
+  return http.get(`/admin/user/details/${userId}`);
+};
+
+export const toggleActive = async (userId) => {
+  return http.get(`/admin/user/toggle-active/${userId}`);
 };
 
 export const updateUserRole = async (userId, currentRole, newRole) => {
