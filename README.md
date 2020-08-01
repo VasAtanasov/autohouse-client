@@ -1,3 +1,15 @@
+# autohouse-client
+
+  Web client build to consume autohouse-server web API
+
+  Main technologies used are:
+
+  - React
+  - Recat-Redux
+  - React-Router
+  - React-Bootstrap
+  
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
