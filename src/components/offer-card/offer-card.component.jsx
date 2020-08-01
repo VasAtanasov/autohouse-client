@@ -23,6 +23,82 @@ import { ReactComponent as KeyIcon } from './icons/key.svg';
 import { toast } from 'react-toastify';
 import { toggleActive } from '../../services/user/user.api';
 import { loadOfferForEditAsync } from '../../services/offer/offer.actions';
+import { deleteOffer } from '../../services/offer/offer.api';
+import { notifyReload } from '../../services/notification/notification.actions';
+import ConfirmDeleteModal from './components/confirm-delete-modal.component';
+
+const IMAGE_LOAD_SUCCESS = 'IMAGE_LOAD_SUCCESS';
+const TOGGLE_ACTIVE_SUCCESS = 'TOGGLE_ACTIVE_SUCCESS';
+const SET_IS_USER_INVENTORY_PAGE = 'SET_IS_USER_INVENTORY_PAGE';
+const TOGGLE_MODAL = 'TOGGLE_MODAL';
+const TOGGLE_DELETE_IN_PROGRESS = 'TOGGLE_DELETE_IN_PROGRESS';
+const DELETE_OFFER_SUCCESS = 'DELETE_OFFER_SUCCESS';
+
+const INITIAL_STATE = {
+  imageLoading: true,
+  isUserInventoryPage: false,
+  isOfferActive: null,
+  showModal: false,
+  isDeleteInProgress: false,
+};
+
+const imageLoadSuccess = () => {
+  return { type: IMAGE_LOAD_SUCCESS };
+};
+
+const toggleActiveSuccess = (data) => {
+  return { type: TOGGLE_ACTIVE_SUCCESS, payload: data };
+};
+
+const toggleModal = (data) => {
+  return { type: TOGGLE_MODAL, payload: data };
+};
+
+const toggleDeleteInProgress = (data) => {
+  return { type: TOGGLE_DELETE_IN_PROGRESS, payload: data };
+};
+
+const deleteOfferSuccess = () => {
+  return { type: DELETE_OFFER_SUCCESS };
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case TOGGLE_ACTIVE_SUCCESS:
+      return {
+        ...state,
+        isOfferActive: action.payload,
+      };
+    case IMAGE_LOAD_SUCCESS:
+      return {
+        ...state,
+        imageLoading: false,
+      };
+    case SET_IS_USER_INVENTORY_PAGE:
+      return {
+        ...state,
+        isUserInventoryPage: action.payload,
+      };
+    case TOGGLE_MODAL:
+      return {
+        ...state,
+        showModal: action.payload,
+      };
+    case TOGGLE_DELETE_IN_PROGRESS:
+      return {
+        ...state,
+        isDeleteInProgress: action.payload,
+      };
+    case DELETE_OFFER_SUCCESS:
+      return {
+        ...state,
+        isDeleteInProgress: false,
+        showModal: false,
+      };
+    default:
+      return state;
+  }
+};
 
 const OfferCard = ({
   id,
@@ -53,20 +129,26 @@ const OfferCard = ({
   savedCount,
   active,
   user,
-  offerEdit,
   loadOfferForEditAsync,
+  notifyReload,
 }) => {
-  const imageRef = React.useRef(null);
-  const [imageLoading, setImageLoading] = React.useState(true);
-  const [isUserInventoryPage, setIsUserInventoryPage] = React.useState(false);
-  const [isOfferActive, setIsOfferActive] = React.useState(active);
-  const { isAuthenticated, account } = user;
   let location = useLocation();
-  let history = useHistory();
+  const [state, dispatch] = React.useReducer(reducer, {
+    ...INITIAL_STATE,
+    isOfferActive: active,
+    isUserInventoryPage: location.pathname === userRoutes.myInventory.path,
+  });
 
-  React.useEffect(() => {
-    setIsUserInventoryPage(location.pathname === userRoutes.myInventory.path);
-  }, [location]);
+  const imageRef = React.useRef(null);
+  const { isAuthenticated, account } = user;
+  const {
+    imageLoading,
+    isUserInventoryPage,
+    isOfferActive,
+    showModal,
+    isDeleteInProgress,
+  } = state;
+  let history = useHistory();
 
   const activateFirst = (event) => {
     if (!isOfferActive) {
@@ -79,7 +161,7 @@ const OfferCard = ({
     event.preventDefault();
     try {
       const response = await toggleActive(id);
-      setIsOfferActive(response.data);
+      dispatch(toggleActiveSuccess(response.data));
       toast.success(
         `Offer ${vehicleYear} ${vehicleMakerName} ${vehicleModelName} ${
           response.data ? 'activated' : 'disabled'
@@ -109,9 +191,20 @@ const OfferCard = ({
     );
   };
 
-  const onClick = (event) => {
+  const handleDeleteClick = async (event) => {
     activateFirst(event);
     event.preventDefault();
+    try {
+      dispatch(toggleDeleteInProgress(true));
+      const response = await deleteOffer(id);
+      console.log(response);
+      dispatch(deleteOfferSuccess());
+      toast.success('Offer deleted successful.');
+      notifyReload();
+    } catch (error) {
+      toast.error('Offer delete failed.');
+      dispatch(toggleDeleteInProgress(false));
+    }
   };
 
   return (
@@ -162,7 +255,8 @@ const OfferCard = ({
                   src={`http://localhost:8007/api/images/${primaryPhotoKey}`}
                   alt={'Main'}
                   onLoad={() =>
-                    imageRef.current.complete && setImageLoading(false)
+                    imageRef.current.complete &&
+                    dispatch(imageLoadSuccess(false))
                   }
                 />
               </picture>
@@ -220,7 +314,10 @@ const OfferCard = ({
               </ActionButton>{' '}
               <ActionButton
                 className={isOfferActive ? '' : 'is-disabled'}
-                onClick={onClick}
+                onClick={(event) => {
+                  event.preventDefault();
+                  dispatch(toggleModal(true));
+                }}
                 variant="danger"
               >
                 Delete
@@ -229,17 +326,22 @@ const OfferCard = ({
           )}
         </OfferContainer>
       </OfferLink>
+      <ConfirmDeleteModal
+        show={showModal}
+        onHide={() => dispatch(toggleModal(false))}
+        handleDeleteClick={handleDeleteClick}
+        offerTitle={`${vehicleYear} ${vehicleMakerName} ${vehicleModelName}`}
+        isDeleteInProgress={isDeleteInProgress}
+      />
     </React.Fragment>
   );
 };
 
-const mapStateToProps = ({ user, offer }) => ({
+const mapStateToProps = ({ user }) => ({
   user,
-  offerEdit: {
-    isFetching: offer.isFetching,
-    error: offer.error,
-    offerObject: offer.editCreate,
-  },
 });
 
-export default connect(mapStateToProps, { loadOfferForEditAsync })(OfferCard);
+export default connect(mapStateToProps, {
+  loadOfferForEditAsync,
+  notifyReload,
+})(OfferCard);

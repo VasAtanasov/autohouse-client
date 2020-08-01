@@ -5,6 +5,7 @@ import * as offerReducer from '../../services/offer/offer.reducer';
 import * as commonReducer from '../../services/common/common.reducer';
 import * as userReducer from '../../services/user/user.reducer';
 import * as filterReducer from '../../services/filter/filter.reducer';
+import * as notificationReducer from '../../services/notification/notification.reducer';
 
 const persistConfig = {
   key: 'root',
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   ...commonReducer,
   ...userReducer,
   ...filterReducer,
+  ...notificationReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

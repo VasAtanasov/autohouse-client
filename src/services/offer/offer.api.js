@@ -17,7 +17,7 @@ export const searchOffers = async (
   });
 };
 
-export const createOffer = async (data) => {
+const mapOfferToFormData = (data) => {
   console.log(data);
   const formData = new FormData();
   formData.append('price', data.price);
@@ -25,7 +25,6 @@ export const createOffer = async (data) => {
   formData.append('contactDetailsPhoneNumber', data.contactDetailsPhoneNumber);
   formData.append('contactDetailsWebLink', data.contactDetailsWebLink);
   formData.append('addressLocationPostalCode', data.zipCode);
-  formData.append('mainPhoto', data.images[0].name);
   formData.append('vehicle.year', data.year);
   formData.append('vehicle.bodyStyle', data.bodyStyle);
   formData.append('vehicle.fuelType', data.fuelType);
@@ -43,10 +42,25 @@ export const createOffer = async (data) => {
   data.features.forEach((feature) =>
     formData.append('vehicle.features', feature)
   );
-  [...data.images].forEach((image) => formData.append('images', image));
+  if (data?.images && data.images.length > 0) {
+    formData.append('mainPhoto', data.images[0].name);
+    [...data.images].forEach((image) => formData.append('images', image));
+  }
+  return formData;
+};
 
+export const createOffer = async (data) => {
   return http.post('/vehicles/offers', {
-    data: formData,
+    data: mapOfferToFormData(data),
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+};
+
+export const updateOffer = async (data, offerId) => {
+  return http.post(`/vehicles/offers/update/${offerId}`, {
+    data: mapOfferToFormData(data),
     headers: {
       'Content-Type': 'multipart/form-data',
     },
@@ -82,4 +96,8 @@ export const loadUserOffers = async (
 
 export const loadOfferForEdit = async (offerId) => {
   return http.get(`/vehicles/offers/load-for-edit/${offerId}`);
+};
+
+export const deleteOffer = async (offerId) => {
+  return http.del(`/vehicles/offers/${offerId}`);
 };

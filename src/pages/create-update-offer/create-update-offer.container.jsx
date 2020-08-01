@@ -11,7 +11,12 @@ import {
   PriceTag,
   DescriptionArea,
 } from './create-update-offer.styles';
-import { AccountCheck, FormButton, FormControl } from '../../components';
+import {
+  AccountCheck,
+  FormButton,
+  FormControl,
+  Loader,
+} from '../../components';
 import Col from 'react-bootstrap/Col';
 import { AddIcon, Edit } from './assets/icons';
 import Form from 'react-bootstrap/Form';
@@ -19,23 +24,92 @@ import Row from 'react-bootstrap/Row';
 import { useForm, Controller } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { loadAppState } from '../../services/common/common.api';
-import { createOffer } from '../../services/offer/offer.api';
+import { createOffer, updateOffer } from '../../services/offer/offer.api';
 import MakerModelSelect from './components/maker-model/maker-model.component';
 import { toast } from 'react-toastify';
 import { CheckBoxContainer } from '../../components';
 import ImageUpload from './components/image-upload/image-upload.component';
 import ErrorsContainer from './components/errors-container/errors-container.component';
 import { resetOfferObject } from '../../services/offer/offer.actions';
+import { useHistory } from 'react-router-dom';
+import userRoutes from '../../routes/user';
+
+const ASYNC_CALL_START = 'ASYNC_CALL_START';
+const ASYNC_CALL_SUCCESS = 'ASYNC_CALL_SUCCESS';
+const ASYNC_CALL_FAILURE = 'ASYNC_CALL_FAILURE';
+const SET_OPTIONS = 'SET_OPTIONS';
+const SET_CHECKED_VALUES = 'SET_CHECKED_VALUES';
+
+const setOptionsSuccess = (options) => {
+  return { type: SET_OPTIONS, payload: options };
+};
+
+const setCheckedValues = (newValues) => {
+  return { type: SET_CHECKED_VALUES, payload: newValues };
+};
+
+const asyncCallStart = () => {
+  return { type: ASYNC_CALL_START };
+};
+
+const asyncCallSuccess = () => {
+  return { type: ASYNC_CALL_SUCCESS };
+};
+
+const asyncCallFailure = () => {
+  return { type: ASYNC_CALL_FAILURE };
+};
+
+const INITIAL_STATE = {
+  options: {},
+  checkedValues: [],
+  loading: false,
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case ASYNC_CALL_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SET_OPTIONS:
+      return {
+        ...state,
+        options: action.payload,
+      };
+    case SET_CHECKED_VALUES:
+      return {
+        ...state,
+        checkedValues: action.payload,
+      };
+    case ASYNC_CALL_SUCCESS:
+    case ASYNC_CALL_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
+
+    default:
+      return state;
+  }
+};
 
 const CreateUpdateOffer = ({ offerObject, resetOfferObject }) => {
   const { register, handleSubmit, errors, control } = useForm();
-  const [options, setOptions] = React.useState();
+  const [state, dispatch] = React.useReducer(reducer, {
+    ...INITIAL_STATE,
+    checkedValues: offerObject?.id === null ? [] : offerObject.vehicleFeatures,
+  });
+  let history = useHistory();
+
+  const { options, checkedValues, loading } = state;
 
   React.useEffect(() => {
     (async () => {
       try {
         const response = await loadAppState();
-        setOptions(response.data.data.metadata);
+        dispatch(setOptionsSuccess(response.data.data.metadata));
       } catch (error) {
         toast.error('Failed to load data. Reload page.');
       }
@@ -43,11 +117,39 @@ const CreateUpdateOffer = ({ offerObject, resetOfferObject }) => {
     return () => resetOfferObject();
   }, [resetOfferObject]);
 
-  console.log(offerObject);
+  const handleSelect = (checkedValue) => {
+    const newValues = checkedValues?.includes(checkedValue)
+      ? checkedValues?.filter((name) => name !== checkedValue)
+      : [...(checkedValues ?? []), checkedValue];
+    dispatch(setCheckedValues(newValues));
+    return newValues;
+  };
 
   const onSubmit = async (data) => {
     console.log(data);
-    // await createOffer(data);
+    if (offerObject?.id === null) {
+      try {
+        dispatch(asyncCallStart());
+        await createOffer(data);
+        dispatch(asyncCallSuccess());
+        toast.success('Offer created successfully.');
+        history.push(userRoutes.myInventory.path);
+      } catch (err) {
+        dispatch(asyncCallFailure());
+        toast.error('Creating offer failed.');
+      }
+    } else {
+      try {
+        dispatch(asyncCallStart());
+        await updateOffer(data, offerObject.id);
+        dispatch(asyncCallSuccess());
+        toast.success('Offer updated successfully.');
+        history.push(userRoutes.myInventory.path);
+      } catch (err) {
+        dispatch(asyncCallFailure());
+        toast.error('Offer updated failed.');
+      }
+    }
   };
 
   return (
@@ -446,7 +548,7 @@ const CreateUpdateOffer = ({ offerObject, resetOfferObject }) => {
                 name="features"
                 control={control}
                 defaultValue={offerObject?.vehicleFeatures}
-                render={({ onChange }) =>
+                render={({ onChange: onCheckChange }) =>
                   Object.entries(options?.feature || {}).map(([key, value]) => (
                     <Col lg={4} sm={6} key={key}>
                       <CheckBoxContainer>
@@ -455,8 +557,8 @@ const CreateUpdateOffer = ({ offerObject, resetOfferObject }) => {
                           type="checkbox"
                           id={key}
                           value={key}
-                          checked={offerObject?.vehicleFeatures?.includes(key)}
-                          onChange={onChange}
+                          checked={checkedValues.includes(key)}
+                          onChange={() => onCheckChange(handleSelect(key))}
                           ref={register({
                             required: 'At least one feature is required!',
                           })}
@@ -573,8 +675,15 @@ const CreateUpdateOffer = ({ offerObject, resetOfferObject }) => {
           <FormButton
             variant={offerObject?.id ? 'success' : 'primary'}
             type="submit"
+            disabled={loading}
           >
-            {offerObject?.id ? 'Update' : 'Create'} Offer
+            {loading ? (
+              <Loader small white />
+            ) : offerObject?.id ? (
+              'Update Offer'
+            ) : (
+              'Create Offer'
+            )}
           </FormButton>
         </Form>
       </MainContainer>

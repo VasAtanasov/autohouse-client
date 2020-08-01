@@ -63,7 +63,7 @@ const offerListReducer = (state, action) => {
   }
 };
 
-const UserOffers = ({ account, isFetching }) => {
+const UserOffers = ({ account, isFetching, reload }) => {
   const [state, dispatch] = React.useReducer(
     offerListReducer,
     Object.assign({}, INITIAL_STATE)
@@ -90,7 +90,7 @@ const UserOffers = ({ account, isFetching }) => {
         });
       }
     })();
-  }, [sort, pageNumber]);
+  }, [sort, pageNumber, reload]);
 
   const selectSort = (event) => {
     dispatch({ type: OFFER_SELECT_SORT, payload: event.target.value });
@@ -144,9 +144,10 @@ const UserOffers = ({ account, isFetching }) => {
   );
 };
 
-const mapStateToProps = ({ user, offer }) => ({
+const mapStateToProps = ({ user, offer, notification }) => ({
   account: user.account,
   isFetching: offer.isFetching,
+  reload: notification.reload,
 });
 
 export default connect(mapStateToProps)(UserOffers);
