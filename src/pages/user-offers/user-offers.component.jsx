@@ -106,6 +106,9 @@ const UserOffers = ({ account, isFetching, reload }) => {
         <h4>My Inventory</h4>
         <InfoLine>Seller: {account?.displayName}</InfoLine>
         <InfoLine>Total offers: {page?.totalElements}</InfoLine>
+        <InfoLine>
+          Slots left: {account.maxOffersCount - page?.totalElements}
+        </InfoLine>
       </UserOffersData>
       <UserOffersListContainer>
         {loading || !page || isFetching ? (
@@ -129,7 +132,7 @@ const UserOffers = ({ account, isFetching, reload }) => {
                   />
                   <h4 className="title">There no offers added</h4>
                   <ButtonContainer>
-                    <AddOfferButton ddOfferButton to="/offer/create">
+                    <AddOfferButton to="/offer/create">
                       Add Offer
                     </AddOfferButton>
                   </ButtonContainer>

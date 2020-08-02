@@ -68,6 +68,10 @@ const Dashboard = ({ width, match }) => {
               component={DashboardContent}
             />
             <Route exact path={`${match.url}/users`} component={UsersContent} />
+            <Route
+              path="*"
+              render={() => <Redirect to={`${match.url}/dashboard`} />}
+            />
           </Switch>
         </PageContent>
       </DashboardMain>

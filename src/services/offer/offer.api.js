@@ -101,3 +101,7 @@ export const loadOfferForEdit = async (offerId) => {
 export const deleteOffer = async (offerId) => {
   return http.del(`/vehicles/offers/${offerId}`);
 };
+
+export const userOffersCount = async (accountId) => {
+  return http.get(`/vehicles/offers/count/${accountId}/offers`);
+};

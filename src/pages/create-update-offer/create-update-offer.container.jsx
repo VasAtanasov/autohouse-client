@@ -24,7 +24,11 @@ import Row from 'react-bootstrap/Row';
 import { useForm, Controller } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { loadAppState } from '../../services/common/common.api';
-import { createOffer, updateOffer } from '../../services/offer/offer.api';
+import {
+  createOffer,
+  updateOffer,
+  userOffersCount,
+} from '../../services/offer/offer.api';
 import MakerModelSelect from './components/maker-model/maker-model.component';
 import { toast } from 'react-toastify';
 import { CheckBoxContainer } from '../../components';
@@ -39,6 +43,7 @@ const ASYNC_CALL_SUCCESS = 'ASYNC_CALL_SUCCESS';
 const ASYNC_CALL_FAILURE = 'ASYNC_CALL_FAILURE';
 const SET_OPTIONS = 'SET_OPTIONS';
 const SET_CHECKED_VALUES = 'SET_CHECKED_VALUES';
+const SET_USER_OFFERS_COUNT = 'SET_USER_OFFERS_COUNT';
 
 const setOptionsSuccess = (options) => {
   return { type: SET_OPTIONS, payload: options };
@@ -60,10 +65,15 @@ const asyncCallFailure = () => {
   return { type: ASYNC_CALL_FAILURE };
 };
 
+const setUserOffersCount = (count) => {
+  return { type: SET_USER_OFFERS_COUNT, payload: count };
+};
+
 const INITIAL_STATE = {
   options: {},
   checkedValues: [],
   loading: false,
+  offersCount: -1,
 };
 
 const reducer = (state, action) => {
@@ -89,13 +99,22 @@ const reducer = (state, action) => {
         ...state,
         loading: false,
       };
-
+    case SET_USER_OFFERS_COUNT:
+      return {
+        ...state,
+        offersCount: action.payload,
+      };
     default:
       return state;
   }
 };
 
-const CreateUpdateOffer = ({ offerObject, resetOfferObject }) => {
+const CreateUpdateOffer = ({
+  offerObject,
+  resetOfferObject,
+  accountId,
+  maxOffersCount,
+}) => {
   const { register, handleSubmit, errors, control } = useForm();
   const [state, dispatch] = React.useReducer(reducer, {
     ...INITIAL_STATE,
@@ -103,7 +122,7 @@ const CreateUpdateOffer = ({ offerObject, resetOfferObject }) => {
   });
   let history = useHistory();
 
-  const { options, checkedValues, loading } = state;
+  const { options, checkedValues, loading, offersCount } = state;
 
   React.useEffect(() => {
     (async () => {
@@ -116,6 +135,17 @@ const CreateUpdateOffer = ({ offerObject, resetOfferObject }) => {
     })();
     return () => resetOfferObject();
   }, [resetOfferObject]);
+
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const response = await userOffersCount(accountId);
+        dispatch(setUserOffersCount(response.data));
+      } catch (error) {
+        toast.error('Failed to set user offers count.');
+      }
+    })();
+  }, [accountId]);
 
   const handleSelect = (checkedValue) => {
     const newValues = checkedValues?.includes(checkedValue)
@@ -177,6 +207,14 @@ const CreateUpdateOffer = ({ offerObject, resetOfferObject }) => {
             Items marked with <Required /> are required fields.
           </strong>
         </h6>
+        {!offerObject?.id && (
+          <h6>
+            Available slots:{' '}
+            {offersCount > -1
+              ? `${maxOffersCount - offersCount}`
+              : 'fetching...'}
+          </h6>
+        )}
       </SubHeader>
       <MainContainer>
         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -692,7 +730,11 @@ const CreateUpdateOffer = ({ offerObject, resetOfferObject }) => {
   );
 };
 
-const mapStateToProps = ({ offer }) => ({ offerObject: offer.editCreate });
+const mapStateToProps = ({ user, offer }) => ({
+  offerObject: offer.editCreate,
+  accountId: user.account.id,
+  maxOffersCount: user.account.maxOffersCount,
+});
 
 export default connect(mapStateToProps, { resetOfferObject })(
   CreateUpdateOffer
