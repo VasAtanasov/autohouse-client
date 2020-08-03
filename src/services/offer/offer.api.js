@@ -67,8 +67,10 @@ export const updateOffer = async (data, offerId) => {
   });
 };
 
-export const loadOfferDetails = async (offerId) => {
-  return http.get(`/vehicles/offers/details/${offerId}`);
+export const loadOfferDetails = async (offerId, pr) => {
+  return http.get(
+    `/vehicles/offers/details/${offerId}${pr !== null ? '?pr=' + pr : ''}`
+  );
 };
 
 export const searchFavoriteOffers = async (

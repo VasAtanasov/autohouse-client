@@ -150,13 +150,6 @@ const OfferCard = ({
   } = state;
   let history = useHistory();
 
-  const activateFirst = (event) => {
-    if (!isOfferActive) {
-      toast.info('Before viewing or editing offer u must activate it!');
-      event.preventDefault();
-    }
-  };
-
   const handleToggleActive = async (event) => {
     event.preventDefault();
     try {
@@ -177,7 +170,6 @@ const OfferCard = ({
   };
 
   const handleEditClick = (event) => {
-    activateFirst(event);
     event.preventDefault();
     loadOfferForEditAsync(
       id,
@@ -192,7 +184,6 @@ const OfferCard = ({
   };
 
   const handleDeleteClick = async (event) => {
-    activateFirst(event);
     event.preventDefault();
     try {
       dispatch(toggleDeleteInProgress(true));
@@ -210,8 +201,11 @@ const OfferCard = ({
   return (
     <React.Fragment>
       <OfferLink
-        className={isOfferActive ? '' : 'is-disabled'}
-        to={offerRoutes.offerDetails.path(id)}
+        to={
+          isUserInventoryPage
+            ? `${offerRoutes.offerDetails.path(id)}?pr=true`
+            : offerRoutes.offerDetails.path(id)
+        }
         data-uuid={id}
       >
         <OfferContainer
@@ -298,22 +292,16 @@ const OfferCard = ({
           </Summery>
           {isUserInventoryPage && (
             <OfferOwnerActionsContainer className="user-actions-container">
-              <ActionButton
-                onClick={handleEditClick}
-                variant="info"
-                disabled={!isOfferActive}
-              >
+              <ActionButton onClick={handleEditClick} variant="info">
                 Edit
               </ActionButton>{' '}
               <ActionButton
-                className={isOfferActive ? '' : 'is-disabled'}
                 onClick={handleToggleActive}
                 variant={isOfferActive ? 'warning' : 'primary'}
               >
                 {isOfferActive ? 'Disable' : 'Activate'}
               </ActionButton>{' '}
               <ActionButton
-                className={isOfferActive ? '' : 'is-disabled'}
                 onClick={(event) => {
                   event.preventDefault();
                   dispatch(toggleModal(true));

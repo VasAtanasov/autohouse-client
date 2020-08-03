@@ -14,6 +14,11 @@ export const notification = (
         ...state,
         reload: true,
       };
+    case types.RESET_RELOAD:
+      return {
+        ...state,
+        reload: false,
+      };
     default:
       return state;
   }

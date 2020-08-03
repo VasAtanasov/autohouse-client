@@ -15,6 +15,10 @@ import { connect } from 'react-redux';
 import { AddToFavorites } from '../../components';
 import Peugeot404 from '../peugeot-404/peugeot-404.component';
 
+function useQuery(search) {
+  return new URLSearchParams(search);
+}
+
 const Description = ({ description }) => {
   const addInfoIndex = description.indexOf('[!@@Additional Info@@!]');
   return (
@@ -36,8 +40,10 @@ const Description = ({ description }) => {
   );
 };
 
-const OfferDetails = ({ match, user }) => {
+const OfferDetails = ({ match, user, location }) => {
   const offerId = match.params.id;
+  const query = useQuery(location.search);
+  const pr = query.get('pr');
   const { isAuthenticated, account } = user;
 
   const [loading, setLoading] = React.useState(true);
@@ -48,7 +54,7 @@ const OfferDetails = ({ match, user }) => {
   React.useEffect(() => {
     (async () => {
       try {
-        const response = await loadOfferDetails(offerId);
+        const response = await loadOfferDetails(offerId, pr);
         setOffer(response.data.data.offer);
         setOfferImages(response.data.data.images);
         setLoading(false);
@@ -57,7 +63,7 @@ const OfferDetails = ({ match, user }) => {
         setError(true);
       }
     })();
-  }, [offerId]);
+  }, [offerId, pr]);
 
   const {
     id,

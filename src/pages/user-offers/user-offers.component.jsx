@@ -7,6 +7,7 @@ import {
   OFFER_SELECT_PAGE,
 } from '../../services/offer/offer.types';
 import { loadUserOffers } from '../../services/offer/offer.api';
+import { resetReload } from '../../services/notification/notification.actions';
 import { Spinner } from '../../components';
 import List from '../offer-list/list/list.component';
 import { connect } from 'react-redux';
@@ -63,7 +64,7 @@ const offerListReducer = (state, action) => {
   }
 };
 
-const UserOffers = ({ account, isFetching, reload }) => {
+const UserOffers = ({ account, isFetching, reload, resetReload }) => {
   const [state, dispatch] = React.useReducer(
     offerListReducer,
     Object.assign({}, INITIAL_STATE)
@@ -78,6 +79,9 @@ const UserOffers = ({ account, isFetching, reload }) => {
   React.useEffect(() => {
     (async () => {
       try {
+        if (reload) {
+          resetReload();
+        }
         const response = await loadUserOffers(sort, pageNumber);
         dispatch({
           type: OFFER_SEARCH_SUCCESS,
@@ -90,7 +94,7 @@ const UserOffers = ({ account, isFetching, reload }) => {
         });
       }
     })();
-  }, [sort, pageNumber, reload]);
+  }, [sort, pageNumber, reload, resetReload]);
 
   const selectSort = (event) => {
     dispatch({ type: OFFER_SELECT_SORT, payload: event.target.value });
@@ -106,9 +110,11 @@ const UserOffers = ({ account, isFetching, reload }) => {
         <h4>My Inventory</h4>
         <InfoLine>Seller: {account?.displayName}</InfoLine>
         <InfoLine>Total offers: {page?.totalElements}</InfoLine>
-        <InfoLine>
-          Slots left: {account.maxOffersCount - page?.totalElements}
-        </InfoLine>
+        {account && (
+          <InfoLine>
+            Slots left: {account.maxOffersCount - page?.totalElements}
+          </InfoLine>
+        )}
       </UserOffersData>
       <UserOffersListContainer>
         {loading || !page || isFetching ? (
@@ -153,4 +159,4 @@ const mapStateToProps = ({ user, offer, notification }) => ({
   reload: notification.reload,
 });
 
-export default connect(mapStateToProps)(UserOffers);
+export default connect(mapStateToProps, { resetReload })(UserOffers);

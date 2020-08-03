@@ -103,7 +103,6 @@ const UsersContent = () => {
       try {
         dispatch({ type: LOAD_PAGE_START });
         const response = await loadUsersList(sort, pageNumber);
-        console.log(response.data);
         dispatch({ type: LOAD_PAGE_SUCCESS, page: response.data });
       } catch (err) {
         dispatch({
