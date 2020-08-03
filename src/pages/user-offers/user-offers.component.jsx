@@ -6,7 +6,7 @@ import {
   OFFER_SELECT_SORT,
   OFFER_SELECT_PAGE,
 } from '../../services/offer/offer.types';
-import { loadUserOffers } from '../../services/offer/offer.api';
+import { loadUserOffers } from '../../services/user/user.api';
 import { resetReload } from '../../services/notification/notification.actions';
 import { Spinner } from '../../components';
 import List from '../offer-list/list/list.component';

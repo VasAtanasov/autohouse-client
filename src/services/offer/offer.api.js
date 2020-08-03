@@ -89,13 +89,6 @@ export const searchFavoriteOffers = async (
   );
 };
 
-export const loadUserOffers = async (
-  sort = 'createdAt,desc',
-  pageNumber = 0
-) => {
-  return http.get(`/users/offer/list?page=${pageNumber}&sort=${sort}`);
-};
-
 export const loadOfferForEdit = async (offerId) => {
   return http.get(`/vehicles/offers/load-for-edit/${offerId}`);
 };

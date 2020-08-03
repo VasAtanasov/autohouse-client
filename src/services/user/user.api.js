@@ -85,6 +85,13 @@ export const changePassword = (data) => {
   });
 };
 
+export const loadUserOffers = async (
+  sort = 'createdAt,desc',
+  pageNumber = 0
+) => {
+  return http.get(`/users/offer/list?page=${pageNumber}&sort=${sort}`);
+};
+
 export const addToFavorites = async (offerId) => {
   return http.get(`/users/offer/add-to-favorites/${offerId}`);
 };
