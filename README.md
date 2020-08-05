@@ -1,14 +1,13 @@
 # autohouse-client
 
-  Web client build to consume autohouse-server web API
+Web client built with Spring Boot can be found at [autohouse-server](https://github.com/VasAtanasov/autohouse-server).
 
-  Main technologies used are:
+Main technologies used are:
 
-  - React
-  - Recat-Redux
-  - React-Router
-  - React-Bootstrap
-  
+- React
+- React-Redux
+- React-Router
+- React-Bootstrap
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

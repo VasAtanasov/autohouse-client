@@ -37,6 +37,7 @@ export const loginRequestAsync = (data) => async (dispatch) => {
 
 export const createUpdateAccountAsync = (data) => async (dispatch) => {
   let response;
+  console.log(data);
   switch (data.accountType) {
     case 'DEALER':
       response = await userApi.createUpdateDealerAccount(data);
@@ -47,6 +48,7 @@ export const createUpdateAccountAsync = (data) => async (dispatch) => {
     default:
       return;
   }
+  console.log(response);
   if (response) {
     const account = response.data.data;
     const user = JSON.parse(window.localStorage.getItem('user'));

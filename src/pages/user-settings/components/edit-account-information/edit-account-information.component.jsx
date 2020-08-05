@@ -110,14 +110,7 @@ const EditAccountInformation = ({
     hasAccount: nullToEmptyString(user?.hasAccount),
   });
 
-  const {
-    loading,
-    editable,
-    accountType,
-    location,
-    isDealer,
-    hasAccount,
-  } = state;
+  const { loading, editable, accountType, isDealer, hasAccount } = state;
 
   const {
     register,
@@ -128,14 +121,15 @@ const EditAccountInformation = ({
     formState,
   } = useForm();
 
-  const { dirty } = formState;
+  const { isDirty } = formState;
 
   React.useEffect(() => {
     clearErrors();
   }, [accountType, clearErrors]);
 
   const handleAddEditAccountInfo = async (data) => {
-    if (!dirty) {
+    if (!isDirty) {
+      console.log(isDirty);
       dispatch({ type: READ_ONLY });
       return;
     }
@@ -309,18 +303,21 @@ const EditAccountInformation = ({
                 <FormControl
                   readOnly
                   plaintext
-                  defaultValue={orElse(location, 'Input Zip Code')}
+                  value={orElse(
+                    formatLocation(account?.address),
+                    'Input Zip Code'
+                  )}
                 />
               </Form.Group>
               <Form.Group as={Col} sm={3} controlId="location-code">
-                {!errors.addressLocationId && (
+                {!errors.addressLocationPostalCode && (
                   <Form.Label>
                     Zip Code {isDealer && editable && <Required />}
                   </Form.Label>
                 )}
                 <ErrorMessageContainer inline forLabel>
-                  {errors.addressLocationId?.type === 'required' && (
-                    <p> Zip Code is required.</p>
+                  {errors.addressLocationPostalCode?.type === 'required' && (
+                    <p>Zip Code is required.</p>
                   )}
                 </ErrorMessageContainer>
                 <FormControl

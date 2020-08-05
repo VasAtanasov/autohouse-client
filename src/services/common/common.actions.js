@@ -89,12 +89,3 @@ export const fetchMetadataAsync = () => async (dispatch) => {
     throw error;
   }
 };
-
-export const fetchProvincesAsync = () => async (dispatch) => {
-  try {
-    const response = await commonApi.loadProvinces();
-    dispatch({ type: types.SET_PROVINCE_LIST, payload: response.data.data });
-  } catch (err) {
-    throw err;
-  }
-};
