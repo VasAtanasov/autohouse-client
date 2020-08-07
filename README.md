@@ -41,15 +41,14 @@ Make sure that the REST server from the repository `autohouse-server` is running
 
 ## Some screenshots
 
-[Logged user desktop home view](img/screencapture-localhost-3000-home-2020-08-07-16_31_10.png)
+[Logged user desktop home view](https://raw.githubusercontent.com/VasAtanasov/autohouse-client/master/img/screencapture-localhost-3000-home-2020-08-07-16_31_10.png)
 
-[Logged user mobile home view](img/screencapture-localhost-3000-home-2020-08-07-16_34_07.png)
+[Logged user mobile home view](https://raw.githubusercontent.com/VasAtanasov/autohouse-client/master/img/screencapture-localhost-3000-home-2020-08-07-16_34_07.png)
 
-[Logged user offers search](img/screencapture-localhost-3000-list-2020-08-07-16_31_27.png)
+[Logged user offers search](https://raw.githubusercontent.com/VasAtanasov/autohouse-client/master/img/screencapture-localhost-3000-list-2020-08-07-16_31_27.png)
 
-[Logged user create offer page](img/screencapture-localhost-3000-offer-create-2020-08-07-16_33_48.png)
+[Logged user create offer page](https://raw.githubusercontent.com/VasAtanasov/autohouse-client/master/img/screencapture-localhost-3000-offer-create-2020-08-07-16_33_48.png)
 
+[Logged user profile page](https://raw.githubusercontent.com/VasAtanasov/autohouse-client/master/img/screencapture-localhost-3000-user-settings-edit-personal-info-2020-08-07-16_33_18.png)
 
-[Logged user profile page](img/screencapture-localhost-3000-user-settings-edit-personal-info-2020-08-07-16_33_18.png)
-
-[Logged user change password page](img/screencapture-localhost-3000-user-settings-password-2020-08-07-16_33_30.png)
+[Logged user change password page](https://raw.githubusercontent.com/VasAtanasov/autohouse-client/master/img/screencapture-localhost-3000-user-settings-password-2020-08-07-16_33_30.png)
