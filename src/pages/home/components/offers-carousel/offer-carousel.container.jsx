@@ -12,7 +12,7 @@ import { selectTopOffers } from '../../../../services/offer/offer.selectors';
 const DEFAULT_PAGE_SIZE = 5;
 const DEFAULT_START_PAGE = 1;
 
-const Carousel = ({ topOffers }) => {
+const Carousel = ({ topOffers = [] }) => {
   const [page, setPage] = useState(DEFAULT_START_PAGE);
   const totalItems = topOffers.length;
   const totalPages = Math.ceil(totalItems / DEFAULT_PAGE_SIZE);
@@ -49,9 +49,9 @@ const Carousel = ({ topOffers }) => {
   );
 };
 
-Carousel.propTypes = {
-  topOffers: PropTypes.array.isRequired,
-};
+// Carousel.propTypes = {
+//   topOffers: PropTypes.array.isRequired,
+// };
 
 const mapStateToProps = createStructuredSelector({
   topOffers: selectTopOffers,

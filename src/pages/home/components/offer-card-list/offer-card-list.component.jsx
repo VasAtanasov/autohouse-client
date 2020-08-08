@@ -5,7 +5,7 @@ import { selectTopOffers } from '../../../../services/offer/offer.selectors';
 import { OfferList } from './offer-card-list.styles';
 import { OfferCard } from '../../../../components';
 
-const OfferCardList = ({ topOffers }) => (
+const OfferCardList = ({ topOffers = [] }) => (
   <OfferList className="offer-list">
     {topOffers.map((offer) => (
       <OfferCard key={offer.id} {...offer} />
