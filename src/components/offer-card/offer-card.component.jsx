@@ -229,9 +229,8 @@ const OfferCard = ({
               </span>
             </div>
             <div className="offer-summary-action-buttons">
-              {isAuthenticated &&
-              !isUserInventoryPage &&
-              account?.id !== accountId ? (
+              {!isAuthenticated ? null : !isUserInventoryPage &&
+                account?.id !== accountId ? (
                 <AddToFavorites offerId={id} />
               ) : (
                 <OwnerBadge>
