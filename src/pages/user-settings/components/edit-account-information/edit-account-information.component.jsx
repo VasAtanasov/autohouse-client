@@ -129,7 +129,6 @@ const EditAccountInformation = ({
 
   const handleAddEditAccountInfo = async (data) => {
     if (!isDirty) {
-      console.log(isDirty);
       dispatch({ type: READ_ONLY });
       return;
     }
@@ -166,7 +165,8 @@ const EditAccountInformation = ({
   return (
     <AccountSettingsContainer>
       <AccountSettingsTitle>
-        {hasAccount ? 'Edit' : 'Add'} Account{hasAccount && ' Information'}
+        {hasAccount ? 'Edit' : 'Add'} Account{hasAccount && ' Information'}:{' '}
+        {user.username}
       </AccountSettingsTitle>
       <SettingsMain>
         <Form onSubmit={handleSubmit(handleAddEditAccountInfo)}>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import CarouselComponent from './offer-carousel.component';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import {
   InnerCarouselContainer,
   CarouselControl,
@@ -48,10 +47,6 @@ const Carousel = ({ topOffers = [] }) => {
     </CarouselContainer>
   );
 };
-
-// Carousel.propTypes = {
-//   topOffers: PropTypes.array.isRequired,
-// };
 
 const mapStateToProps = createStructuredSelector({
   topOffers: selectTopOffers,
