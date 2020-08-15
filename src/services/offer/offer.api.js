@@ -18,7 +18,6 @@ export const searchOffers = async (
 };
 
 const mapOfferToFormData = (data) => {
-  console.log(data);
   const formData = new FormData();
   formData.append('price', data.price);
   formData.append('description', data.description);
