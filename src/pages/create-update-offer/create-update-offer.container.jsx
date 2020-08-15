@@ -156,7 +156,6 @@ const CreateUpdateOffer = ({
   };
 
   const onSubmit = async (data) => {
-    console.log(data);
     if (offerObject?.id === null) {
       try {
         dispatch(asyncCallStart());
