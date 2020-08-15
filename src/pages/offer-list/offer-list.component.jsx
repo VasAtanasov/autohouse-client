@@ -91,7 +91,7 @@ const offerListReducer = (state, action) => {
   }
 };
 
-const FiltersModal = ({ saveSearch, metadata }) => {
+const FiltersModal = ({ saveSearch, isAuthenticated, metadata }) => {
   const [visible, setVisible] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const [awake, setAwake] = React.useState(false);
@@ -155,9 +155,11 @@ const FiltersModal = ({ saveSearch, metadata }) => {
             <div className="button cancel" onClick={() => setVisible(false)}>
               Cancel
             </div>
-            <div className="button save" onClick={saveSearch}>
-              Save
-            </div>
+            {isAuthenticated && (
+              <div className="button save" onClick={saveSearch}>
+                Save
+              </div>
+            )}
           </SearchButtonsWrapper>
         </SearchButtonsContainer>
       </FiltersStyledModal>
@@ -165,7 +167,7 @@ const FiltersModal = ({ saveSearch, metadata }) => {
   );
 };
 
-const OfferList = ({ filter, width }) => {
+const OfferList = ({ filter, width, isAuthenticated }) => {
   const [state, dispatch] = React.useReducer(
     offerListReducer,
     Object.assign({}, INITIAL_STATE)
@@ -229,7 +231,11 @@ const OfferList = ({ filter, width }) => {
         ) : (
           <React.Fragment>
             {width && width < 992 && (
-              <FiltersModal saveSearch={saveSearch} {...app} />
+              <FiltersModal
+                isAuthenticated={isAuthenticated}
+                saveSearch={saveSearch}
+                {...app}
+              />
             )}
             {page.content.length > 0 ? (
               <List
@@ -258,7 +264,10 @@ const OfferList = ({ filter, width }) => {
   );
 };
 
-const mapStateToProps = ({ filter }) => ({ filter });
+const mapStateToProps = ({ filter, user }) => ({
+  filter,
+  isAuthenticated: user.isAuthenticated,
+});
 
 const mapSizesToProps = ({ width }) => ({
   isMobile: width < 480,

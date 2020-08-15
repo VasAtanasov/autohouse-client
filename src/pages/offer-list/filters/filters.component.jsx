@@ -477,6 +477,7 @@ const Filters = ({
   resetFilter,
   metadata,
   width,
+  isAuthenticated,
 }) => {
   const { register, handleSubmit, reset } = useForm({
     defaultValues: filter,
@@ -492,7 +493,7 @@ const Filters = ({
       <SearchFiltersSection className="search-filters-section">
         <SearchFiltersHeader>
           <div className="page-title">Search Filters</div>
-          {saveSearch && (
+          {isAuthenticated && saveSearch && (
             <button className="save-button" onClick={saveSearch}>
               Save
             </button>
@@ -574,7 +575,11 @@ const mapSizesToProps = ({ width }) => ({
   width,
 });
 
-const mapStateToProps = ({ filter, statistics }) => ({ filter, statistics });
+const mapStateToProps = ({ filter, statistics, user }) => ({
+  filter,
+  statistics,
+  isAuthenticated: user.isAuthenticated,
+});
 
 export default connect(mapStateToProps, { createFilter, resetFilter })(
   withSizes(mapSizesToProps)(Filters)
